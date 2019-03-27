@@ -48,6 +48,7 @@ class User extends Base
             return $this->ErrorReturn($this->UserValidate->getError());
         }
     }
+
     public function updatepwd(){
         if(isset($_POST['old_password'])){
             $rec = $_POST;

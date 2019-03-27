@@ -1,10 +1,10 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: barry
- * Email:530027054@qq.com
- * Date: 2018/7/20
- * Time: 11:30
+ * User:  barry
+ * Email: 530027054@qq.com
+ * Date:  2019/3/20
+ * Time:  15:31
  */
 
 namespace app\home\controller;

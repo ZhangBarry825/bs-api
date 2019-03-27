@@ -7,13 +7,13 @@
  * Time:  15:31
  */
 
-namespace app\home\model;
+namespace app\admin\model;
 
 
 use think\Model;
 
-class ArticleModel extends Model
+class SysUserModel extends Model
 {
-    protected $table = 'article';
+    protected $table = 'sys_user';
 
 }
