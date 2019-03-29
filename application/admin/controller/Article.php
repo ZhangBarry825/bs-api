@@ -114,7 +114,10 @@ class Article extends Base
                     $data['rows'] = $result;
                     return $this->SuccessReturn('success', $data);
                 } else {
-                    return $this->SuccessReturn('success', (object)[]);
+                    return $this->SuccessReturn('success', (object)[
+                        'count'=>0,
+                        'rows'=>[]
+                    ]);
                 }
             }
         } else {
