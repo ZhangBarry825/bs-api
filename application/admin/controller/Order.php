@@ -10,17 +10,20 @@
 namespace app\admin\controller;
 
 
+use app\admin\model\CommissionModel;
+use app\admin\model\MembershipModel;
 use app\admin\model\OrderModel;
 use app\admin\model\OrderValidate;
 use app\admin\model\OrderGoodsModel;
 use think\Db;
-use think\Request;
 
 class Order extends Base
 {
     protected $Order;
     protected $OrderValidate;
     protected $OrderGoods;
+    protected $Commission;
+    protected $Membership;
 
 
     public function __construct()
@@ -28,7 +31,9 @@ class Order extends Base
         parent::__construct();
         $this->Order = new OrderModel();
         $this->OrderGoods = new OrderGoodsModel();
+        $this->Commission = new CommissionModel();
         $this->OrderValidate = new OrderValidate();
+        $this->Membership = new MembershipModel();
     }
 
     public function index()
@@ -96,13 +101,10 @@ class Order extends Base
         if ($res) {
             $levelOne['id'] = $rec['id'];
             $levelOne['status'] = $rec['status'];
-
+            $levelOne['express_company'] = $rec['express_company'];
+            $levelOne['express_code'] = $rec['express_code'];
             if ($rec['status'] == 1) {
                 $levelOne['pay_time'] = time();
-            }
-            if ($rec['status'] == 2) {
-                $levelOne['express_company'] = $rec['express_company'];
-                $levelOne['express_code'] = $rec['express_code'];
             }
             if ($rec['status'] == 4) {
                 $levelOne['apply_refund_time'] = time();
@@ -117,9 +119,28 @@ class Order extends Base
             }
             $result = $this->Order->update($levelOne);
             if ($result) {
-//                foreach ($rec['specification'] as $key => $value) {
-//                    $result2 = $this->Specification->update($value);
-//                }
+                if ($rec['status'] == 3) {
+                    $item=$this->Order->where('id','=',$rec['id'])->find();
+                    $level_three_id=$item['shopper_id'];
+                    $level_one='';
+                    $level_two='';
+                    $level_three=$this->Membership->where('membership_id','=',$level_three_id)->find();
+                    if($level_three['referrer_id']!=0){
+                        $level_two=$this->Membership->where('membership_id','=',$level_three['referrer_id'])->find();
+                        if($level_two['referrer_id']!=0){
+                            $level_one=$this->Membership->where('membership_id','=',$level_two['referrer_id'])->find();
+                            if($level_one['referrer_id']!=0){
+
+                            }
+                        }else{
+
+                        }
+                    }else{
+
+                    }
+                    $commission='';
+                    return $this->SuccessReturn('110',$item);
+                }
                 return $this->SuccessReturn();
             } else {
                 return $this->ErrorReturn($this->Order->getError());

@@ -40,7 +40,7 @@ class SysUser extends Base
         $res = $this->UserValidate->check($rec, '', 'login');
         if ($res) {
             $rec['password'] = md5($rec['password']);
-            $result = $this->User->where('username', '=', $rec['username'])->where('password', '=', $rec['password'])->field('name,nickname,avatar,roles')->find();
+            $result = $this->User->where('username', '=', $rec['username'])->where('password', '=', $rec['password'])->field('id,username,name,nickname,avatar,roles')->find();
             if ($result) {
                 session('user', $result);
                 return $this->SuccessReturn("success", $result);
@@ -117,7 +117,7 @@ class SysUser extends Base
         $res = $this->UserValidate->check($rec, '', 'deleteUser');
 
         if ($res) {
-            $result=false;
+            $result = false;
             for ($i = 0; $i < count($rec['id']); $i++) {
                 if ($rec['id'][$i] != 1) {
                     $result = $this->User->where('id', '=', $rec['id'][$i])->delete();
@@ -180,7 +180,8 @@ class SysUser extends Base
 
     }
 
-    public function newUser(){
+    public function newUser()
+    {
         if (isset($_POST['username'])) {
             $rec = $_POST;
         } else {
@@ -189,13 +190,13 @@ class SysUser extends Base
         }
         $res = $this->UserValidate->check($rec, '', 'newUser');
 
-        if($res){
-            $rec['roles']='manager';
-            $rec['password']=md5($rec['password']);
-            $count = count($this->User->where('username', '=',  $rec['username'] )->select());
-            if($count>0){
+        if ($res) {
+            $rec['roles'] = 'manager';
+            $rec['password'] = md5($rec['password']);
+            $count = count($this->User->where('username', '=', $rec['username'])->select());
+            if ($count > 0) {
                 return $this->ErrorReturn('该账号已存在！');
-            }else{
+            } else {
                 $result = $this->User->isUpdate(false)->save($rec);
                 if ($result) {
                     return $this->SuccessReturn('success', $rec);
@@ -205,11 +206,63 @@ class SysUser extends Base
             }
 
 
-        }else{
+        } else {
             return $this->ErrorReturn($this->UserValidate->getError());
         }
 
 
     }
 
+    public function updateUser()
+    {
+        if (isset($_POST['username'])) {
+            $rec = $_POST;
+        } else {
+            $request_data = file_get_contents('php://input');
+            $rec = json_decode($request_data, true);
+        }
+        $res = $this->UserValidate->check($rec, '', 'updateUser');
+
+        if ($res) {
+            $rec['password'] = md5($rec['password']);
+            $count = count($this->User->where('id', 'neq', $rec['id'])->where('username', '=', $rec['username'])->select());
+            if ($count > 0) {
+                return $this->ErrorReturn('该手机号已存在！');
+            } else {
+                $result = $this->User->where('id', '=', $rec['id'])->update($rec);
+                if ($result) {
+                    return $this->SuccessReturn('success', $rec);
+                } else {
+                    return $this->ErrorReturn($this->User->getError());
+                }
+            }
+
+
+        } else {
+            return $this->ErrorReturn($this->UserValidate->getError());
+        }
+
+
+    }
+
+    public function getUserDetail()
+    {
+        if (isset($_POST['id'])) {
+            $rec = $_POST;
+        } else {
+            $request_data = file_get_contents('php://input');
+            $rec = json_decode($request_data, true);
+        }
+        $res = $this->UserValidate->check($rec, '', 'getUserDetail');
+        if ($res) {
+            $result = $this->User->where('id', '=', $rec['id'])->field('password',true)->find();
+            if ($result) {
+                return $this->SuccessReturn('success', $result);
+            } else {
+                return $this->ErrorReturn($this->User->getError());
+            }
+        } else {
+            return $this->ErrorReturn($this->UserValidate->getError());
+        }
+    }
 }

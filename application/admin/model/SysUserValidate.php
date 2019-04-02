@@ -29,8 +29,10 @@ class SysUserValidate extends Validate
         'login' => ['username','password'],
         'updateUserPwd'=>['id'],
         'deleteUser'=>['id'],
+        'getUserDetail'=>['id'],
         'updatePwd'=>['new_password','old_password'],
         'allUsers' =>['page_num','page_size'],
         'newUser' =>['username','nickname','name','password'],
+        'updateUser' =>['id','username','nickname','name','password'],
     ];
 }

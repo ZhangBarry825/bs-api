@@ -48,7 +48,7 @@ class Membership extends Base
                 $rec['expense'] = 0;
                 $rec['password'] = md5($rec['password']);
                 $rec['membership_id'] = substr($rec['phone'], -4) . substr(time(), -4);
-                $rec['status'] = 1;
+                $rec['status'] = 0;
                 $result = $this->Membership->isUpdate(false)->save($rec);
                 if ($result) {
                     return $this->SuccessReturn('success', $rec);
@@ -133,6 +133,13 @@ class Membership extends Base
 
         if ($res) {
             $result = $this->Membership->where('id', '=', $rec['id'])->find();
+            $result1=$this->Membership->where('referrer_id', '=', $result['membership_id'])->select();
+            $result['levelTwo']=$result1;
+            $result['levelThree']=[];
+            foreach ($result1 as $key=>$value){
+                $result3=$this->Membership->where('referrer_id', '=', $value['membership_id'])->select();
+                $result['levelThree']=array_merge($result['levelThree'],$result3);
+            }
             if ($result) {
                 return $this->SuccessReturn('success', $result);
             } else {
@@ -155,7 +162,7 @@ class Membership extends Base
         $res = $this->MembershipValidate->check($rec, '', 'updateMembership');
 
         if ($res) {
-            $rec['create_time'] = time();
+//            $rec['create_time'] = time();
             $result = $this->Membership->update($rec);
             if ($result) {
                 return $this->SuccessReturn('success');
@@ -189,6 +196,36 @@ class Membership extends Base
             return $this->ErrorReturn($this->MembershipValidate->getError());
         }
 
+
+    }
+
+
+    public function allSaleMembers()
+    {
+
+        if (isset($_POST['page_num'])) {
+            $rec = $_POST;
+        } else {
+            $request_data = file_get_contents('php://input');
+            $rec = json_decode($request_data, true);
+        }
+
+        $res = $this->MembershipValidate->check($rec, '', 'allMembership');
+        if ($res) {
+            $result = Db::table('membership')->where('status','>',0)->page($rec['page_num'], $rec['page_size'])->select();
+            if ($result) {
+                $count = count(Db::table('membership')->select());
+                $data['count'] = $count;
+                $data['rows'] = $result;
+                return $this->SuccessReturn('success', $data);
+            } else {
+                $data['count'] = 0;
+                $data['rows'] = [];
+                return $this->SuccessReturn('success', $data);
+            }
+        } else {
+            return $this->ErrorReturn($this->MembershipValidate->getError());
+        }
 
     }
 
