@@ -85,4 +85,26 @@ class Statistics extends Base
         }
         return $this->SuccessReturn('success',$data);
     }
+
+    public function payCommission(){
+        $start=mktime(0,0,0,date('m'),1,date('Y'));
+        $result=Db::table('commission')->where('create_time','>=',$start)->select();
+        $count=count($result);
+        $days=date("t");
+        $data['days']=$days+0;
+        $data['count']=$count;
+        $account=0;
+        for($i=0;$i<$days;$i++){
+            $map['create_time'] = ['between time', [$start+86400*($i), $start+86400*($i+1)]];
+            $result2=Db::table('commission')->where($map)->select();
+            $commission_account=0;
+            foreach ($result2 as $key=>$value){
+                $commission_account+=$value['commission_account'];
+            }
+            $data['rows'][$i]=$commission_account;
+            $account+=$commission_account;
+        }
+        $data['account']=$account;
+        return $this->SuccessReturn('success',$data);
+    }
 }

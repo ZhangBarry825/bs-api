@@ -11,7 +11,7 @@
  Target Server Version : 50637
  File Encoding         : 65001
 
- Date: 29/03/2019 16:51:17
+ Date: 03/04/2019 17:03:46
 */
 
 SET NAMES utf8mb4;
@@ -33,6 +33,64 @@ CREATE TABLE `article`  (
   `update_time` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Table structure for commission
+-- ----------------------------
+DROP TABLE IF EXISTS `commission`;
+CREATE TABLE `commission`  (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `commission_account` double(10, 2) NOT NULL COMMENT '佣金金额',
+  `level_one` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '一级',
+  `level_one_id` int(255) NULL DEFAULT NULL,
+  `level_one_commission` double(10, 2) NULL DEFAULT NULL COMMENT '一级佣金',
+  `level_two` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '二级',
+  `level_two_id` int(255) NULL DEFAULT NULL,
+  `level_two_commission` double(10, 2) NULL DEFAULT NULL COMMENT '二级佣金',
+  `level_three` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '三级',
+  `level_three_id` int(255) NULL DEFAULT NULL,
+  `level_three_commission` double(10, 2) NULL DEFAULT NULL COMMENT '三级佣金',
+  `customer_nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '顾客昵称',
+  `customer_id` int(255) NOT NULL COMMENT '顾客会员号',
+  `order_id` int(255) NOT NULL COMMENT '订单号',
+  `create_time` int(255) NOT NULL COMMENT '创建时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of commission
+-- ----------------------------
+INSERT INTO `commission` VALUES (1, 70.00, NULL, NULL, NULL, '大番薯', 96114956, 52.50, '小番薯', 96111407, 17.50, '大冬瓜', 96111425, 2147481230, 1554186328);
+INSERT INTO `commission` VALUES (2, 140.00, '大番薯', 96114956, 70.00, '小番薯', 96111407, 52.50, '大冬瓜', 96111425, 17.50, '秦先生', 96111448, 2147483501, 1554186469);
+INSERT INTO `commission` VALUES (3, 15.00, NULL, NULL, NULL, NULL, NULL, NULL, '大番薯', 96114956, 15.00, '小番薯', 96111407, 2147483647, 1554186589);
+INSERT INTO `commission` VALUES (4, 70.00, NULL, NULL, NULL, '大番薯', 96114956, 52.50, '小番薯', 96111407, 17.50, '大冬瓜', 96111425, 2147481230, 1554186898);
+INSERT INTO `commission` VALUES (5, 140.00, '大番薯', 96114956, 70.00, '小番薯', 96111407, 52.50, '大冬瓜', 96111425, 17.50, '秦先生', 96111448, 2147483501, 1554186952);
+INSERT INTO `commission` VALUES (6, 15.00, NULL, NULL, NULL, NULL, NULL, NULL, '大番薯', 96114956, 15.00, '小番薯', 96111407, 2147483647, 1554186962);
+
+-- ----------------------------
+-- Table structure for encash
+-- ----------------------------
+DROP TABLE IF EXISTS `encash`;
+CREATE TABLE `encash`  (
+  `id` int(255) NOT NULL AUTO_INCREMENT,
+  `encash_id` int(255) NOT NULL,
+  `membership_id` int(255) NOT NULL,
+  `account` double(10, 2) NOT NULL,
+  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `encash_type` int(255) NOT NULL COMMENT '提现方式',
+  `create_time` int(255) NOT NULL COMMENT '申请时间',
+  `status` int(255) NOT NULL COMMENT '0申请中1已打款2已驳回',
+  `pay_time` int(255) NOT NULL COMMENT '打款时间',
+  PRIMARY KEY (`id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+
+-- ----------------------------
+-- Records of encash
+-- ----------------------------
+INSERT INTO `encash` VALUES (1, 125221552, 96114956, 50.50, '大番薯', 1, 1553933302, 1, 1554082220);
+INSERT INTO `encash` VALUES (2, 675626097, 96114956, 55.50, '大番薯', 1, 1554079968, 1, 1554188145);
+INSERT INTO `encash` VALUES (3, 678680115, 96114956, 55.50, '大番薯', 1, 1554080182, 1, 1554188159);
+INSERT INTO `encash` VALUES (4, 958714202, 96114956, 55.50, '大番薯', 1, 1554079738, 1, 1554082316);
 
 -- ----------------------------
 -- Table structure for goods
@@ -121,21 +179,26 @@ CREATE TABLE `membership`  (
   `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `commission` double(255, 2) NOT NULL COMMENT '佣金',
   `balance` double(255, 2) UNSIGNED NOT NULL,
+  `sale_account` double(255, 2) NOT NULL COMMENT '销售额',
   `expense` double(255, 2) UNSIGNED NOT NULL,
   `create_time` int(255) NOT NULL,
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `referrer_id` int(255) NOT NULL,
   `referrer` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `status` int(255) NOT NULL COMMENT '1正常 0禁用',
+  `status` int(255) NOT NULL COMMENT '0未申请 1待审核 2已同意 3已拒绝 4已禁用',
   `is_shopper` int(255) NOT NULL COMMENT '1是0否',
+  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '头像',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 41 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of membership
 -- ----------------------------
-INSERT INTO `membership` VALUES (21, 96114956, '张三', '大番薯', '15138389776', 0.00, 0.00, 0.00, 1553674956, '4297f44b13955235245b2497399d7a93', 0, '总店', 1, 1);
-INSERT INTO `membership` VALUES (23, 96111407, '张三', '小番薯', '17611319611', 0.00, 0.00, 0.00, 1553821407, '4297f44b13955235245b2497399d7a93', 96114956, '大番薯', 1, 0);
+INSERT INTO `membership` VALUES (21, 96114956, '张三', '大番薯', '15138389776', 26.50, 434.00, 100.00, 500.00, 1554048332, '4297f44b13955235245b2497399d7a93', 0, '', 2, 1, 'static/uploads/20190403/a29e82924ae3fd627b6dcd79ae95addc.jpg');
+INSERT INTO `membership` VALUES (23, 96111407, '李四', '小番薯', '17611319611', 70.00, 0.00, 0.00, 100.00, 1554048332, '4297f44b13955235245b2497399d7a93', 96114956, '大番薯', 1, 1, 'static/uploads/20190403/a29e82924ae3fd627b6dcd79ae95addc.jpg');
+INSERT INTO `membership` VALUES (24, 96111425, '赵六', '大冬瓜', '17611319612', 17.50, 0.00, 0.00, 100.00, 1554048332, '4297f44b13955235245b2497399d7a93', 96111407, '小番薯', 2, 1, 'static/uploads/20190403/a29e82924ae3fd627b6dcd79ae95addc.jpg');
+INSERT INTO `membership` VALUES (25, 96111448, '王八', '秦先生', '17611319613', 0.00, 0.00, 0.00, 100.00, 1554048332, '4297f44b13955235245b2497399d7a93', 96111425, '大冬瓜', 4, 0, 'static/uploads/20190403/a29e82924ae3fd627b6dcd79ae95addc.jpg');
+INSERT INTO `membership` VALUES (40, 103211389, '小叮当1', '哆啦A梦', '15038010321', 225.25, 225.25, 225.25, 225.25, 1554271389, '4297f44b13955235245b2497399d7a93', 96114956, '大番薯', 0, 0, 'static/uploads/20190403/640b6ffc3ae5f60f3f998cadb5935546.jpg');
 
 -- ----------------------------
 -- Table structure for message
@@ -148,22 +211,12 @@ CREATE TABLE `message`  (
   `content_short` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `create_time` bigint(255) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 72 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of message
 -- ----------------------------
-INSERT INTO `message` VALUES (29, '123', '<p>312<img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190327/010caecce11f759261ca1deb04d23296.jpg\" width=\"100\" /></p>', '123', 1553666448);
-INSERT INTO `message` VALUES (32, '123', '<p>123</p>', '123', 1553654731);
-INSERT INTO `message` VALUES (33, '123', '<p>123</p>', '123', 1553654731);
-INSERT INTO `message` VALUES (34, '123', '<p>123</p>', '123', 1553654732);
-INSERT INTO `message` VALUES (35, '123', '<p>123</p>', '123', 1553654732);
-INSERT INTO `message` VALUES (36, '123', '<p>123</p>', '123', 1553654732);
-INSERT INTO `message` VALUES (37, '123', '<p>123</p>', '123', 1553654732);
-INSERT INTO `message` VALUES (38, '123', '<p>123</p>', '123', 1553654732);
-INSERT INTO `message` VALUES (39, '123', '<p>123</p>', '123', 1553654733);
-INSERT INTO `message` VALUES (40, '123', '<p>123</p>', '123', 1553654733);
-INSERT INTO `message` VALUES (71, '123', '<p>123</p>', '123123', 1553654978);
+INSERT INTO `message` VALUES (1, '重大消息通知', '<p><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190401/1ac298c3ae3510283af007fa90fb62b3.jpg\" /></p>', '拼团活动打促销', 1554082486);
 
 -- ----------------------------
 -- Table structure for order
@@ -196,13 +249,14 @@ CREATE TABLE `order`  (
   `express_cost` double(10, 2) NOT NULL COMMENT '快递费用',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 53 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 32 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of order
 -- ----------------------------
-INSERT INTO `order` VALUES (28, 2147483647, '大番薯', 96114956, '小番薯', '张三', 96111407, 350.00, 0, 1553824516, 0, 1553833325, 1553835360, '张三', '17611319611', '河南省郑州市中原区中原路146号', '', '', '', 0, '', 4, '445233654', 50.00, '多放辣椒不要蒜');
-INSERT INTO `order` VALUES (29, 2147483647, '大番薯', 96114956, '小番薯', '张三', 96111407, 350.00, 7, 1553824516, 1553834918, 1553835395, 1553828601, '张三', '17611319611', '河南省郑州市中原区中原路146号', '123', '123', '123', 0, '', 4, '445233654', 50.00, '多放辣椒不要蒜');
+INSERT INTO `order` VALUES (28, 2147483647, '大番薯', 96114956, '小番薯', '张三', 96111407, 300.00, 3, 1554048332, 0, 1553833325, 1554173018, '张三', '17611319611', '河南省郑州市中原区中原路146号', '', '', '', 0, '', 4, '4452332', 50.00, '多放辣椒不要蒜');
+INSERT INTO `order` VALUES (30, 2147481230, '小番薯', 96111407, '大冬瓜', '赵六', 96111425, 350.00, 3, 1556048123, 1553834918, 1554090734, 1553828601, '赵六', '17611319611', '河南省郑州市中原区中原路146号', '123', '123', '123', 0, '', 4, '445233654', 50.00, '多放辣椒不要蒜');
+INSERT INTO `order` VALUES (31, 2147483501, '大冬瓜', 96111425, '秦先生', '王八', 96111448, 350.00, 3, 1556048123, 1553834918, 1554090734, 1553828601, '王八', '17611319611', '河南省郑州市中原区中原路146号', '123', '123', '123', 0, '', 4, '445233654', 50.00, '多放辣椒不要蒜');
 
 -- ----------------------------
 -- Table structure for order_goods
@@ -220,7 +274,7 @@ CREATE TABLE `order_goods`  (
   `express_cost` double(10, 2) NOT NULL,
   `num` int(10) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of order_goods
@@ -248,7 +302,7 @@ CREATE TABLE `regulation`  (
 -- ----------------------------
 -- Records of regulation
 -- ----------------------------
-INSERT INTO `regulation` VALUES (1, 1, 3.00, 1.00, 1, '标题2', '这是一条购买协议\n这是一条购买协议', 3.00, 2.00, 1.00);
+INSERT INTO `regulation` VALUES (1, 1, 3.00, 1.00, 1, '标题2', '这是一条购买协议\n这是一条购买协议', 20.00, 15.00, 5.00);
 
 -- ----------------------------
 -- Table structure for sys_user
@@ -268,8 +322,8 @@ CREATE TABLE `sys_user`  (
 -- ----------------------------
 -- Records of sys_user
 -- ----------------------------
-INSERT INTO `sys_user` VALUES (1, '15138389776', 'e10adc3949ba59abbe56e057f20f883e', '大番薯', '张三', 'admin', 'static/uploads/20190327/c5a5d4d6bf5e321bbb4b26fd27fd4f25.jpg');
-INSERT INTO `sys_user` VALUES (17, '17611319611', 'e10adc3949ba59abbe56e057f20f883e', '小番薯', '徐大大', 'manager', 'static/uploads/20190327/c5a5d4d6bf5e321bbb4b26fd27fd4f25.jpg');
+INSERT INTO `sys_user` VALUES (1, '15138389776', 'e10adc3949ba59abbe56e057f20f883e', '大番薯', '张三', 'admin', 'static/uploads/20190401/789919594a0402d8eeef995b7864a98b.jpg');
+INSERT INTO `sys_user` VALUES (17, '17611319611', '4297f44b13955235245b2497399d7a93', '小番薯', '徐大大', 'manager', 'static/uploads/20190327/c5a5d4d6bf5e321bbb4b26fd27fd4f25.jpg');
 
 -- ----------------------------
 -- Table structure for user

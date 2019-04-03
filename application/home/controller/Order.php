@@ -7,15 +7,15 @@
  * Time:  15:31
  */
 
-namespace app\admin\controller;
+namespace app\home\controller;
 
 
-use app\admin\model\CommissionModel;
-use app\admin\model\MembershipModel;
-use app\admin\model\OrderModel;
-use app\admin\model\OrderValidate;
-use app\admin\model\OrderGoodsModel;
-use app\admin\model\RegulationModel;
+use app\home\model\CommissionModel;
+use app\home\model\MembershipModel;
+use app\home\model\OrderModel;
+use app\home\model\OrderValidate;
+use app\home\model\OrderGoodsModel;
+use app\home\model\RegulationModel;
 use think\Db;
 
 class Order extends Base
@@ -300,6 +300,36 @@ class Order extends Base
                 return $this->ErrorReturn('获取失败');
             }
         } else {
+            return $this->ErrorReturn($this->OrderValidate->getError());
+        }
+    }
+
+    public function listCount(){
+        if (isset($_POST['membership_id'])) {
+            $rec = $_POST;
+        } else {
+            $request_data = file_get_contents('php://input');
+            $rec = json_decode($request_data, true);
+        }
+        $res = $this->OrderValidate->check($rec, '', 'listCount');
+        if ($res) {
+            $result=$this->Order->where('membership_id','=',$rec['membership_id'])->select();
+            $result0=$this->Order->where('status','=',0)->where('membership_id','=',$rec['membership_id'])->select();
+            $result1=$this->Order->where('status','=',1)->where('membership_id','=',$rec['membership_id'])->select();
+            $result2=$this->Order->where('status','=',2)->where('membership_id','=',$rec['membership_id'])->select();
+            $result3=$this->Order->where('status','=',3)->where('membership_id','=',$rec['membership_id'])->select();
+            $data['result']['count']=count($result);
+            $data['result']['rows']=$result;
+            $data['result0']['count']=count($result0);
+            $data['result0']['rows']=$result0;
+            $data['result1']['count']=count($result1);
+            $data['result1']['rows']=$result1;
+            $data['result2']['count']=count($result2);
+            $data['result2']['rows']=$result2;
+            $data['result3']['count']=count($result3);
+            $data['result3']['rows']=$result3;
+            return $this->SuccessReturn('success',$data);
+        }else{
             return $this->ErrorReturn($this->OrderValidate->getError());
         }
     }

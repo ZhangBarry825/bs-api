@@ -9,10 +9,18 @@ function getUser()
         return false;
     }
 }
+function getMembership(){
+    if (session('membership')) {
+        return session('membership');
+    } else {
+        return false;
+    }
+}
 
 function unsetUser()
 {
     session('user', null);
+    session('membership', null);
 }
 
 function throwError($message, $code = 400)
