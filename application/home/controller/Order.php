@@ -56,7 +56,8 @@ class Order extends Base
         $res = $this->OrderValidate->check($rec, '', 'create');
         if ($res) {
             $rec['create_time'] = time();
-            $rec['order_id'] = substr(time(), -5) . mt_rand(10000, 99999);
+            $rec['order_id'] = time();
+//            $rec['order_id'] = substr(time(), -5) . rand(10000, 99999);
             $levelOne['create_time'] = $rec['create_time'];
             $levelOne['order_id'] = $rec['order_id'];
             $levelOne['shopper'] = $rec['shopper'];
@@ -66,8 +67,8 @@ class Order extends Base
             $levelOne['status'] = $rec['status'];
             $levelOne['price'] = $rec['price'];
             $levelOne['name'] = $rec['name'];
-            if(isset($rec['remark'])){
-                $levelOne['remark'] =$rec['remark'] ;
+            if (isset($rec['remark'])) {
+                $levelOne['remark'] = $rec['remark'];
             }
             if (isset($rec['pay_time'])) {
                 $levelOne['pay_time'] = $rec['pay_time'];
@@ -75,12 +76,12 @@ class Order extends Base
             $levelOne['contacts'] = $rec['contacts'];
             $levelOne['phone'] = $rec['phone'];
             $levelOne['address'] = $rec['address'];
-            if(isset($rec['express_company'])){
+            if (isset($rec['express_company'])) {
                 $levelOne['express_company'] = $rec['express_company'];
-            }else{
-                $levelOne['express_company']=5;
+            } else {
+                $levelOne['express_company'] = 5;
             }
-            if(isset($rec['express_code'])){
+            if (isset($rec['express_code'])) {
                 $levelOne['express_code'] = $rec['express_code'];
             }
             $levelOne['express_cost'] = $rec['express_cost'];
@@ -88,11 +89,11 @@ class Order extends Base
             $result = $this->Order->isUpdate(false)->insert($levelOne);
             if ($result) {
                 foreach ($rec['specification'] as $key => $value) {
-                    $value['order_id']=$levelOne['order_id'];
+                    $value['order_id'] = $levelOne['order_id'];
                     $result2 = Db::table('order_goods')->insert($value);
-                    $result3 = Db::table('goods')->where('goods_id','=',$value['goods_id'])->setDec('stock',$value['num']);
+                    $result3 = Db::table('goods')->where('goods_id', '=', $value['goods_id'])->setDec('stock', $value['num']);
                 }
-                return $this->SuccessReturn('success', $rec);
+                return $this->SuccessReturn('success', $levelOne);
             } else {
                 return $this->ErrorReturn($this->Order->getError());
             }
@@ -114,10 +115,23 @@ class Order extends Base
         if ($res) {
             $levelOne['id'] = $rec['id'];
             $levelOne['status'] = $rec['status'];
-            $levelOne['express_company'] = $rec['express_company'];
-            $levelOne['express_code'] = $rec['express_code'];
+            if (isset($rec['express_company'])) {
+                $levelOne['express_company'] = $rec['express_company'];
+            }
+            if (isset($rec['express_code'])) {
+                $levelOne['express_code'] = $rec['express_code'];
+            }
             if ($rec['status'] == 1) {
                 $levelOne['pay_time'] = time();
+
+                //余额减去消费额
+                $item = $this->Order->where('id', '=', $rec['id'])->find();
+                $res1=Db::table('membership')->where('membership_id','=',$item['membership_id'])->find();
+                if($item['price']>$res1['balance']){
+                    return $this->ErrorReturn('您的余额不足，请及时充值！');
+                }else{
+                    Db::table('membership')->where('membership_id','=',$item['membership_id'])->setDec('balance',$item['price']);
+                }
             }
             if ($rec['status'] == 4) {
                 $levelOne['apply_refund_time'] = time();
@@ -132,46 +146,47 @@ class Order extends Base
             }
             $result = $this->Order->update($levelOne);
             if ($result) {
-                if ($rec['status'] == 3 && isset($rec['querenshouhuo'])) {
-                    $item=$this->Order->where('id','=',$rec['id'])->find();
-                    $regulation=$this->Regulation->limit(1)->find();
-                    $level_three_id=$item['shopper_id'];
-                    $level_one='';
-                    $level_two='';
-                    $commission_account=0;
-                    $data2=[];
-                    $data2['create_time']=time();
-                    $data2['order_id']=$item['order_id'];
-                    $data2['customer_id']=$item['membership_id'];
-                    $data2['customer_nickname']=$item['nickname'];
-                    $data2['order_id']=$item['order_id'];
-                    $level_three=$this->Membership->where('membership_id','=',$level_three_id)->find();
-                    $data2['level_three']=$level_three['nickname'];
-                    $data2['level_three_id']=$level_three['membership_id'];
-                    $data2['level_three_commission']=$item['price']*$regulation['level_three']*1.00/100;
-                    $this->Membership->where('membership_id','=',$level_three['membership_id'])->setInc('commission',$data2['level_three_commission']);
-                    if($level_three['referrer_id']!=0){
-                        $level_two=$this->Membership->where('membership_id','=',$level_three['referrer_id'])->find();
-                        $data2['level_two']=$level_two['nickname'];
-                        $data2['level_two_id']=$level_two['membership_id'];
-                        $data2['level_two_commission']=$item['price']*$regulation['level_two']*1.00/100;
-                        $this->Membership->where('membership_id','=',$level_two['membership_id'])->setInc('commission',$data2['level_two_commission']);
 
-                        if($level_two['referrer_id']!=0){
-                            $level_one=$this->Membership->where('membership_id','=',$level_two['referrer_id'])->find();
-                            $data2['level_one']=$level_one['nickname'];
-                            $data2['level_one_id']=$level_one['membership_id'];
-                            $data2['level_one_commission']=$item['price']*$regulation['level_one']*1.00/100;
-                            $commission_account=$item['price']*($regulation['level_one']+$regulation['level_two']+$regulation['level_three'])*1.00/100;
-                            $this->Membership->where('membership_id','=',$level_one['membership_id'])->setInc('commission',$data2['level_one_commission']);
-                        }else{
-                            $commission_account=$item['price']*($regulation['level_two']+$regulation['level_three'])*1.00/100;
+                if ($rec['status'] == 3 && isset($rec['querenshouhuo'])) {
+                    $item = $this->Order->where('id', '=', $rec['id'])->find();
+                    $regulation = $this->Regulation->limit(1)->find();
+                    $level_three_id = $item['shopper_id'];
+                    $level_one = '';
+                    $level_two = '';
+                    $commission_account = 0;
+                    $data2 = [];
+                    $data2['create_time'] = time();
+                    $data2['order_id'] = $item['order_id'];
+                    $data2['customer_id'] = $item['membership_id'];
+                    $data2['customer_nickname'] = $item['nickname'];
+                    $data2['order_id'] = $item['order_id'];
+                    $level_three = $this->Membership->where('membership_id', '=', $level_three_id)->find();
+                    $data2['level_three'] = $level_three['nickname'];
+                    $data2['level_three_id'] = $level_three['membership_id'];
+                    $data2['level_three_commission'] = $item['price'] * $regulation['level_three'] * 1.00 / 100;
+                    $this->Membership->where('membership_id', '=', $level_three['membership_id'])->setInc('commission', $data2['level_three_commission']);
+                    if ($level_three['referrer_id'] != 0) {
+                        $level_two = $this->Membership->where('membership_id', '=', $level_three['referrer_id'])->find();
+                        $data2['level_two'] = $level_two['nickname'];
+                        $data2['level_two_id'] = $level_two['membership_id'];
+                        $data2['level_two_commission'] = $item['price'] * $regulation['level_two'] * 1.00 / 100;
+                        $this->Membership->where('membership_id', '=', $level_two['membership_id'])->setInc('commission', $data2['level_two_commission']);
+
+                        if ($level_two['referrer_id'] != 0) {
+                            $level_one = $this->Membership->where('membership_id', '=', $level_two['referrer_id'])->find();
+                            $data2['level_one'] = $level_one['nickname'];
+                            $data2['level_one_id'] = $level_one['membership_id'];
+                            $data2['level_one_commission'] = $item['price'] * $regulation['level_one'] * 1.00 / 100;
+                            $commission_account = $item['price'] * ($regulation['level_one'] + $regulation['level_two'] + $regulation['level_three']) * 1.00 / 100;
+                            $this->Membership->where('membership_id', '=', $level_one['membership_id'])->setInc('commission', $data2['level_one_commission']);
+                        } else {
+                            $commission_account = $item['price'] * ($regulation['level_two'] + $regulation['level_three']) * 1.00 / 100;
                         }
-                    }else{
-                        $commission_account=$item['price']*$regulation['level_three']*1.00/100;
+                    } else {
+                        $commission_account = $item['price'] * $regulation['level_three'] * 1.00 / 100;
                     }
-                    $data2['commission_account']=$commission_account;
-                    $result2=$this->Commission->isUpdate(false)->insert($data2);
+                    $data2['commission_account'] = $commission_account;
+                    $result2 = $this->Commission->isUpdate(false)->insert($data2);
                 }
                 return $this->SuccessReturn();
             } else {
@@ -203,7 +218,7 @@ class Order extends Base
             if ($result) {
                 return $this->SuccessReturn('success');
             } else {
-                return $this->ErrorReturn();
+                return $this->ErrorReturn('错误');
             }
         } else {
             return $this->ErrorReturn($this->OrderValidate->getError());
@@ -314,7 +329,8 @@ class Order extends Base
         }
     }
 
-    public function listCount(){
+    public function listCount()
+    {
         if (isset($_POST['membership_id'])) {
             $rec = $_POST;
         } else {
@@ -323,23 +339,23 @@ class Order extends Base
         }
         $res = $this->OrderValidate->check($rec, '', 'listCount');
         if ($res) {
-            $result=$this->Order->where('membership_id','=',$rec['membership_id'])->select();
-            $result0=$this->Order->where('status','=',0)->where('membership_id','=',$rec['membership_id'])->select();
-            $result1=$this->Order->where('status','=',1)->where('membership_id','=',$rec['membership_id'])->select();
-            $result2=$this->Order->where('status','=',2)->where('membership_id','=',$rec['membership_id'])->select();
-            $result3=$this->Order->where('status','=',3)->where('membership_id','=',$rec['membership_id'])->select();
-            $data['result']['count']=count($result);
-            $data['result']['rows']=$result;
-            $data['result0']['count']=count($result0);
-            $data['result0']['rows']=$result0;
-            $data['result1']['count']=count($result1);
-            $data['result1']['rows']=$result1;
-            $data['result2']['count']=count($result2);
-            $data['result2']['rows']=$result2;
-            $data['result3']['count']=count($result3);
-            $data['result3']['rows']=$result3;
-            return $this->SuccessReturn('success',$data);
-        }else{
+            $result = $this->Order->where('membership_id', '=', $rec['membership_id'])->select();
+            $result0 = $this->Order->where('status', '=', 0)->where('membership_id', '=', $rec['membership_id'])->select();
+            $result1 = $this->Order->where('status', '=', 1)->where('membership_id', '=', $rec['membership_id'])->select();
+            $result2 = $this->Order->where('status', '=', 2)->where('membership_id', '=', $rec['membership_id'])->select();
+            $result3 = $this->Order->where('status', '=', 3)->where('membership_id', '=', $rec['membership_id'])->select();
+            $data['result']['count'] = count($result);
+            $data['result']['rows'] = $result;
+            $data['result0']['count'] = count($result0);
+            $data['result0']['rows'] = $result0;
+            $data['result1']['count'] = count($result1);
+            $data['result1']['rows'] = $result1;
+            $data['result2']['count'] = count($result2);
+            $data['result2']['rows'] = $result2;
+            $data['result3']['count'] = count($result3);
+            $data['result3']['rows'] = $result3;
+            return $this->SuccessReturn('success', $data);
+        } else {
             return $this->ErrorReturn($this->OrderValidate->getError());
         }
     }
