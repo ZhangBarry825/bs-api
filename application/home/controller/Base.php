@@ -22,7 +22,7 @@ class Base extends Controller
     {
         parent::__construct();
         if ($this->needUser) {
-            $this->userInfo = getMembership();
+            $this->userInfo = getUser();
             if ($this->userInfo === false){
                 throwError( '请重新登录',401);
             }

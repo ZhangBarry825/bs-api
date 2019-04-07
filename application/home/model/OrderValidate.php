@@ -43,7 +43,7 @@ class OrderValidate extends Validate
         'update'  =>  ['id'],
         'delete'  =>  ['id'],
         'lists'  =>['page_num','page_size'],
-        'detail'  =>['id'],
+        'detail'  =>['order_id'],
         'search' =>['key','page_num','page_size'],
         'listCount' =>['membership_id',]
     ];

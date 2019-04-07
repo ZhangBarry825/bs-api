@@ -105,9 +105,24 @@ class User extends Base
                 return $this->SuccessReturn('success', []);
             }
         } else {
-            return $this->ErrorReturn('请先登录');
+            return $this->ErrorReturn('请先登录','',0);
         }
 
+    }
+
+    public function shopperInfo(){
+        if (isset($_POST['membership_id'])) {
+            $rec = $_POST;
+        } else {
+            $request_data = file_get_contents('php://input');
+            $rec = json_decode($request_data, true);
+        }
+        $result = $this->Membership->where('membership_id', '=', $rec['membership_id'])->field('membership_id,name,nickname,phone')->find();
+        if($result){
+            return $this->SuccessReturn('success',$result);
+        }else{
+            return $this->SuccessReturn('success',[]);
+        }
     }
 
 }

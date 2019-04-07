@@ -66,22 +66,32 @@ class Order extends Base
             $levelOne['status'] = $rec['status'];
             $levelOne['price'] = $rec['price'];
             $levelOne['name'] = $rec['name'];
+            if(isset($rec['remark'])){
+                $levelOne['remark'] =$rec['remark'] ;
+            }
             if (isset($rec['pay_time'])) {
                 $levelOne['pay_time'] = $rec['pay_time'];
             }
             $levelOne['contacts'] = $rec['contacts'];
             $levelOne['phone'] = $rec['phone'];
             $levelOne['address'] = $rec['address'];
-            $levelOne['express_company'] = $rec['express_company'];
-            $levelOne['express_code'] = $rec['express_code'];
+            if(isset($rec['express_company'])){
+                $levelOne['express_company'] = $rec['express_company'];
+            }else{
+                $levelOne['express_company']=5;
+            }
+            if(isset($rec['express_code'])){
+                $levelOne['express_code'] = $rec['express_code'];
+            }
             $levelOne['express_cost'] = $rec['express_cost'];
             $levelOne['remark'] = $rec['remark'];
             $result = $this->Order->isUpdate(false)->insert($levelOne);
             if ($result) {
-//                foreach ($rec['specification'] as $key => $value) {
-//                    $value['goods_id'] = $rec['goods_id'];
-//                    $result2 = $this->Specification->insert($value);
-//                }
+                foreach ($rec['specification'] as $key => $value) {
+                    $value['order_id']=$levelOne['order_id'];
+                    $result2 = Db::table('order_goods')->insert($value);
+                    $result3 = Db::table('goods')->where('goods_id','=',$value['goods_id'])->setDec('stock',$value['num']);
+                }
                 return $this->SuccessReturn('success', $rec);
             } else {
                 return $this->ErrorReturn($this->Order->getError());
@@ -282,7 +292,7 @@ class Order extends Base
 
     public function detail()
     {
-        if (isset($_POST['id'])) {
+        if (isset($_POST['order_id'])) {
             $rec = $_POST;
         } else {
             $request_data = file_get_contents('php://input');
@@ -291,7 +301,7 @@ class Order extends Base
         $res = $this->OrderValidate->check($rec, '', 'detail');
 
         if ($res) {
-            $result = Db::table('order')->where('id', '=', $rec['id'])->find();
+            $result = Db::table('order')->where('order_id', '=', $rec['order_id'])->find();
             $result2 = Db::table('order_goods')->where('order_id', '=', $result['order_id'])->select();
             $result['goods'] = $result2;
             if ($result) {
