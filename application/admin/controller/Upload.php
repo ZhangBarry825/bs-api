@@ -16,6 +16,7 @@ class Upload extends Base
 {
     public function __construct(Request $request = null)
     {
+        $this->needUser=false;
         parent::__construct($request);
     }
 
