@@ -146,7 +146,6 @@ class Order extends Base
             }
             $result = $this->Order->update($levelOne);
             if ($result) {
-
                 if ($rec['status'] == 3 && isset($rec['querenshouhuo'])) {
                     $item = $this->Order->where('id', '=', $rec['id'])->find();
                     $regulation = $this->Regulation->limit(1)->find();
@@ -163,20 +162,20 @@ class Order extends Base
                     $level_three = $this->Membership->where('membership_id', '=', $level_three_id)->find();
                     $data2['level_three'] = $level_three['nickname'];
                     $data2['level_three_id'] = $level_three['membership_id'];
-                    $data2['level_three_commission'] = $item['price'] * $regulation['level_three'] * 1.00 / 100;
+                    $data2['level_three_commission'] = ($item['price']-$item['express_cost']) * $regulation['level_three'] * 1.00 / 100;
                     $this->Membership->where('membership_id', '=', $level_three['membership_id'])->setInc('commission', $data2['level_three_commission']);
                     if ($level_three['referrer_id'] != 0) {
                         $level_two = $this->Membership->where('membership_id', '=', $level_three['referrer_id'])->find();
                         $data2['level_two'] = $level_two['nickname'];
                         $data2['level_two_id'] = $level_two['membership_id'];
-                        $data2['level_two_commission'] = $item['price'] * $regulation['level_two'] * 1.00 / 100;
+                        $data2['level_two_commission'] =($item['price']-$item['express_cost']) * $regulation['level_two'] * 1.00 / 100;
                         $this->Membership->where('membership_id', '=', $level_two['membership_id'])->setInc('commission', $data2['level_two_commission']);
 
                         if ($level_two['referrer_id'] != 0) {
                             $level_one = $this->Membership->where('membership_id', '=', $level_two['referrer_id'])->find();
                             $data2['level_one'] = $level_one['nickname'];
                             $data2['level_one_id'] = $level_one['membership_id'];
-                            $data2['level_one_commission'] = $item['price'] * $regulation['level_one'] * 1.00 / 100;
+                            $data2['level_one_commission'] = ($item['price']-$item['express_cost']) * $regulation['level_one'] * 1.00 / 100;
                             $commission_account = $item['price'] * ($regulation['level_one'] + $regulation['level_two'] + $regulation['level_three']) * 1.00 / 100;
                             $this->Membership->where('membership_id', '=', $level_one['membership_id'])->setInc('commission', $data2['level_one_commission']);
                         } else {
@@ -340,10 +339,26 @@ class Order extends Base
         $res = $this->OrderValidate->check($rec, '', 'listCount');
         if ($res) {
             $result = $this->Order->where('membership_id', '=', $rec['membership_id'])->select();
-            $result0 = $this->Order->where('status', '=', 0)->where('membership_id', '=', $rec['membership_id'])->select();
-            $result1 = $this->Order->where('status', '=', 1)->where('membership_id', '=', $rec['membership_id'])->select();
-            $result2 = $this->Order->where('status', '=', 2)->where('membership_id', '=', $rec['membership_id'])->select();
-            $result3 = $this->Order->where('status', '=', 3)->where('membership_id', '=', $rec['membership_id'])->select();
+            $result0 = $this->Order->where('status', '=', 0)->where('membership_id', '=', $rec['membership_id'])->order('create_time desc')->field('order_id,price,status,id,membership_id,nickname,express_cost')->select();
+            foreach ($result0 as $key=>$value){
+                $result0[$key]['goods']=Db::table('order_goods')->where('order_id','=',$value['order_id'])->select();
+            }
+            $result1 = $this->Order->where('status', '=', 1)->where('membership_id', '=', $rec['membership_id'])->order('create_time desc')->field('order_id,price,status,id,membership_id,nickname,express_cost')->select();
+            foreach ($result1 as $key=>$value){
+                $result1[$key]['goods']=Db::table('order_goods')->where('order_id','=',$value['order_id'])->select();
+            }
+            $result2 = $this->Order->where('status', '=', 2)->where('membership_id', '=', $rec['membership_id'])->order('create_time desc')->field('order_id,price,status,id,membership_id,nickname,express_cost')->select();
+            foreach ($result2 as $key=>$value){
+                $result2[$key]['goods']=Db::table('order_goods')->where('order_id','=',$value['order_id'])->select();
+            }
+            $result3 = $this->Order->where('status', '=', 3)->where('membership_id', '=', $rec['membership_id'])->order('create_time desc')->field('order_id,price,status,id,membership_id,nickname,express_cost')->select();
+            foreach ($result3 as $key=>$value){
+                $result3[$key]['goods']=Db::table('order_goods')->where('order_id','=',$value['order_id'])->select();
+            }
+            $result4 = $this->Order->where('status', '>', 3)->where('membership_id', '=', $rec['membership_id'])->order('create_time desc')->field('order_id,price,status,id,membership_id,nickname,express_cost')->select();
+            foreach ($result4 as $key=>$value){
+                $result4[$key]['goods']=Db::table('order_goods')->where('order_id','=',$value['order_id'])->select();
+            }
             $data['result']['count'] = count($result);
             $data['result']['rows'] = $result;
             $data['result0']['count'] = count($result0);
@@ -354,6 +369,8 @@ class Order extends Base
             $data['result2']['rows'] = $result2;
             $data['result3']['count'] = count($result3);
             $data['result3']['rows'] = $result3;
+            $data['result4']['count'] = count($result4);
+            $data['result4']['rows'] = $result4;
             return $this->SuccessReturn('success', $data);
         } else {
             return $this->ErrorReturn($this->OrderValidate->getError());

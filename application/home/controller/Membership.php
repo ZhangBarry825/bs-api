@@ -43,11 +43,11 @@ class Membership extends Base
                 return $this->ErrorReturn('该手机号已存在!');
             } else {
                 if (isset($rec['referrer_id'])) {
-                    $referrer=$this->Membership->where('membership_id','=',$rec['referrer_id'])->find();
-                    if($referrer){
+                    $referrer = $this->Membership->where('membership_id', '=', $rec['referrer_id'])->find();
+                    if ($referrer) {
                         $rec['referrer'] = $referrer['nickname'];
                         $rec['referrer_id'] = $referrer['membership_id'];
-                    }else{
+                    } else {
                         $rec['referrer'] = '[总店]';
                         $rec['referrer_id'] = 0;
                     }
@@ -56,7 +56,7 @@ class Membership extends Base
                 $rec['balance'] = 0;
                 $rec['expense'] = 0;
                 $rec['password'] = md5($rec['password']);
-                $rec['membership_id'] = '1'.substr($rec['phone'], -4) . substr(time(), -4);
+                $rec['membership_id'] = '1' . substr($rec['phone'], -4) . substr(time(), -4);
                 $rec['status'] = 0;
                 $result = $this->Membership->isUpdate(false)->save($rec);
                 if ($result) {
@@ -172,6 +172,11 @@ class Membership extends Base
 
         if ($res) {
 //            $rec['create_time'] = time();
+            $result1 = $this->Membership->where('phone', '=', $rec['phone'])
+                ->where('id', 'neq', $rec['id'])->count();
+            if ($result1 > 0) {
+                return $this->ErrorReturn('该手机号已存在！');
+            }
             $result = $this->Membership->update($rec);
             if ($result) {
                 return $this->SuccessReturn('success');
@@ -195,17 +200,17 @@ class Membership extends Base
         $res = $this->MembershipValidate->check($rec, '', 'resetPassword');
 
         if ($res) {
-            $rec['old_password']=md5($rec['old_password']);
-            $result1=$this->Membership->where('id','=',$rec['id'])->where('password','=',$rec['old_password'])->find();
-            if($result1){
-                $data['password'] = md5( $rec['password']);
+            $rec['old_password'] = md5($rec['old_password']);
+            $result1 = $this->Membership->where('id', '=', $rec['id'])->where('password', '=', $rec['old_password'])->find();
+            if ($result1) {
+                $data['password'] = md5($rec['password']);
                 $result = $this->Membership->where('id', '=', $rec['id'])->update($data);
                 if ($result) {
                     return $this->SuccessReturn('success');
                 } else {
                     return $this->SuccessReturn('success');
                 }
-            }else{
+            } else {
                 return $this->ErrorReturn('原密码错误！');
             }
 
@@ -215,7 +220,6 @@ class Membership extends Base
 
 
     }
-
 
     public function allSaleMembers()
     {

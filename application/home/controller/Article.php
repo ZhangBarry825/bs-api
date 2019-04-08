@@ -10,8 +10,8 @@
 namespace app\home\controller;
 
 
-use app\admin\model\ArticleModel;
-use app\admin\model\ArticleValidate;
+use app\home\model\ArticleModel;
+use app\home\model\ArticleValidate;
 use think\Db;
 use think\Request;
 

@@ -57,25 +57,31 @@ class Goods extends Base
 
     public function detail()
     {
-        if (isset($_POST['id'])) {
+        if (isset($_POST['id']) || isset($_POST['goods_id'])) {
             $rec = $_POST;
         } else {
             $request_data = file_get_contents('php://input');
             $rec = json_decode($request_data, true);
         }
-        $res = $this->GoodsValidate->check($rec, '', 'detail');
-
-        if ($res) {
+        if (isset($rec['id'])) {
             $data = $this->Goods->where('id', '=', $rec['id'])->find();
-            $data['specification']=$this->GoodsSpecification->where('goods_id','=',$data['goods_id'])->select();
+            $data['specification'] = $this->GoodsSpecification->where('goods_id', '=', $data['goods_id'])->select();
             if ($data) {
                 return $this->SuccessReturn('success', $data);
             } else {
                 return $this->SuccessReturn('success', []);
             }
         } else {
-            return $this->ErrorReturn($this->GoodsValidate->getError());
+            $data = $this->Goods->where('goods_id', '=', $rec['goods_id'])->find();
+            $data['specification'] = $this->GoodsSpecification->where('goods_id', '=', $data['goods_id'])->select();
+            if ($data) {
+                return $this->SuccessReturn('success', $data);
+            } else {
+                return $this->SuccessReturn('success', []);
+            }
         }
+
+
     }
 
 
