@@ -32,7 +32,9 @@ class Charge extends Base
     {
         return 'admin/charge/index';
     }
-    public function charge(){
+
+    public function charge()
+    {
 
         if (isset($_POST['membership_id'])) {
             $rec = $_POST;
@@ -46,8 +48,8 @@ class Charge extends Base
             $rec['create_time'] = time();
             $result = $this->Charge->insert($rec);
             if ($result) {
-                $result1=Db::table('membership')->where('membership_id','=',$rec['membership_id'])
-                    ->setInc('balance',$rec['charge_account']);
+                $result1 = Db::table('membership')->where('membership_id', '=', $rec['membership_id'])
+                    ->setInc('balance', $rec['charge_account']);
                 return $this->SuccessReturn('success');
             } else {
                 return $this->ErrorReturn($this->Charge->getError());
@@ -60,30 +62,28 @@ class Charge extends Base
 
     public function lists()
     {
-        $rec = $_GET;
+        if (isset($_POST['membership_id'])) {
+            $rec = $_POST;
+        } else {
+            $request_data = file_get_contents('php://input');
+            $rec = json_decode($request_data, true);
+        }
         $res = $this->ChargeValidate->check($rec, '', 'lists');
         if ($res) {
-            if (isset($rec['type'])) {
-                $result = Db::table('charge')->where('type', '=', $rec['type'])->where('status','=',1)->order('update_time desc')->page($rec['page_num'], $rec['page_size'])->field('content', true)->select();
-                $count = count(Db::table('charge')->where('type', '=', $rec['type'])->where('status','=',1)->select());
+
+            $result = Db::table('charge_list')->order('create_time desc')->where('membership_id', '=', $rec['membership_id'])->page($rec['page_num'], $rec['page_size'])->select();
+            $count = count(Db::table('charge_list')->where('membership_id', '=', $rec['membership_id'])->select());
+            if ($result) {
                 $data['count'] = $count;
                 $data['rows'] = $result;
                 return $this->SuccessReturn('success', $data);
-
             } else {
-                $result = Db::table('charge')->order('update_time desc')->where('status','=',1)->where('type','neq','轮播图')->page($rec['page_num'], $rec['page_size'])->field('content', true)->select();
-                $count = count(Db::table('charge')->where('status','=',1)->select());
-                if ($result) {
-                    $data['count'] = $count;
-                    $data['rows'] = $result;
-                    return $this->SuccessReturn('success', $data);
-                } else {
-                    return $this->SuccessReturn('success', (object)[
-                        'count'=>0,
-                        'rows'=>[]
-                    ]);
-                }
+                return $this->SuccessReturn('success', (object)[
+                    'count' => 0,
+                    'rows' => []
+                ]);
             }
+
         } else {
             return $this->ErrorReturn($this->ChargeValidate->getError());
         }

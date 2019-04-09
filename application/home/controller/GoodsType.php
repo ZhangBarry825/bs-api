@@ -7,11 +7,11 @@
  * Time:  15:31
  */
 
-namespace app\admin\controller;
+namespace app\home\controller;
 
 
-use app\admin\model\GoodsTypeModel;
-use app\admin\model\GoodsTypeValidate;
+use app\home\model\GoodsTypeModel;
+use app\home\model\GoodsTypeValidate;
 use think\Db;
 use think\Request;
 
@@ -30,7 +30,7 @@ class GoodsType extends Base
 
     public function index()
     {
-        return 'admin/GoodsType/index';
+        return 'home/GoodsType/index';
     }
 
     public function create()
@@ -84,22 +84,18 @@ class GoodsType extends Base
         }
         $res = $this->GoodsTypeValidate->check($rec, '', 'update');
         if ($res) {
-            $levelOne['id'] = $rec['id'];
-            $levelOne['level'] = 1;
+
+            $levelOne['level'] = $rec['level'];
             $levelOne['name'] = $rec['name'];
-            $levelOne['create_time'] = time();
+            $levelOne['create_time'] = $rec['create_time'];
             $levelOne['type_id'] = $rec['type_id'];
             $levelOne['avatar'] = $rec['avatar'];
             $levelOne['belong_id'] = $rec['belong_id'];
+            $levelOne['id'] = $rec['id'];
             $result = $this->GoodsType->update($levelOne);
             if ($result) {
-                $result3=$this->GoodsType->where('belong_id','=',$levelOne['type_id'])->delete();
                 foreach ($rec['children'] as $key => $value) {
-                    $value['belong_id'] = $levelOne['type_id'];
-                    $value['level'] = 2;
-                    $value['create_time'] = time();
-                    $value['type_id'] = substr(time(), -5) . mt_rand(1000, 9999);
-                    $result2 = $this->GoodsType->insert($value);
+                    $result2 = $this->GoodsType->update($value);
                 }
                 return $this->SuccessReturn();
             } else {
@@ -154,6 +150,7 @@ class GoodsType extends Base
                     $result2 = Db::table('goods_type')->where('belong_id', '=', $value['type_id'])->select();
                     $childrenNum = count($result2);
                     $result[$key]['childrenNum'] = $childrenNum;
+                    $result[$key]['children'] = $result2;
                 }
                 $count = count(Db::table('goods_type')->where('level', '=', $rec['level'])->select());
                 $data['count'] = $count;

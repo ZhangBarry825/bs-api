@@ -42,9 +42,8 @@ class Goods extends Base
         $res = $this->GoodsValidate->check($rec, '', 'lists');
 
         if ($res) {
-            $data['top'] = $this->Goods->where('status', '=', '1')->field('content', true)->limit(0, 3)->select();
-            $data['rows'] = $this->Goods->where('status', '=', '1')->order('create_time desc')->page($rec['page_num'], $rec['page_size'])->field('content', true)->select();
-
+            $data['top'] = $this->Goods->order('create_time desc')->where('status', '=', '1')->field('content', true)->limit(0, 3)->select();
+            $data['rows'] = $this->Goods->order('create_time desc')->where('status', '=', '1')->order('create_time desc')->page($rec['page_num'], $rec['page_size'])->field('content', true)->select();
             if ($data['top']) {
                 return $this->SuccessReturn('success', $data);
             } else {

@@ -119,6 +119,8 @@ class Order extends Base
             }
             if ($rec['status'] == 7) {
                 $levelOne['refund_time'] = time();
+                $order = $this->Order->where('id', '=', $rec['id'])->find();
+                $res1 = $this->Membership->where('membership_id', '=', $order['membership_id'])->setInc('balance', $order['price']);
             }
             $result = $this->Order->update($levelOne);
             if ($result) {

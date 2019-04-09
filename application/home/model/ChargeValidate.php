@@ -25,7 +25,7 @@ class ChargeValidate extends Validate
 
     ];
     protected $scene = [
-        'lists'=>['page_num','page_size'],
+        'lists'=>['membership_id','page_num','page_size'],
         'charge'  =>  ['membership_id','charge_account','nickname'],
 
     ];
