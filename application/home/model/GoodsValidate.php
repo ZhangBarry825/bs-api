@@ -18,11 +18,12 @@ class GoodsValidate extends Validate
         ['id','require','id必须'],
         ['page_num','require','page_num必须'],
         ['page_size','require','page_size必须'],
+        ['keyword','require','keyword必须'],
 
     ];
     protected $scene = [
         'lists'  =>['page_num','page_size'],
         'detail'  =>['id'],
-        'search' =>['key','page_num','page_size']
+        'search' =>['page_num','page_size']
     ];
 }

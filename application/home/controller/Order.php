@@ -170,10 +170,17 @@ class Order extends Base
                     $data2['customer_nickname'] = $item['nickname'];
                     $data2['order_id'] = $item['order_id'];
                     $level_three = $this->Membership->where('membership_id', '=', $level_three_id)->find();
-                    $data2['level_three'] = $level_three['nickname'];
-                    $data2['level_three_id'] = $level_three['membership_id'];
-                    $data2['level_three_commission'] = ($item['price'] - $item['express_cost']) * $regulation['level_three'] * 1.00 / 100;
-                    $this->Membership->where('membership_id', '=', $level_three['membership_id'])->setInc('commission', $data2['level_three_commission']);
+                    if ($level_three['id'] != 0) {
+                        $data2['level_three'] = $level_three['nickname'];
+                        $data2['level_three_id'] = $level_three['membership_id'];
+                        $data2['level_three_commission'] = ($item['price'] - $item['express_cost']) * $regulation['level_three'] * 1.00 / 100;
+                        $this->Membership->where('membership_id', '=', $level_three['membership_id'])->setInc('commission', $data2['level_three_commission']);
+                        $this->Membership->where('membership_id', '=', $level_three['membership_id'])->setInc('sale_account', $item['price']);
+                    }
+//                    else{
+//                        $data2['level_three'] = '总店';
+//                        $data2['level_three_id'] = 0;
+//                    }
                     if ($level_three['referrer_id'] != 0) {
                         $level_two = $this->Membership->where('membership_id', '=', $level_three['referrer_id'])->find();
                         $data2['level_two'] = $level_two['nickname'];
@@ -192,10 +199,14 @@ class Order extends Base
                             $commission_account = $item['price'] * ($regulation['level_two'] + $regulation['level_three']) * 1.00 / 100;
                         }
                     } else {
-                        $commission_account = $item['price'] * $regulation['level_three'] * 1.00 / 100;
+                        if ($level_three['id'] != 0) {
+                            $commission_account = ($item['price'] - $item['express_cost']) * $regulation['level_three'] * 1.00 / 100;
+                        }
                     }
                     $data2['commission_account'] = $commission_account;
                     $result2 = $this->Commission->isUpdate(false)->insert($data2);
+                    $result4=Db::table('membership')->where('membership_id','=',$item['membership_id'])
+                        ->setInc('expense',$item['price']);
                 }
                 return $this->SuccessReturn();
             } else {

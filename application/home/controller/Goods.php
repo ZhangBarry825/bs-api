@@ -83,5 +83,38 @@ class Goods extends Base
 
     }
 
+    public function search()
+    {
+        if (isset($_POST['id'])) {
+            $rec = $_POST;
+        } else {
+            $request_data = file_get_contents('php://input');
+            $rec = json_decode($request_data, true);
+        }
+        $res = $this->GoodsValidate->check($rec, '', 'search');
+        if ($res) {
+            $data['count']=0;
+            $data['rows']=[];
+            if (isset($rec['type_id'])&&$rec['type_id']!="") {
+                $result=$this->Goods->where('type_id','=',$rec['type_id'])
+                    ->where('status','=',1)
+                    ->page($rec['page_num'], $rec['page_size'])->field('content',true)->select();
+                $data['count']=count($result);
+                $data['rows']=$result;
+            } else if (isset($rec['keyword'])&&$rec['keyword']!="") {
+                $result=$this->Goods->where('name','like',"%{$rec['keyword']}%")
+                    ->where('status','=',1)
+                    ->page($rec['page_num'], $rec['page_size'])->field('content',true)->select();
+                $data['count']=count($result);
+                $data['rows']=$result;
+            } else {
+                return $this->SuccessReturn('success',[]);
+            }
+            return $this->SuccessReturn('success',$data);
+        } else {
+            return $this->ErrorReturn($this->GoodsValidate->getError());
+        }
+    }
+
 
 }
