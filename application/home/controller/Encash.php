@@ -6,12 +6,12 @@
  * Time: 9:33
  */
 
-namespace app\admin\controller;
+namespace app\home\controller;
 
 
-use app\admin\model\EncashModel;
-use app\admin\model\EncashValidate;
-use app\admin\model\MembershipModel;
+use app\home\model\EncashModel;
+use app\home\model\EncashValidate;
+use app\home\model\MembershipModel;
 use think\Db;
 
 class Encash extends Base
@@ -41,6 +41,11 @@ class Encash extends Base
         $res = $this->EncashValidate->check($rec, '', 'newEncash');
 
         if ($res) {
+            $result0=$this->Encash->where('membership_id','=',$rec['membership_id'])
+                ->where('status','=',0)->count();
+            if($result0>0){
+                return $this->ErrorReturn('申请失败！您有提现申请暂未处理');
+            }
             $rec['create_time'] = time();
             $rec['encash_id'] = substr(time(), -4) . mt_rand(10000, 99999);
             $rec['encash_type'] = 1;
@@ -71,7 +76,7 @@ class Encash extends Base
 
         $res = $this->EncashValidate->check($rec, '', 'allEncash');
         if ($res) {
-            $result = Db::table('encash')->order('create_time desc')->page($rec['page_num'], $rec['page_size'])->select();
+            $result = Db::table('encash')->page($rec['page_num'], $rec['page_size'])->select();
             if ($result) {
                 $count = count(Db::table('encash')->select());
                 $data['count'] = $count;
@@ -118,7 +123,7 @@ class Encash extends Base
 
     public function getEncash()
     {
-        if (isset($_POST['id'])) {
+        if (isset($_POST['membership_id'])) {
             $rec = $_POST;
         } else {
             $request_data = file_get_contents('php://input');
@@ -127,18 +132,22 @@ class Encash extends Base
         $res = $this->EncashValidate->check($rec, '', 'getEncash');
 
         if ($res) {
-            $result = $this->Encash->where('id', '=', $rec['id'])->find();
-            $result1 = $this->Encash->where('referrer_id', '=', $result['encash_id'])->select();
-            $result['levelTwo'] = $result1;
-            $result['levelThree'] = [];
-            foreach ($result1 as $key => $value) {
-                $result3 = $this->Encash->where('referrer_id', '=', $value['encash_id'])->select();
-                $result['levelThree'] = array_merge($result['levelThree'], $result3);
-            }
-            if ($result) {
-                return $this->SuccessReturn('success', $result);
-            } else {
-                return $this->SuccessReturn('success', []);
+            $result = $this->Encash->where('membership_id', '=', $rec['membership_id'])->select();
+            $result1 = $this->Encash->where('membership_id', '=', $rec['membership_id'])
+                ->where('status','=',1)->select();
+            if($result){
+                $sum=$this->Encash->where('membership_id', '=', $rec['membership_id'])
+                    ->where('status','=',1)->sum('account');
+                $data['success_account']=$sum;
+                $data['success_rows']=$result1;
+                $data['rows']=$result;
+                return $this->SuccessReturn('success',$data);
+            }else{
+                return $this->SuccessReturn('success',[
+                    'success_account'=>'',
+                    'success_rows'=>[],
+                    'rows'=>[],
+                ]);
             }
         } else {
             return $this->ErrorReturn($this->EncashValidate->getError());
@@ -174,7 +183,7 @@ class Encash extends Base
                     return $this->ErrorReturn($this->Encash->getError());
                 }
             } else {
-                return $this->ErrorReturn('佣金不足，提现失败！');
+                return $this->ErrorReturn('操作失败！');
             }
 
         } else {

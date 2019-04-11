@@ -250,4 +250,51 @@ class Membership extends Base
 
     }
 
+    public function updateStatus()
+    {
+        if (isset($_POST['id'])) {
+            $rec = $_POST;
+        } else {
+            $request_data = file_get_contents('php://input');
+            $rec = json_decode($request_data, true);
+        }
+        $res = $this->MembershipValidate->check($rec, '', 'updateStatus');
+
+        if ($res) {
+            $data['create_time'] = time();
+            $data['id']=$rec['id'];
+            $data['status']=$rec['status'];
+            if($data['status']==1){
+                $result = $this->Membership->update($data);
+                $result1 = $this->Membership->where('id','=',$data['id'])->setDec('balance',$rec['require_price']);
+            }else if($data['status']==2){
+                $user = $this->Membership->where('id','=',$data['id'])->find();
+                $orderCount=Db::table('order')->where('membership_id','=',$user['membership_id'])
+                    ->where('status','=',3)->count();
+                if($orderCount>0){
+                    $result = $this->Membership->update($data);
+                }else{
+                    return $this->ErrorReturn('您暂未有消费记录！');
+                }
+            }else if($data['status']==3){
+                $user = $this->Membership->where('id','=',$data['id'])->find();
+                if($user['expense']>$rec['require_expense']){
+                    $result = $this->Membership->update($data);
+                }else{
+                    return $this->ErrorReturn('您暂未达到指定消费额！');
+                }
+            }else{
+                return $this->ErrorReturn('请检查status');
+            }
+            if ($result) {
+                return $this->SuccessReturn('success');
+            } else {
+                return $this->ErrorReturn('error');
+            }
+        } else {
+            return $this->ErrorReturn($this->MembershipValidate->getError());
+        }
+
+    }
+
 }

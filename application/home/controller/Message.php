@@ -69,6 +69,8 @@ class Message extends Base
             } else {
                 return $this->ErrorReturn('获取失败');
             }
+        }else{
+            return $this->ErrorReturn($this->MessageValidate->getError());
         }
     }
 
