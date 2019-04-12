@@ -190,6 +190,9 @@ class Order extends Base
                 $result2 = $this->Order->where('id', '=', $rec['id'][$i])->find();
                 $result3 = $this->OrderGoods->where('order_id', '=', $result2['order_id'])->delete();
                 $result = $this->Order->where('id', '=', $rec['id'][$i])->delete();
+                if($result2['status']==1){
+                    $result4=Db::table('membership')->where('membership_id','=',$result2['membership_id'])->setInc('balance',$result2['price']);
+                }
             }
 
             if ($result) {

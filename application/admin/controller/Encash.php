@@ -161,7 +161,7 @@ class Encash extends Base
             $result1 = '';
             if ($rec['status'] == 1) {
                 $result2=$this->Membership->where('membership_id', '=', $rec['membership_id'])->find();
-                if($result2['commission']>$rec['account']){
+                if($result2['commission']>=$rec['account']){
                     $result1 = $this->Membership->where('membership_id', '=', $rec['membership_id'])->setInc('balance', $rec['account']);
                     $result1 = $this->Membership->where('membership_id', '=', $rec['membership_id'])->setDec('commission', $rec['account']);
                 }

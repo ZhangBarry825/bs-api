@@ -146,9 +146,15 @@ class Membership extends Base
             $result['levelTwo'] = $result1;
             $result['levelThree'] = [];
             foreach ($result1 as $key => $value) {
+//                $result['levelTwo'][$key]['refund_commission']=Db::table('commission')->
+//                    where('level_two_id','=',$value['membership_id'])->sum('level_two_commission');
                 $result3 = $this->Membership->where('referrer_id', '=', $value['membership_id'])->select();
                 $result['levelThree'] = array_merge($result['levelThree'], $result3);
             }
+//            foreach ($result['levelThree'] as $key3=>$value3){
+//                $result['levelThree'][$key3]['refund_commission']=Db::table('commission')->
+//                where('level_three_id','=',$value3['membership_id'])->sum('level_three_commission');
+//            }
             if ($result) {
                 return $this->SuccessReturn('success', $result);
             } else {
@@ -157,6 +163,43 @@ class Membership extends Base
         } else {
             return $this->ErrorReturn($this->MembershipValidate->getError());
         }
+
+    }
+
+    public function getMyMembership(){
+        if (isset($_POST['membership_id'])) {
+            $rec = $_POST;
+        } else {
+            $request_data = file_get_contents('php://input');
+            $rec = json_decode($request_data, true);
+        }
+        $res = $this->MembershipValidate->check($rec, '', 'getMyMembership');
+        if($res){
+            $result=Db::table('order')->where('shopper_id','=',$rec['membership_id'])
+                ->distinct(true)->field('membership_id')->select();
+            $data=[];
+            foreach ($result as $key=>$value){
+                $data[$key]=Db::table('membership')->where('membership_id','=',$value['membership_id'])->find();
+
+
+                $list=Db::table('order')->where('shopper_id','=',$rec['membership_id'])->where('membership_id','=',$value['membership_id'])
+                    ->select();
+                $data[$key]['refund_commission']=0;
+                foreach ($list as $key1=>$value1){
+                    $item=Db::table('commission')->where('order_id','=',$value1['order_id'])->find();
+                    $data[$key]['refund_commission']+=$item['level_three_commission'];
+                }
+
+            }
+            if($data){
+                return $this->SuccessReturn('success',$data);
+            }else{
+                return $this->SuccessReturn('success',[]);
+            }
+        }else{
+            return $this->ErrorReturn($this->MembershipValidate->getError());
+        }
+
 
     }
 

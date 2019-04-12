@@ -132,7 +132,7 @@ class Encash extends Base
         $res = $this->EncashValidate->check($rec, '', 'getEncash');
 
         if ($res) {
-            $result = $this->Encash->where('membership_id', '=', $rec['membership_id'])->select();
+            $result = $this->Encash->where('membership_id', '=', $rec['membership_id'])->order('create_time desc')->select();
             $result1 = $this->Encash->where('membership_id', '=', $rec['membership_id'])
                 ->where('status','=',1)->select();
             if($result){

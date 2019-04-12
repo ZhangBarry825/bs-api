@@ -29,6 +29,7 @@ class MembershipValidate extends Validate
         ['require_type','require','require_type必须'],
         ['require_expense','require','require_expense必须'],
         ['require_price','require','require_price必须'],
+        ['membership_id','require','membership_id必须'],
 
         ['page_num','require','page_num必须'],
         ['page_size','require','page_size必须'],
@@ -36,6 +37,7 @@ class MembershipValidate extends Validate
     protected $scene = [
         'updateMembership'=>['id'],
         'updateStatus'=>['id','status','require_type','require_expense','require_price'],
+        'getMyMembership'=>['membership_id'],
         'resetPassword'=>['id','password','old_password'],
         'deleteMembership'=>['id'],
         'getMembership'=>['id'],
