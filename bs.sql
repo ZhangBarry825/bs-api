@@ -11,7 +11,7 @@
  Target Server Version : 50637
  File Encoding         : 65001
 
- Date: 12/04/2019 17:38:00
+ Date: 22/04/2019 17:57:34
 */
 
 SET NAMES utf8mb4;
@@ -28,13 +28,7 @@ CREATE TABLE `address`  (
   `contacts` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '联系人',
   `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '手机号',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of address
--- ----------------------------
-INSERT INTO `address` VALUES (4, 103211389, '辽宁省抚顺市望花区长兴街55号', '老王', '15138389776');
-INSERT INTO `address` VALUES (5, 188506916, '云南省保山市腾冲县黑风洞5号', '大熊', '13213348850');
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for article
@@ -64,46 +58,7 @@ CREATE TABLE `charge_list`  (
   `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '会员昵称',
   `create_time` int(255) NOT NULL COMMENT '充值时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 36 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of charge_list
--- ----------------------------
-INSERT INTO `charge_list` VALUES (1, 103211389, 100.00, '哆啦A梦', 1554708288);
-INSERT INTO `charge_list` VALUES (2, 103211389, 100.00, '哆啦A梦', 1554708411);
-INSERT INTO `charge_list` VALUES (3, 103211389, 100.00, '哆啦A梦', 1554708456);
-INSERT INTO `charge_list` VALUES (4, 103211389, 100.00, '哆啦A梦', 1554708682);
-INSERT INTO `charge_list` VALUES (5, 103211389, 100.00, '哆啦A梦', 1554708686);
-INSERT INTO `charge_list` VALUES (6, 103211389, 100.00, '哆啦A梦', 1554711781);
-INSERT INTO `charge_list` VALUES (7, 103211389, 100.00, '哆啦A梦', 1554711783);
-INSERT INTO `charge_list` VALUES (8, 103211389, 100.00, '哆啦A梦', 1554711784);
-INSERT INTO `charge_list` VALUES (9, 103211389, 100.00, '哆啦A梦', 1554711786);
-INSERT INTO `charge_list` VALUES (10, 103211389, 100.00, '哆啦A梦', 1554769552);
-INSERT INTO `charge_list` VALUES (11, 103211389, 100.00, '哆啦A梦', 1554779517);
-INSERT INTO `charge_list` VALUES (12, 103211389, 100.00, '哆啦A梦', 1554779519);
-INSERT INTO `charge_list` VALUES (13, 103211389, 100.00, '哆啦A梦', 1554779521);
-INSERT INTO `charge_list` VALUES (14, 103211389, 100.00, '哆啦A梦', 1554779521);
-INSERT INTO `charge_list` VALUES (15, 103211389, 100.00, '哆啦A梦', 1554862158);
-INSERT INTO `charge_list` VALUES (16, 103211389, 100.00, '哆啦A梦', 1554862159);
-INSERT INTO `charge_list` VALUES (17, 103211389, 100.00, '哆啦A梦', 1554862160);
-INSERT INTO `charge_list` VALUES (18, 103211389, 100.00, '哆啦A梦', 1554862161);
-INSERT INTO `charge_list` VALUES (19, 103211389, 100.00, '哆啦A梦', 1554862161);
-INSERT INTO `charge_list` VALUES (20, 103211389, 100.00, '哆啦A梦', 1554862162);
-INSERT INTO `charge_list` VALUES (21, 103211389, 100.00, '哆啦A梦', 1554862164);
-INSERT INTO `charge_list` VALUES (22, 103211389, 100.00, '哆啦A梦', 1554862165);
-INSERT INTO `charge_list` VALUES (23, 103211389, 100.00, '哆啦A梦', 1554862166);
-INSERT INTO `charge_list` VALUES (24, 103211389, 111.00, '哆啦A梦', 1554862596);
-INSERT INTO `charge_list` VALUES (25, 103211389, 1.00, '哆啦A梦', 1554862604);
-INSERT INTO `charge_list` VALUES (26, 103211389, 88.00, '哆啦A梦', 1554862653);
-INSERT INTO `charge_list` VALUES (27, 103211389, 499.00, '哆啦A梦', 1554862776);
-INSERT INTO `charge_list` VALUES (28, 103211389, 50.00, '哆啦A梦', 1554862787);
-INSERT INTO `charge_list` VALUES (29, 103211389, 150.00, '哆啦A梦', 1554863902);
-INSERT INTO `charge_list` VALUES (30, 103211389, 850.00, '哆啦A梦', 1554864020);
-INSERT INTO `charge_list` VALUES (31, 103211389, 5100.00, '哆啦A梦', 1554865514);
-INSERT INTO `charge_list` VALUES (32, 103211389, 1000000.00, '哆啦A梦', 1554878364);
-INSERT INTO `charge_list` VALUES (33, 103211389, 1999999.00, '哆啦A梦', 1554888187);
-INSERT INTO `charge_list` VALUES (34, 103211389, 123333.00, '哆啦A梦', 1554964716);
-INSERT INTO `charge_list` VALUES (35, 188506916, 5000.00, '大雄', 1555036986);
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for cn_nojd
@@ -3795,20 +3750,7 @@ CREATE TABLE `commission`  (
   `order_id` int(255) NOT NULL COMMENT '订单号',
   `create_time` int(255) NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of commission
--- ----------------------------
-INSERT INTO `commission` VALUES (3, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '哆啦A梦', 103211389, 1554866392, 1554866420);
-INSERT INTO `commission` VALUES (4, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '哆啦A梦', 103211389, 1554888167, 1554888272);
-INSERT INTO `commission` VALUES (5, 77.50, NULL, NULL, NULL, NULL, NULL, NULL, '大番薯', 96114956, 75.00, '哆啦A梦', 103211389, 1554888409, 1554888437);
-INSERT INTO `commission` VALUES (6, 25.50, NULL, NULL, NULL, NULL, NULL, NULL, '大番薯', 96114956, 25.00, '哆啦A梦', 103211389, 1554888650, 1554888682);
-INSERT INTO `commission` VALUES (7, 75.00, NULL, NULL, NULL, NULL, NULL, NULL, '大番薯', 96114956, 75.00, '哆啦A梦', 103211389, 1554888783, 1554888814);
-INSERT INTO `commission` VALUES (8, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '哆啦A梦', 103211389, 1554964707, 1554964746);
-INSERT INTO `commission` VALUES (9, 0.00, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '哆啦A梦', 103211389, 1554987460, 1554987571);
-INSERT INTO `commission` VALUES (10, 114.95, NULL, NULL, NULL, NULL, NULL, NULL, '大番薯', 96114956, 114.95, '大雄', 188506916, 1555036975, 1555037021);
-INSERT INTO `commission` VALUES (11, 0.00, NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, '大雄', 188506916, 1555037285, 1555037328);
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for encash
@@ -3825,15 +3767,7 @@ CREATE TABLE `encash`  (
   `status` int(255) NOT NULL COMMENT '0申请中1已打款2已驳回',
   `pay_time` int(255) NOT NULL COMMENT '打款时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of encash
--- ----------------------------
-INSERT INTO `encash` VALUES (1, 771658164, 103211389, 123.00, '哆啦A梦', 1, 1554967716, 1, 1554967744);
-INSERT INTO `encash` VALUES (2, 775250830, 103211389, 123.00, '哆啦A梦', 1, 1554967752, 1, 1555061224);
-INSERT INTO `encash` VALUES (3, 563228335, 96114956, 189.95, '大番薯', 1, 1555055632, 1, 1555056515);
-INSERT INTO `encash` VALUES (4, 667947671, 103211389, 1.00, '哆啦A梦', 1, 1555056679, 1, 1555056692);
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for goods
@@ -3856,15 +3790,7 @@ CREATE TABLE `goods`  (
   `sale_num` int(255) NOT NULL COMMENT '销量',
   `primary_price` double(10, 2) NULL DEFAULT NULL COMMENT '原价',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 9 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of goods
--- ----------------------------
-INSERT INTO `goods` VALUES (5, 909431105, '容声(Ronshen) 252升 三门小型电冰箱 变频风冷无霜 电脑中控 静音节能 宽幅变温 BCD-252WD11NPA', 2299.00, 905609952, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/cd30e86cfc71abc12b33c0e6ff1f86e4.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/244320ac02fa69afd1c2b9ec4ac504f6.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/61daab57083d607cac947628d88d1825.jpg', 1, 1581, '<p><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/f6e690b9a29f9a6689597676c6158edc.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/14f4dee251ebfeb37f658fc8ae6170f0.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/fe0bc016dbf392820d4572db6a81a073.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/526f7c7ca814a6146e2f55b74a83311e.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/b975ac350b6dfb8c5716554bf3aa71cb.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/ed91c3d857500167384daad3b7c5de1f.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/adfb5e8a4d1af400103c23b1ead1a726.jpg\" /></p>', 50.00, 1554790943, 0, NULL);
-INSERT INTO `goods` VALUES (6, 912224264, '【米粉节】Xiaomi/小米 小米电视4C 55英寸 4k超清智能网络电视机', 1999.00, 905602290, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/0a8fd09e5f3c2caca43ab8e617e2d33a.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/c7b68148e36ba30acfd725384799f31f.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/0346f43103c2649b325296911c19c1f9.jpg', 1, 1205, '<p><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/1e8147ae53f5a7f1e6af0d06a197e9ef.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/2e248213b90ea9d27106be807772496e.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/6e0dd02d22b250516594589f3fdcc0df.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/887eba6e10882a080e75b466ce321a73.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/19e7eaa21a5efbc8aa4c5bbf9406336d.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/8f448e842185ce3da53cacf542752036.jpg\" /></p>', 50.00, 1554791222, 0, NULL);
-INSERT INTO `goods` VALUES (7, 914076782, 'Midea/美的 MB55V30 5.5公斤KG迷你全自动波轮洗衣机宿舍小型家用', 1500.00, 905603301, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/529c2d67e36f63c43206c6fd9b1b901c.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/1859c25b3e2540e4143171f8c1b29fec.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/173853789917049304004b7b22174553.jpg', 1, 125539, '<p><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/c7bf0b5cd83165ef6c26684bdf9ec264.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/5f3e877162b07f76197f83a7ef47c148.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/f811ac14c4af00c7a289131947365381.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/c7bf0b5cd83165ef6c26684bdf9ec264.jpg\" /></p>', 50.00, 1554791407, 0, NULL);
-INSERT INTO `goods` VALUES (8, 917625565, 'Mueka包包女2019新款手提包 春季时尚品牌单肩斜挎包大容量托特包', 500.00, 953843884, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/db8e506450e9f585a0c32b33ae48b9e0.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/ac4a43e2a05b4b32f39c21c76e80b846.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/2d6aa1e766eeb7fd24994f10c7a69f12.jpg', 1, 1243, '<p><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/6ef81e9e940f9408739b20151c208b94.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/df1e1719075f56951bf6400f884ae89e.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/a5c457a9e14db94fe0a2b2a29fbdef37.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190409/3c47e3e5b242d2f58eb4ddb50b298132.jpg\" /></p>', 10.00, 1554791762, 0, NULL);
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for goods_specification
@@ -3875,23 +3801,7 @@ CREATE TABLE `goods_specification`  (
   `goods_id` int(255) NOT NULL COMMENT '商品编号',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '规格名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 24 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of goods_specification
--- ----------------------------
-INSERT INTO `goods_specification` VALUES (12, 909431105, '红【标配】');
-INSERT INTO `goods_specification` VALUES (13, 909431105, '白【标配】');
-INSERT INTO `goods_specification` VALUES (14, 909431105, '金【标配】');
-INSERT INTO `goods_specification` VALUES (15, 912224264, '银河灰【标配】');
-INSERT INTO `goods_specification` VALUES (16, 912224264, '石岩灰【标配】');
-INSERT INTO `goods_specification` VALUES (17, 912224264, '锆石黑【标配】');
-INSERT INTO `goods_specification` VALUES (18, 914076782, '智利灰');
-INSERT INTO `goods_specification` VALUES (19, 914076782, '银河灰');
-INSERT INTO `goods_specification` VALUES (20, 914076782, '智利灰');
-INSERT INTO `goods_specification` VALUES (21, 917625565, '黄色');
-INSERT INTO `goods_specification` VALUES (22, 917625565, '黑色');
-INSERT INTO `goods_specification` VALUES (23, 917625565, '灰色');
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for goods_type
@@ -3906,36 +3816,7 @@ CREATE TABLE `goods_type`  (
   `belong_id` int(255) NOT NULL COMMENT '所属一级分类id',
   `create_time` int(20) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 79 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of goods_type
--- ----------------------------
-INSERT INTO `goods_type` VALUES (53, 905609398, 1, '家电', '', 0, 1554790560);
-INSERT INTO `goods_type` VALUES (54, 905609952, 2, '冰箱', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/db699f9afe8a9d98472916a06e3f11c1.jpg', 905609398, 1554790560);
-INSERT INTO `goods_type` VALUES (55, 905603301, 2, '洗衣机', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/6e0bfbbb18f9a05ae3b92d35a10cd9d2.jpg', 905609398, 1554790560);
-INSERT INTO `goods_type` VALUES (56, 905602290, 2, '电视', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/aecb2e65e28db9be1271a09ba68a724d.jpg', 905609398, 1554790560);
-INSERT INTO `goods_type` VALUES (57, 916644697, 1, '服饰', '', 0, 1554795384);
-INSERT INTO `goods_type` VALUES (58, 953843884, 2, '包', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/54a0a41a95c087e00e6cb66e91ca25cf.jpg', 916644697, 1554795384);
-INSERT INTO `goods_type` VALUES (59, 953847151, 2, '女装', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/133a2359965d0b9909a968b273bacd76.jpg', 916644697, 1554795384);
-INSERT INTO `goods_type` VALUES (60, 953843806, 2, '男装', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/691533af908e72b511e5ebe23b4ff0f4.jpg', 916644697, 1554795384);
-INSERT INTO `goods_type` VALUES (61, 933991515, 1, '数码', '', 0, 1554795822);
-INSERT INTO `goods_type` VALUES (62, 958223282, 2, '笔记本', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/c1edae28c3270f2c47d9ab04d45b1ed1.jpg', 933991515, 1554795822);
-INSERT INTO `goods_type` VALUES (63, 958229743, 2, '相机', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/58dbaa01f213206013db460210c04a55.jpg', 933991515, 1554795822);
-INSERT INTO `goods_type` VALUES (64, 958223795, 2, '游戏机', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/a227f267b449188c074a763da51128b6.jpg', 933991515, 1554795822);
-INSERT INTO `goods_type` VALUES (65, 958227127, 2, '手机', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/b5038b40d91380d70c4947a4b10100d5.jpg', 933991515, 1554795822);
-INSERT INTO `goods_type` VALUES (66, 958223510, 2, '台式电脑', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/185a37907ba3ca75092de7fb06610ae0.jpg', 933991515, 1554795822);
-INSERT INTO `goods_type` VALUES (67, 0, 2, '鞋子', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/3f75575a8f3e6ac360f333c888bf8d4a.jpg', 0, 0);
-INSERT INTO `goods_type` VALUES (69, 953844159, 2, '鞋', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/c5fbd8698a0f4d22d7191687a2040671.jpg', 916644697, 1554795384);
-INSERT INTO `goods_type` VALUES (70, 954873339, 1, '家具', '', 0, 1554795891);
-INSERT INTO `goods_type` VALUES (71, 958916338, 2, '沙发', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/d1dee290b4f4979324167eaaf4f4b045.jpg', 954873339, 1554795891);
-INSERT INTO `goods_type` VALUES (72, 958914608, 2, '床', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/7329fce541d333e933c906636a4050ab.jpg', 954873339, 1554795891);
-INSERT INTO `goods_type` VALUES (73, 957124609, 1, '办公', '', 0, 1554795712);
-INSERT INTO `goods_type` VALUES (74, 957124599, 2, '打印机', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/3956cdab5568b66a6887ff3cd5419b07.jpg', 957124609, 1554795712);
-INSERT INTO `goods_type` VALUES (75, 957121523, 2, '投影仪', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/fe6c667b1c870a933f193e8a568d314f.jpg', 957124609, 1554795712);
-INSERT INTO `goods_type` VALUES (76, 957127527, 2, '计算器', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/ce05a21ad3e3effe34f2caeb72b9d18c.jpg', 957124609, 1554795712);
-INSERT INTO `goods_type` VALUES (77, 958221133, 2, '音响', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/6cd34173b6325eb4244b1401674f3ffb.jpg', 933991515, 1554795822);
-INSERT INTO `goods_type` VALUES (78, 958913946, 2, '书桌', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/de15c8a91265d5eaa35eaa1cf4ddc369.jpg', 954873339, 1554795891);
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for membership
@@ -3959,17 +3840,7 @@ CREATE TABLE `membership`  (
   `is_shopper` int(255) NOT NULL COMMENT '1是0否',
   `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '头像',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 42 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of membership
--- ----------------------------
-INSERT INTO `membership` VALUES (21, 96114956, '张三', '大番薯', '15138389776', 0.00, 189.95, 3899.00, 0.00, 1554048332, '4297f44b13955235245b2497399d7a93', 0, '', 2, 1, 'static/uploads/20190403/a29e82924ae3fd627b6dcd79ae95addc.jpg');
-INSERT INTO `membership` VALUES (23, 96111407, '李四', '小番薯', '17611319611', 0.00, 0.00, 0.00, 0.00, 1554048332, '4297f44b13955235245b2497399d7a93', 96114956, '大番薯', 1, 1, 'static/uploads/20190403/a29e82924ae3fd627b6dcd79ae95addc.jpg');
-INSERT INTO `membership` VALUES (24, 96111425, '赵六', '大冬瓜', '17611319612', 0.00, 0.00, 0.00, 0.00, 1554048332, '4297f44b13955235245b2497399d7a93', 96111407, '小番薯', 2, 1, 'static/uploads/20190403/a29e82924ae3fd627b6dcd79ae95addc.jpg');
-INSERT INTO `membership` VALUES (25, 96111448, '王八', '秦先生', '17611319613', 0.00, 0.00, 0.00, 0.00, 1554048332, '4297f44b13955235245b2497399d7a93', 96111425, '大冬瓜', 4, 0, 'static/uploads/20190403/a29e82924ae3fd627b6dcd79ae95addc.jpg');
-INSERT INTO `membership` VALUES (40, 103211389, '王五', '哆啦A梦', '15038010321', 430.00, 633.00, 0.00, 23259.00, 1554948354, '4297f44b13955235245b2497399d7a93', 96114956, '大番薯', 2, 0, 'static/uploads/20190409/64e34480a57cd2094453764876f97421.jpg');
-INSERT INTO `membership` VALUES (41, 188506916, '大熊', '大雄', '13213348850', 0.00, 601.00, 0.00, 4398.00, 1555037039, '4297f44b13955235245b2497399d7a93', 96114956, '大番薯', 2, 0, 'static/uploads/20190412/c801ef4f579de1b8b1d84698c069cb25.jpeg');
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for message
@@ -3982,14 +3853,7 @@ CREATE TABLE `message`  (
   `content_short` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `create_time` bigint(255) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of message
--- ----------------------------
-INSERT INTO `message` VALUES (1, '重大消息通知', '<p><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190401/1ac298c3ae3510283af007fa90fb62b3.jpg\" /></p>', '拼团活动打促销', 1554082486);
-INSERT INTO `message` VALUES (2, '重要通知', '<div>\n<p>昨天，朋友小夕跟我吐槽，自己遇到了一个情商特别低的人，差点耽误了她的工作。</p>\n<p>原来，不久后，小夕要出国办公谈业务，需要办理签证，而办签证需要提供加盖公司公章的收入证明。</p>\n<p>于是，小夕做好了收入证明，准备拿给掌管公章的同事盖章。</p>\n<p>结果，当天领导不在，小夕无法把盖章事由给领导签字，而那位掌管公章的同事又特别不好说话，不敢在权限范围外盖章，又不愿先打电话知会领导，盖完章再找领导签字。</p>\n<p>小夕解释，自己这是为了办签证，由于出差的时间比较近，拿到签证还需要一段时间，如果不能及时盖章可能会耽误工作，希望能够通融一下。</p>\n<p>可这位同事认死理，只能先签字，再盖章，小夕只好悻悻地回去，等领导在的时候再跑一趟。</p>\n<p>后来，小夕跟同事说了这件事之后才知道，那位管理公章的同事，一向迂腐、情商低，已经得罪了不少人。</p>\n<p>其实，我们生活中有很多这样的人，他们永远坚守着自己的准则，活在道德规定的条条框框里，只做符合规则的事，阅读只读&ldquo;名著&rdquo;，听歌只听&ldquo;有内涵&rdquo;的&hellip;&hellip;</p>\n<p>如果你情绪激动说了脏话，他们就会告诉你文明人该如何说话。</p>\n<p>如果孩子只想在长大后当个普通的打工仔，他们就会告诉孩子&ldquo;不想当将军的士兵不是好士兵&rdquo;。</p>\n<p><strong>这不是情商低，而是三观太正</strong>。</p>\n</div>', '本我是最原始的我，是生理和物质的我，超我是道德的我，而自我在中间调节和平衡本我和超我。三观太正的人就是超我比较强，本我比较弱，自我比较偏向超我的情况。', 1554701692);
-INSERT INTO `message` VALUES (3, '重要通知', '<div>\n<p>昨天，朋友小夕跟我吐槽，自己遇到了一个情商特别低的人，差点耽误了她的工作。</p>\n<p>原来，不久后，小夕要出国办公谈业务，需要办理签证，而办签证需要提供加盖公司公章的收入证明。</p>\n<p>于是，小夕做好了收入证明，准备拿给掌管公章的同事盖章。</p>\n<p>结果，当天领导不在，小夕无法把盖章事由给领导签字，而那位掌管公章的同事又特别不好说话，不敢在权限范围外盖章，又不愿先打电话知会领导，盖完章再找领导签字。</p>\n<p>小夕解释，自己这是为了办签证，由于出差的时间比较近，拿到签证还需要一段时间，如果不能及时盖章可能会耽误工作，希望能够通融一下。</p>\n<p>可这位同事认死理，只能先签字，再盖章，小夕只好悻悻地回去，等领导在的时候再跑一趟。</p>\n<p>后来，小夕跟同事说了这件事之后才知道，那位管理公章的同事，一向迂腐、情商低，已经得罪了不少人。</p>\n<p>其实，我们生活中有很多这样的人，他们永远坚守着自己的准则，活在道德规定的条条框框里，只做符合规则的事，阅读只读&ldquo;名著&rdquo;，听歌只听&ldquo;有内涵&rdquo;的&hellip;&hellip;</p>\n<p>如果你情绪激动说了脏话，他们就会告诉你文明人该如何说话。</p>\n<p>如果孩子只想在长大后当个普通的打工仔，他们就会告诉孩子&ldquo;不想当将军的士兵不是好士兵&rdquo;。</p>\n<p><strong>这不是情商低，而是三观太正</strong>。</p>\n<p><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190408/8b2649f944c36b816c66f1df1066db45.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190408/17db1d68d830dca0580aecdf422ad37e.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.barry.umdev.cn/static/uploads/20190408/166afb2edcdd2e085d39b3f8143703ce.jpg\" /></p>\n</div>', '本我是最原始的我，是生理和物质的我，超我是道德的我，而自我在中间调节和平衡本我和超我。三观太正的人就是超我比较强，本我比较弱，自我比较偏向超我的情况。', 1554702720);
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for order
@@ -4022,22 +3886,7 @@ CREATE TABLE `order`  (
   `express_cost` double(10, 2) NOT NULL COMMENT '快递费用',
   `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 20 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of order
--- ----------------------------
-INSERT INTO `order` VALUES (5, 1554866392, '总店', 0, '哆啦A梦', '王五', 103211389, 1550.00, 3, 1554866392, 0, 0, 1554866394, '老王', '15138389776', '辽宁省抚顺市望花区长兴街55号', '', '', '', 0, '', 2, '123123', 50.00, '');
-INSERT INTO `order` VALUES (6, 1554878343, '总店', 0, '哆啦A梦', '王五', 103211389, 2049.00, 7, 1554878343, 1554878420, 1554878543, 1554878373, '老王', '15138389776', '辽宁省抚顺市望花区长兴街55号', '张三', '123123123', '北京市', 2, '123123123', 1, '1234567890', 50.00, '');
-INSERT INTO `order` VALUES (7, 1554888167, '总店', 0, '哆啦A梦', '王五', 103211389, 1550.00, 3, 1554888167, 0, 0, 1554888193, '老王', '15138389776', '辽宁省抚顺市望花区长兴街55号', '', '', '', 0, '', 2, '123123123', 50.00, '');
-INSERT INTO `order` VALUES (8, 1554888409, '大番薯', 96114956, '哆啦A梦', '王五', 103211389, 1550.00, 3, 1554888409, 0, 0, 1554888411, '老王', '15138389776', '辽宁省抚顺市望花区长兴街55号', '', '', '', 0, '', 3, '123123', 50.00, '');
-INSERT INTO `order` VALUES (9, 1554888650, '大番薯', 96114956, '哆啦A梦', '王五', 103211389, 510.00, 3, 1554888650, 0, 0, 1554888651, '老王', '15138389776', '辽宁省抚顺市望花区长兴街55号', '', '', '', 0, '', 3, '123123', 10.00, '');
-INSERT INTO `order` VALUES (10, 1554888783, '大番薯', 96114956, '哆啦A梦', '王五', 103211389, 1550.00, 3, 1554888783, 0, 0, 1554888784, '老王', '15138389776', '辽宁省抚顺市望花区长兴街55号', '', '', '', 0, '', 2, '123123123', 50.00, '');
-INSERT INTO `order` VALUES (11, 1554964707, '总店', 0, '哆啦A梦', '王五', 103211389, 1550.00, 3, 1554964707, 0, 0, 1554964721, '老王', '15138389776', '辽宁省抚顺市望花区长兴街55号', '', '', '', 0, '', 5, '123123123', 50.00, '');
-INSERT INTO `order` VALUES (12, 1554987460, '总店', 0, '哆啦A梦', '王五', 103211389, 16549.00, 3, 1554987460, 0, 0, 1554987467, '老王', '15138389776', '辽宁省抚顺市望花区长兴街55号', '', '', '', 0, '', 2, '8520963', 50.00, '');
-INSERT INTO `order` VALUES (13, 1555036975, '大番薯', 96114956, '大雄', '大熊', 188506916, 2349.00, 3, 1555036975, 0, 0, 1555036996, '大熊', '13213348850', '云南省保山市腾冲县黑风洞5号', '', '', '', 0, '', 3, '1234566', 50.00, '');
-INSERT INTO `order` VALUES (14, 1555037285, '总店', 0, '大雄', '大熊', 188506916, 2049.00, 3, 1555037285, 0, 0, 1555037300, '大熊', '13213348850', '云南省保山市腾冲县黑风洞5号', '', '', '', 0, '', 2, '123123123', 50.00, '');
-INSERT INTO `order` VALUES (19, 1555058880, '总店', 0, '哆啦A梦', '王五', 103211389, 510.00, 0, 1555058880, 0, 0, 0, '老王', '15138389776', '辽宁省抚顺市望花区长兴街55号', '', '', '', 0, '', 5, '', 10.00, '');
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for order_goods
@@ -4056,24 +3905,7 @@ CREATE TABLE `order_goods`  (
   `num` int(10) NOT NULL,
   `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品属性',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of order_goods
--- ----------------------------
-INSERT INTO `order_goods` VALUES (5, 1554866392, 914076782, 'Midea/美的 MB55V30 5.5公斤KG迷你全自动波轮洗衣机宿舍小型家用', 1500.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/529c2d67e36f63c43206c6fd9b1b901c.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/1859c25b3e2540e4143171f8c1b29fec.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/173853789917049304004b7b22174553.jpg', 50.00, 1, '智利灰');
-INSERT INTO `order_goods` VALUES (6, 1554878343, 912224264, '【米粉节】Xiaomi/小米 小米电视4C 55英寸 4k超清智能网络电视机', 1999.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/0a8fd09e5f3c2caca43ab8e617e2d33a.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/c7b68148e36ba30acfd725384799f31f.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/0346f43103c2649b325296911c19c1f9.jpg', 50.00, 1, '银河灰【标配】');
-INSERT INTO `order_goods` VALUES (7, 1554888167, 914076782, 'Midea/美的 MB55V30 5.5公斤KG迷你全自动波轮洗衣机宿舍小型家用', 1500.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/529c2d67e36f63c43206c6fd9b1b901c.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/1859c25b3e2540e4143171f8c1b29fec.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/173853789917049304004b7b22174553.jpg', 50.00, 1, '智利灰');
-INSERT INTO `order_goods` VALUES (8, 1554888409, 914076782, 'Midea/美的 MB55V30 5.5公斤KG迷你全自动波轮洗衣机宿舍小型家用', 1500.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/529c2d67e36f63c43206c6fd9b1b901c.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/1859c25b3e2540e4143171f8c1b29fec.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/173853789917049304004b7b22174553.jpg', 50.00, 1, '智利灰');
-INSERT INTO `order_goods` VALUES (9, 1554888650, 917625565, 'Mueka包包女2019新款手提包 春季时尚品牌单肩斜挎包大容量托特包', 500.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/db8e506450e9f585a0c32b33ae48b9e0.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/ac4a43e2a05b4b32f39c21c76e80b846.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/2d6aa1e766eeb7fd24994f10c7a69f12.jpg', 10.00, 1, '黄色');
-INSERT INTO `order_goods` VALUES (10, 1554888783, 914076782, 'Midea/美的 MB55V30 5.5公斤KG迷你全自动波轮洗衣机宿舍小型家用', 1500.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/529c2d67e36f63c43206c6fd9b1b901c.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/1859c25b3e2540e4143171f8c1b29fec.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/173853789917049304004b7b22174553.jpg', 50.00, 1, '智利灰');
-INSERT INTO `order_goods` VALUES (11, 1554964707, 914076782, 'Midea/美的 MB55V30 5.5公斤KG迷你全自动波轮洗衣机宿舍小型家用', 1500.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/529c2d67e36f63c43206c6fd9b1b901c.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/1859c25b3e2540e4143171f8c1b29fec.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/173853789917049304004b7b22174553.jpg', 50.00, 1, '智利灰');
-INSERT INTO `order_goods` VALUES (12, 1554987460, 914076782, 'Midea/美的 MB55V30 5.5公斤KG迷你全自动波轮洗衣机宿舍小型家用', 1500.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/529c2d67e36f63c43206c6fd9b1b901c.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/1859c25b3e2540e4143171f8c1b29fec.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/173853789917049304004b7b22174553.jpg', 50.00, 8, '智利灰');
-INSERT INTO `order_goods` VALUES (13, 1554987460, 917625565, 'Mueka包包女2019新款手提包 春季时尚品牌单肩斜挎包大容量托特包', 500.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/db8e506450e9f585a0c32b33ae48b9e0.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/ac4a43e2a05b4b32f39c21c76e80b846.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/2d6aa1e766eeb7fd24994f10c7a69f12.jpg', 10.00, 5, '黑色');
-INSERT INTO `order_goods` VALUES (14, 1554987460, 912224264, '【米粉节】Xiaomi/小米 小米电视4C 55英寸 4k超清智能网络电视机', 1999.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/0a8fd09e5f3c2caca43ab8e617e2d33a.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/c7b68148e36ba30acfd725384799f31f.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/0346f43103c2649b325296911c19c1f9.jpg', 50.00, 1, '石岩灰【标配】');
-INSERT INTO `order_goods` VALUES (15, 1555036975, 909431105, '容声(Ronshen) 252升 三门小型电冰箱 变频风冷无霜 电脑中控 静音节能 宽幅变温 BCD-252WD11NPA', 2299.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/cd30e86cfc71abc12b33c0e6ff1f86e4.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/244320ac02fa69afd1c2b9ec4ac504f6.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/61daab57083d607cac947628d88d1825.jpg', 50.00, 1, '白【标配】');
-INSERT INTO `order_goods` VALUES (16, 1555037285, 912224264, '【米粉节】Xiaomi/小米 小米电视4C 55英寸 4k超清智能网络电视机', 1999.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/0a8fd09e5f3c2caca43ab8e617e2d33a.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/c7b68148e36ba30acfd725384799f31f.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/0346f43103c2649b325296911c19c1f9.jpg', 50.00, 1, '石岩灰【标配】');
-INSERT INTO `order_goods` VALUES (21, 1555058880, 917625565, 'Mueka包包女2019新款手提包 春季时尚品牌单肩斜挎包大容量托特包', 500.00, 'http://bs-api.barry.umdev.cn/static/uploads/20190409/db8e506450e9f585a0c32b33ae48b9e0.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/ac4a43e2a05b4b32f39c21c76e80b846.jpg', 'http://bs-api.barry.umdev.cn/static/uploads/20190409/2d6aa1e766eeb7fd24994f10c7a69f12.jpg', 10.00, 1, '灰色');
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for regulation
@@ -4096,7 +3928,7 @@ CREATE TABLE `regulation`  (
 -- ----------------------------
 -- Records of regulation
 -- ----------------------------
-INSERT INTO `regulation` VALUES (1, 2, 100.00, 1.00, 1, '标题2', '这是一条购买协议\n这是一条购买协议', 20.00, 15.00, 5.00);
+INSERT INTO `regulation` VALUES (1, 2, 500.00, 100.00, 0, '购买协议', '这是一条购买协议\n这是一条购买协议', 20.00, 15.00, 5.00);
 
 -- ----------------------------
 -- Table structure for sys_user
