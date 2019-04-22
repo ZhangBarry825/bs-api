@@ -133,11 +133,11 @@ class Membership extends Base
 
         if ($res) {
             $result = $this->Membership->where('id', '=', $rec['id'])->find();
-            $result1=$this->Membership->where('referrer_id', '=', $result['membership_id'])->select();
+            $result1=$this->Membership->where('referrer_id', '=', $result['membership_id'])->where('status','>',0)->select();
             $result['levelTwo']=$result1;
             $result['levelThree']=[];
             foreach ($result1 as $key=>$value){
-                $result3=$this->Membership->where('referrer_id', '=', $value['membership_id'])->select();
+                $result3=$this->Membership->where('referrer_id', '=', $value['membership_id'])->where('status','>',0)->select();
                 $result['levelThree']=array_merge($result['levelThree'],$result3);
             }
             if ($result) {
