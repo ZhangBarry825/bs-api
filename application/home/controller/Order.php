@@ -67,6 +67,10 @@ class Order extends Base
             $levelOne['status'] = $rec['status'];
             $levelOne['price'] = $rec['price'];
             $levelOne['name'] = $rec['name'];
+            $levelOne['refund_time'] = 0;
+            $levelOne['apply_refund_time'] = 0;
+            $levelOne['pay_time'] = 0;
+            $levelOne['refund_contacts'] = '';
             if (isset($rec['remark'])) {
                 $levelOne['remark'] = $rec['remark'];
             }

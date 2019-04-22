@@ -142,13 +142,13 @@ class Membership extends Base
 
         if ($res) {
             $result = $this->Membership->where('id', '=', $rec['id'])->find();
-            $result1 = $this->Membership->where('referrer_id', '=', $result['membership_id'])->select();
+            $result1 = $this->Membership->where('referrer_id', '=', $result['membership_id'])->where('status','>',1)->select();
             $result['levelTwo'] = $result1;
             $result['levelThree'] = [];
             foreach ($result1 as $key => $value) {
 //                $result['levelTwo'][$key]['refund_commission']=Db::table('commission')->
 //                    where('level_two_id','=',$value['membership_id'])->sum('level_two_commission');
-                $result3 = $this->Membership->where('referrer_id', '=', $value['membership_id'])->select();
+                $result3 = $this->Membership->where('referrer_id', '=', $value['membership_id'])->where('status','>',1)->select();
                 $result['levelThree'] = array_merge($result['levelThree'], $result3);
             }
 //            foreach ($result['levelThree'] as $key3=>$value3){

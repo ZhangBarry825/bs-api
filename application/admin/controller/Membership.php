@@ -76,7 +76,7 @@ class Membership extends Base
 
         $res = $this->MembershipValidate->check($rec, '', 'allMembership');
         if ($res) {
-            $result = Db::table('membership')->page($rec['page_num'], $rec['page_size'])->select();
+            $result = Db::table('membership')->order('create_time desc')->page($rec['page_num'], $rec['page_size'])->select();
             if ($result) {
                 $count = count(Db::table('membership')->select());
                 $data['count'] = $count;
