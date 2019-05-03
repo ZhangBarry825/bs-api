@@ -1,3973 +1,531 @@
-/*
- Navicat Premium Data Transfer
+-- MySQL dump 10.13  Distrib 5.6.37, for Linux (x86_64)
+--
+-- Host: localhost    Database: bs
+-- ------------------------------------------------------
+-- Server version	5.6.37-log
 
- Source Server         : bs
- Source Server Type    : MySQL
- Source Server Version : 50637
- Source Host           : 192.168.33.10:3306
- Source Schema         : bs
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
- Target Server Type    : MySQL
- Target Server Version : 50637
- File Encoding         : 65001
+--
+-- Table structure for table `address`
+--
 
- Date: 22/04/2019 17:57:34
-*/
-
-SET NAMES utf8mb4;
-SET FOREIGN_KEY_CHECKS = 0;
-
--- ----------------------------
--- Table structure for address
--- ----------------------------
 DROP TABLE IF EXISTS `address`;
-CREATE TABLE `address`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `address` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `membership_id` int(255) NOT NULL,
-  `address` text CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '地址',
-  `contacts` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '联系人',
-  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '手机号',
+  `address` text NOT NULL COMMENT '地址',
+  `contacts` varchar(255) NOT NULL COMMENT '联系人',
+  `phone` varchar(255) NOT NULL COMMENT '手机号',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for article
--- ----------------------------
+--
+-- Dumping data for table `address`
+--
+
+LOCK TABLES `address` WRITE;
+/*!40000 ALTER TABLE `address` DISABLE KEYS */;
+INSERT INTO `address` VALUES (1,103217109,'河南省郑州市中原区中原路146号','小叮当','15038010321'),(2,197760207,'河南省郑州市中原区中原路41号','大番薯','15138389776');
+/*!40000 ALTER TABLE `address` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `article`
+--
+
 DROP TABLE IF EXISTS `article`;
-CREATE TABLE `article`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `article` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章标题',
-  `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章分类',
-  `description` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章描述',
-  `content` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '文章内容',
-  `cover` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '文章封面',
+  `title` varchar(255) NOT NULL COMMENT '文章标题',
+  `type` varchar(255) NOT NULL COMMENT '文章分类',
+  `description` varchar(255) NOT NULL COMMENT '文章描述',
+  `content` mediumtext NOT NULL COMMENT '文章内容',
+  `cover` varchar(255) DEFAULT NULL COMMENT '文章封面',
   `status` int(10) NOT NULL COMMENT '文章状态 1正常 0禁用',
-  `create_time` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
-  `update_time` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NULL,
+  `create_time` mediumtext,
+  `update_time` mediumtext,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for charge_list
--- ----------------------------
+--
+-- Dumping data for table `article`
+--
+
+LOCK TABLES `article` WRITE;
+/*!40000 ALTER TABLE `article` DISABLE KEYS */;
+/*!40000 ALTER TABLE `article` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `charge_list`
+--
+
 DROP TABLE IF EXISTS `charge_list`;
-CREATE TABLE `charge_list`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `charge_list` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `membership_id` int(255) NOT NULL COMMENT '会员id',
-  `charge_account` double(10, 2) NOT NULL COMMENT '充值金额',
-  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '会员昵称',
+  `charge_account` double(10,2) NOT NULL COMMENT '充值金额',
+  `nickname` varchar(255) NOT NULL COMMENT '会员昵称',
   `create_time` int(255) NOT NULL COMMENT '充值时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for cn_nojd
--- ----------------------------
+--
+-- Dumping data for table `charge_list`
+--
+
+LOCK TABLES `charge_list` WRITE;
+/*!40000 ALTER TABLE `charge_list` DISABLE KEYS */;
+INSERT INTO `charge_list` VALUES (1,197760207,100.00,'大番薯吃西瓜',1556844454),(2,103217109,5000.00,'哆啦A梦',1556847145);
+/*!40000 ALTER TABLE `charge_list` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `cn_nojd`
+--
+
 DROP TABLE IF EXISTS `cn_nojd`;
-CREATE TABLE `cn_nojd`  (
-  `pid` int(255) NULL DEFAULT NULL,
-  `name1` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `belong_id` int(255) NULL DEFAULT NULL,
-  `name2` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `x` int(255) NULL DEFAULT NULL,
-  `y` int(255) NULL DEFAULT NULL
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `cn_nojd` (
+  `pid` int(255) DEFAULT NULL,
+  `name1` varchar(255) DEFAULT NULL,
+  `belong_id` int(255) DEFAULT NULL,
+  `name2` varchar(255) DEFAULT NULL,
+  `x` int(255) DEFAULT NULL,
+  `y` int(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of cn_nojd
--- ----------------------------
-INSERT INTO `cn_nojd` VALUES (110000, '北京', 0, '北京', 1, 1);
-INSERT INTO `cn_nojd` VALUES (110100, '北京市', 110000, '北京', 2, 1);
-INSERT INTO `cn_nojd` VALUES (110101, '东城区', 110100, '东城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (110102, '西城区', 110100, '西城', 3, 15);
-INSERT INTO `cn_nojd` VALUES (110105, '朝阳区', 110100, '朝阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (110106, '丰台区', 110100, '丰台', 3, 6);
-INSERT INTO `cn_nojd` VALUES (110107, '石景山区', 110100, '石景山', 3, 12);
-INSERT INTO `cn_nojd` VALUES (110108, '海淀区', 110100, '海淀', 3, 7);
-INSERT INTO `cn_nojd` VALUES (110109, '门头沟区', 110100, '门头沟', 3, 9);
-INSERT INTO `cn_nojd` VALUES (110111, '房山区', 110100, '房山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (110112, '通州区', 110100, '通州', 3, 14);
-INSERT INTO `cn_nojd` VALUES (110113, '顺义区', 110100, '顺义', 3, 13);
-INSERT INTO `cn_nojd` VALUES (110114, '昌平区', 110100, '昌平', 3, 1);
-INSERT INTO `cn_nojd` VALUES (110115, '大兴区', 110100, '大兴', 3, 4);
-INSERT INTO `cn_nojd` VALUES (110116, '怀柔区', 110100, '怀柔', 3, 8);
-INSERT INTO `cn_nojd` VALUES (110117, '平谷区', 110100, '平谷', 3, 11);
-INSERT INTO `cn_nojd` VALUES (110228, '密云县', 110100, '密云', 3, 10);
-INSERT INTO `cn_nojd` VALUES (110229, '延庆县', 110100, '延庆', 3, 16);
-INSERT INTO `cn_nojd` VALUES (120000, '天津', 0, '天津', 1, 2);
-INSERT INTO `cn_nojd` VALUES (120100, '天津市', 120000, '天津', 2, 1);
-INSERT INTO `cn_nojd` VALUES (120101, '和平区', 120100, '和平', 3, 7);
-INSERT INTO `cn_nojd` VALUES (120102, '河东区', 120100, '河东', 3, 6);
-INSERT INTO `cn_nojd` VALUES (120103, '河西区', 120100, '河西', 3, 8);
-INSERT INTO `cn_nojd` VALUES (120104, '南开区', 120100, '南开', 3, 13);
-INSERT INTO `cn_nojd` VALUES (120105, '河北区', 120100, '河北', 3, 5);
-INSERT INTO `cn_nojd` VALUES (120106, '红桥区', 120100, '红桥', 3, 9);
-INSERT INTO `cn_nojd` VALUES (120110, '东丽区', 120100, '东丽', 3, 4);
-INSERT INTO `cn_nojd` VALUES (120111, '西青区', 120100, '西青', 3, 16);
-INSERT INTO `cn_nojd` VALUES (120112, '津南区', 120100, '津南', 3, 11);
-INSERT INTO `cn_nojd` VALUES (120113, '北辰区', 120100, '北辰', 3, 2);
-INSERT INTO `cn_nojd` VALUES (120114, '武清区', 120100, '武清', 3, 15);
-INSERT INTO `cn_nojd` VALUES (120115, '宝坻区', 120100, '宝坻', 3, 1);
-INSERT INTO `cn_nojd` VALUES (120116, '滨海新区', 120100, '滨海', 3, 3);
-INSERT INTO `cn_nojd` VALUES (120221, '宁河县', 120100, '宁河', 3, 14);
-INSERT INTO `cn_nojd` VALUES (120223, '静海县', 120100, '静海', 3, 10);
-INSERT INTO `cn_nojd` VALUES (120225, '蓟县', 120100, '蓟县', 3, 12);
-INSERT INTO `cn_nojd` VALUES (130000, '河北省', 0, '河北', 1, 3);
-INSERT INTO `cn_nojd` VALUES (130100, '石家庄市', 130000, '石家庄', 2, 8);
-INSERT INTO `cn_nojd` VALUES (130102, '长安区', 130100, '长安', 3, 1);
-INSERT INTO `cn_nojd` VALUES (130103, '桥东区', 130100, '桥东', 3, 11);
-INSERT INTO `cn_nojd` VALUES (130104, '桥西区', 130100, '桥西', 3, 12);
-INSERT INTO `cn_nojd` VALUES (130105, '新华区', 130100, '新华', 3, 16);
-INSERT INTO `cn_nojd` VALUES (130107, '井陉矿区', 130100, '井陉矿', 3, 4);
-INSERT INTO `cn_nojd` VALUES (130108, '裕华区', 130100, '裕华', 3, 20);
-INSERT INTO `cn_nojd` VALUES (130121, '井陉县', 130100, '井陉', 3, 5);
-INSERT INTO `cn_nojd` VALUES (130123, '正定县', 130100, '正定', 3, 23);
-INSERT INTO `cn_nojd` VALUES (130124, '栾城县', 130100, '栾城', 3, 8);
-INSERT INTO `cn_nojd` VALUES (130125, '行唐县', 130100, '行唐', 3, 15);
-INSERT INTO `cn_nojd` VALUES (130126, '灵寿县', 130100, '灵寿', 3, 7);
-INSERT INTO `cn_nojd` VALUES (130127, '高邑县', 130100, '高邑', 3, 3);
-INSERT INTO `cn_nojd` VALUES (130128, '深泽县', 130100, '深泽', 3, 13);
-INSERT INTO `cn_nojd` VALUES (130129, '赞皇县', 130100, '赞皇', 3, 21);
-INSERT INTO `cn_nojd` VALUES (130130, '无极县', 130100, '无极', 3, 14);
-INSERT INTO `cn_nojd` VALUES (130131, '平山县', 130100, '平山', 3, 10);
-INSERT INTO `cn_nojd` VALUES (130132, '元氏县', 130100, '元氏', 3, 19);
-INSERT INTO `cn_nojd` VALUES (130133, '赵县', 130100, '赵县', 3, 22);
-INSERT INTO `cn_nojd` VALUES (130181, '辛集市', 130100, '辛集', 3, 17);
-INSERT INTO `cn_nojd` VALUES (130182, '藁城市', 130100, '藁城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (130183, '晋州市', 130100, '晋州', 3, 6);
-INSERT INTO `cn_nojd` VALUES (130184, '新乐市', 130100, '新乐', 3, 18);
-INSERT INTO `cn_nojd` VALUES (130185, '鹿泉市', 130100, '鹿泉', 3, 9);
-INSERT INTO `cn_nojd` VALUES (130200, '唐山市', 130000, '唐山', 2, 9);
-INSERT INTO `cn_nojd` VALUES (130202, '路南区', 130200, '路南', 3, 10);
-INSERT INTO `cn_nojd` VALUES (130203, '路北区', 130200, '路北', 3, 9);
-INSERT INTO `cn_nojd` VALUES (130204, '古冶区', 130200, '古冶', 3, 4);
-INSERT INTO `cn_nojd` VALUES (130205, '开平区', 130200, '开平', 3, 5);
-INSERT INTO `cn_nojd` VALUES (130207, '丰南区', 130200, '丰南', 3, 2);
-INSERT INTO `cn_nojd` VALUES (130208, '丰润区', 130200, '丰润', 3, 3);
-INSERT INTO `cn_nojd` VALUES (130223, '滦县', 130200, '滦县', 3, 8);
-INSERT INTO `cn_nojd` VALUES (130224, '滦南县', 130200, '滦南', 3, 7);
-INSERT INTO `cn_nojd` VALUES (130225, '乐亭县', 130200, '乐亭', 3, 6);
-INSERT INTO `cn_nojd` VALUES (130227, '迁西县', 130200, '迁西', 3, 12);
-INSERT INTO `cn_nojd` VALUES (130229, '玉田县', 130200, '玉田', 3, 13);
-INSERT INTO `cn_nojd` VALUES (130230, '曹妃甸区', 130200, '曹妃甸', 3, 1);
-INSERT INTO `cn_nojd` VALUES (130281, '遵化市', 130200, '遵化', 3, 14);
-INSERT INTO `cn_nojd` VALUES (130283, '迁安市', 130200, '迁安', 3, 11);
-INSERT INTO `cn_nojd` VALUES (130300, '秦皇岛市', 130000, '秦皇岛', 2, 7);
-INSERT INTO `cn_nojd` VALUES (130302, '海港区', 130300, '海港', 3, 4);
-INSERT INTO `cn_nojd` VALUES (130303, '山海关区', 130300, '山海关', 3, 7);
-INSERT INTO `cn_nojd` VALUES (130304, '北戴河区', 130300, '北戴河', 3, 1);
-INSERT INTO `cn_nojd` VALUES (130321, '青龙满族自治县', 130300, '青龙', 3, 6);
-INSERT INTO `cn_nojd` VALUES (130322, '昌黎县', 130300, '昌黎', 3, 2);
-INSERT INTO `cn_nojd` VALUES (130323, '抚宁县', 130300, '抚宁', 3, 3);
-INSERT INTO `cn_nojd` VALUES (130324, '卢龙县', 130300, '卢龙', 3, 5);
-INSERT INTO `cn_nojd` VALUES (130400, '邯郸市', 130000, '邯郸', 2, 4);
-INSERT INTO `cn_nojd` VALUES (130402, '邯山区', 130400, '邯山', 3, 11);
-INSERT INTO `cn_nojd` VALUES (130403, '丛台区', 130400, '丛台', 3, 3);
-INSERT INTO `cn_nojd` VALUES (130404, '复兴区', 130400, '复兴', 3, 7);
-INSERT INTO `cn_nojd` VALUES (130406, '峰峰矿区', 130400, '峰峰矿', 3, 6);
-INSERT INTO `cn_nojd` VALUES (130421, '邯郸县', 130400, '邯郸', 3, 10);
-INSERT INTO `cn_nojd` VALUES (130423, '临漳县', 130400, '临漳', 3, 13);
-INSERT INTO `cn_nojd` VALUES (130424, '成安县', 130400, '成安', 3, 1);
-INSERT INTO `cn_nojd` VALUES (130425, '大名县', 130400, '大名', 3, 4);
-INSERT INTO `cn_nojd` VALUES (130426, '涉县', 130400, '涉县', 3, 16);
-INSERT INTO `cn_nojd` VALUES (130427, '磁县', 130400, '磁县', 3, 2);
-INSERT INTO `cn_nojd` VALUES (130428, '肥乡县', 130400, '肥乡', 3, 5);
-INSERT INTO `cn_nojd` VALUES (130429, '永年县', 130400, '永年', 3, 19);
-INSERT INTO `cn_nojd` VALUES (130430, '邱县', 130400, '邱县', 3, 14);
-INSERT INTO `cn_nojd` VALUES (130431, '鸡泽县', 130400, '鸡泽', 3, 12);
-INSERT INTO `cn_nojd` VALUES (130432, '广平县', 130400, '广平', 3, 8);
-INSERT INTO `cn_nojd` VALUES (130433, '馆陶县', 130400, '馆陶', 3, 9);
-INSERT INTO `cn_nojd` VALUES (130434, '魏县', 130400, '魏县', 3, 17);
-INSERT INTO `cn_nojd` VALUES (130435, '曲周县', 130400, '曲周', 3, 15);
-INSERT INTO `cn_nojd` VALUES (130481, '武安市', 130400, '武安', 3, 18);
-INSERT INTO `cn_nojd` VALUES (130500, '邢台市', 130000, '邢台', 2, 10);
-INSERT INTO `cn_nojd` VALUES (130502, '桥东区', 130500, '桥东', 3, 12);
-INSERT INTO `cn_nojd` VALUES (130503, '桥西区', 130500, '桥西', 3, 13);
-INSERT INTO `cn_nojd` VALUES (130521, '邢台县', 130500, '邢台', 3, 18);
-INSERT INTO `cn_nojd` VALUES (130522, '临城县', 130500, '临城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (130523, '内丘县', 130500, '内丘', 3, 9);
-INSERT INTO `cn_nojd` VALUES (130524, '柏乡县', 130500, '柏乡', 3, 1);
-INSERT INTO `cn_nojd` VALUES (130525, '隆尧县', 130500, '隆尧', 3, 6);
-INSERT INTO `cn_nojd` VALUES (130526, '任县', 130500, '任县', 3, 15);
-INSERT INTO `cn_nojd` VALUES (130527, '南和县', 130500, '南和', 3, 8);
-INSERT INTO `cn_nojd` VALUES (130528, '宁晋县', 130500, '宁晋', 3, 10);
-INSERT INTO `cn_nojd` VALUES (130529, '巨鹿县', 130500, '巨鹿', 3, 3);
-INSERT INTO `cn_nojd` VALUES (130530, '新河县', 130500, '新河', 3, 19);
-INSERT INTO `cn_nojd` VALUES (130531, '广宗县', 130500, '广宗', 3, 2);
-INSERT INTO `cn_nojd` VALUES (130532, '平乡县', 130500, '平乡', 3, 11);
-INSERT INTO `cn_nojd` VALUES (130533, '威县', 130500, '威县', 3, 17);
-INSERT INTO `cn_nojd` VALUES (130534, '清河县', 130500, '清河', 3, 14);
-INSERT INTO `cn_nojd` VALUES (130535, '临西县', 130500, '临西', 3, 5);
-INSERT INTO `cn_nojd` VALUES (130581, '南宫市', 130500, '南宫', 3, 7);
-INSERT INTO `cn_nojd` VALUES (130582, '沙河市', 130500, '沙河', 3, 16);
-INSERT INTO `cn_nojd` VALUES (130600, '保定市', 130000, '保定', 2, 1);
-INSERT INTO `cn_nojd` VALUES (130602, '新市区', 130600, '新市', 3, 21);
-INSERT INTO `cn_nojd` VALUES (130603, '北市区', 130600, '北市', 3, 3);
-INSERT INTO `cn_nojd` VALUES (130604, '南市区', 130600, '南市', 3, 14);
-INSERT INTO `cn_nojd` VALUES (130621, '满城县', 130600, '满城', 3, 13);
-INSERT INTO `cn_nojd` VALUES (130622, '清苑县', 130600, '清苑', 3, 15);
-INSERT INTO `cn_nojd` VALUES (130623, '涞水县', 130600, '涞水', 3, 10);
-INSERT INTO `cn_nojd` VALUES (130624, '阜平县', 130600, '阜平', 3, 7);
-INSERT INTO `cn_nojd` VALUES (130625, '徐水县', 130600, '徐水', 3, 23);
-INSERT INTO `cn_nojd` VALUES (130626, '定兴县', 130600, '定兴', 3, 5);
-INSERT INTO `cn_nojd` VALUES (130627, '唐县', 130600, '唐县', 3, 19);
-INSERT INTO `cn_nojd` VALUES (130628, '高阳县', 130600, '高阳', 3, 9);
-INSERT INTO `cn_nojd` VALUES (130629, '容城县', 130600, '容城', 3, 17);
-INSERT INTO `cn_nojd` VALUES (130630, '涞源县', 130600, '涞源', 3, 11);
-INSERT INTO `cn_nojd` VALUES (130631, '望都县', 130600, '望都', 3, 20);
-INSERT INTO `cn_nojd` VALUES (130632, '安新县', 130600, '安新', 3, 2);
-INSERT INTO `cn_nojd` VALUES (130633, '易县', 130600, '易县', 3, 24);
-INSERT INTO `cn_nojd` VALUES (130634, '曲阳县', 130600, '曲阳', 3, 16);
-INSERT INTO `cn_nojd` VALUES (130635, '蠡县', 130600, '蠡县', 3, 12);
-INSERT INTO `cn_nojd` VALUES (130636, '顺平县', 130600, '顺平', 3, 18);
-INSERT INTO `cn_nojd` VALUES (130637, '博野县', 130600, '博野', 3, 4);
-INSERT INTO `cn_nojd` VALUES (130638, '雄县', 130600, '雄县', 3, 22);
-INSERT INTO `cn_nojd` VALUES (130681, '涿州市', 130600, '涿州', 3, 25);
-INSERT INTO `cn_nojd` VALUES (130682, '定州市', 130600, '定州', 3, 6);
-INSERT INTO `cn_nojd` VALUES (130683, '安国市', 130600, '安国', 3, 1);
-INSERT INTO `cn_nojd` VALUES (130684, '高碑店市', 130600, '高碑店', 3, 8);
-INSERT INTO `cn_nojd` VALUES (130700, '张家口市', 130000, '张家口', 2, 11);
-INSERT INTO `cn_nojd` VALUES (130702, '桥东区', 130700, '桥东', 3, 7);
-INSERT INTO `cn_nojd` VALUES (130703, '桥西区', 130700, '桥西', 3, 8);
-INSERT INTO `cn_nojd` VALUES (130705, '宣化区', 130700, '宣化区', 3, 12);
-INSERT INTO `cn_nojd` VALUES (130706, '下花园区', 130700, '下花园', 3, 11);
-INSERT INTO `cn_nojd` VALUES (130721, '宣化县', 130700, '宣化县', 3, 13);
-INSERT INTO `cn_nojd` VALUES (130722, '张北县', 130700, '张北', 3, 16);
-INSERT INTO `cn_nojd` VALUES (130723, '康保县', 130700, '康保', 3, 6);
-INSERT INTO `cn_nojd` VALUES (130724, '沽源县', 130700, '沽源', 3, 3);
-INSERT INTO `cn_nojd` VALUES (130725, '尚义县', 130700, '尚义', 3, 9);
-INSERT INTO `cn_nojd` VALUES (130726, '蔚县', 130700, '蔚县', 3, 15);
-INSERT INTO `cn_nojd` VALUES (130727, '阳原县', 130700, '阳原', 3, 14);
-INSERT INTO `cn_nojd` VALUES (130728, '怀安县', 130700, '怀安', 3, 4);
-INSERT INTO `cn_nojd` VALUES (130729, '万全县', 130700, '万全', 3, 10);
-INSERT INTO `cn_nojd` VALUES (130730, '怀来县', 130700, '怀来', 3, 5);
-INSERT INTO `cn_nojd` VALUES (130731, '涿鹿县', 130700, '涿鹿', 3, 17);
-INSERT INTO `cn_nojd` VALUES (130732, '赤城县', 130700, '赤城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (130733, '崇礼县', 130700, '崇礼', 3, 2);
-INSERT INTO `cn_nojd` VALUES (130800, '承德市', 130000, '承德', 2, 3);
-INSERT INTO `cn_nojd` VALUES (130802, '双桥区', 130800, '双桥', 3, 8);
-INSERT INTO `cn_nojd` VALUES (130803, '双滦区', 130800, '双滦', 3, 7);
-INSERT INTO `cn_nojd` VALUES (130804, '鹰手营子矿区', 130800, '鹰手营子矿', 3, 11);
-INSERT INTO `cn_nojd` VALUES (130821, '承德县', 130800, '承德', 3, 1);
-INSERT INTO `cn_nojd` VALUES (130822, '兴隆县', 130800, '兴隆', 3, 10);
-INSERT INTO `cn_nojd` VALUES (130823, '平泉县', 130800, '平泉', 3, 6);
-INSERT INTO `cn_nojd` VALUES (130824, '滦平县', 130800, '滦平', 3, 5);
-INSERT INTO `cn_nojd` VALUES (130825, '隆化县', 130800, '隆化', 3, 4);
-INSERT INTO `cn_nojd` VALUES (130826, '丰宁满族自治县', 130800, '丰宁', 3, 2);
-INSERT INTO `cn_nojd` VALUES (130827, '宽城满族自治县', 130800, '宽城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (130828, '围场满族蒙古族自治县', 130800, '围场', 3, 9);
-INSERT INTO `cn_nojd` VALUES (130900, '沧州市', 130000, '沧州', 2, 2);
-INSERT INTO `cn_nojd` VALUES (130902, '新华区', 130900, '新华', 3, 14);
-INSERT INTO `cn_nojd` VALUES (130903, '运河区', 130900, '运河', 3, 16);
-INSERT INTO `cn_nojd` VALUES (130921, '沧县', 130900, '沧县', 3, 2);
-INSERT INTO `cn_nojd` VALUES (130922, '青县', 130900, '青县', 3, 9);
-INSERT INTO `cn_nojd` VALUES (130923, '东光县', 130900, '东光', 3, 3);
-INSERT INTO `cn_nojd` VALUES (130924, '海兴县', 130900, '海兴', 3, 4);
-INSERT INTO `cn_nojd` VALUES (130925, '盐山县', 130900, '盐山', 3, 15);
-INSERT INTO `cn_nojd` VALUES (130926, '肃宁县', 130900, '肃宁', 3, 11);
-INSERT INTO `cn_nojd` VALUES (130927, '南皮县', 130900, '南皮', 3, 8);
-INSERT INTO `cn_nojd` VALUES (130928, '吴桥县', 130900, '吴桥', 3, 12);
-INSERT INTO `cn_nojd` VALUES (130929, '献县', 130900, '献县', 3, 13);
-INSERT INTO `cn_nojd` VALUES (130930, '孟村回族自治县', 130900, '孟村', 3, 7);
-INSERT INTO `cn_nojd` VALUES (130981, '泊头市', 130900, '泊头', 3, 1);
-INSERT INTO `cn_nojd` VALUES (130982, '任丘市', 130900, '任丘', 3, 10);
-INSERT INTO `cn_nojd` VALUES (130983, '黄骅市', 130900, '黄骅', 3, 6);
-INSERT INTO `cn_nojd` VALUES (130984, '河间市', 130900, '河间', 3, 5);
-INSERT INTO `cn_nojd` VALUES (131000, '廊坊市', 130000, '廊坊', 2, 6);
-INSERT INTO `cn_nojd` VALUES (131002, '安次区', 131000, '安次', 3, 1);
-INSERT INTO `cn_nojd` VALUES (131003, '广阳区', 131000, '广阳', 3, 5);
-INSERT INTO `cn_nojd` VALUES (131022, '固安县', 131000, '固安', 3, 6);
-INSERT INTO `cn_nojd` VALUES (131023, '永清县', 131000, '永清', 3, 10);
-INSERT INTO `cn_nojd` VALUES (131024, '香河县', 131000, '香河', 3, 9);
-INSERT INTO `cn_nojd` VALUES (131025, '大城县', 131000, '大城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (131026, '文安县', 131000, '文安', 3, 8);
-INSERT INTO `cn_nojd` VALUES (131028, '大厂回族自治县', 131000, '大厂', 3, 3);
-INSERT INTO `cn_nojd` VALUES (131081, '霸州市', 131000, '霸州', 3, 2);
-INSERT INTO `cn_nojd` VALUES (131082, '三河市', 131000, '三河', 3, 7);
-INSERT INTO `cn_nojd` VALUES (131100, '衡水市', 130000, '衡水', 2, 5);
-INSERT INTO `cn_nojd` VALUES (131102, '桃城区', 131100, '桃城', 3, 8);
-INSERT INTO `cn_nojd` VALUES (131121, '枣强县', 131100, '枣强', 3, 11);
-INSERT INTO `cn_nojd` VALUES (131122, '武邑县', 131100, '武邑', 3, 10);
-INSERT INTO `cn_nojd` VALUES (131123, '武强县', 131100, '武强', 3, 9);
-INSERT INTO `cn_nojd` VALUES (131124, '饶阳县', 131100, '饶阳', 3, 6);
-INSERT INTO `cn_nojd` VALUES (131125, '安平县', 131100, '安平', 3, 1);
-INSERT INTO `cn_nojd` VALUES (131126, '故城县', 131100, '故城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (131127, '景县', 131100, '景县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (131128, '阜城县', 131100, '阜城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (131181, '冀州市', 131100, '冀州', 3, 5);
-INSERT INTO `cn_nojd` VALUES (131182, '深州市', 131100, '深州', 3, 7);
-INSERT INTO `cn_nojd` VALUES (140000, '山西省', 0, '山西', 1, 4);
-INSERT INTO `cn_nojd` VALUES (140100, '太原市', 140000, '太原', 2, 8);
-INSERT INTO `cn_nojd` VALUES (140105, '小店区', 140100, '小店', 3, 7);
-INSERT INTO `cn_nojd` VALUES (140106, '迎泽区', 140100, '迎泽', 3, 10);
-INSERT INTO `cn_nojd` VALUES (140107, '杏花岭区', 140100, '杏花岭', 3, 8);
-INSERT INTO `cn_nojd` VALUES (140108, '尖草坪区', 140100, '尖草坪', 3, 2);
-INSERT INTO `cn_nojd` VALUES (140109, '万柏林区', 140100, '万柏林', 3, 6);
-INSERT INTO `cn_nojd` VALUES (140110, '晋源区', 140100, '晋源', 3, 3);
-INSERT INTO `cn_nojd` VALUES (140121, '清徐县', 140100, '清徐', 3, 5);
-INSERT INTO `cn_nojd` VALUES (140122, '阳曲县', 140100, '阳曲', 3, 9);
-INSERT INTO `cn_nojd` VALUES (140123, '娄烦县', 140100, '娄烦', 3, 4);
-INSERT INTO `cn_nojd` VALUES (140181, '古交市', 140100, '古交', 3, 1);
-INSERT INTO `cn_nojd` VALUES (140200, '大同市', 140000, '大同', 2, 2);
-INSERT INTO `cn_nojd` VALUES (140202, '城区', 140200, '城区', 3, 1);
-INSERT INTO `cn_nojd` VALUES (140203, '矿区', 140200, '矿区', 3, 5);
-INSERT INTO `cn_nojd` VALUES (140211, '南郊区', 140200, '南郊', 3, 7);
-INSERT INTO `cn_nojd` VALUES (140212, '新荣区', 140200, '新荣', 3, 9);
-INSERT INTO `cn_nojd` VALUES (140221, '阳高县', 140200, '阳高', 3, 10);
-INSERT INTO `cn_nojd` VALUES (140222, '天镇县', 140200, '天镇', 3, 8);
-INSERT INTO `cn_nojd` VALUES (140223, '广灵县', 140200, '广灵', 3, 3);
-INSERT INTO `cn_nojd` VALUES (140224, '灵丘县', 140200, '灵丘', 3, 6);
-INSERT INTO `cn_nojd` VALUES (140225, '浑源县', 140200, '浑源', 3, 4);
-INSERT INTO `cn_nojd` VALUES (140226, '左云县', 140200, '左云', 3, 11);
-INSERT INTO `cn_nojd` VALUES (140227, '大同县', 140200, '大同', 3, 2);
-INSERT INTO `cn_nojd` VALUES (140300, '阳泉市', 140000, '阳泉', 2, 10);
-INSERT INTO `cn_nojd` VALUES (140302, '城区', 140300, '城区', 3, 1);
-INSERT INTO `cn_nojd` VALUES (140303, '矿区', 140300, '矿区', 3, 3);
-INSERT INTO `cn_nojd` VALUES (140311, '郊区', 140300, '郊区', 3, 2);
-INSERT INTO `cn_nojd` VALUES (140321, '平定县', 140300, '平定', 3, 4);
-INSERT INTO `cn_nojd` VALUES (140322, '盂县', 140300, '盂县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (140400, '长治市', 140000, '长治', 2, 1);
-INSERT INTO `cn_nojd` VALUES (140421, '长治县', 140400, '长治', 3, 1);
-INSERT INTO `cn_nojd` VALUES (140423, '襄垣县', 140400, '襄垣', 3, 12);
-INSERT INTO `cn_nojd` VALUES (140424, '屯留县', 140400, '屯留', 3, 10);
-INSERT INTO `cn_nojd` VALUES (140425, '平顺县', 140400, '平顺', 3, 7);
-INSERT INTO `cn_nojd` VALUES (140426, '黎城县', 140400, '黎城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (140427, '壶关县', 140400, '壶关', 3, 3);
-INSERT INTO `cn_nojd` VALUES (140428, '长子县', 140400, '长子', 3, 13);
-INSERT INTO `cn_nojd` VALUES (140429, '武乡县', 140400, '武乡', 3, 11);
-INSERT INTO `cn_nojd` VALUES (140430, '沁县', 140400, '沁县', 3, 8);
-INSERT INTO `cn_nojd` VALUES (140431, '沁源县', 140400, '沁源', 3, 9);
-INSERT INTO `cn_nojd` VALUES (140481, '潞城市', 140400, '潞城', 3, 6);
-INSERT INTO `cn_nojd` VALUES (140482, '城区', 140400, '城区', 3, 2);
-INSERT INTO `cn_nojd` VALUES (140483, '郊区', 140400, '郊区', 3, 4);
-INSERT INTO `cn_nojd` VALUES (140500, '晋城市', 140000, '晋城', 2, 3);
-INSERT INTO `cn_nojd` VALUES (140502, '城区', 140500, '城区', 3, 1);
-INSERT INTO `cn_nojd` VALUES (140521, '沁水县', 140500, '沁水', 3, 4);
-INSERT INTO `cn_nojd` VALUES (140522, '阳城县', 140500, '阳城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (140524, '陵川县', 140500, '陵川', 3, 3);
-INSERT INTO `cn_nojd` VALUES (140525, '泽州县', 140500, '泽州', 3, 6);
-INSERT INTO `cn_nojd` VALUES (140581, '高平市', 140500, '高平', 3, 2);
-INSERT INTO `cn_nojd` VALUES (140600, '朔州市', 140000, '朔州', 2, 7);
-INSERT INTO `cn_nojd` VALUES (140602, '朔城区', 140600, '朔城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (140603, '平鲁区', 140600, '平鲁', 3, 2);
-INSERT INTO `cn_nojd` VALUES (140621, '山阴县', 140600, '山阴', 3, 3);
-INSERT INTO `cn_nojd` VALUES (140622, '应县', 140600, '应县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (140623, '右玉县', 140600, '右玉', 3, 6);
-INSERT INTO `cn_nojd` VALUES (140624, '怀仁县', 140600, '怀仁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (140700, '晋中市', 140000, '晋中', 2, 4);
-INSERT INTO `cn_nojd` VALUES (140702, '榆次区', 140700, '榆次', 3, 9);
-INSERT INTO `cn_nojd` VALUES (140721, '榆社县', 140700, '榆社', 3, 10);
-INSERT INTO `cn_nojd` VALUES (140722, '左权县', 140700, '左权', 3, 11);
-INSERT INTO `cn_nojd` VALUES (140723, '和顺县', 140700, '和顺', 3, 1);
-INSERT INTO `cn_nojd` VALUES (140724, '昔阳县', 140700, '昔阳', 3, 8);
-INSERT INTO `cn_nojd` VALUES (140725, '寿阳县', 140700, '寿阳', 3, 6);
-INSERT INTO `cn_nojd` VALUES (140726, '太谷县', 140700, '太谷', 3, 7);
-INSERT INTO `cn_nojd` VALUES (140727, '祁县', 140700, '祁县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (140728, '平遥县', 140700, '平遥', 3, 4);
-INSERT INTO `cn_nojd` VALUES (140729, '灵石县', 140700, '灵石', 3, 3);
-INSERT INTO `cn_nojd` VALUES (140781, '介休市', 140700, '介休', 3, 2);
-INSERT INTO `cn_nojd` VALUES (140800, '运城市', 140000, '运城', 2, 11);
-INSERT INTO `cn_nojd` VALUES (140802, '盐湖区', 140800, '盐湖', 3, 11);
-INSERT INTO `cn_nojd` VALUES (140821, '临猗县', 140800, '临猗', 3, 4);
-INSERT INTO `cn_nojd` VALUES (140822, '万荣县', 140800, '万荣', 3, 7);
-INSERT INTO `cn_nojd` VALUES (140823, '闻喜县', 140800, '闻喜', 3, 8);
-INSERT INTO `cn_nojd` VALUES (140824, '稷山县', 140800, '稷山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (140825, '新绛县', 140800, '新绛', 3, 10);
-INSERT INTO `cn_nojd` VALUES (140826, '绛县', 140800, '绛县', 3, 2);
-INSERT INTO `cn_nojd` VALUES (140827, '垣曲县', 140800, '垣曲', 3, 13);
-INSERT INTO `cn_nojd` VALUES (140828, '夏县', 140800, '夏县', 3, 9);
-INSERT INTO `cn_nojd` VALUES (140829, '平陆县', 140800, '平陆', 3, 5);
-INSERT INTO `cn_nojd` VALUES (140830, '芮城县', 140800, '芮城', 3, 6);
-INSERT INTO `cn_nojd` VALUES (140881, '永济市', 140800, '永济', 3, 12);
-INSERT INTO `cn_nojd` VALUES (140882, '河津市', 140800, '河津', 3, 1);
-INSERT INTO `cn_nojd` VALUES (140900, '忻州市', 140000, '忻州', 2, 9);
-INSERT INTO `cn_nojd` VALUES (140902, '忻府区', 140900, '忻府', 3, 13);
-INSERT INTO `cn_nojd` VALUES (140921, '定襄县', 140900, '定襄', 3, 3);
-INSERT INTO `cn_nojd` VALUES (140922, '五台县', 140900, '五台', 3, 11);
-INSERT INTO `cn_nojd` VALUES (140923, '代县', 140900, '代县', 3, 2);
-INSERT INTO `cn_nojd` VALUES (140924, '繁峙县', 140900, '繁峙', 3, 4);
-INSERT INTO `cn_nojd` VALUES (140925, '宁武县', 140900, '宁武', 3, 8);
-INSERT INTO `cn_nojd` VALUES (140926, '静乐县', 140900, '静乐', 3, 6);
-INSERT INTO `cn_nojd` VALUES (140927, '神池县', 140900, '神池', 3, 10);
-INSERT INTO `cn_nojd` VALUES (140928, '五寨县', 140900, '五寨', 3, 12);
-INSERT INTO `cn_nojd` VALUES (140929, '岢岚县', 140900, '岢岚', 3, 7);
-INSERT INTO `cn_nojd` VALUES (140930, '河曲县', 140900, '河曲', 3, 5);
-INSERT INTO `cn_nojd` VALUES (140931, '保德县', 140900, '保德', 3, 1);
-INSERT INTO `cn_nojd` VALUES (140932, '偏关县', 140900, '偏关', 3, 9);
-INSERT INTO `cn_nojd` VALUES (140981, '原平市', 140900, '原平', 3, 14);
-INSERT INTO `cn_nojd` VALUES (141000, '临汾市', 140000, '临汾', 2, 5);
-INSERT INTO `cn_nojd` VALUES (141002, '尧都区', 141000, '尧都', 3, 15);
-INSERT INTO `cn_nojd` VALUES (141021, '曲沃县', 141000, '曲沃', 3, 11);
-INSERT INTO `cn_nojd` VALUES (141022, '翼城县', 141000, '翼城', 3, 16);
-INSERT INTO `cn_nojd` VALUES (141023, '襄汾县', 141000, '襄汾', 3, 12);
-INSERT INTO `cn_nojd` VALUES (141024, '洪洞县', 141000, '洪洞', 3, 6);
-INSERT INTO `cn_nojd` VALUES (141025, '古县', 141000, '古县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (141026, '安泽县', 141000, '安泽', 3, 1);
-INSERT INTO `cn_nojd` VALUES (141027, '浮山县', 141000, '浮山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (141028, '吉县', 141000, '吉县', 3, 9);
-INSERT INTO `cn_nojd` VALUES (141029, '乡宁县', 141000, '乡宁', 3, 13);
-INSERT INTO `cn_nojd` VALUES (141030, '大宁县', 141000, '大宁', 3, 2);
-INSERT INTO `cn_nojd` VALUES (141031, '隰县', 141000, '隰县', 3, 14);
-INSERT INTO `cn_nojd` VALUES (141032, '永和县', 141000, '永和', 3, 17);
-INSERT INTO `cn_nojd` VALUES (141033, '蒲县', 141000, '蒲县', 3, 10);
-INSERT INTO `cn_nojd` VALUES (141034, '汾西县', 141000, '汾西', 3, 3);
-INSERT INTO `cn_nojd` VALUES (141081, '侯马市', 141000, '侯马', 3, 7);
-INSERT INTO `cn_nojd` VALUES (141082, '霍州市', 141000, '霍州', 3, 8);
-INSERT INTO `cn_nojd` VALUES (141100, '吕梁市', 140000, '吕梁', 2, 6);
-INSERT INTO `cn_nojd` VALUES (141102, '离石区', 141100, '离石', 3, 7);
-INSERT INTO `cn_nojd` VALUES (141121, '文水县', 141100, '文水', 3, 10);
-INSERT INTO `cn_nojd` VALUES (141122, '交城县', 141100, '交城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (141123, '兴县', 141100, '兴县', 3, 12);
-INSERT INTO `cn_nojd` VALUES (141124, '临县', 141100, '临县', 3, 6);
-INSERT INTO `cn_nojd` VALUES (141125, '柳林县', 141100, '柳林', 3, 8);
-INSERT INTO `cn_nojd` VALUES (141126, '石楼县', 141100, '石楼', 3, 9);
-INSERT INTO `cn_nojd` VALUES (141127, '岚县', 141100, '岚县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (141128, '方山县', 141100, '方山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (141129, '中阳县', 141100, '中阳', 3, 13);
-INSERT INTO `cn_nojd` VALUES (141130, '交口县', 141100, '交口', 3, 4);
-INSERT INTO `cn_nojd` VALUES (141181, '孝义市', 141100, '孝义', 3, 11);
-INSERT INTO `cn_nojd` VALUES (141182, '汾阳市', 141100, '汾阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (150000, '内蒙古自治区', 0, '内蒙古', 1, 5);
-INSERT INTO `cn_nojd` VALUES (150100, '呼和浩特市', 150000, '呼和浩特', 2, 6);
-INSERT INTO `cn_nojd` VALUES (150102, '新城区', 150100, '新城', 3, 8);
-INSERT INTO `cn_nojd` VALUES (150103, '回民区', 150100, '回民', 3, 2);
-INSERT INTO `cn_nojd` VALUES (150104, '玉泉区', 150100, '玉泉', 3, 9);
-INSERT INTO `cn_nojd` VALUES (150105, '赛罕区', 150100, '赛罕', 3, 4);
-INSERT INTO `cn_nojd` VALUES (150121, '土默特左旗', 150100, '土默特左', 3, 5);
-INSERT INTO `cn_nojd` VALUES (150122, '托克托县', 150100, '托克托', 3, 6);
-INSERT INTO `cn_nojd` VALUES (150123, '和林格尔县', 150100, '和林格尔', 3, 1);
-INSERT INTO `cn_nojd` VALUES (150124, '清水河县', 150100, '清水河', 3, 3);
-INSERT INTO `cn_nojd` VALUES (150125, '武川县', 150100, '武川', 3, 7);
-INSERT INTO `cn_nojd` VALUES (150200, '包头市', 150000, '包头', 2, 2);
-INSERT INTO `cn_nojd` VALUES (150202, '东河区', 150200, '东河', 3, 3);
-INSERT INTO `cn_nojd` VALUES (150203, '昆都仑区', 150200, '昆都仑', 3, 6);
-INSERT INTO `cn_nojd` VALUES (150204, '青山区', 150200, '青山', 3, 7);
-INSERT INTO `cn_nojd` VALUES (150205, '石拐区', 150200, '石拐', 3, 8);
-INSERT INTO `cn_nojd` VALUES (150206, '白云鄂博矿区', 150200, '白云矿区', 3, 1);
-INSERT INTO `cn_nojd` VALUES (150207, '九原区', 150200, '九原', 3, 5);
-INSERT INTO `cn_nojd` VALUES (150221, '土默特右旗', 150200, '土默特右', 3, 9);
-INSERT INTO `cn_nojd` VALUES (150222, '固阳县', 150200, '固阳', 3, 4);
-INSERT INTO `cn_nojd` VALUES (150223, '达尔罕茂明安联合旗', 150200, '达尔罕茂明安联合', 3, 2);
-INSERT INTO `cn_nojd` VALUES (150300, '乌海市', 150000, '乌海', 2, 9);
-INSERT INTO `cn_nojd` VALUES (150302, '海勃湾区', 150300, '海勃湾', 3, 1);
-INSERT INTO `cn_nojd` VALUES (150303, '海南区', 150300, '海南', 3, 2);
-INSERT INTO `cn_nojd` VALUES (150304, '乌达区', 150300, '乌达', 3, 3);
-INSERT INTO `cn_nojd` VALUES (150400, '赤峰市', 150000, '赤峰', 2, 4);
-INSERT INTO `cn_nojd` VALUES (150402, '红山区', 150400, '红山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (150403, '元宝山区', 150400, '元宝山', 3, 12);
-INSERT INTO `cn_nojd` VALUES (150404, '松山区', 150400, '松山', 3, 10);
-INSERT INTO `cn_nojd` VALUES (150421, '阿鲁科尔沁旗', 150400, '阿鲁科尔沁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (150422, '巴林左旗', 150400, '巴林左', 3, 4);
-INSERT INTO `cn_nojd` VALUES (150423, '巴林右旗', 150400, '巴林右', 3, 3);
-INSERT INTO `cn_nojd` VALUES (150424, '林西县', 150400, '林西', 3, 8);
-INSERT INTO `cn_nojd` VALUES (150425, '克什克腾旗', 150400, '克什克腾', 3, 7);
-INSERT INTO `cn_nojd` VALUES (150426, '翁牛特旗', 150400, '翁牛特', 3, 11);
-INSERT INTO `cn_nojd` VALUES (150428, '喀喇沁旗', 150400, '喀喇沁', 3, 6);
-INSERT INTO `cn_nojd` VALUES (150429, '宁城县', 150400, '宁城', 3, 9);
-INSERT INTO `cn_nojd` VALUES (150430, '敖汉旗', 150400, '敖汉', 3, 2);
-INSERT INTO `cn_nojd` VALUES (150500, '通辽市', 150000, '通辽', 2, 8);
-INSERT INTO `cn_nojd` VALUES (150502, '科尔沁区', 150500, '科尔沁', 3, 3);
-INSERT INTO `cn_nojd` VALUES (150521, '科尔沁左翼中旗', 150500, '科尔沁左翼中', 3, 5);
-INSERT INTO `cn_nojd` VALUES (150522, '科尔沁左翼后旗', 150500, '科尔沁左翼后', 3, 4);
-INSERT INTO `cn_nojd` VALUES (150523, '开鲁县', 150500, '开鲁', 3, 2);
-INSERT INTO `cn_nojd` VALUES (150524, '库伦旗', 150500, '库伦', 3, 6);
-INSERT INTO `cn_nojd` VALUES (150525, '奈曼旗', 150500, '奈曼', 3, 7);
-INSERT INTO `cn_nojd` VALUES (150526, '扎鲁特旗', 150500, '扎鲁特', 3, 8);
-INSERT INTO `cn_nojd` VALUES (150581, '霍林郭勒市', 150500, '霍林郭勒', 3, 1);
-INSERT INTO `cn_nojd` VALUES (150600, '鄂尔多斯市', 150000, '鄂尔多斯', 2, 5);
-INSERT INTO `cn_nojd` VALUES (150602, '东胜区', 150600, '东胜', 3, 2);
-INSERT INTO `cn_nojd` VALUES (150621, '达拉特旗', 150600, '达拉特', 3, 1);
-INSERT INTO `cn_nojd` VALUES (150622, '准格尔旗', 150600, '准格尔', 3, 8);
-INSERT INTO `cn_nojd` VALUES (150623, '鄂托克前旗', 150600, '鄂托克前', 3, 4);
-INSERT INTO `cn_nojd` VALUES (150624, '鄂托克旗', 150600, '鄂托克', 3, 3);
-INSERT INTO `cn_nojd` VALUES (150625, '杭锦旗', 150600, '杭锦', 3, 5);
-INSERT INTO `cn_nojd` VALUES (150626, '乌审旗', 150600, '乌审', 3, 6);
-INSERT INTO `cn_nojd` VALUES (150627, '伊金霍洛旗', 150600, '伊金霍洛', 3, 7);
-INSERT INTO `cn_nojd` VALUES (150700, '呼伦贝尔市', 150000, '呼伦贝尔', 2, 7);
-INSERT INTO `cn_nojd` VALUES (150702, '海拉尔区', 150700, '海拉尔', 3, 7);
-INSERT INTO `cn_nojd` VALUES (150703, '扎赉诺尔区', 150700, '扎赉诺尔', 3, 13);
-INSERT INTO `cn_nojd` VALUES (150721, '阿荣旗', 150700, '阿荣', 3, 1);
-INSERT INTO `cn_nojd` VALUES (150722, '莫力达瓦达斡尔族自治旗', 150700, '莫力达瓦', 3, 9);
-INSERT INTO `cn_nojd` VALUES (150723, '鄂伦春自治旗', 150700, '鄂伦春', 3, 4);
-INSERT INTO `cn_nojd` VALUES (150724, '鄂温克族自治旗', 150700, '鄂温克', 3, 5);
-INSERT INTO `cn_nojd` VALUES (150725, '陈巴尔虎旗', 150700, '陈巴尔虎', 3, 2);
-INSERT INTO `cn_nojd` VALUES (150726, '新巴尔虎左旗', 150700, '新巴尔虎左', 3, 11);
-INSERT INTO `cn_nojd` VALUES (150727, '新巴尔虎右旗', 150700, '新巴尔虎右', 3, 10);
-INSERT INTO `cn_nojd` VALUES (150781, '满洲里市', 150700, '满洲里', 3, 8);
-INSERT INTO `cn_nojd` VALUES (150782, '牙克石市', 150700, '牙克石', 3, 12);
-INSERT INTO `cn_nojd` VALUES (150783, '扎兰屯市', 150700, '扎兰屯', 3, 14);
-INSERT INTO `cn_nojd` VALUES (150784, '额尔古纳市', 150700, '额尔古纳', 3, 3);
-INSERT INTO `cn_nojd` VALUES (150785, '根河市', 150700, '根河', 3, 6);
-INSERT INTO `cn_nojd` VALUES (150800, '巴彦淖尔市', 150000, '巴彦淖尔', 2, 3);
-INSERT INTO `cn_nojd` VALUES (150802, '临河区', 150800, '临河', 3, 3);
-INSERT INTO `cn_nojd` VALUES (150821, '五原县', 150800, '五原', 3, 7);
-INSERT INTO `cn_nojd` VALUES (150822, '磴口县', 150800, '磴口', 3, 1);
-INSERT INTO `cn_nojd` VALUES (150823, '乌拉特前旗', 150800, '乌拉特前', 3, 5);
-INSERT INTO `cn_nojd` VALUES (150824, '乌拉特中旗', 150800, '乌拉特中', 3, 6);
-INSERT INTO `cn_nojd` VALUES (150825, '乌拉特后旗', 150800, '乌拉特后', 3, 4);
-INSERT INTO `cn_nojd` VALUES (150826, '杭锦后旗', 150800, '杭锦后', 3, 2);
-INSERT INTO `cn_nojd` VALUES (150900, '乌兰察布市', 150000, '乌兰察布', 2, 10);
-INSERT INTO `cn_nojd` VALUES (150902, '集宁区', 150900, '集宁', 3, 6);
-INSERT INTO `cn_nojd` VALUES (150921, '卓资县', 150900, '卓资', 3, 11);
-INSERT INTO `cn_nojd` VALUES (150922, '化德县', 150900, '化德', 3, 5);
-INSERT INTO `cn_nojd` VALUES (150923, '商都县', 150900, '商都', 3, 8);
-INSERT INTO `cn_nojd` VALUES (150924, '兴和县', 150900, '兴和', 3, 10);
-INSERT INTO `cn_nojd` VALUES (150925, '凉城县', 150900, '凉城', 3, 7);
-INSERT INTO `cn_nojd` VALUES (150926, '察哈尔右翼前旗', 150900, '察哈尔右翼前', 3, 2);
-INSERT INTO `cn_nojd` VALUES (150927, '察哈尔右翼中旗', 150900, '察哈尔右翼中', 3, 3);
-INSERT INTO `cn_nojd` VALUES (150928, '察哈尔右翼后旗', 150900, '察哈尔右翼后', 3, 1);
-INSERT INTO `cn_nojd` VALUES (150929, '四子王旗', 150900, '四子王', 3, 9);
-INSERT INTO `cn_nojd` VALUES (150981, '丰镇市', 150900, '丰镇', 3, 4);
-INSERT INTO `cn_nojd` VALUES (152200, '兴安盟', 150000, '兴安', 2, 12);
-INSERT INTO `cn_nojd` VALUES (152201, '乌兰浩特市', 152200, '乌兰浩特', 3, 5);
-INSERT INTO `cn_nojd` VALUES (152202, '阿尔山市', 152200, '阿尔山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (152221, '科尔沁右翼前旗', 152200, '科尔沁右翼前', 3, 2);
-INSERT INTO `cn_nojd` VALUES (152222, '科尔沁右翼中旗', 152200, '科尔沁右翼中', 3, 3);
-INSERT INTO `cn_nojd` VALUES (152223, '扎赉特旗', 152200, '扎赉特', 3, 6);
-INSERT INTO `cn_nojd` VALUES (152224, '突泉县', 152200, '突泉', 3, 4);
-INSERT INTO `cn_nojd` VALUES (152500, '锡林郭勒盟', 150000, '锡林郭勒', 2, 11);
-INSERT INTO `cn_nojd` VALUES (152501, '二连浩特市', 152500, '二连浩特', 3, 4);
-INSERT INTO `cn_nojd` VALUES (152502, '锡林浩特市', 152500, '锡林浩特', 3, 9);
-INSERT INTO `cn_nojd` VALUES (152522, '阿巴嘎旗', 152500, '阿巴嘎', 3, 1);
-INSERT INTO `cn_nojd` VALUES (152523, '苏尼特左旗', 152500, '苏尼特左', 3, 6);
-INSERT INTO `cn_nojd` VALUES (152524, '苏尼特右旗', 152500, '苏尼特右', 3, 5);
-INSERT INTO `cn_nojd` VALUES (152525, '东乌珠穆沁旗', 152500, '东乌珠穆沁', 3, 2);
-INSERT INTO `cn_nojd` VALUES (152526, '西乌珠穆沁旗', 152500, '西乌珠穆沁', 3, 10);
-INSERT INTO `cn_nojd` VALUES (152527, '太仆寺旗', 152500, '太仆寺', 3, 7);
-INSERT INTO `cn_nojd` VALUES (152528, '镶黄旗', 152500, '镶黄', 3, 8);
-INSERT INTO `cn_nojd` VALUES (152529, '正镶白旗', 152500, '正镶白', 3, 12);
-INSERT INTO `cn_nojd` VALUES (152530, '正蓝旗', 152500, '正蓝', 3, 11);
-INSERT INTO `cn_nojd` VALUES (152531, '多伦县', 152500, '多伦', 3, 3);
-INSERT INTO `cn_nojd` VALUES (152900, '阿拉善盟', 150000, '阿拉善', 2, 1);
-INSERT INTO `cn_nojd` VALUES (152921, '阿拉善左旗', 152900, '阿拉善左', 3, 2);
-INSERT INTO `cn_nojd` VALUES (152922, '阿拉善右旗', 152900, '阿拉善右', 3, 1);
-INSERT INTO `cn_nojd` VALUES (152923, '额济纳旗', 152900, '额济纳', 3, 3);
-INSERT INTO `cn_nojd` VALUES (210000, '辽宁省', 0, '辽宁', 1, 6);
-INSERT INTO `cn_nojd` VALUES (210100, '沈阳市', 210000, '沈阳', 2, 12);
-INSERT INTO `cn_nojd` VALUES (210102, '和平区', 210100, '和平', 3, 4);
-INSERT INTO `cn_nojd` VALUES (210103, '沈河区', 210100, '沈河', 3, 9);
-INSERT INTO `cn_nojd` VALUES (210104, '大东区', 210100, '大东', 3, 1);
-INSERT INTO `cn_nojd` VALUES (210105, '皇姑区', 210100, '皇姑', 3, 5);
-INSERT INTO `cn_nojd` VALUES (210106, '铁西区', 210100, '铁西', 3, 11);
-INSERT INTO `cn_nojd` VALUES (210111, '苏家屯区', 210100, '苏家屯', 3, 10);
-INSERT INTO `cn_nojd` VALUES (210112, '东陵区', 210100, '东陵', 3, 2);
-INSERT INTO `cn_nojd` VALUES (210114, '于洪区', 210100, '于洪', 3, 13);
-INSERT INTO `cn_nojd` VALUES (210122, '辽中县', 210100, '辽中', 3, 7);
-INSERT INTO `cn_nojd` VALUES (210123, '康平县', 210100, '康平', 3, 6);
-INSERT INTO `cn_nojd` VALUES (210124, '法库县', 210100, '法库', 3, 3);
-INSERT INTO `cn_nojd` VALUES (210181, '新民市', 210100, '新民', 3, 12);
-INSERT INTO `cn_nojd` VALUES (210184, '沈北新区', 210100, '沈北', 3, 8);
-INSERT INTO `cn_nojd` VALUES (210200, '大连市', 210000, '大连', 2, 4);
-INSERT INTO `cn_nojd` VALUES (210202, '中山区', 210200, '中山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (210203, '西岗区', 210200, '西岗', 3, 9);
-INSERT INTO `cn_nojd` VALUES (210204, '沙河口区', 210200, '沙河口', 3, 7);
-INSERT INTO `cn_nojd` VALUES (210211, '甘井子区', 210200, '甘井子', 3, 2);
-INSERT INTO `cn_nojd` VALUES (210212, '旅顺口区', 210200, '旅顺口', 3, 5);
-INSERT INTO `cn_nojd` VALUES (210213, '金州区', 210200, '金州', 3, 3);
-INSERT INTO `cn_nojd` VALUES (210224, '长海县', 210200, '长海', 3, 1);
-INSERT INTO `cn_nojd` VALUES (210281, '瓦房店市', 210200, '瓦房店', 3, 8);
-INSERT INTO `cn_nojd` VALUES (210282, '普兰店市', 210200, '普兰店', 3, 6);
-INSERT INTO `cn_nojd` VALUES (210283, '庄河市', 210200, '庄河', 3, 10);
-INSERT INTO `cn_nojd` VALUES (210300, '鞍山市', 210000, '鞍山', 2, 1);
-INSERT INTO `cn_nojd` VALUES (210302, '铁东区', 210300, '铁东', 3, 5);
-INSERT INTO `cn_nojd` VALUES (210303, '铁西区', 210300, '铁西', 3, 6);
-INSERT INTO `cn_nojd` VALUES (210304, '立山区', 210300, '立山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (210311, '千山区', 210300, '千山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (210321, '台安县', 210300, '台安', 3, 4);
-INSERT INTO `cn_nojd` VALUES (210323, '岫岩满族自治县', 210300, '岫岩', 3, 7);
-INSERT INTO `cn_nojd` VALUES (210381, '海城市', 210300, '海城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (210400, '抚顺市', 210000, '抚顺', 2, 6);
-INSERT INTO `cn_nojd` VALUES (210402, '新抚区', 210400, '新抚', 3, 7);
-INSERT INTO `cn_nojd` VALUES (210403, '东洲区', 210400, '东洲', 3, 1);
-INSERT INTO `cn_nojd` VALUES (210404, '望花区', 210400, '望花', 3, 5);
-INSERT INTO `cn_nojd` VALUES (210411, '顺城区', 210400, '顺城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (210421, '抚顺县', 210400, '抚顺', 3, 2);
-INSERT INTO `cn_nojd` VALUES (210422, '新宾满族自治县', 210400, '新宾', 3, 6);
-INSERT INTO `cn_nojd` VALUES (210423, '清原满族自治县', 210400, '清原', 3, 3);
-INSERT INTO `cn_nojd` VALUES (210500, '本溪市', 210000, '本溪', 2, 2);
-INSERT INTO `cn_nojd` VALUES (210502, '平山区', 210500, '平山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (210503, '溪湖区', 210500, '溪湖', 3, 6);
-INSERT INTO `cn_nojd` VALUES (210504, '明山区', 210500, '明山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (210505, '南芬区', 210500, '南芬', 3, 4);
-INSERT INTO `cn_nojd` VALUES (210521, '本溪满族自治县', 210500, '本溪', 3, 1);
-INSERT INTO `cn_nojd` VALUES (210522, '桓仁满族自治县', 210500, '桓仁', 3, 2);
-INSERT INTO `cn_nojd` VALUES (210600, '丹东市', 210000, '丹东', 2, 5);
-INSERT INTO `cn_nojd` VALUES (210602, '元宝区', 210600, '元宝', 3, 4);
-INSERT INTO `cn_nojd` VALUES (210603, '振兴区', 210600, '振兴', 3, 6);
-INSERT INTO `cn_nojd` VALUES (210604, '振安区', 210600, '振安', 3, 5);
-INSERT INTO `cn_nojd` VALUES (210624, '宽甸满族自治县', 210600, '宽甸', 3, 3);
-INSERT INTO `cn_nojd` VALUES (210681, '东港市', 210600, '东港', 3, 1);
-INSERT INTO `cn_nojd` VALUES (210682, '凤城市', 210600, '凤城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (210700, '锦州市', 210000, '锦州', 2, 9);
-INSERT INTO `cn_nojd` VALUES (210702, '古塔区', 210700, '古塔', 3, 2);
-INSERT INTO `cn_nojd` VALUES (210703, '凌河区', 210700, '凌河', 3, 5);
-INSERT INTO `cn_nojd` VALUES (210711, '太和区', 210700, '太和', 3, 6);
-INSERT INTO `cn_nojd` VALUES (210726, '黑山县', 210700, '黑山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (210727, '义县', 210700, '义县', 3, 7);
-INSERT INTO `cn_nojd` VALUES (210781, '凌海市', 210700, '凌海', 3, 4);
-INSERT INTO `cn_nojd` VALUES (210782, '北镇市', 210700, '北镇', 3, 1);
-INSERT INTO `cn_nojd` VALUES (210800, '营口市', 210000, '营口', 2, 14);
-INSERT INTO `cn_nojd` VALUES (210802, '站前区', 210800, '站前', 3, 6);
-INSERT INTO `cn_nojd` VALUES (210803, '西市区', 210800, '西市', 3, 5);
-INSERT INTO `cn_nojd` VALUES (210804, '鲅鱼圈区', 210800, '鲅鱼圈', 3, 1);
-INSERT INTO `cn_nojd` VALUES (210811, '老边区', 210800, '老边', 3, 4);
-INSERT INTO `cn_nojd` VALUES (210881, '盖州市', 210800, '盖州', 3, 3);
-INSERT INTO `cn_nojd` VALUES (210882, '大石桥市', 210800, '大石桥', 3, 2);
-INSERT INTO `cn_nojd` VALUES (210900, '阜新市', 210000, '阜新', 2, 7);
-INSERT INTO `cn_nojd` VALUES (210902, '海州区', 210900, '海州', 3, 2);
-INSERT INTO `cn_nojd` VALUES (210903, '新邱区', 210900, '新邱', 3, 6);
-INSERT INTO `cn_nojd` VALUES (210904, '太平区', 210900, '太平', 3, 4);
-INSERT INTO `cn_nojd` VALUES (210905, '清河门区', 210900, '清河门', 3, 3);
-INSERT INTO `cn_nojd` VALUES (210911, '细河区', 210900, '细河', 3, 5);
-INSERT INTO `cn_nojd` VALUES (210921, '阜新蒙古族自治县', 210900, '阜新', 3, 1);
-INSERT INTO `cn_nojd` VALUES (210922, '彰武县', 210900, '彰武', 3, 7);
-INSERT INTO `cn_nojd` VALUES (211000, '辽阳市', 210000, '辽阳', 2, 10);
-INSERT INTO `cn_nojd` VALUES (211002, '白塔区', 211000, '白塔', 3, 1);
-INSERT INTO `cn_nojd` VALUES (211003, '文圣区', 211000, '文圣', 3, 7);
-INSERT INTO `cn_nojd` VALUES (211004, '宏伟区', 211000, '宏伟', 3, 4);
-INSERT INTO `cn_nojd` VALUES (211005, '弓长岭区', 211000, '弓长岭', 3, 3);
-INSERT INTO `cn_nojd` VALUES (211011, '太子河区', 211000, '太子河', 3, 6);
-INSERT INTO `cn_nojd` VALUES (211021, '辽阳县', 211000, '辽阳', 3, 5);
-INSERT INTO `cn_nojd` VALUES (211081, '灯塔市', 211000, '灯塔', 3, 2);
-INSERT INTO `cn_nojd` VALUES (211100, '盘锦市', 210000, '盘锦', 2, 11);
-INSERT INTO `cn_nojd` VALUES (211102, '双台子区', 211100, '双台子', 3, 3);
-INSERT INTO `cn_nojd` VALUES (211103, '兴隆台区', 211100, '兴隆台', 3, 4);
-INSERT INTO `cn_nojd` VALUES (211121, '大洼县', 211100, '大洼', 3, 1);
-INSERT INTO `cn_nojd` VALUES (211122, '盘山县', 211100, '盘山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (211200, '铁岭市', 210000, '铁岭', 2, 13);
-INSERT INTO `cn_nojd` VALUES (211202, '银州区', 211200, '银州', 3, 7);
-INSERT INTO `cn_nojd` VALUES (211204, '清河区', 211200, '清河', 3, 4);
-INSERT INTO `cn_nojd` VALUES (211221, '铁岭县', 211200, '铁岭', 3, 5);
-INSERT INTO `cn_nojd` VALUES (211223, '西丰县', 211200, '西丰', 3, 6);
-INSERT INTO `cn_nojd` VALUES (211224, '昌图县', 211200, '昌图', 3, 1);
-INSERT INTO `cn_nojd` VALUES (211281, '调兵山市', 211200, '调兵山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (211282, '开原市', 211200, '开原', 3, 3);
-INSERT INTO `cn_nojd` VALUES (211300, '朝阳市', 210000, '朝阳', 2, 3);
-INSERT INTO `cn_nojd` VALUES (211302, '双塔区', 211300, '双塔', 3, 7);
-INSERT INTO `cn_nojd` VALUES (211303, '龙城区', 211300, '龙城', 3, 6);
-INSERT INTO `cn_nojd` VALUES (211321, '朝阳县', 211300, '朝阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (211322, '建平县', 211300, '建平', 3, 3);
-INSERT INTO `cn_nojd` VALUES (211324, '喀喇沁左翼蒙古族自治县', 211300, '喀左', 3, 4);
-INSERT INTO `cn_nojd` VALUES (211381, '北票市', 211300, '北票', 3, 1);
-INSERT INTO `cn_nojd` VALUES (211382, '凌源市', 211300, '凌源', 3, 5);
-INSERT INTO `cn_nojd` VALUES (211400, '葫芦岛市', 210000, '葫芦岛', 2, 8);
-INSERT INTO `cn_nojd` VALUES (211402, '连山区', 211400, '连山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (211403, '龙港区', 211400, '龙港', 3, 3);
-INSERT INTO `cn_nojd` VALUES (211404, '南票区', 211400, '南票', 3, 4);
-INSERT INTO `cn_nojd` VALUES (211421, '绥中县', 211400, '绥中', 3, 5);
-INSERT INTO `cn_nojd` VALUES (211422, '建昌县', 211400, '建昌', 3, 1);
-INSERT INTO `cn_nojd` VALUES (211481, '兴城市', 211400, '兴城', 3, 6);
-INSERT INTO `cn_nojd` VALUES (220000, '吉林省', 0, '吉林', 1, 7);
-INSERT INTO `cn_nojd` VALUES (220100, '长春市', 220000, '长春', 2, 3);
-INSERT INTO `cn_nojd` VALUES (220102, '南关区', 220100, '南关', 3, 7);
-INSERT INTO `cn_nojd` VALUES (220103, '宽城区', 220100, '宽城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (220104, '朝阳区', 220100, '朝阳', 3, 1);
-INSERT INTO `cn_nojd` VALUES (220105, '二道区', 220100, '二道', 3, 3);
-INSERT INTO `cn_nojd` VALUES (220106, '绿园区', 220100, '绿园', 3, 6);
-INSERT INTO `cn_nojd` VALUES (220112, '双阳区', 220100, '双阳', 3, 9);
-INSERT INTO `cn_nojd` VALUES (220122, '农安县', 220100, '农安', 3, 8);
-INSERT INTO `cn_nojd` VALUES (220181, '九台市', 220100, '九台', 3, 4);
-INSERT INTO `cn_nojd` VALUES (220182, '榆树市', 220100, '榆树', 3, 10);
-INSERT INTO `cn_nojd` VALUES (220183, '德惠市', 220100, '德惠', 3, 2);
-INSERT INTO `cn_nojd` VALUES (220200, '吉林市', 220000, '吉林', 2, 4);
-INSERT INTO `cn_nojd` VALUES (220202, '昌邑区', 220200, '昌邑', 3, 1);
-INSERT INTO `cn_nojd` VALUES (220203, '龙潭区', 220200, '龙潭', 3, 6);
-INSERT INTO `cn_nojd` VALUES (220204, '船营区', 220200, '船营', 3, 2);
-INSERT INTO `cn_nojd` VALUES (220211, '丰满区', 220200, '丰满', 3, 3);
-INSERT INTO `cn_nojd` VALUES (220221, '永吉县', 220200, '永吉', 3, 9);
-INSERT INTO `cn_nojd` VALUES (220281, '蛟河市', 220200, '蛟河', 3, 5);
-INSERT INTO `cn_nojd` VALUES (220282, '桦甸市', 220200, '桦甸', 3, 4);
-INSERT INTO `cn_nojd` VALUES (220283, '舒兰市', 220200, '舒兰', 3, 8);
-INSERT INTO `cn_nojd` VALUES (220284, '磐石市', 220200, '磐石', 3, 7);
-INSERT INTO `cn_nojd` VALUES (220300, '四平市', 220000, '四平', 2, 6);
-INSERT INTO `cn_nojd` VALUES (220302, '铁西区', 220300, '铁西', 3, 5);
-INSERT INTO `cn_nojd` VALUES (220303, '铁东区', 220300, '铁东', 3, 4);
-INSERT INTO `cn_nojd` VALUES (220322, '梨树县', 220300, '梨树', 3, 2);
-INSERT INTO `cn_nojd` VALUES (220323, '伊通满族自治县', 220300, '伊通', 3, 6);
-INSERT INTO `cn_nojd` VALUES (220381, '公主岭市', 220300, '公主岭', 3, 1);
-INSERT INTO `cn_nojd` VALUES (220382, '双辽市', 220300, '双辽', 3, 3);
-INSERT INTO `cn_nojd` VALUES (220400, '辽源市', 220000, '辽源', 2, 5);
-INSERT INTO `cn_nojd` VALUES (220402, '龙山区', 220400, '龙山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (220403, '西安区', 220400, '西安', 3, 4);
-INSERT INTO `cn_nojd` VALUES (220421, '东丰县', 220400, '东丰', 3, 1);
-INSERT INTO `cn_nojd` VALUES (220422, '东辽县', 220400, '东辽', 3, 2);
-INSERT INTO `cn_nojd` VALUES (220500, '通化市', 220000, '通化', 2, 8);
-INSERT INTO `cn_nojd` VALUES (220502, '东昌区', 220500, '东昌', 3, 1);
-INSERT INTO `cn_nojd` VALUES (220503, '二道江区', 220500, '二道江', 3, 2);
-INSERT INTO `cn_nojd` VALUES (220521, '通化县', 220500, '通化', 3, 7);
-INSERT INTO `cn_nojd` VALUES (220523, '辉南县', 220500, '辉南', 3, 3);
-INSERT INTO `cn_nojd` VALUES (220524, '柳河县', 220500, '柳河', 3, 5);
-INSERT INTO `cn_nojd` VALUES (220581, '梅河口市', 220500, '梅河口', 3, 6);
-INSERT INTO `cn_nojd` VALUES (220582, '集安市', 220500, '集安', 3, 4);
-INSERT INTO `cn_nojd` VALUES (220600, '白山市', 220000, '白山', 2, 2);
-INSERT INTO `cn_nojd` VALUES (220602, '浑江区', 220600, '浑江', 3, 3);
-INSERT INTO `cn_nojd` VALUES (220621, '抚松县', 220600, '抚松', 3, 2);
-INSERT INTO `cn_nojd` VALUES (220622, '靖宇县', 220600, '靖宇', 3, 5);
-INSERT INTO `cn_nojd` VALUES (220623, '长白朝鲜族自治县', 220600, '长白', 3, 1);
-INSERT INTO `cn_nojd` VALUES (220625, '江源区', 220600, '江源', 3, 4);
-INSERT INTO `cn_nojd` VALUES (220681, '临江市', 220600, '临江', 3, 6);
-INSERT INTO `cn_nojd` VALUES (220700, '松原市', 220000, '松原', 2, 7);
-INSERT INTO `cn_nojd` VALUES (220702, '宁江区', 220700, '宁江', 3, 3);
-INSERT INTO `cn_nojd` VALUES (220721, '前郭尔罗斯蒙古族自治县', 220700, '前郭', 3, 5);
-INSERT INTO `cn_nojd` VALUES (220722, '长岭县', 220700, '长岭', 3, 1);
-INSERT INTO `cn_nojd` VALUES (220723, '乾安县', 220700, '乾安', 3, 4);
-INSERT INTO `cn_nojd` VALUES (220724, '扶余市', 220700, '扶余', 3, 2);
-INSERT INTO `cn_nojd` VALUES (220800, '白城市', 220000, '白城', 2, 1);
-INSERT INTO `cn_nojd` VALUES (220802, '洮北区', 220800, '洮北', 3, 2);
-INSERT INTO `cn_nojd` VALUES (220821, '镇赉县', 220800, '镇赉', 3, 5);
-INSERT INTO `cn_nojd` VALUES (220822, '通榆县', 220800, '通榆', 3, 4);
-INSERT INTO `cn_nojd` VALUES (220881, '洮南市', 220800, '洮南', 3, 3);
-INSERT INTO `cn_nojd` VALUES (220882, '大安市', 220800, '大安', 3, 1);
-INSERT INTO `cn_nojd` VALUES (222400, '延边朝鲜族自治州', 220000, '延边朝鲜族', 2, 9);
-INSERT INTO `cn_nojd` VALUES (222401, '延吉市', 222400, '延吉', 3, 8);
-INSERT INTO `cn_nojd` VALUES (222402, '图们市', 222400, '图们', 3, 6);
-INSERT INTO `cn_nojd` VALUES (222403, '敦化市', 222400, '敦化', 3, 2);
-INSERT INTO `cn_nojd` VALUES (222404, '珲春市', 222400, '珲春', 3, 4);
-INSERT INTO `cn_nojd` VALUES (222405, '龙井市', 222400, '龙井', 3, 5);
-INSERT INTO `cn_nojd` VALUES (222406, '和龙市', 222400, '和龙', 3, 3);
-INSERT INTO `cn_nojd` VALUES (222424, '汪清县', 222400, '汪清', 3, 7);
-INSERT INTO `cn_nojd` VALUES (222426, '安图县', 222400, '安图', 3, 1);
-INSERT INTO `cn_nojd` VALUES (230000, '黑龙江省', 0, '黑龙江', 1, 8);
-INSERT INTO `cn_nojd` VALUES (230100, '哈尔滨市', 230000, '哈尔滨', 2, 3);
-INSERT INTO `cn_nojd` VALUES (230102, '道里区', 230100, '道里', 3, 4);
-INSERT INTO `cn_nojd` VALUES (230103, '南岗区', 230100, '南岗', 3, 10);
-INSERT INTO `cn_nojd` VALUES (230104, '道外区', 230100, '道外', 3, 5);
-INSERT INTO `cn_nojd` VALUES (230106, '香坊区', 230100, '香坊', 3, 6);
-INSERT INTO `cn_nojd` VALUES (230108, '平房区', 230100, '平房', 3, 11);
-INSERT INTO `cn_nojd` VALUES (230109, '松北区', 230100, '松北', 3, 14);
-INSERT INTO `cn_nojd` VALUES (230111, '呼兰区', 230100, '呼兰', 3, 8);
-INSERT INTO `cn_nojd` VALUES (230123, '依兰县', 230100, '依兰', 3, 18);
-INSERT INTO `cn_nojd` VALUES (230124, '方正县', 230100, '方正', 3, 7);
-INSERT INTO `cn_nojd` VALUES (230125, '宾县', 230100, '宾县', 3, 3);
-INSERT INTO `cn_nojd` VALUES (230126, '巴彦县', 230100, '巴彦', 3, 2);
-INSERT INTO `cn_nojd` VALUES (230127, '木兰县', 230100, '木兰', 3, 9);
-INSERT INTO `cn_nojd` VALUES (230128, '通河县', 230100, '通河', 3, 15);
-INSERT INTO `cn_nojd` VALUES (230129, '延寿县', 230100, '延寿', 3, 17);
-INSERT INTO `cn_nojd` VALUES (230181, '阿城区', 230100, '阿城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (230182, '双城市', 230100, '双城', 3, 13);
-INSERT INTO `cn_nojd` VALUES (230183, '尚志市', 230100, '尚志', 3, 12);
-INSERT INTO `cn_nojd` VALUES (230184, '五常市', 230100, '五常', 3, 16);
-INSERT INTO `cn_nojd` VALUES (230200, '齐齐哈尔市', 230000, '齐齐哈尔', 2, 9);
-INSERT INTO `cn_nojd` VALUES (230202, '龙沙区', 230200, '龙沙', 3, 10);
-INSERT INTO `cn_nojd` VALUES (230203, '建华区', 230200, '建华', 3, 6);
-INSERT INTO `cn_nojd` VALUES (230204, '铁锋区', 230200, '铁锋', 3, 15);
-INSERT INTO `cn_nojd` VALUES (230205, '昂昂溪区', 230200, '昂昂溪', 3, 1);
-INSERT INTO `cn_nojd` VALUES (230206, '富拉尔基区', 230200, '富拉尔基', 3, 3);
-INSERT INTO `cn_nojd` VALUES (230207, '碾子山区', 230200, '碾子山', 3, 13);
-INSERT INTO `cn_nojd` VALUES (230208, '梅里斯达斡尔族区', 230200, '梅里斯达斡尔族', 3, 11);
-INSERT INTO `cn_nojd` VALUES (230221, '龙江县', 230200, '龙江', 3, 9);
-INSERT INTO `cn_nojd` VALUES (230223, '依安县', 230200, '依安', 3, 16);
-INSERT INTO `cn_nojd` VALUES (230224, '泰来县', 230200, '泰来', 3, 14);
-INSERT INTO `cn_nojd` VALUES (230225, '甘南县', 230200, '甘南', 3, 5);
-INSERT INTO `cn_nojd` VALUES (230227, '富裕县', 230200, '富裕', 3, 4);
-INSERT INTO `cn_nojd` VALUES (230229, '克山县', 230200, '克山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (230230, '克东县', 230200, '克东', 3, 7);
-INSERT INTO `cn_nojd` VALUES (230231, '拜泉县', 230200, '拜泉', 3, 2);
-INSERT INTO `cn_nojd` VALUES (230281, '讷河市', 230200, '讷河', 3, 12);
-INSERT INTO `cn_nojd` VALUES (230300, '鸡西市', 230000, '鸡西', 2, 7);
-INSERT INTO `cn_nojd` VALUES (230302, '鸡冠区', 230300, '鸡冠', 3, 6);
-INSERT INTO `cn_nojd` VALUES (230303, '恒山区', 230300, '恒山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (230304, '滴道区', 230300, '滴道', 3, 2);
-INSERT INTO `cn_nojd` VALUES (230305, '梨树区', 230300, '梨树', 3, 7);
-INSERT INTO `cn_nojd` VALUES (230306, '城子河区', 230300, '城子河', 3, 1);
-INSERT INTO `cn_nojd` VALUES (230307, '麻山区', 230300, '麻山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (230321, '鸡东县', 230300, '鸡东', 3, 5);
-INSERT INTO `cn_nojd` VALUES (230381, '虎林市', 230300, '虎林', 3, 4);
-INSERT INTO `cn_nojd` VALUES (230382, '密山市', 230300, '密山', 3, 9);
-INSERT INTO `cn_nojd` VALUES (230400, '鹤岗市', 230000, '鹤岗', 2, 4);
-INSERT INTO `cn_nojd` VALUES (230402, '向阳区', 230400, '向阳', 3, 6);
-INSERT INTO `cn_nojd` VALUES (230403, '工农区', 230400, '工农', 3, 2);
-INSERT INTO `cn_nojd` VALUES (230404, '南山区', 230400, '南山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (230405, '兴安区', 230400, '兴安', 3, 7);
-INSERT INTO `cn_nojd` VALUES (230406, '东山区', 230400, '东山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (230407, '兴山区', 230400, '兴山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (230421, '萝北县', 230400, '萝北', 3, 3);
-INSERT INTO `cn_nojd` VALUES (230422, '绥滨县', 230400, '绥滨', 3, 5);
-INSERT INTO `cn_nojd` VALUES (230500, '双鸭山市', 230000, '双鸭山', 2, 11);
-INSERT INTO `cn_nojd` VALUES (230502, '尖山区', 230500, '尖山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (230503, '岭东区', 230500, '岭东', 3, 5);
-INSERT INTO `cn_nojd` VALUES (230505, '四方台区', 230500, '四方台', 3, 7);
-INSERT INTO `cn_nojd` VALUES (230506, '宝山区', 230500, '宝山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (230521, '集贤县', 230500, '集贤', 3, 4);
-INSERT INTO `cn_nojd` VALUES (230522, '友谊县', 230500, '友谊', 3, 8);
-INSERT INTO `cn_nojd` VALUES (230523, '宝清县', 230500, '宝清', 3, 1);
-INSERT INTO `cn_nojd` VALUES (230524, '饶河县', 230500, '饶河', 3, 6);
-INSERT INTO `cn_nojd` VALUES (230600, '大庆市', 230000, '大庆', 2, 1);
-INSERT INTO `cn_nojd` VALUES (230602, '萨尔图区', 230600, '萨尔图', 3, 7);
-INSERT INTO `cn_nojd` VALUES (230603, '龙凤区', 230600, '龙凤', 3, 5);
-INSERT INTO `cn_nojd` VALUES (230604, '让胡路区', 230600, '让胡路', 3, 6);
-INSERT INTO `cn_nojd` VALUES (230605, '红岗区', 230600, '红岗', 3, 3);
-INSERT INTO `cn_nojd` VALUES (230606, '大同区', 230600, '大同', 3, 1);
-INSERT INTO `cn_nojd` VALUES (230621, '肇州县', 230600, '肇州', 3, 9);
-INSERT INTO `cn_nojd` VALUES (230622, '肇源县', 230600, '肇源', 3, 8);
-INSERT INTO `cn_nojd` VALUES (230623, '林甸县', 230600, '林甸', 3, 4);
-INSERT INTO `cn_nojd` VALUES (230624, '杜尔伯特蒙古族自治县', 230600, '杜尔伯特', 3, 2);
-INSERT INTO `cn_nojd` VALUES (230700, '伊春市', 230000, '伊春', 2, 13);
-INSERT INTO `cn_nojd` VALUES (230702, '伊春区', 230700, '伊春', 3, 16);
-INSERT INTO `cn_nojd` VALUES (230703, '南岔区', 230700, '南岔', 3, 7);
-INSERT INTO `cn_nojd` VALUES (230704, '友好区', 230700, '友好', 3, 17);
-INSERT INTO `cn_nojd` VALUES (230705, '西林区', 230700, '西林', 3, 14);
-INSERT INTO `cn_nojd` VALUES (230706, '翠峦区', 230700, '翠峦', 3, 1);
-INSERT INTO `cn_nojd` VALUES (230707, '新青区', 230700, '新青', 3, 15);
-INSERT INTO `cn_nojd` VALUES (230708, '美溪区', 230700, '美溪', 3, 6);
-INSERT INTO `cn_nojd` VALUES (230709, '金山屯区', 230700, '金山屯', 3, 5);
-INSERT INTO `cn_nojd` VALUES (230710, '五营区', 230700, '五营', 3, 13);
-INSERT INTO `cn_nojd` VALUES (230711, '乌马河区', 230700, '乌马河', 3, 11);
-INSERT INTO `cn_nojd` VALUES (230712, '汤旺河区', 230700, '汤旺河', 3, 9);
-INSERT INTO `cn_nojd` VALUES (230713, '带岭区', 230700, '带岭', 3, 2);
-INSERT INTO `cn_nojd` VALUES (230714, '乌伊岭区', 230700, '乌伊岭', 3, 12);
-INSERT INTO `cn_nojd` VALUES (230715, '红星区', 230700, '红星', 3, 3);
-INSERT INTO `cn_nojd` VALUES (230716, '上甘岭区', 230700, '上甘岭', 3, 8);
-INSERT INTO `cn_nojd` VALUES (230722, '嘉荫县', 230700, '嘉荫', 3, 4);
-INSERT INTO `cn_nojd` VALUES (230781, '铁力市', 230700, '铁力', 3, 10);
-INSERT INTO `cn_nojd` VALUES (230800, '佳木斯市', 230000, '佳木斯', 2, 6);
-INSERT INTO `cn_nojd` VALUES (230803, '向阳区', 230800, '向阳', 3, 10);
-INSERT INTO `cn_nojd` VALUES (230804, '前进区', 230800, '前进', 3, 7);
-INSERT INTO `cn_nojd` VALUES (230805, '东风区', 230800, '东风', 3, 1);
-INSERT INTO `cn_nojd` VALUES (230811, '郊区', 230800, '郊区', 3, 6);
-INSERT INTO `cn_nojd` VALUES (230822, '桦南县', 230800, '桦南', 3, 5);
-INSERT INTO `cn_nojd` VALUES (230826, '桦川县', 230800, '桦川', 3, 4);
-INSERT INTO `cn_nojd` VALUES (230828, '汤原县', 230800, '汤原', 3, 8);
-INSERT INTO `cn_nojd` VALUES (230833, '抚远县', 230800, '抚远', 3, 3);
-INSERT INTO `cn_nojd` VALUES (230881, '同江市', 230800, '同江', 3, 9);
-INSERT INTO `cn_nojd` VALUES (230882, '富锦市', 230800, '富锦', 3, 2);
-INSERT INTO `cn_nojd` VALUES (230900, '七台河市', 230000, '七台河', 2, 10);
-INSERT INTO `cn_nojd` VALUES (230902, '新兴区', 230900, '新兴', 3, 4);
-INSERT INTO `cn_nojd` VALUES (230903, '桃山区', 230900, '桃山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (230904, '茄子河区', 230900, '茄子河', 3, 2);
-INSERT INTO `cn_nojd` VALUES (230921, '勃利县', 230900, '勃利', 3, 1);
-INSERT INTO `cn_nojd` VALUES (231000, '牡丹江市', 230000, '牡丹江', 2, 8);
-INSERT INTO `cn_nojd` VALUES (231002, '东安区', 231000, '东安', 3, 2);
-INSERT INTO `cn_nojd` VALUES (231003, '阳明区', 231000, '阳明', 3, 10);
-INSERT INTO `cn_nojd` VALUES (231004, '爱民区', 231000, '爱民', 3, 1);
-INSERT INTO `cn_nojd` VALUES (231005, '西安区', 231000, '西安', 3, 9);
-INSERT INTO `cn_nojd` VALUES (231024, '东宁县', 231000, '东宁', 3, 3);
-INSERT INTO `cn_nojd` VALUES (231025, '林口县', 231000, '林口', 3, 5);
-INSERT INTO `cn_nojd` VALUES (231081, '绥芬河市', 231000, '绥芬河', 3, 8);
-INSERT INTO `cn_nojd` VALUES (231083, '海林市', 231000, '海林', 3, 4);
-INSERT INTO `cn_nojd` VALUES (231084, '宁安市', 231000, '宁安', 3, 7);
-INSERT INTO `cn_nojd` VALUES (231085, '穆棱市', 231000, '穆棱', 3, 6);
-INSERT INTO `cn_nojd` VALUES (231100, '黑河市', 230000, '黑河', 2, 5);
-INSERT INTO `cn_nojd` VALUES (231102, '爱辉区', 231100, '爱辉', 3, 1);
-INSERT INTO `cn_nojd` VALUES (231121, '嫩江县', 231100, '嫩江', 3, 3);
-INSERT INTO `cn_nojd` VALUES (231123, '逊克县', 231100, '逊克', 3, 6);
-INSERT INTO `cn_nojd` VALUES (231124, '孙吴县', 231100, '孙吴', 3, 4);
-INSERT INTO `cn_nojd` VALUES (231181, '北安市', 231100, '北安', 3, 2);
-INSERT INTO `cn_nojd` VALUES (231182, '五大连池市', 231100, '五大连池', 3, 5);
-INSERT INTO `cn_nojd` VALUES (231200, '绥化市', 230000, '绥化', 2, 12);
-INSERT INTO `cn_nojd` VALUES (231202, '北林区', 231200, '北林', 3, 2);
-INSERT INTO `cn_nojd` VALUES (231221, '望奎县', 231200, '望奎', 3, 9);
-INSERT INTO `cn_nojd` VALUES (231222, '兰西县', 231200, '兰西', 3, 4);
-INSERT INTO `cn_nojd` VALUES (231223, '青冈县', 231200, '青冈', 3, 7);
-INSERT INTO `cn_nojd` VALUES (231224, '庆安县', 231200, '庆安', 3, 6);
-INSERT INTO `cn_nojd` VALUES (231225, '明水县', 231200, '明水', 3, 5);
-INSERT INTO `cn_nojd` VALUES (231226, '绥棱县', 231200, '绥棱', 3, 8);
-INSERT INTO `cn_nojd` VALUES (231281, '安达市', 231200, '安达', 3, 1);
-INSERT INTO `cn_nojd` VALUES (231282, '肇东市', 231200, '肇东', 3, 10);
-INSERT INTO `cn_nojd` VALUES (231283, '海伦市', 231200, '海伦', 3, 3);
-INSERT INTO `cn_nojd` VALUES (232700, '大兴安岭地区', 230000, '大兴安岭', 2, 2);
-INSERT INTO `cn_nojd` VALUES (232702, '松岭区', 232700, '松岭', 3, 5);
-INSERT INTO `cn_nojd` VALUES (232703, '新林区', 232700, '新林', 3, 7);
-INSERT INTO `cn_nojd` VALUES (232704, '呼中区', 232700, '呼中', 3, 2);
-INSERT INTO `cn_nojd` VALUES (232721, '呼玛县', 232700, '呼玛', 3, 1);
-INSERT INTO `cn_nojd` VALUES (232722, '塔河县', 232700, '塔河', 3, 6);
-INSERT INTO `cn_nojd` VALUES (232723, '漠河县', 232700, '漠河', 3, 4);
-INSERT INTO `cn_nojd` VALUES (232724, '加格达奇区', 232700, '加格达奇', 3, 3);
-INSERT INTO `cn_nojd` VALUES (310000, '上海', 0, '上海', 1, 9);
-INSERT INTO `cn_nojd` VALUES (310100, '上海市', 310000, '上海', 2, 1);
-INSERT INTO `cn_nojd` VALUES (310101, '黄浦区', 310100, '黄浦', 3, 7);
-INSERT INTO `cn_nojd` VALUES (310104, '徐汇区', 310100, '徐汇', 3, 15);
-INSERT INTO `cn_nojd` VALUES (310105, '长宁区', 310100, '长宁', 3, 2);
-INSERT INTO `cn_nojd` VALUES (310106, '静安区', 310100, '静安', 3, 9);
-INSERT INTO `cn_nojd` VALUES (310107, '普陀区', 310100, '普陀', 3, 12);
-INSERT INTO `cn_nojd` VALUES (310108, '闸北区', 310100, '闸北', 3, 17);
-INSERT INTO `cn_nojd` VALUES (310109, '虹口区', 310100, '虹口', 3, 6);
-INSERT INTO `cn_nojd` VALUES (310110, '杨浦区', 310100, '杨浦', 3, 16);
-INSERT INTO `cn_nojd` VALUES (310112, '闵行区', 310100, '闵行', 3, 11);
-INSERT INTO `cn_nojd` VALUES (310113, '宝山区', 310100, '宝山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (310114, '嘉定区', 310100, '嘉定', 3, 8);
-INSERT INTO `cn_nojd` VALUES (310115, '浦东新区', 310100, '浦东', 3, 4);
-INSERT INTO `cn_nojd` VALUES (310116, '金山区', 310100, '金山', 3, 10);
-INSERT INTO `cn_nojd` VALUES (310117, '松江区', 310100, '松江', 3, 14);
-INSERT INTO `cn_nojd` VALUES (310118, '青浦区', 310100, '青浦', 3, 13);
-INSERT INTO `cn_nojd` VALUES (310120, '奉贤区', 310100, '奉贤', 3, 5);
-INSERT INTO `cn_nojd` VALUES (310230, '崇明县', 310100, '崇明', 3, 3);
-INSERT INTO `cn_nojd` VALUES (320000, '江苏省', 0, '江苏', 1, 10);
-INSERT INTO `cn_nojd` VALUES (320100, '南京市', 320000, '南京', 2, 4);
-INSERT INTO `cn_nojd` VALUES (320102, '玄武区', 320100, '玄武', 3, 10);
-INSERT INTO `cn_nojd` VALUES (320104, '秦淮区', 320100, '秦淮', 3, 1);
-INSERT INTO `cn_nojd` VALUES (320105, '建邺区', 320100, '建邺', 3, 5);
-INSERT INTO `cn_nojd` VALUES (320106, '鼓楼区', 320100, '鼓楼', 3, 3);
-INSERT INTO `cn_nojd` VALUES (320111, '浦口区', 320100, '浦口', 3, 8);
-INSERT INTO `cn_nojd` VALUES (320113, '栖霞区', 320100, '栖霞', 3, 9);
-INSERT INTO `cn_nojd` VALUES (320114, '雨花台区', 320100, '雨花台', 3, 11);
-INSERT INTO `cn_nojd` VALUES (320115, '江宁区', 320100, '江宁', 3, 4);
-INSERT INTO `cn_nojd` VALUES (320116, '六合区', 320100, '六合', 3, 7);
-INSERT INTO `cn_nojd` VALUES (320124, '溧水区', 320100, '溧水', 3, 6);
-INSERT INTO `cn_nojd` VALUES (320125, '高淳区', 320100, '高淳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (320200, '无锡市', 320000, '无锡', 2, 9);
-INSERT INTO `cn_nojd` VALUES (320202, '崇安区', 320200, '崇安', 3, 3);
-INSERT INTO `cn_nojd` VALUES (320203, '南长区', 320200, '南长', 3, 6);
-INSERT INTO `cn_nojd` VALUES (320204, '北塘区', 320200, '北塘', 3, 1);
-INSERT INTO `cn_nojd` VALUES (320205, '锡山区', 320200, '锡山', 3, 7);
-INSERT INTO `cn_nojd` VALUES (320206, '惠山区', 320200, '惠山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (320211, '滨湖区', 320200, '滨湖', 3, 2);
-INSERT INTO `cn_nojd` VALUES (320281, '江阴市', 320200, '江阴', 3, 5);
-INSERT INTO `cn_nojd` VALUES (320282, '宜兴市', 320200, '宜兴', 3, 8);
-INSERT INTO `cn_nojd` VALUES (320300, '徐州市', 320000, '徐州', 2, 10);
-INSERT INTO `cn_nojd` VALUES (320302, '鼓楼区', 320300, '鼓楼', 3, 2);
-INSERT INTO `cn_nojd` VALUES (320303, '云龙区', 320300, '云龙', 3, 10);
-INSERT INTO `cn_nojd` VALUES (320305, '贾汪区', 320300, '贾汪', 3, 3);
-INSERT INTO `cn_nojd` VALUES (320311, '泉山区', 320300, '泉山', 3, 7);
-INSERT INTO `cn_nojd` VALUES (320321, '丰县', 320300, '丰县', 3, 1);
-INSERT INTO `cn_nojd` VALUES (320322, '沛县', 320300, '沛县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (320323, '铜山区', 320300, '铜山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (320324, '睢宁县', 320300, '睢宁', 3, 8);
-INSERT INTO `cn_nojd` VALUES (320381, '新沂市', 320300, '新沂', 3, 9);
-INSERT INTO `cn_nojd` VALUES (320382, '邳州市', 320300, '邳州', 3, 6);
-INSERT INTO `cn_nojd` VALUES (320400, '常州市', 320000, '常州', 2, 1);
-INSERT INTO `cn_nojd` VALUES (320402, '天宁区', 320400, '天宁', 3, 4);
-INSERT INTO `cn_nojd` VALUES (320404, '钟楼区', 320400, '钟楼', 3, 7);
-INSERT INTO `cn_nojd` VALUES (320405, '戚墅堰区', 320400, '戚墅堰', 3, 3);
-INSERT INTO `cn_nojd` VALUES (320411, '新北区', 320400, '新北', 3, 6);
-INSERT INTO `cn_nojd` VALUES (320412, '武进区', 320400, '武进', 3, 5);
-INSERT INTO `cn_nojd` VALUES (320481, '溧阳市', 320400, '溧阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (320482, '金坛市', 320400, '金坛', 3, 1);
-INSERT INTO `cn_nojd` VALUES (320500, '苏州市', 320000, '苏州', 2, 7);
-INSERT INTO `cn_nojd` VALUES (320505, '虎丘区', 320500, '虎丘', 3, 3);
-INSERT INTO `cn_nojd` VALUES (320506, '吴中区', 320500, '吴中', 3, 7);
-INSERT INTO `cn_nojd` VALUES (320507, '相城区', 320500, '相城', 3, 8);
-INSERT INTO `cn_nojd` VALUES (320508, '姑苏区', 320500, '姑苏', 3, 2);
-INSERT INTO `cn_nojd` VALUES (320581, '常熟市', 320500, '常熟', 3, 1);
-INSERT INTO `cn_nojd` VALUES (320582, '张家港市', 320500, '张家港', 3, 9);
-INSERT INTO `cn_nojd` VALUES (320583, '昆山市', 320500, '昆山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (320584, '吴江区', 320500, '吴江', 3, 6);
-INSERT INTO `cn_nojd` VALUES (320585, '太仓市', 320500, '太仓', 3, 5);
-INSERT INTO `cn_nojd` VALUES (320600, '南通市', 320000, '南通', 2, 5);
-INSERT INTO `cn_nojd` VALUES (320602, '崇川区', 320600, '崇川', 3, 1);
-INSERT INTO `cn_nojd` VALUES (320611, '港闸区', 320600, '港闸', 3, 2);
-INSERT INTO `cn_nojd` VALUES (320612, '通州区', 320600, '通州', 3, 8);
-INSERT INTO `cn_nojd` VALUES (320621, '海安县', 320600, '海安', 3, 3);
-INSERT INTO `cn_nojd` VALUES (320623, '如东县', 320600, '如东', 3, 6);
-INSERT INTO `cn_nojd` VALUES (320681, '启东市', 320600, '启东', 3, 5);
-INSERT INTO `cn_nojd` VALUES (320682, '如皋市', 320600, '如皋', 3, 7);
-INSERT INTO `cn_nojd` VALUES (320684, '海门市', 320600, '海门', 3, 4);
-INSERT INTO `cn_nojd` VALUES (320700, '连云港市', 320000, '连云港', 2, 3);
-INSERT INTO `cn_nojd` VALUES (320703, '连云区', 320700, '连云', 3, 6);
-INSERT INTO `cn_nojd` VALUES (320705, '新浦区', 320700, '新浦', 3, 7);
-INSERT INTO `cn_nojd` VALUES (320706, '海州区', 320700, '海州', 3, 5);
-INSERT INTO `cn_nojd` VALUES (320721, '赣榆县', 320700, '赣榆', 3, 2);
-INSERT INTO `cn_nojd` VALUES (320722, '东海县', 320700, '东海', 3, 1);
-INSERT INTO `cn_nojd` VALUES (320723, '灌云县', 320700, '灌云', 3, 4);
-INSERT INTO `cn_nojd` VALUES (320724, '灌南县', 320700, '灌南', 3, 3);
-INSERT INTO `cn_nojd` VALUES (320800, '淮安市', 320000, '淮安', 2, 2);
-INSERT INTO `cn_nojd` VALUES (320802, '清河区', 320800, '清河', 3, 6);
-INSERT INTO `cn_nojd` VALUES (320803, '淮安区', 320800, '淮安', 3, 2);
-INSERT INTO `cn_nojd` VALUES (320804, '淮阴区', 320800, '淮阴', 3, 3);
-INSERT INTO `cn_nojd` VALUES (320811, '清浦区', 320800, '清浦', 3, 7);
-INSERT INTO `cn_nojd` VALUES (320826, '涟水县', 320800, '涟水', 3, 5);
-INSERT INTO `cn_nojd` VALUES (320829, '洪泽县', 320800, '洪泽', 3, 1);
-INSERT INTO `cn_nojd` VALUES (320830, '盱眙县', 320800, '盱眙', 3, 8);
-INSERT INTO `cn_nojd` VALUES (320831, '金湖县', 320800, '金湖', 3, 4);
-INSERT INTO `cn_nojd` VALUES (320900, '盐城市', 320000, '盐城', 2, 11);
-INSERT INTO `cn_nojd` VALUES (320902, '亭湖区', 320900, '亭湖', 3, 7);
-INSERT INTO `cn_nojd` VALUES (320903, '盐都区', 320900, '盐都', 3, 9);
-INSERT INTO `cn_nojd` VALUES (320921, '响水县', 320900, '响水', 3, 8);
-INSERT INTO `cn_nojd` VALUES (320922, '滨海县', 320900, '滨海', 3, 1);
-INSERT INTO `cn_nojd` VALUES (320923, '阜宁县', 320900, '阜宁', 3, 4);
-INSERT INTO `cn_nojd` VALUES (320924, '射阳县', 320900, '射阳', 3, 6);
-INSERT INTO `cn_nojd` VALUES (320925, '建湖县', 320900, '建湖', 3, 5);
-INSERT INTO `cn_nojd` VALUES (320981, '东台市', 320900, '东台', 3, 3);
-INSERT INTO `cn_nojd` VALUES (320982, '大丰市', 320900, '大丰', 3, 2);
-INSERT INTO `cn_nojd` VALUES (321000, '扬州市', 320000, '扬州', 2, 12);
-INSERT INTO `cn_nojd` VALUES (321002, '广陵区', 321000, '广陵', 3, 3);
-INSERT INTO `cn_nojd` VALUES (321003, '邗江区', 321000, '邗江', 3, 4);
-INSERT INTO `cn_nojd` VALUES (321023, '宝应县', 321000, '宝应', 3, 1);
-INSERT INTO `cn_nojd` VALUES (321081, '仪征市', 321000, '仪征', 3, 6);
-INSERT INTO `cn_nojd` VALUES (321084, '高邮市', 321000, '高邮', 3, 2);
-INSERT INTO `cn_nojd` VALUES (321088, '江都区', 321000, '江都', 3, 5);
-INSERT INTO `cn_nojd` VALUES (321100, '镇江市', 320000, '镇江', 2, 13);
-INSERT INTO `cn_nojd` VALUES (321102, '京口区', 321100, '京口', 3, 3);
-INSERT INTO `cn_nojd` VALUES (321111, '润州区', 321100, '润州', 3, 5);
-INSERT INTO `cn_nojd` VALUES (321112, '丹徒区', 321100, '丹徒', 3, 1);
-INSERT INTO `cn_nojd` VALUES (321181, '丹阳市', 321100, '丹阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (321182, '扬中市', 321100, '扬中', 3, 6);
-INSERT INTO `cn_nojd` VALUES (321183, '句容市', 321100, '句容', 3, 4);
-INSERT INTO `cn_nojd` VALUES (321200, '泰州市', 320000, '泰州', 2, 8);
-INSERT INTO `cn_nojd` VALUES (321202, '海陵区', 321200, '海陵', 3, 2);
-INSERT INTO `cn_nojd` VALUES (321203, '高港区', 321200, '高港', 3, 1);
-INSERT INTO `cn_nojd` VALUES (321281, '兴化市', 321200, '兴化', 3, 6);
-INSERT INTO `cn_nojd` VALUES (321282, '靖江市', 321200, '靖江', 3, 4);
-INSERT INTO `cn_nojd` VALUES (321283, '泰兴市', 321200, '泰兴', 3, 5);
-INSERT INTO `cn_nojd` VALUES (321284, '姜堰区', 321200, '姜堰', 3, 3);
-INSERT INTO `cn_nojd` VALUES (321300, '宿迁市', 320000, '宿迁', 2, 6);
-INSERT INTO `cn_nojd` VALUES (321302, '宿城区', 321300, '宿城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (321311, '宿豫区', 321300, '宿豫', 3, 5);
-INSERT INTO `cn_nojd` VALUES (321322, '沭阳县', 321300, '沭阳', 3, 1);
-INSERT INTO `cn_nojd` VALUES (321323, '泗阳县', 321300, '泗阳', 3, 3);
-INSERT INTO `cn_nojd` VALUES (321324, '泗洪县', 321300, '泗洪', 3, 2);
-INSERT INTO `cn_nojd` VALUES (330000, '浙江省', 0, '浙江', 1, 11);
-INSERT INTO `cn_nojd` VALUES (330100, '杭州市', 330000, '杭州', 2, 1);
-INSERT INTO `cn_nojd` VALUES (330102, '上城区', 330100, '上城', 3, 8);
-INSERT INTO `cn_nojd` VALUES (330103, '下城区', 330100, '下城', 3, 10);
-INSERT INTO `cn_nojd` VALUES (330104, '江干区', 330100, '江干', 3, 6);
-INSERT INTO `cn_nojd` VALUES (330105, '拱墅区', 330100, '拱墅', 3, 4);
-INSERT INTO `cn_nojd` VALUES (330106, '西湖区', 330100, '西湖', 3, 12);
-INSERT INTO `cn_nojd` VALUES (330108, '滨江区', 330100, '滨江', 3, 1);
-INSERT INTO `cn_nojd` VALUES (330109, '萧山区', 330100, '萧山', 3, 11);
-INSERT INTO `cn_nojd` VALUES (330110, '余杭区', 330100, '余杭', 3, 13);
-INSERT INTO `cn_nojd` VALUES (330122, '桐庐县', 330100, '桐庐', 3, 9);
-INSERT INTO `cn_nojd` VALUES (330127, '淳安县', 330100, '淳安', 3, 2);
-INSERT INTO `cn_nojd` VALUES (330182, '建德市', 330100, '建德', 3, 5);
-INSERT INTO `cn_nojd` VALUES (330183, '富阳市', 330100, '富阳', 3, 3);
-INSERT INTO `cn_nojd` VALUES (330185, '临安市', 330100, '临安', 3, 7);
-INSERT INTO `cn_nojd` VALUES (330200, '宁波市', 330000, '宁波', 2, 6);
-INSERT INTO `cn_nojd` VALUES (330203, '海曙区', 330200, '海曙', 3, 4);
-INSERT INTO `cn_nojd` VALUES (330204, '江东区', 330200, '江东', 3, 6);
-INSERT INTO `cn_nojd` VALUES (330205, '江北区', 330200, '江北', 3, 5);
-INSERT INTO `cn_nojd` VALUES (330206, '北仑区', 330200, '北仑', 3, 1);
-INSERT INTO `cn_nojd` VALUES (330211, '镇海区', 330200, '镇海', 3, 11);
-INSERT INTO `cn_nojd` VALUES (330212, '鄞州区', 330200, '鄞州', 3, 9);
-INSERT INTO `cn_nojd` VALUES (330225, '象山县', 330200, '象山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (330226, '宁海县', 330200, '宁海', 3, 7);
-INSERT INTO `cn_nojd` VALUES (330281, '余姚市', 330200, '余姚', 3, 10);
-INSERT INTO `cn_nojd` VALUES (330282, '慈溪市', 330200, '慈溪', 3, 2);
-INSERT INTO `cn_nojd` VALUES (330283, '奉化市', 330200, '奉化', 3, 3);
-INSERT INTO `cn_nojd` VALUES (330300, '温州市', 330000, '温州', 2, 10);
-INSERT INTO `cn_nojd` VALUES (330302, '鹿城区', 330300, '鹿城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (330303, '龙湾区', 330300, '龙湾', 3, 3);
-INSERT INTO `cn_nojd` VALUES (330304, '瓯海区', 330300, '瓯海', 3, 5);
-INSERT INTO `cn_nojd` VALUES (330322, '洞头县', 330300, '洞头', 3, 2);
-INSERT INTO `cn_nojd` VALUES (330324, '永嘉县', 330300, '永嘉', 3, 10);
-INSERT INTO `cn_nojd` VALUES (330326, '平阳县', 330300, '平阳', 3, 6);
-INSERT INTO `cn_nojd` VALUES (330327, '苍南县', 330300, '苍南', 3, 1);
-INSERT INTO `cn_nojd` VALUES (330328, '文成县', 330300, '文成', 3, 9);
-INSERT INTO `cn_nojd` VALUES (330329, '泰顺县', 330300, '泰顺', 3, 8);
-INSERT INTO `cn_nojd` VALUES (330381, '瑞安市', 330300, '瑞安', 3, 7);
-INSERT INTO `cn_nojd` VALUES (330382, '乐清市', 330300, '乐清', 3, 11);
-INSERT INTO `cn_nojd` VALUES (330400, '嘉兴市', 330000, '嘉兴', 2, 3);
-INSERT INTO `cn_nojd` VALUES (330402, '南湖区', 330400, '南湖', 3, 4);
-INSERT INTO `cn_nojd` VALUES (330411, '秀洲区', 330400, '秀洲', 3, 7);
-INSERT INTO `cn_nojd` VALUES (330421, '嘉善县', 330400, '嘉善', 3, 3);
-INSERT INTO `cn_nojd` VALUES (330424, '海盐县', 330400, '海盐', 3, 2);
-INSERT INTO `cn_nojd` VALUES (330481, '海宁市', 330400, '海宁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (330482, '平湖市', 330400, '平湖', 3, 5);
-INSERT INTO `cn_nojd` VALUES (330483, '桐乡市', 330400, '桐乡', 3, 6);
-INSERT INTO `cn_nojd` VALUES (330500, '湖州市', 330000, '湖州', 2, 2);
-INSERT INTO `cn_nojd` VALUES (330502, '吴兴区', 330500, '吴兴', 3, 5);
-INSERT INTO `cn_nojd` VALUES (330503, '南浔区', 330500, '南浔', 3, 4);
-INSERT INTO `cn_nojd` VALUES (330521, '德清县', 330500, '德清', 3, 3);
-INSERT INTO `cn_nojd` VALUES (330522, '长兴县', 330500, '长兴', 3, 2);
-INSERT INTO `cn_nojd` VALUES (330523, '安吉县', 330500, '安吉', 3, 1);
-INSERT INTO `cn_nojd` VALUES (330600, '绍兴市', 330000, '绍兴', 2, 8);
-INSERT INTO `cn_nojd` VALUES (330602, '越城区', 330600, '越城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (330621, '绍兴县', 330600, '绍兴', 3, 2);
-INSERT INTO `cn_nojd` VALUES (330624, '新昌县', 330600, '新昌', 3, 4);
-INSERT INTO `cn_nojd` VALUES (330681, '诸暨市', 330600, '诸暨', 3, 6);
-INSERT INTO `cn_nojd` VALUES (330682, '上虞市', 330600, '上虞', 3, 1);
-INSERT INTO `cn_nojd` VALUES (330683, '嵊州市', 330600, '嵊州', 3, 3);
-INSERT INTO `cn_nojd` VALUES (330700, '金华市', 330000, '金华', 2, 4);
-INSERT INTO `cn_nojd` VALUES (330702, '婺城区', 330700, '婺城', 3, 6);
-INSERT INTO `cn_nojd` VALUES (330703, '金东区', 330700, '金东', 3, 2);
-INSERT INTO `cn_nojd` VALUES (330723, '武义县', 330700, '武义', 3, 7);
-INSERT INTO `cn_nojd` VALUES (330726, '浦江县', 330700, '浦江', 3, 5);
-INSERT INTO `cn_nojd` VALUES (330727, '磐安县', 330700, '磐安', 3, 4);
-INSERT INTO `cn_nojd` VALUES (330781, '兰溪市', 330700, '兰溪', 3, 3);
-INSERT INTO `cn_nojd` VALUES (330782, '义乌市', 330700, '义乌', 3, 8);
-INSERT INTO `cn_nojd` VALUES (330783, '东阳市', 330700, '东阳', 3, 1);
-INSERT INTO `cn_nojd` VALUES (330784, '永康市', 330700, '永康', 3, 9);
-INSERT INTO `cn_nojd` VALUES (330800, '衢州市', 330000, '衢州', 2, 7);
-INSERT INTO `cn_nojd` VALUES (330802, '柯城区', 330800, '柯城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (330803, '衢江区', 330800, '衢江', 3, 6);
-INSERT INTO `cn_nojd` VALUES (330822, '常山县', 330800, '常山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (330824, '开化县', 330800, '开化', 3, 3);
-INSERT INTO `cn_nojd` VALUES (330825, '龙游县', 330800, '龙游', 3, 5);
-INSERT INTO `cn_nojd` VALUES (330881, '江山市', 330800, '江山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (330900, '舟山市', 330000, '舟山', 2, 11);
-INSERT INTO `cn_nojd` VALUES (330902, '定海区', 330900, '定海', 3, 2);
-INSERT INTO `cn_nojd` VALUES (330903, '普陀区', 330900, '普陀', 3, 3);
-INSERT INTO `cn_nojd` VALUES (330921, '岱山县', 330900, '岱山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (330922, '嵊泗县', 330900, '嵊泗', 3, 4);
-INSERT INTO `cn_nojd` VALUES (331000, '台州市', 330000, '台州', 2, 9);
-INSERT INTO `cn_nojd` VALUES (331002, '椒江区', 331000, '椒江', 3, 2);
-INSERT INTO `cn_nojd` VALUES (331003, '黄岩区', 331000, '黄岩', 3, 1);
-INSERT INTO `cn_nojd` VALUES (331004, '路桥区', 331000, '路桥', 3, 4);
-INSERT INTO `cn_nojd` VALUES (331021, '玉环县', 331000, '玉环', 3, 9);
-INSERT INTO `cn_nojd` VALUES (331022, '三门县', 331000, '三门', 3, 5);
-INSERT INTO `cn_nojd` VALUES (331023, '天台县', 331000, '天台', 3, 6);
-INSERT INTO `cn_nojd` VALUES (331024, '仙居县', 331000, '仙居', 3, 8);
-INSERT INTO `cn_nojd` VALUES (331081, '温岭市', 331000, '温岭', 3, 7);
-INSERT INTO `cn_nojd` VALUES (331082, '临海市', 331000, '临海', 3, 3);
-INSERT INTO `cn_nojd` VALUES (331100, '丽水市', 330000, '丽水', 2, 5);
-INSERT INTO `cn_nojd` VALUES (331102, '莲都区', 331100, '莲都', 3, 3);
-INSERT INTO `cn_nojd` VALUES (331121, '青田县', 331100, '青田', 3, 5);
-INSERT INTO `cn_nojd` VALUES (331122, '缙云县', 331100, '缙云', 3, 2);
-INSERT INTO `cn_nojd` VALUES (331123, '遂昌县', 331100, '遂昌', 3, 8);
-INSERT INTO `cn_nojd` VALUES (331124, '松阳县', 331100, '松阳', 3, 7);
-INSERT INTO `cn_nojd` VALUES (331125, '云和县', 331100, '云和', 3, 9);
-INSERT INTO `cn_nojd` VALUES (331126, '庆元县', 331100, '庆元', 3, 6);
-INSERT INTO `cn_nojd` VALUES (331127, '景宁畲族自治县', 331100, '景宁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (331181, '龙泉市', 331100, '龙泉', 3, 4);
-INSERT INTO `cn_nojd` VALUES (340000, '安徽省', 0, '安徽', 1, 12);
-INSERT INTO `cn_nojd` VALUES (340100, '合肥市', 340000, '合肥', 2, 7);
-INSERT INTO `cn_nojd` VALUES (340102, '瑶海区', 340100, '瑶海', 3, 9);
-INSERT INTO `cn_nojd` VALUES (340103, '庐阳区', 340100, '庐阳', 3, 7);
-INSERT INTO `cn_nojd` VALUES (340104, '蜀山区', 340100, '蜀山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (340111, '包河区', 340100, '包河', 3, 1);
-INSERT INTO `cn_nojd` VALUES (340121, '长丰县', 340100, '长丰', 3, 2);
-INSERT INTO `cn_nojd` VALUES (340122, '肥东县', 340100, '肥东', 3, 4);
-INSERT INTO `cn_nojd` VALUES (340123, '肥西县', 340100, '肥西', 3, 5);
-INSERT INTO `cn_nojd` VALUES (340200, '芜湖市', 340000, '芜湖', 2, 15);
-INSERT INTO `cn_nojd` VALUES (340202, '镜湖区', 340200, '镜湖', 3, 2);
-INSERT INTO `cn_nojd` VALUES (340203, '弋江区', 340200, '弋江', 3, 8);
-INSERT INTO `cn_nojd` VALUES (340207, '鸠江区', 340200, '鸠江', 3, 3);
-INSERT INTO `cn_nojd` VALUES (340208, '三山区', 340200, '三山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (340221, '芜湖县', 340200, '芜湖', 3, 6);
-INSERT INTO `cn_nojd` VALUES (340222, '繁昌县', 340200, '繁昌', 3, 1);
-INSERT INTO `cn_nojd` VALUES (340223, '南陵县', 340200, '南陵', 3, 4);
-INSERT INTO `cn_nojd` VALUES (340300, '蚌埠市', 340000, '蚌埠', 2, 2);
-INSERT INTO `cn_nojd` VALUES (340302, '龙子湖区', 340300, '龙子湖', 3, 5);
-INSERT INTO `cn_nojd` VALUES (340303, '蚌山区', 340300, '蚌山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (340304, '禹会区', 340300, '禹会', 3, 7);
-INSERT INTO `cn_nojd` VALUES (340311, '淮上区', 340300, '淮上', 3, 3);
-INSERT INTO `cn_nojd` VALUES (340321, '怀远县', 340300, '怀远', 3, 4);
-INSERT INTO `cn_nojd` VALUES (340322, '五河县', 340300, '五河', 3, 6);
-INSERT INTO `cn_nojd` VALUES (340323, '固镇县', 340300, '固镇', 3, 2);
-INSERT INTO `cn_nojd` VALUES (340400, '淮南市', 340000, '淮南', 2, 9);
-INSERT INTO `cn_nojd` VALUES (340402, '大通区', 340400, '大通', 3, 2);
-INSERT INTO `cn_nojd` VALUES (340403, '田家庵区', 340400, '田家庵', 3, 5);
-INSERT INTO `cn_nojd` VALUES (340404, '谢家集区', 340400, '谢家集', 3, 6);
-INSERT INTO `cn_nojd` VALUES (340405, '八公山区', 340400, '八公山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (340406, '潘集区', 340400, '潘集', 3, 4);
-INSERT INTO `cn_nojd` VALUES (340421, '凤台县', 340400, '凤台', 3, 3);
-INSERT INTO `cn_nojd` VALUES (340500, '马鞍山市', 340000, '马鞍山', 2, 12);
-INSERT INTO `cn_nojd` VALUES (340503, '花山区', 340500, '花山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (340504, '雨山区', 340500, '雨山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (340506, '博望区', 340500, '博望', 3, 1);
-INSERT INTO `cn_nojd` VALUES (340521, '当涂县', 340500, '当涂', 3, 2);
-INSERT INTO `cn_nojd` VALUES (340600, '淮北市', 340000, '淮北', 2, 8);
-INSERT INTO `cn_nojd` VALUES (340602, '杜集区', 340600, '杜集', 3, 1);
-INSERT INTO `cn_nojd` VALUES (340603, '相山区', 340600, '相山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (340604, '烈山区', 340600, '烈山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (340621, '濉溪县', 340600, '濉溪', 3, 3);
-INSERT INTO `cn_nojd` VALUES (340700, '铜陵市', 340000, '铜陵', 2, 14);
-INSERT INTO `cn_nojd` VALUES (340702, '铜官山区', 340700, '铜官山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (340703, '狮子山区', 340700, '狮子山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (340711, '郊区', 340700, '郊区', 3, 1);
-INSERT INTO `cn_nojd` VALUES (340721, '铜陵县', 340700, '铜陵', 3, 4);
-INSERT INTO `cn_nojd` VALUES (340800, '安庆市', 340000, '安庆', 2, 1);
-INSERT INTO `cn_nojd` VALUES (340802, '迎江区', 340800, '迎江', 3, 8);
-INSERT INTO `cn_nojd` VALUES (340803, '大观区', 340800, '大观', 3, 1);
-INSERT INTO `cn_nojd` VALUES (340811, '宜秀区', 340800, '宜秀', 3, 9);
-INSERT INTO `cn_nojd` VALUES (340822, '怀宁县', 340800, '怀宁', 3, 2);
-INSERT INTO `cn_nojd` VALUES (340823, '枞阳县', 340800, '枞阳', 3, 11);
-INSERT INTO `cn_nojd` VALUES (340824, '潜山县', 340800, '潜山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (340825, '太湖县', 340800, '太湖', 3, 5);
-INSERT INTO `cn_nojd` VALUES (340826, '宿松县', 340800, '宿松', 3, 4);
-INSERT INTO `cn_nojd` VALUES (340827, '望江县', 340800, '望江', 3, 7);
-INSERT INTO `cn_nojd` VALUES (340828, '岳西县', 340800, '岳西', 3, 10);
-INSERT INTO `cn_nojd` VALUES (340881, '桐城市', 340800, '桐城', 3, 6);
-INSERT INTO `cn_nojd` VALUES (341000, '黄山市', 340000, '黄山', 2, 10);
-INSERT INTO `cn_nojd` VALUES (341002, '屯溪区', 341000, '屯溪', 3, 5);
-INSERT INTO `cn_nojd` VALUES (341003, '黄山区', 341000, '黄山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (341004, '徽州区', 341000, '徽州', 3, 2);
-INSERT INTO `cn_nojd` VALUES (341021, '歙县', 341000, '歙县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (341022, '休宁县', 341000, '休宁', 3, 6);
-INSERT INTO `cn_nojd` VALUES (341023, '黟县', 341000, '黟县', 3, 7);
-INSERT INTO `cn_nojd` VALUES (341024, '祁门县', 341000, '祁门', 3, 3);
-INSERT INTO `cn_nojd` VALUES (341100, '滁州市', 340000, '滁州', 2, 5);
-INSERT INTO `cn_nojd` VALUES (341102, '琅琊区', 341100, '琅琊', 3, 4);
-INSERT INTO `cn_nojd` VALUES (341103, '南谯区', 341100, '南谯', 3, 6);
-INSERT INTO `cn_nojd` VALUES (341122, '来安县', 341100, '来安', 3, 3);
-INSERT INTO `cn_nojd` VALUES (341124, '全椒县', 341100, '全椒', 3, 7);
-INSERT INTO `cn_nojd` VALUES (341125, '定远县', 341100, '定远', 3, 1);
-INSERT INTO `cn_nojd` VALUES (341126, '凤阳县', 341100, '凤阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (341181, '天长市', 341100, '天长', 3, 8);
-INSERT INTO `cn_nojd` VALUES (341182, '明光市', 341100, '明光', 3, 5);
-INSERT INTO `cn_nojd` VALUES (341200, '阜阳市', 340000, '阜阳', 2, 6);
-INSERT INTO `cn_nojd` VALUES (341202, '颍州区', 341200, '颍州', 3, 8);
-INSERT INTO `cn_nojd` VALUES (341203, '颍东区', 341200, '颍东', 3, 5);
-INSERT INTO `cn_nojd` VALUES (341204, '颍泉区', 341200, '颍泉', 3, 6);
-INSERT INTO `cn_nojd` VALUES (341221, '临泉县', 341200, '临泉', 3, 3);
-INSERT INTO `cn_nojd` VALUES (341222, '太和县', 341200, '太和', 3, 4);
-INSERT INTO `cn_nojd` VALUES (341225, '阜南县', 341200, '阜南', 3, 1);
-INSERT INTO `cn_nojd` VALUES (341226, '颍上县', 341200, '颍上', 3, 7);
-INSERT INTO `cn_nojd` VALUES (341282, '界首市', 341200, '界首', 3, 2);
-INSERT INTO `cn_nojd` VALUES (341300, '宿州市', 340000, '宿州', 2, 13);
-INSERT INTO `cn_nojd` VALUES (341302, '埇桥区', 341300, '埇桥', 3, 5);
-INSERT INTO `cn_nojd` VALUES (341321, '砀山县', 341300, '砀山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (341322, '萧县', 341300, '萧县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (341323, '灵璧县', 341300, '灵璧', 3, 2);
-INSERT INTO `cn_nojd` VALUES (341324, '泗县', 341300, '泗县', 3, 3);
-INSERT INTO `cn_nojd` VALUES (341400, '巢湖市', 340100, '巢湖', 3, 3);
-INSERT INTO `cn_nojd` VALUES (341421, '庐江县', 340100, '庐江', 3, 6);
-INSERT INTO `cn_nojd` VALUES (341422, '无为县', 340200, '无为', 3, 7);
-INSERT INTO `cn_nojd` VALUES (341423, '含山县', 340500, '含山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (341424, '和县', 340500, '和县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (341500, '六安市', 340000, '六安', 2, 11);
-INSERT INTO `cn_nojd` VALUES (341502, '金安区', 341500, '金安', 3, 3);
-INSERT INTO `cn_nojd` VALUES (341503, '裕安区', 341500, '裕安', 3, 7);
-INSERT INTO `cn_nojd` VALUES (341521, '寿县', 341500, '寿县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (341522, '霍邱县', 341500, '霍邱', 3, 1);
-INSERT INTO `cn_nojd` VALUES (341523, '舒城县', 341500, '舒城', 3, 6);
-INSERT INTO `cn_nojd` VALUES (341524, '金寨县', 341500, '金寨', 3, 4);
-INSERT INTO `cn_nojd` VALUES (341525, '霍山县', 341500, '霍山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (341600, '亳州市', 340000, '亳州', 2, 3);
-INSERT INTO `cn_nojd` VALUES (341602, '谯城区', 341600, '谯城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (341621, '涡阳县', 341600, '涡阳', 3, 1);
-INSERT INTO `cn_nojd` VALUES (341622, '蒙城县', 341600, '蒙城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (341623, '利辛县', 341600, '利辛', 3, 2);
-INSERT INTO `cn_nojd` VALUES (341700, '池州市', 340000, '池州', 2, 4);
-INSERT INTO `cn_nojd` VALUES (341702, '贵池区', 341700, '贵池', 3, 2);
-INSERT INTO `cn_nojd` VALUES (341721, '东至县', 341700, '东至', 3, 1);
-INSERT INTO `cn_nojd` VALUES (341722, '石台县', 341700, '石台', 3, 4);
-INSERT INTO `cn_nojd` VALUES (341723, '青阳县', 341700, '青阳', 3, 3);
-INSERT INTO `cn_nojd` VALUES (341800, '宣城市', 340000, '宣城', 2, 16);
-INSERT INTO `cn_nojd` VALUES (341802, '宣州区', 341800, '宣州', 3, 7);
-INSERT INTO `cn_nojd` VALUES (341821, '郎溪县', 341800, '郎溪', 3, 5);
-INSERT INTO `cn_nojd` VALUES (341822, '广德县', 341800, '广德', 3, 1);
-INSERT INTO `cn_nojd` VALUES (341823, '泾县', 341800, '泾县', 3, 3);
-INSERT INTO `cn_nojd` VALUES (341824, '绩溪县', 341800, '绩溪', 3, 4);
-INSERT INTO `cn_nojd` VALUES (341825, '旌德县', 341800, '旌德', 3, 2);
-INSERT INTO `cn_nojd` VALUES (341881, '宁国市', 341800, '宁国', 3, 6);
-INSERT INTO `cn_nojd` VALUES (350000, '福建省', 0, '福建', 1, 13);
-INSERT INTO `cn_nojd` VALUES (350100, '福州市', 350000, '福州', 2, 1);
-INSERT INTO `cn_nojd` VALUES (350102, '鼓楼区', 350100, '鼓楼', 3, 4);
-INSERT INTO `cn_nojd` VALUES (350103, '台江区', 350100, '台江', 3, 12);
-INSERT INTO `cn_nojd` VALUES (350104, '仓山区', 350100, '仓山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (350105, '马尾区', 350100, '马尾', 3, 8);
-INSERT INTO `cn_nojd` VALUES (350111, '晋安区', 350100, '晋安', 3, 5);
-INSERT INTO `cn_nojd` VALUES (350121, '闽侯县', 350100, '闽侯', 3, 9);
-INSERT INTO `cn_nojd` VALUES (350122, '连江县', 350100, '连江', 3, 6);
-INSERT INTO `cn_nojd` VALUES (350123, '罗源县', 350100, '罗源', 3, 7);
-INSERT INTO `cn_nojd` VALUES (350124, '闽清县', 350100, '闽清', 3, 10);
-INSERT INTO `cn_nojd` VALUES (350125, '永泰县', 350100, '永泰', 3, 13);
-INSERT INTO `cn_nojd` VALUES (350128, '平潭县', 350100, '平潭', 3, 11);
-INSERT INTO `cn_nojd` VALUES (350181, '福清市', 350100, '福清', 3, 3);
-INSERT INTO `cn_nojd` VALUES (350182, '长乐市', 350100, '长乐', 3, 2);
-INSERT INTO `cn_nojd` VALUES (350200, '厦门市', 350000, '厦门', 2, 8);
-INSERT INTO `cn_nojd` VALUES (350203, '思明区', 350200, '思明', 3, 4);
-INSERT INTO `cn_nojd` VALUES (350205, '海沧区', 350200, '海沧', 3, 1);
-INSERT INTO `cn_nojd` VALUES (350206, '湖里区', 350200, '湖里', 3, 2);
-INSERT INTO `cn_nojd` VALUES (350211, '集美区', 350200, '集美', 3, 3);
-INSERT INTO `cn_nojd` VALUES (350212, '同安区', 350200, '同安', 3, 5);
-INSERT INTO `cn_nojd` VALUES (350213, '翔安区', 350200, '翔安', 3, 6);
-INSERT INTO `cn_nojd` VALUES (350300, '莆田市', 350000, '莆田', 2, 5);
-INSERT INTO `cn_nojd` VALUES (350302, '城厢区', 350300, '城厢', 3, 1);
-INSERT INTO `cn_nojd` VALUES (350303, '涵江区', 350300, '涵江', 3, 2);
-INSERT INTO `cn_nojd` VALUES (350304, '荔城区', 350300, '荔城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (350305, '秀屿区', 350300, '秀屿', 3, 5);
-INSERT INTO `cn_nojd` VALUES (350322, '仙游县', 350300, '仙游', 3, 4);
-INSERT INTO `cn_nojd` VALUES (350400, '三明市', 350000, '三明', 2, 7);
-INSERT INTO `cn_nojd` VALUES (350402, '梅列区', 350400, '梅列', 3, 4);
-INSERT INTO `cn_nojd` VALUES (350403, '三元区', 350400, '三元', 3, 8);
-INSERT INTO `cn_nojd` VALUES (350421, '明溪县', 350400, '明溪', 3, 5);
-INSERT INTO `cn_nojd` VALUES (350423, '清流县', 350400, '清流', 3, 7);
-INSERT INTO `cn_nojd` VALUES (350424, '宁化县', 350400, '宁化', 3, 6);
-INSERT INTO `cn_nojd` VALUES (350425, '大田县', 350400, '大田', 3, 1);
-INSERT INTO `cn_nojd` VALUES (350426, '尤溪县', 350400, '尤溪', 3, 12);
-INSERT INTO `cn_nojd` VALUES (350427, '沙县', 350400, '沙县', 3, 9);
-INSERT INTO `cn_nojd` VALUES (350428, '将乐县', 350400, '将乐', 3, 2);
-INSERT INTO `cn_nojd` VALUES (350429, '泰宁县', 350400, '泰宁', 3, 10);
-INSERT INTO `cn_nojd` VALUES (350430, '建宁县', 350400, '建宁', 3, 3);
-INSERT INTO `cn_nojd` VALUES (350481, '永安市', 350400, '永安', 3, 11);
-INSERT INTO `cn_nojd` VALUES (350500, '泉州市', 350000, '泉州', 2, 6);
-INSERT INTO `cn_nojd` VALUES (350502, '鲤城区', 350500, '鲤城', 3, 7);
-INSERT INTO `cn_nojd` VALUES (350503, '丰泽区', 350500, '丰泽', 3, 3);
-INSERT INTO `cn_nojd` VALUES (350504, '洛江区', 350500, '洛江', 3, 8);
-INSERT INTO `cn_nojd` VALUES (350505, '泉港区', 350500, '泉港', 3, 10);
-INSERT INTO `cn_nojd` VALUES (350521, '惠安县', 350500, '惠安', 3, 4);
-INSERT INTO `cn_nojd` VALUES (350524, '安溪县', 350500, '安溪', 3, 1);
-INSERT INTO `cn_nojd` VALUES (350525, '永春县', 350500, '永春', 3, 12);
-INSERT INTO `cn_nojd` VALUES (350526, '德化县', 350500, '德化', 3, 2);
-INSERT INTO `cn_nojd` VALUES (350527, '金门县', 350500, '金门', 3, 6);
-INSERT INTO `cn_nojd` VALUES (350581, '石狮市', 350500, '石狮', 3, 11);
-INSERT INTO `cn_nojd` VALUES (350582, '晋江市', 350500, '晋江', 3, 5);
-INSERT INTO `cn_nojd` VALUES (350583, '南安市', 350500, '南安', 3, 9);
-INSERT INTO `cn_nojd` VALUES (350600, '漳州市', 350000, '漳州', 2, 9);
-INSERT INTO `cn_nojd` VALUES (350602, '芗城区', 350600, '芗城', 3, 8);
-INSERT INTO `cn_nojd` VALUES (350603, '龙文区', 350600, '龙文', 3, 5);
-INSERT INTO `cn_nojd` VALUES (350622, '云霄县', 350600, '云霄', 3, 9);
-INSERT INTO `cn_nojd` VALUES (350623, '漳浦县', 350600, '漳浦', 3, 10);
-INSERT INTO `cn_nojd` VALUES (350624, '诏安县', 350600, '诏安', 3, 11);
-INSERT INTO `cn_nojd` VALUES (350625, '长泰县', 350600, '长泰', 3, 1);
-INSERT INTO `cn_nojd` VALUES (350626, '东山县', 350600, '东山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (350627, '南靖县', 350600, '南靖', 3, 6);
-INSERT INTO `cn_nojd` VALUES (350628, '平和县', 350600, '平和', 3, 7);
-INSERT INTO `cn_nojd` VALUES (350629, '华安县', 350600, '华安', 3, 3);
-INSERT INTO `cn_nojd` VALUES (350681, '龙海市', 350600, '龙海', 3, 4);
-INSERT INTO `cn_nojd` VALUES (350700, '南平市', 350000, '南平', 2, 3);
-INSERT INTO `cn_nojd` VALUES (350702, '延平区', 350700, '延平', 3, 9);
-INSERT INTO `cn_nojd` VALUES (350721, '顺昌县', 350700, '顺昌', 3, 6);
-INSERT INTO `cn_nojd` VALUES (350722, '浦城县', 350700, '浦城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (350723, '光泽县', 350700, '光泽', 3, 1);
-INSERT INTO `cn_nojd` VALUES (350724, '松溪县', 350700, '松溪', 3, 7);
-INSERT INTO `cn_nojd` VALUES (350725, '政和县', 350700, '政和', 3, 10);
-INSERT INTO `cn_nojd` VALUES (350781, '邵武市', 350700, '邵武', 3, 5);
-INSERT INTO `cn_nojd` VALUES (350782, '武夷山市', 350700, '武夷山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (350783, '建瓯市', 350700, '建瓯', 3, 2);
-INSERT INTO `cn_nojd` VALUES (350784, '建阳市', 350700, '建阳', 3, 3);
-INSERT INTO `cn_nojd` VALUES (350800, '龙岩市', 350000, '龙岩', 2, 2);
-INSERT INTO `cn_nojd` VALUES (350802, '新罗区', 350800, '新罗', 3, 5);
-INSERT INTO `cn_nojd` VALUES (350821, '长汀县', 350800, '长汀', 3, 1);
-INSERT INTO `cn_nojd` VALUES (350822, '永定县', 350800, '永定', 3, 6);
-INSERT INTO `cn_nojd` VALUES (350823, '上杭县', 350800, '上杭', 3, 3);
-INSERT INTO `cn_nojd` VALUES (350824, '武平县', 350800, '武平', 3, 4);
-INSERT INTO `cn_nojd` VALUES (350825, '连城县', 350800, '连城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (350881, '漳平市', 350800, '漳平', 3, 7);
-INSERT INTO `cn_nojd` VALUES (350900, '宁德市', 350000, '宁德', 2, 4);
-INSERT INTO `cn_nojd` VALUES (350902, '蕉城区', 350900, '蕉城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (350921, '霞浦县', 350900, '霞浦', 3, 7);
-INSERT INTO `cn_nojd` VALUES (350922, '古田县', 350900, '古田', 3, 3);
-INSERT INTO `cn_nojd` VALUES (350923, '屏南县', 350900, '屏南', 3, 5);
-INSERT INTO `cn_nojd` VALUES (350924, '寿宁县', 350900, '寿宁', 3, 6);
-INSERT INTO `cn_nojd` VALUES (350925, '周宁县', 350900, '周宁', 3, 9);
-INSERT INTO `cn_nojd` VALUES (350926, '柘荣县', 350900, '柘荣', 3, 8);
-INSERT INTO `cn_nojd` VALUES (350981, '福安市', 350900, '福安', 3, 1);
-INSERT INTO `cn_nojd` VALUES (350982, '福鼎市', 350900, '福鼎', 3, 2);
-INSERT INTO `cn_nojd` VALUES (360000, '江西省', 0, '江西', 1, 14);
-INSERT INTO `cn_nojd` VALUES (360100, '南昌市', 360000, '南昌', 2, 6);
-INSERT INTO `cn_nojd` VALUES (360102, '东湖区', 360100, '东湖', 3, 2);
-INSERT INTO `cn_nojd` VALUES (360103, '西湖区', 360100, '西湖', 3, 8);
-INSERT INTO `cn_nojd` VALUES (360104, '青云谱区', 360100, '青云谱', 3, 6);
-INSERT INTO `cn_nojd` VALUES (360105, '湾里区', 360100, '湾里', 3, 7);
-INSERT INTO `cn_nojd` VALUES (360111, '青山湖区', 360100, '青山湖', 3, 5);
-INSERT INTO `cn_nojd` VALUES (360121, '南昌县', 360100, '南昌', 3, 4);
-INSERT INTO `cn_nojd` VALUES (360122, '新建县', 360100, '新建', 3, 9);
-INSERT INTO `cn_nojd` VALUES (360123, '安义县', 360100, '安义', 3, 1);
-INSERT INTO `cn_nojd` VALUES (360124, '进贤县', 360100, '进贤', 3, 3);
-INSERT INTO `cn_nojd` VALUES (360200, '景德镇市', 360000, '景德镇', 2, 4);
-INSERT INTO `cn_nojd` VALUES (360202, '昌江区', 360200, '昌江', 3, 1);
-INSERT INTO `cn_nojd` VALUES (360203, '珠山区', 360200, '珠山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (360222, '浮梁县', 360200, '浮梁', 3, 2);
-INSERT INTO `cn_nojd` VALUES (360281, '乐平市', 360200, '乐平', 3, 3);
-INSERT INTO `cn_nojd` VALUES (360300, '萍乡市', 360000, '萍乡', 2, 7);
-INSERT INTO `cn_nojd` VALUES (360302, '安源区', 360300, '安源', 3, 1);
-INSERT INTO `cn_nojd` VALUES (360313, '湘东区', 360300, '湘东', 3, 5);
-INSERT INTO `cn_nojd` VALUES (360321, '莲花县', 360300, '莲花', 3, 2);
-INSERT INTO `cn_nojd` VALUES (360322, '上栗县', 360300, '上栗', 3, 4);
-INSERT INTO `cn_nojd` VALUES (360323, '芦溪县', 360300, '芦溪', 3, 3);
-INSERT INTO `cn_nojd` VALUES (360400, '九江市', 360000, '九江', 2, 5);
-INSERT INTO `cn_nojd` VALUES (360402, '庐山区', 360400, '庐山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (360403, '浔阳区', 360400, '浔阳', 3, 12);
-INSERT INTO `cn_nojd` VALUES (360421, '九江县', 360400, '九江', 3, 5);
-INSERT INTO `cn_nojd` VALUES (360423, '武宁县', 360400, '武宁', 3, 9);
-INSERT INTO `cn_nojd` VALUES (360424, '修水县', 360400, '修水', 3, 11);
-INSERT INTO `cn_nojd` VALUES (360425, '永修县', 360400, '永修', 3, 13);
-INSERT INTO `cn_nojd` VALUES (360426, '德安县', 360400, '德安', 3, 1);
-INSERT INTO `cn_nojd` VALUES (360427, '星子县', 360400, '星子', 3, 10);
-INSERT INTO `cn_nojd` VALUES (360428, '都昌县', 360400, '都昌', 3, 2);
-INSERT INTO `cn_nojd` VALUES (360429, '湖口县', 360400, '湖口', 3, 4);
-INSERT INTO `cn_nojd` VALUES (360430, '彭泽县', 360400, '彭泽', 3, 7);
-INSERT INTO `cn_nojd` VALUES (360481, '瑞昌市', 360400, '瑞昌', 3, 8);
-INSERT INTO `cn_nojd` VALUES (360483, '共青城市', 360400, '共青城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (360500, '新余市', 360000, '新余', 2, 9);
-INSERT INTO `cn_nojd` VALUES (360502, '渝水区', 360500, '渝水', 3, 2);
-INSERT INTO `cn_nojd` VALUES (360521, '分宜县', 360500, '分宜', 3, 1);
-INSERT INTO `cn_nojd` VALUES (360600, '鹰潭市', 360000, '鹰潭', 2, 11);
-INSERT INTO `cn_nojd` VALUES (360602, '月湖区', 360600, '月湖', 3, 2);
-INSERT INTO `cn_nojd` VALUES (360622, '余江县', 360600, '余江', 3, 3);
-INSERT INTO `cn_nojd` VALUES (360681, '贵溪市', 360600, '贵溪', 3, 1);
-INSERT INTO `cn_nojd` VALUES (360700, '赣州市', 360000, '赣州', 2, 2);
-INSERT INTO `cn_nojd` VALUES (360702, '章贡区', 360700, '章贡', 3, 18);
-INSERT INTO `cn_nojd` VALUES (360721, '赣县', 360700, '赣县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (360722, '信丰县', 360700, '信丰', 3, 13);
-INSERT INTO `cn_nojd` VALUES (360723, '大余县', 360700, '大余', 3, 3);
-INSERT INTO `cn_nojd` VALUES (360724, '上犹县', 360700, '上犹', 3, 12);
-INSERT INTO `cn_nojd` VALUES (360725, '崇义县', 360700, '崇义', 3, 2);
-INSERT INTO `cn_nojd` VALUES (360726, '安远县', 360700, '安远', 3, 1);
-INSERT INTO `cn_nojd` VALUES (360727, '龙南县', 360700, '龙南', 3, 7);
-INSERT INTO `cn_nojd` VALUES (360728, '定南县', 360700, '定南', 3, 4);
-INSERT INTO `cn_nojd` VALUES (360729, '全南县', 360700, '全南', 3, 10);
-INSERT INTO `cn_nojd` VALUES (360730, '宁都县', 360700, '宁都', 3, 9);
-INSERT INTO `cn_nojd` VALUES (360731, '于都县', 360700, '于都', 3, 17);
-INSERT INTO `cn_nojd` VALUES (360732, '兴国县', 360700, '兴国', 3, 15);
-INSERT INTO `cn_nojd` VALUES (360733, '会昌县', 360700, '会昌', 3, 6);
-INSERT INTO `cn_nojd` VALUES (360734, '寻乌县', 360700, '寻乌', 3, 16);
-INSERT INTO `cn_nojd` VALUES (360735, '石城县', 360700, '石城', 3, 14);
-INSERT INTO `cn_nojd` VALUES (360781, '瑞金市', 360700, '瑞金', 3, 11);
-INSERT INTO `cn_nojd` VALUES (360782, '南康市', 360700, '南康', 3, 8);
-INSERT INTO `cn_nojd` VALUES (360800, '吉安市', 360000, '吉安', 2, 3);
-INSERT INTO `cn_nojd` VALUES (360802, '吉州区', 360800, '吉州', 3, 5);
-INSERT INTO `cn_nojd` VALUES (360803, '青原区', 360800, '青原', 3, 6);
-INSERT INTO `cn_nojd` VALUES (360821, '吉安县', 360800, '吉安', 3, 2);
-INSERT INTO `cn_nojd` VALUES (360822, '吉水县', 360800, '吉水', 3, 4);
-INSERT INTO `cn_nojd` VALUES (360823, '峡江县', 360800, '峡江', 3, 10);
-INSERT INTO `cn_nojd` VALUES (360824, '新干县', 360800, '新干', 3, 11);
-INSERT INTO `cn_nojd` VALUES (360825, '永丰县', 360800, '永丰', 3, 12);
-INSERT INTO `cn_nojd` VALUES (360826, '泰和县', 360800, '泰和', 3, 8);
-INSERT INTO `cn_nojd` VALUES (360827, '遂川县', 360800, '遂川', 3, 7);
-INSERT INTO `cn_nojd` VALUES (360828, '万安县', 360800, '万安', 3, 9);
-INSERT INTO `cn_nojd` VALUES (360829, '安福县', 360800, '安福', 3, 1);
-INSERT INTO `cn_nojd` VALUES (360830, '永新县', 360800, '永新', 3, 13);
-INSERT INTO `cn_nojd` VALUES (360881, '井冈山市', 360800, '井冈山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (360900, '宜春市', 360000, '宜春', 2, 10);
-INSERT INTO `cn_nojd` VALUES (360902, '袁州区', 360900, '袁州', 3, 9);
-INSERT INTO `cn_nojd` VALUES (360921, '奉新县', 360900, '奉新', 3, 2);
-INSERT INTO `cn_nojd` VALUES (360922, '万载县', 360900, '万载', 3, 7);
-INSERT INTO `cn_nojd` VALUES (360923, '上高县', 360900, '上高', 3, 5);
-INSERT INTO `cn_nojd` VALUES (360924, '宜丰县', 360900, '宜丰', 3, 8);
-INSERT INTO `cn_nojd` VALUES (360925, '靖安县', 360900, '靖安', 3, 4);
-INSERT INTO `cn_nojd` VALUES (360926, '铜鼓县', 360900, '铜鼓', 3, 6);
-INSERT INTO `cn_nojd` VALUES (360981, '丰城市', 360900, '丰城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (360982, '樟树市', 360900, '樟树', 3, 10);
-INSERT INTO `cn_nojd` VALUES (360983, '高安市', 360900, '高安', 3, 3);
-INSERT INTO `cn_nojd` VALUES (361000, '抚州市', 360000, '抚州', 2, 1);
-INSERT INTO `cn_nojd` VALUES (361002, '临川区', 361000, '临川', 3, 7);
-INSERT INTO `cn_nojd` VALUES (361021, '南城县', 361000, '南城', 3, 8);
-INSERT INTO `cn_nojd` VALUES (361022, '黎川县', 361000, '黎川', 3, 6);
-INSERT INTO `cn_nojd` VALUES (361023, '南丰县', 361000, '南丰', 3, 9);
-INSERT INTO `cn_nojd` VALUES (361024, '崇仁县', 361000, '崇仁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (361025, '乐安县', 361000, '乐安', 3, 5);
-INSERT INTO `cn_nojd` VALUES (361026, '宜黄县', 361000, '宜黄', 3, 10);
-INSERT INTO `cn_nojd` VALUES (361027, '金溪县', 361000, '金溪', 3, 4);
-INSERT INTO `cn_nojd` VALUES (361028, '资溪县', 361000, '资溪', 3, 11);
-INSERT INTO `cn_nojd` VALUES (361029, '东乡县', 361000, '东乡', 3, 2);
-INSERT INTO `cn_nojd` VALUES (361030, '广昌县', 361000, '广昌', 3, 3);
-INSERT INTO `cn_nojd` VALUES (361100, '上饶市', 360000, '上饶', 2, 8);
-INSERT INTO `cn_nojd` VALUES (361102, '信州区', 361100, '信州', 3, 6);
-INSERT INTO `cn_nojd` VALUES (361121, '上饶县', 361100, '上饶', 3, 5);
-INSERT INTO `cn_nojd` VALUES (361122, '广丰县', 361100, '广丰', 3, 2);
-INSERT INTO `cn_nojd` VALUES (361123, '玉山县', 361100, '玉山', 3, 12);
-INSERT INTO `cn_nojd` VALUES (361124, '铅山县', 361100, '铅山', 3, 9);
-INSERT INTO `cn_nojd` VALUES (361125, '横峰县', 361100, '横峰', 3, 3);
-INSERT INTO `cn_nojd` VALUES (361126, '弋阳县', 361100, '弋阳', 3, 10);
-INSERT INTO `cn_nojd` VALUES (361127, '余干县', 361100, '余干', 3, 11);
-INSERT INTO `cn_nojd` VALUES (361128, '鄱阳县', 361100, '鄱阳', 3, 4);
-INSERT INTO `cn_nojd` VALUES (361129, '万年县', 361100, '万年', 3, 7);
-INSERT INTO `cn_nojd` VALUES (361130, '婺源县', 361100, '婺源', 3, 8);
-INSERT INTO `cn_nojd` VALUES (361181, '德兴市', 361100, '德兴', 3, 1);
-INSERT INTO `cn_nojd` VALUES (370000, '山东省', 0, '山东', 1, 15);
-INSERT INTO `cn_nojd` VALUES (370100, '济南市', 370000, '济南', 2, 5);
-INSERT INTO `cn_nojd` VALUES (370102, '历下区', 370100, '历下', 3, 5);
-INSERT INTO `cn_nojd` VALUES (370103, '市中区', 370100, '市中', 3, 8);
-INSERT INTO `cn_nojd` VALUES (370104, '槐荫区', 370100, '槐荫', 3, 2);
-INSERT INTO `cn_nojd` VALUES (370105, '天桥区', 370100, '天桥', 3, 9);
-INSERT INTO `cn_nojd` VALUES (370112, '历城区', 370100, '历城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (370113, '长清区', 370100, '长清', 3, 1);
-INSERT INTO `cn_nojd` VALUES (370124, '平阴县', 370100, '平阴', 3, 6);
-INSERT INTO `cn_nojd` VALUES (370125, '济阳县', 370100, '济阳', 3, 3);
-INSERT INTO `cn_nojd` VALUES (370126, '商河县', 370100, '商河', 3, 7);
-INSERT INTO `cn_nojd` VALUES (370181, '章丘市', 370100, '章丘', 3, 10);
-INSERT INTO `cn_nojd` VALUES (370200, '青岛市', 370000, '青岛', 2, 10);
-INSERT INTO `cn_nojd` VALUES (370202, '市南区', 370200, '市南', 3, 10);
-INSERT INTO `cn_nojd` VALUES (370203, '市北区', 370200, '市北', 3, 9);
-INSERT INTO `cn_nojd` VALUES (370211, '黄岛区', 370200, '黄岛', 3, 2);
-INSERT INTO `cn_nojd` VALUES (370212, '崂山区', 370200, '崂山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (370213, '李沧区', 370200, '李沧', 3, 7);
-INSERT INTO `cn_nojd` VALUES (370214, '城阳区', 370200, '城阳', 3, 1);
-INSERT INTO `cn_nojd` VALUES (370281, '胶州市', 370200, '胶州', 3, 3);
-INSERT INTO `cn_nojd` VALUES (370282, '即墨市', 370200, '即墨', 3, 4);
-INSERT INTO `cn_nojd` VALUES (370283, '平度市', 370200, '平度', 3, 8);
-INSERT INTO `cn_nojd` VALUES (370285, '莱西市', 370200, '莱西', 3, 5);
-INSERT INTO `cn_nojd` VALUES (370300, '淄博市', 370000, '淄博', 2, 17);
-INSERT INTO `cn_nojd` VALUES (370302, '淄川区', 370300, '淄川', 3, 8);
-INSERT INTO `cn_nojd` VALUES (370303, '张店区', 370300, '张店', 3, 6);
-INSERT INTO `cn_nojd` VALUES (370304, '博山区', 370300, '博山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (370305, '临淄区', 370300, '临淄', 3, 4);
-INSERT INTO `cn_nojd` VALUES (370306, '周村区', 370300, '周村', 3, 7);
-INSERT INTO `cn_nojd` VALUES (370321, '桓台县', 370300, '桓台', 3, 3);
-INSERT INTO `cn_nojd` VALUES (370322, '高青县', 370300, '高青', 3, 2);
-INSERT INTO `cn_nojd` VALUES (370323, '沂源县', 370300, '沂源', 3, 5);
-INSERT INTO `cn_nojd` VALUES (370400, '枣庄市', 370000, '枣庄', 2, 16);
-INSERT INTO `cn_nojd` VALUES (370402, '市中区', 370400, '市中', 3, 2);
-INSERT INTO `cn_nojd` VALUES (370403, '薛城区', 370400, '薛城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (370404, '峄城区', 370400, '峄城', 3, 6);
-INSERT INTO `cn_nojd` VALUES (370405, '台儿庄区', 370400, '台儿庄', 3, 3);
-INSERT INTO `cn_nojd` VALUES (370406, '山亭区', 370400, '山亭', 3, 1);
-INSERT INTO `cn_nojd` VALUES (370481, '滕州市', 370400, '滕州', 3, 4);
-INSERT INTO `cn_nojd` VALUES (370500, '东营市', 370000, '东营', 2, 3);
-INSERT INTO `cn_nojd` VALUES (370502, '东营区', 370500, '东营', 3, 1);
-INSERT INTO `cn_nojd` VALUES (370503, '河口区', 370500, '河口', 3, 3);
-INSERT INTO `cn_nojd` VALUES (370521, '垦利县', 370500, '垦利', 3, 4);
-INSERT INTO `cn_nojd` VALUES (370522, '利津县', 370500, '利津', 3, 5);
-INSERT INTO `cn_nojd` VALUES (370523, '广饶县', 370500, '广饶', 3, 2);
-INSERT INTO `cn_nojd` VALUES (370600, '烟台市', 370000, '烟台', 2, 15);
-INSERT INTO `cn_nojd` VALUES (370602, '芝罘区', 370600, '芝罘', 3, 12);
-INSERT INTO `cn_nojd` VALUES (370611, '福山区', 370600, '福山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (370612, '牟平区', 370600, '牟平', 3, 8);
-INSERT INTO `cn_nojd` VALUES (370613, '莱山区', 370600, '莱山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (370634, '长岛县', 370600, '长岛', 3, 1);
-INSERT INTO `cn_nojd` VALUES (370681, '龙口市', 370600, '龙口', 3, 7);
-INSERT INTO `cn_nojd` VALUES (370682, '莱阳市', 370600, '莱阳', 3, 5);
-INSERT INTO `cn_nojd` VALUES (370683, '莱州市', 370600, '莱州', 3, 6);
-INSERT INTO `cn_nojd` VALUES (370684, '蓬莱市', 370600, '蓬莱', 3, 9);
-INSERT INTO `cn_nojd` VALUES (370685, '招远市', 370600, '招远', 3, 11);
-INSERT INTO `cn_nojd` VALUES (370686, '栖霞市', 370600, '栖霞', 3, 10);
-INSERT INTO `cn_nojd` VALUES (370687, '海阳市', 370600, '海阳', 3, 3);
-INSERT INTO `cn_nojd` VALUES (370700, '潍坊市', 370000, '潍坊', 2, 13);
-INSERT INTO `cn_nojd` VALUES (370702, '潍城区', 370700, '潍城', 3, 11);
-INSERT INTO `cn_nojd` VALUES (370703, '寒亭区', 370700, '寒亭', 3, 6);
-INSERT INTO `cn_nojd` VALUES (370704, '坊子区', 370700, '坊子', 3, 4);
-INSERT INTO `cn_nojd` VALUES (370705, '奎文区', 370700, '奎文', 3, 7);
-INSERT INTO `cn_nojd` VALUES (370724, '临朐县', 370700, '临朐', 3, 8);
-INSERT INTO `cn_nojd` VALUES (370725, '昌乐县', 370700, '昌乐', 3, 2);
-INSERT INTO `cn_nojd` VALUES (370781, '青州市', 370700, '青州', 3, 9);
-INSERT INTO `cn_nojd` VALUES (370782, '诸城市', 370700, '诸城', 3, 12);
-INSERT INTO `cn_nojd` VALUES (370783, '寿光市', 370700, '寿光', 3, 10);
-INSERT INTO `cn_nojd` VALUES (370784, '安丘市', 370700, '安丘', 3, 1);
-INSERT INTO `cn_nojd` VALUES (370785, '高密市', 370700, '高密', 3, 5);
-INSERT INTO `cn_nojd` VALUES (370786, '昌邑市', 370700, '昌邑', 3, 3);
-INSERT INTO `cn_nojd` VALUES (370800, '济宁市', 370000, '济宁', 2, 6);
-INSERT INTO `cn_nojd` VALUES (370802, '市中区', 370800, '市中', 3, 6);
-INSERT INTO `cn_nojd` VALUES (370811, '任城区', 370800, '任城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (370826, '微山县', 370800, '微山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (370827, '鱼台县', 370800, '鱼台', 3, 11);
-INSERT INTO `cn_nojd` VALUES (370828, '金乡县', 370800, '金乡', 3, 2);
-INSERT INTO `cn_nojd` VALUES (370829, '嘉祥县', 370800, '嘉祥', 3, 1);
-INSERT INTO `cn_nojd` VALUES (370830, '汶上县', 370800, '汶上', 3, 9);
-INSERT INTO `cn_nojd` VALUES (370831, '泗水县', 370800, '泗水', 3, 7);
-INSERT INTO `cn_nojd` VALUES (370832, '梁山县', 370800, '梁山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (370881, '曲阜市', 370800, '曲阜', 3, 4);
-INSERT INTO `cn_nojd` VALUES (370882, '兖州市', 370800, '兖州', 3, 10);
-INSERT INTO `cn_nojd` VALUES (370883, '邹城市', 370800, '邹城', 3, 12);
-INSERT INTO `cn_nojd` VALUES (370900, '泰安市', 370000, '泰安', 2, 12);
-INSERT INTO `cn_nojd` VALUES (370902, '泰山区', 370900, '泰山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (370903, '岱岳区', 370900, '岱岳', 3, 1);
-INSERT INTO `cn_nojd` VALUES (370921, '宁阳县', 370900, '宁阳', 3, 4);
-INSERT INTO `cn_nojd` VALUES (370923, '东平县', 370900, '东平', 3, 2);
-INSERT INTO `cn_nojd` VALUES (370982, '新泰市', 370900, '新泰', 3, 6);
-INSERT INTO `cn_nojd` VALUES (370983, '肥城市', 370900, '肥城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (371000, '威海市', 370000, '威海', 2, 14);
-INSERT INTO `cn_nojd` VALUES (371002, '环翠区', 371000, '环翠', 3, 1);
-INSERT INTO `cn_nojd` VALUES (371081, '文登市', 371000, '文登', 3, 4);
-INSERT INTO `cn_nojd` VALUES (371082, '荣成市', 371000, '荣成', 3, 2);
-INSERT INTO `cn_nojd` VALUES (371083, '乳山市', 371000, '乳山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (371100, '日照市', 370000, '日照', 2, 11);
-INSERT INTO `cn_nojd` VALUES (371102, '东港区', 371100, '东港', 3, 1);
-INSERT INTO `cn_nojd` VALUES (371103, '岚山区', 371100, '岚山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (371121, '五莲县', 371100, '五莲', 3, 4);
-INSERT INTO `cn_nojd` VALUES (371122, '莒县', 371100, '莒县', 3, 2);
-INSERT INTO `cn_nojd` VALUES (371200, '莱芜市', 370000, '莱芜', 2, 7);
-INSERT INTO `cn_nojd` VALUES (371202, '莱城区', 371200, '莱城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (371203, '钢城区', 371200, '钢城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (371300, '临沂市', 370000, '临沂', 2, 9);
-INSERT INTO `cn_nojd` VALUES (371302, '兰山区', 371300, '兰山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (371311, '罗庄区', 371300, '罗庄', 3, 7);
-INSERT INTO `cn_nojd` VALUES (371312, '河东区', 371300, '河东', 3, 3);
-INSERT INTO `cn_nojd` VALUES (371321, '沂南县', 371300, '沂南', 3, 11);
-INSERT INTO `cn_nojd` VALUES (371322, '郯城县', 371300, '郯城', 3, 10);
-INSERT INTO `cn_nojd` VALUES (371323, '沂水县', 371300, '沂水', 3, 12);
-INSERT INTO `cn_nojd` VALUES (371324, '苍山县', 371300, '苍山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (371325, '费县', 371300, '费县', 3, 2);
-INSERT INTO `cn_nojd` VALUES (371326, '平邑县', 371300, '平邑', 3, 9);
-INSERT INTO `cn_nojd` VALUES (371327, '莒南县', 371300, '莒南', 3, 4);
-INSERT INTO `cn_nojd` VALUES (371328, '蒙阴县', 371300, '蒙阴', 3, 8);
-INSERT INTO `cn_nojd` VALUES (371329, '临沭县', 371300, '临沭', 3, 6);
-INSERT INTO `cn_nojd` VALUES (371400, '德州市', 370000, '德州', 2, 2);
-INSERT INTO `cn_nojd` VALUES (371402, '德城区', 371400, '德城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (371421, '陵县', 371400, '陵县', 3, 3);
-INSERT INTO `cn_nojd` VALUES (371422, '宁津县', 371400, '宁津', 3, 5);
-INSERT INTO `cn_nojd` VALUES (371423, '庆云县', 371400, '庆云', 3, 8);
-INSERT INTO `cn_nojd` VALUES (371424, '临邑县', 371400, '临邑', 3, 4);
-INSERT INTO `cn_nojd` VALUES (371425, '齐河县', 371400, '齐河', 3, 7);
-INSERT INTO `cn_nojd` VALUES (371426, '平原县', 371400, '平原', 3, 6);
-INSERT INTO `cn_nojd` VALUES (371427, '夏津县', 371400, '夏津', 3, 10);
-INSERT INTO `cn_nojd` VALUES (371428, '武城县', 371400, '武城', 3, 9);
-INSERT INTO `cn_nojd` VALUES (371481, '乐陵市', 371400, '乐陵', 3, 2);
-INSERT INTO `cn_nojd` VALUES (371482, '禹城市', 371400, '禹城', 3, 11);
-INSERT INTO `cn_nojd` VALUES (371500, '聊城市', 370000, '聊城', 2, 8);
-INSERT INTO `cn_nojd` VALUES (371502, '东昌府区', 371500, '东昌府', 3, 2);
-INSERT INTO `cn_nojd` VALUES (371521, '阳谷县', 371500, '阳谷', 3, 8);
-INSERT INTO `cn_nojd` VALUES (371522, '莘县', 371500, '莘县', 3, 7);
-INSERT INTO `cn_nojd` VALUES (371523, '茌平县', 371500, '茌平', 3, 1);
-INSERT INTO `cn_nojd` VALUES (371524, '东阿县', 371500, '东阿', 3, 3);
-INSERT INTO `cn_nojd` VALUES (371525, '冠县', 371500, '冠县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (371526, '高唐县', 371500, '高唐', 3, 4);
-INSERT INTO `cn_nojd` VALUES (371581, '临清市', 371500, '临清', 3, 6);
-INSERT INTO `cn_nojd` VALUES (371600, '滨州市', 370000, '滨州', 2, 1);
-INSERT INTO `cn_nojd` VALUES (371602, '滨城区', 371600, '滨城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (371621, '惠民县', 371600, '惠民', 3, 3);
-INSERT INTO `cn_nojd` VALUES (371622, '阳信县', 371600, '阳信', 3, 5);
-INSERT INTO `cn_nojd` VALUES (371623, '无棣县', 371600, '无棣', 3, 4);
-INSERT INTO `cn_nojd` VALUES (371624, '沾化县', 371600, '沾化', 3, 6);
-INSERT INTO `cn_nojd` VALUES (371625, '博兴县', 371600, '博兴', 3, 2);
-INSERT INTO `cn_nojd` VALUES (371626, '邹平县', 371600, '邹平', 3, 7);
-INSERT INTO `cn_nojd` VALUES (371700, '菏泽市', 370000, '菏泽', 2, 4);
-INSERT INTO `cn_nojd` VALUES (371702, '牡丹区', 371700, '牡丹', 3, 7);
-INSERT INTO `cn_nojd` VALUES (371721, '曹县', 371700, '曹县', 3, 1);
-INSERT INTO `cn_nojd` VALUES (371722, '单县', 371700, '单县', 3, 8);
-INSERT INTO `cn_nojd` VALUES (371723, '成武县', 371700, '成武', 3, 2);
-INSERT INTO `cn_nojd` VALUES (371724, '巨野县', 371700, '巨野', 3, 6);
-INSERT INTO `cn_nojd` VALUES (371725, '郓城县', 371700, '郓城', 3, 9);
-INSERT INTO `cn_nojd` VALUES (371726, '鄄城县', 371700, '鄄城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (371727, '定陶县', 371700, '定陶', 3, 3);
-INSERT INTO `cn_nojd` VALUES (371728, '东明县', 371700, '东明', 3, 4);
-INSERT INTO `cn_nojd` VALUES (410000, '河南省', 0, '河南', 1, 16);
-INSERT INTO `cn_nojd` VALUES (410100, '郑州市', 410000, '郑州', 2, 16);
-INSERT INTO `cn_nojd` VALUES (410102, '中原区', 410100, '中原', 3, 12);
-INSERT INTO `cn_nojd` VALUES (410103, '二七区', 410100, '二七', 3, 2);
-INSERT INTO `cn_nojd` VALUES (410104, '管城回族区', 410100, '管城回族', 3, 4);
-INSERT INTO `cn_nojd` VALUES (410105, '金水区', 410100, '金水', 3, 6);
-INSERT INTO `cn_nojd` VALUES (410106, '上街区', 410100, '上街', 3, 7);
-INSERT INTO `cn_nojd` VALUES (410108, '惠济区', 410100, '惠济', 3, 5);
-INSERT INTO `cn_nojd` VALUES (410122, '中牟县', 410100, '中牟', 3, 11);
-INSERT INTO `cn_nojd` VALUES (410181, '巩义市', 410100, '巩义', 3, 3);
-INSERT INTO `cn_nojd` VALUES (410182, '荥阳市', 410100, '荥阳', 3, 8);
-INSERT INTO `cn_nojd` VALUES (410183, '新密市', 410100, '新密', 3, 9);
-INSERT INTO `cn_nojd` VALUES (410184, '新郑市', 410100, '新郑', 3, 10);
-INSERT INTO `cn_nojd` VALUES (410185, '登封市', 410100, '登封', 3, 1);
-INSERT INTO `cn_nojd` VALUES (410200, '开封市', 410000, '开封', 2, 5);
-INSERT INTO `cn_nojd` VALUES (410202, '龙亭区', 410200, '龙亭', 3, 5);
-INSERT INTO `cn_nojd` VALUES (410203, '顺河回族区', 410200, '顺河回族', 3, 7);
-INSERT INTO `cn_nojd` VALUES (410204, '鼓楼区', 410200, '鼓楼', 3, 1);
-INSERT INTO `cn_nojd` VALUES (410205, '禹王台区', 410200, '禹王台', 3, 10);
-INSERT INTO `cn_nojd` VALUES (410211, '金明区', 410200, '金明', 3, 2);
-INSERT INTO `cn_nojd` VALUES (410221, '杞县', 410200, '杞县', 3, 6);
-INSERT INTO `cn_nojd` VALUES (410222, '通许县', 410200, '通许', 3, 8);
-INSERT INTO `cn_nojd` VALUES (410223, '尉氏县', 410200, '尉氏', 3, 9);
-INSERT INTO `cn_nojd` VALUES (410224, '开封县', 410200, '开封', 3, 3);
-INSERT INTO `cn_nojd` VALUES (410225, '兰考县', 410200, '兰考', 3, 4);
-INSERT INTO `cn_nojd` VALUES (410300, '洛阳市', 410000, '洛阳', 2, 7);
-INSERT INTO `cn_nojd` VALUES (410302, '老城区', 410300, '老城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (410303, '西工区', 410300, '西工', 3, 11);
-INSERT INTO `cn_nojd` VALUES (410304, '瀍河回族区', 410300, '瀍河回族', 3, 1);
-INSERT INTO `cn_nojd` VALUES (410305, '涧西区', 410300, '涧西', 3, 2);
-INSERT INTO `cn_nojd` VALUES (410306, '吉利区', 410300, '吉利', 3, 3);
-INSERT INTO `cn_nojd` VALUES (410307, '洛龙区', 410300, '洛龙', 3, 6);
-INSERT INTO `cn_nojd` VALUES (410322, '孟津县', 410300, '孟津', 3, 8);
-INSERT INTO `cn_nojd` VALUES (410323, '新安县', 410300, '新安', 3, 12);
-INSERT INTO `cn_nojd` VALUES (410324, '栾川县', 410300, '栾川', 3, 5);
-INSERT INTO `cn_nojd` VALUES (410325, '嵩县', 410300, '嵩县', 3, 10);
-INSERT INTO `cn_nojd` VALUES (410326, '汝阳县', 410300, '汝阳', 3, 9);
-INSERT INTO `cn_nojd` VALUES (410327, '宜阳县', 410300, '宜阳', 3, 15);
-INSERT INTO `cn_nojd` VALUES (410328, '洛宁县', 410300, '洛宁', 3, 7);
-INSERT INTO `cn_nojd` VALUES (410329, '伊川县', 410300, '伊川', 3, 14);
-INSERT INTO `cn_nojd` VALUES (410381, '偃师市', 410300, '偃师', 3, 13);
-INSERT INTO `cn_nojd` VALUES (410400, '平顶山市', 410000, '平顶山', 2, 9);
-INSERT INTO `cn_nojd` VALUES (410402, '新华区', 410400, '新华', 3, 8);
-INSERT INTO `cn_nojd` VALUES (410403, '卫东区', 410400, '卫东', 3, 6);
-INSERT INTO `cn_nojd` VALUES (410404, '石龙区', 410400, '石龙', 3, 5);
-INSERT INTO `cn_nojd` VALUES (410411, '湛河区', 410400, '湛河', 3, 10);
-INSERT INTO `cn_nojd` VALUES (410421, '宝丰县', 410400, '宝丰', 3, 1);
-INSERT INTO `cn_nojd` VALUES (410422, '叶县', 410400, '叶县', 3, 9);
-INSERT INTO `cn_nojd` VALUES (410423, '鲁山县', 410400, '鲁山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (410425, '郏县', 410400, '郏县', 3, 2);
-INSERT INTO `cn_nojd` VALUES (410481, '舞钢市', 410400, '舞钢', 3, 7);
-INSERT INTO `cn_nojd` VALUES (410482, '汝州市', 410400, '汝州', 3, 4);
-INSERT INTO `cn_nojd` VALUES (410500, '安阳市', 410000, '安阳', 2, 1);
-INSERT INTO `cn_nojd` VALUES (410502, '文峰区', 410500, '文峰', 3, 8);
-INSERT INTO `cn_nojd` VALUES (410503, '北关区', 410500, '北关', 3, 2);
-INSERT INTO `cn_nojd` VALUES (410505, '殷都区', 410500, '殷都', 3, 9);
-INSERT INTO `cn_nojd` VALUES (410506, '龙安区', 410500, '龙安', 3, 5);
-INSERT INTO `cn_nojd` VALUES (410522, '安阳县', 410500, '安阳', 3, 1);
-INSERT INTO `cn_nojd` VALUES (410523, '汤阴县', 410500, '汤阴', 3, 7);
-INSERT INTO `cn_nojd` VALUES (410526, '滑县', 410500, '滑县', 3, 3);
-INSERT INTO `cn_nojd` VALUES (410527, '内黄县', 410500, '内黄', 3, 6);
-INSERT INTO `cn_nojd` VALUES (410581, '林州市', 410500, '林州', 3, 4);
-INSERT INTO `cn_nojd` VALUES (410600, '鹤壁市', 410000, '鹤壁', 2, 2);
-INSERT INTO `cn_nojd` VALUES (410602, '鹤山区', 410600, '鹤山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (410603, '山城区', 410600, '山城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (410611, '淇滨区', 410600, '淇滨', 3, 2);
-INSERT INTO `cn_nojd` VALUES (410621, '浚县', 410600, '浚县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (410622, '淇县', 410600, '淇县', 3, 3);
-INSERT INTO `cn_nojd` VALUES (410700, '新乡市', 410000, '新乡', 2, 14);
-INSERT INTO `cn_nojd` VALUES (410702, '红旗区', 410700, '红旗', 3, 4);
-INSERT INTO `cn_nojd` VALUES (410703, '卫滨区', 410700, '卫滨', 3, 8);
-INSERT INTO `cn_nojd` VALUES (410704, '凤泉区', 410700, '凤泉', 3, 3);
-INSERT INTO `cn_nojd` VALUES (410711, '牧野区', 410700, '牧野', 3, 7);
-INSERT INTO `cn_nojd` VALUES (410721, '新乡县', 410700, '新乡', 3, 10);
-INSERT INTO `cn_nojd` VALUES (410724, '获嘉县', 410700, '获嘉', 3, 6);
-INSERT INTO `cn_nojd` VALUES (410725, '原阳县', 410700, '原阳', 3, 12);
-INSERT INTO `cn_nojd` VALUES (410726, '延津县', 410700, '延津', 3, 11);
-INSERT INTO `cn_nojd` VALUES (410727, '封丘县', 410700, '封丘', 3, 2);
-INSERT INTO `cn_nojd` VALUES (410728, '长垣县', 410700, '长垣', 3, 1);
-INSERT INTO `cn_nojd` VALUES (410781, '卫辉市', 410700, '卫辉', 3, 9);
-INSERT INTO `cn_nojd` VALUES (410782, '辉县市', 410700, '辉县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (410800, '焦作市', 410000, '焦作', 2, 3);
-INSERT INTO `cn_nojd` VALUES (410802, '解放区', 410800, '解放', 3, 2);
-INSERT INTO `cn_nojd` VALUES (410803, '中站区', 410800, '中站', 3, 10);
-INSERT INTO `cn_nojd` VALUES (410804, '马村区', 410800, '马村', 3, 3);
-INSERT INTO `cn_nojd` VALUES (410811, '山阳区', 410800, '山阳', 3, 6);
-INSERT INTO `cn_nojd` VALUES (410821, '修武县', 410800, '修武', 3, 9);
-INSERT INTO `cn_nojd` VALUES (410822, '博爱县', 410800, '博爱', 3, 1);
-INSERT INTO `cn_nojd` VALUES (410823, '武陟县', 410800, '武陟', 3, 8);
-INSERT INTO `cn_nojd` VALUES (410825, '温县', 410800, '温县', 3, 7);
-INSERT INTO `cn_nojd` VALUES (410881, '济源市', 410000, '济源', 2, 4);
-INSERT INTO `cn_nojd` VALUES (410882, '沁阳市', 410800, '沁阳', 3, 5);
-INSERT INTO `cn_nojd` VALUES (410883, '孟州市', 410800, '孟州', 3, 4);
-INSERT INTO `cn_nojd` VALUES (410900, '濮阳市', 410000, '濮阳', 2, 10);
-INSERT INTO `cn_nojd` VALUES (410902, '华龙区', 410900, '华龙', 3, 2);
-INSERT INTO `cn_nojd` VALUES (410922, '清丰县', 410900, '清丰', 3, 5);
-INSERT INTO `cn_nojd` VALUES (410923, '南乐县', 410900, '南乐', 3, 3);
-INSERT INTO `cn_nojd` VALUES (410926, '范县', 410900, '范县', 3, 1);
-INSERT INTO `cn_nojd` VALUES (410927, '台前县', 410900, '台前', 3, 6);
-INSERT INTO `cn_nojd` VALUES (410928, '濮阳县', 410900, '濮阳', 3, 4);
-INSERT INTO `cn_nojd` VALUES (411000, '许昌市', 410000, '许昌', 2, 15);
-INSERT INTO `cn_nojd` VALUES (411002, '魏都区', 411000, '魏都', 3, 2);
-INSERT INTO `cn_nojd` VALUES (411023, '许昌县', 411000, '许昌', 3, 4);
-INSERT INTO `cn_nojd` VALUES (411024, '鄢陵县', 411000, '鄢陵', 3, 5);
-INSERT INTO `cn_nojd` VALUES (411025, '襄城县', 411000, '襄城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (411081, '禹州市', 411000, '禹州', 3, 6);
-INSERT INTO `cn_nojd` VALUES (411082, '长葛市', 411000, '长葛', 3, 1);
-INSERT INTO `cn_nojd` VALUES (411100, '漯河市', 410000, '漯河', 2, 6);
-INSERT INTO `cn_nojd` VALUES (411102, '源汇区', 411100, '源汇', 3, 4);
-INSERT INTO `cn_nojd` VALUES (411103, '郾城区', 411100, '郾城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (411104, '召陵区', 411100, '召陵', 3, 5);
-INSERT INTO `cn_nojd` VALUES (411121, '舞阳县', 411100, '舞阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (411122, '临颍县', 411100, '临颍', 3, 1);
-INSERT INTO `cn_nojd` VALUES (411200, '三门峡市', 410000, '三门峡', 2, 11);
-INSERT INTO `cn_nojd` VALUES (411202, '湖滨区', 411200, '湖滨', 3, 1);
-INSERT INTO `cn_nojd` VALUES (411221, '渑池县', 411200, '渑池', 3, 4);
-INSERT INTO `cn_nojd` VALUES (411222, '陕县', 411200, '陕县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (411224, '卢氏县', 411200, '卢氏', 3, 3);
-INSERT INTO `cn_nojd` VALUES (411281, '义马市', 411200, '义马', 3, 6);
-INSERT INTO `cn_nojd` VALUES (411282, '灵宝市', 411200, '灵宝', 3, 2);
-INSERT INTO `cn_nojd` VALUES (411300, '南阳市', 410000, '南阳', 2, 8);
-INSERT INTO `cn_nojd` VALUES (411302, '宛城区', 411300, '宛城', 3, 8);
-INSERT INTO `cn_nojd` VALUES (411303, '卧龙区', 411300, '卧龙', 3, 9);
-INSERT INTO `cn_nojd` VALUES (411321, '南召县', 411300, '南召', 3, 3);
-INSERT INTO `cn_nojd` VALUES (411322, '方城县', 411300, '方城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (411323, '西峡县', 411300, '西峡', 3, 12);
-INSERT INTO `cn_nojd` VALUES (411324, '镇平县', 411300, '镇平', 3, 13);
-INSERT INTO `cn_nojd` VALUES (411325, '内乡县', 411300, '内乡', 3, 4);
-INSERT INTO `cn_nojd` VALUES (411326, '淅川县', 411300, '淅川', 3, 10);
-INSERT INTO `cn_nojd` VALUES (411327, '社旗县', 411300, '社旗县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (411328, '唐河县', 411300, '唐河', 3, 6);
-INSERT INTO `cn_nojd` VALUES (411329, '新野县', 411300, '新野', 3, 11);
-INSERT INTO `cn_nojd` VALUES (411330, '桐柏县', 411300, '桐柏', 3, 7);
-INSERT INTO `cn_nojd` VALUES (411381, '邓州市', 411300, '邓州', 3, 1);
-INSERT INTO `cn_nojd` VALUES (411400, '商丘市', 410000, '商丘', 2, 12);
-INSERT INTO `cn_nojd` VALUES (411402, '梁园区', 411400, '梁园', 3, 1);
-INSERT INTO `cn_nojd` VALUES (411403, '睢阳区', 411400, '睢阳', 3, 5);
-INSERT INTO `cn_nojd` VALUES (411421, '民权县', 411400, '民权', 3, 2);
-INSERT INTO `cn_nojd` VALUES (411422, '睢县', 411400, '睢县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (411423, '宁陵县', 411400, '宁陵', 3, 3);
-INSERT INTO `cn_nojd` VALUES (411424, '柘城县', 411400, '柘城', 3, 9);
-INSERT INTO `cn_nojd` VALUES (411425, '虞城县', 411400, '虞城', 3, 8);
-INSERT INTO `cn_nojd` VALUES (411426, '夏邑县', 411400, '夏邑', 3, 6);
-INSERT INTO `cn_nojd` VALUES (411481, '永城市', 411400, '永城', 3, 7);
-INSERT INTO `cn_nojd` VALUES (411500, '信阳市', 410000, '信阳', 2, 13);
-INSERT INTO `cn_nojd` VALUES (411502, '浉河区', 411500, '浉河', 3, 8);
-INSERT INTO `cn_nojd` VALUES (411503, '平桥区', 411500, '平桥', 3, 6);
-INSERT INTO `cn_nojd` VALUES (411521, '罗山县', 411500, '罗山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (411522, '光山县', 411500, '光山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (411523, '新县', 411500, '新县', 3, 9);
-INSERT INTO `cn_nojd` VALUES (411524, '商城县', 411500, '商城', 3, 7);
-INSERT INTO `cn_nojd` VALUES (411525, '固始县', 411500, '固始', 3, 2);
-INSERT INTO `cn_nojd` VALUES (411526, '潢川县', 411500, '潢川', 3, 4);
-INSERT INTO `cn_nojd` VALUES (411527, '淮滨县', 411500, '淮滨', 3, 3);
-INSERT INTO `cn_nojd` VALUES (411528, '息县', 411500, '息县', 3, 10);
-INSERT INTO `cn_nojd` VALUES (411600, '周口市', 410000, '周口', 2, 17);
-INSERT INTO `cn_nojd` VALUES (411602, '川汇区', 411600, '川汇', 3, 1);
-INSERT INTO `cn_nojd` VALUES (411621, '扶沟县', 411600, '扶沟', 3, 3);
-INSERT INTO `cn_nojd` VALUES (411622, '西华县', 411600, '西华', 3, 10);
-INSERT INTO `cn_nojd` VALUES (411623, '商水县', 411600, '商水', 3, 6);
-INSERT INTO `cn_nojd` VALUES (411624, '沈丘县', 411600, '沈丘', 3, 7);
-INSERT INTO `cn_nojd` VALUES (411625, '郸城县', 411600, '郸城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (411626, '淮阳县', 411600, '淮阳', 3, 4);
-INSERT INTO `cn_nojd` VALUES (411627, '太康县', 411600, '太康', 3, 8);
-INSERT INTO `cn_nojd` VALUES (411628, '鹿邑县', 411600, '鹿邑', 3, 5);
-INSERT INTO `cn_nojd` VALUES (411681, '项城市', 411600, '项城', 3, 9);
-INSERT INTO `cn_nojd` VALUES (411700, '驻马店市', 410000, '驻马店', 2, 18);
-INSERT INTO `cn_nojd` VALUES (411702, '驿城区', 411700, '驿城', 3, 9);
-INSERT INTO `cn_nojd` VALUES (411721, '西平县', 411700, '西平', 3, 8);
-INSERT INTO `cn_nojd` VALUES (411722, '上蔡县', 411700, '上蔡', 3, 5);
-INSERT INTO `cn_nojd` VALUES (411723, '平舆县', 411700, '平舆', 3, 2);
-INSERT INTO `cn_nojd` VALUES (411724, '正阳县', 411700, '正阳', 3, 10);
-INSERT INTO `cn_nojd` VALUES (411725, '确山县', 411700, '确山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (411726, '泌阳县', 411700, '泌阳', 3, 1);
-INSERT INTO `cn_nojd` VALUES (411727, '汝南县', 411700, '汝南', 3, 4);
-INSERT INTO `cn_nojd` VALUES (411728, '遂平县', 411700, '遂平', 3, 6);
-INSERT INTO `cn_nojd` VALUES (411729, '新蔡县', 411700, '新蔡', 3, 7);
-INSERT INTO `cn_nojd` VALUES (420000, '湖北省', 0, '湖北', 1, 17);
-INSERT INTO `cn_nojd` VALUES (420100, '武汉市', 420000, '武汉', 2, 12);
-INSERT INTO `cn_nojd` VALUES (420102, '江岸区', 420100, '江岸', 3, 7);
-INSERT INTO `cn_nojd` VALUES (420103, '江汉区', 420100, '江汉', 3, 8);
-INSERT INTO `cn_nojd` VALUES (420104, '硚口区', 420100, '硚口', 3, 10);
-INSERT INTO `cn_nojd` VALUES (420105, '汉阳区', 420100, '汉阳', 3, 4);
-INSERT INTO `cn_nojd` VALUES (420106, '武昌区', 420100, '武昌', 3, 12);
-INSERT INTO `cn_nojd` VALUES (420107, '青山区', 420100, '青山', 3, 11);
-INSERT INTO `cn_nojd` VALUES (420111, '洪山区', 420100, '洪山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (420112, '东西湖区', 420100, '东西湖', 3, 2);
-INSERT INTO `cn_nojd` VALUES (420113, '汉南区', 420100, '汉南', 3, 3);
-INSERT INTO `cn_nojd` VALUES (420114, '蔡甸区', 420100, '蔡甸', 3, 1);
-INSERT INTO `cn_nojd` VALUES (420115, '江夏区', 420100, '江夏', 3, 9);
-INSERT INTO `cn_nojd` VALUES (420116, '黄陂区', 420100, '黄陂', 3, 6);
-INSERT INTO `cn_nojd` VALUES (420117, '新洲区', 420100, '新洲', 3, 13);
-INSERT INTO `cn_nojd` VALUES (420200, '黄石市', 420000, '黄石', 2, 4);
-INSERT INTO `cn_nojd` VALUES (420202, '黄石港区', 420200, '黄石港', 3, 2);
-INSERT INTO `cn_nojd` VALUES (420203, '西塞山区', 420200, '西塞山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (420204, '下陆区', 420200, '下陆', 3, 4);
-INSERT INTO `cn_nojd` VALUES (420205, '铁山区', 420200, '铁山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (420222, '阳新县', 420200, '阳新', 3, 6);
-INSERT INTO `cn_nojd` VALUES (420281, '大冶市', 420200, '大冶', 3, 1);
-INSERT INTO `cn_nojd` VALUES (420300, '十堰市', 420000, '十堰', 2, 9);
-INSERT INTO `cn_nojd` VALUES (420302, '茅箭区', 420300, '茅箭', 3, 3);
-INSERT INTO `cn_nojd` VALUES (420303, '张湾区', 420300, '张湾', 3, 6);
-INSERT INTO `cn_nojd` VALUES (420321, '郧县', 420300, '郧县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (420322, '郧西县', 420300, '郧西', 3, 5);
-INSERT INTO `cn_nojd` VALUES (420323, '竹山县', 420300, '竹山', 3, 7);
-INSERT INTO `cn_nojd` VALUES (420324, '竹溪县', 420300, '竹溪', 3, 8);
-INSERT INTO `cn_nojd` VALUES (420325, '房县', 420300, '房县', 3, 2);
-INSERT INTO `cn_nojd` VALUES (420381, '丹江口市', 420300, '丹江口', 3, 1);
-INSERT INTO `cn_nojd` VALUES (420500, '宜昌市', 420000, '宜昌', 2, 17);
-INSERT INTO `cn_nojd` VALUES (420502, '西陵区', 420500, '西陵', 3, 6);
-INSERT INTO `cn_nojd` VALUES (420503, '伍家岗区', 420500, '伍家岗', 3, 5);
-INSERT INTO `cn_nojd` VALUES (420504, '点军区', 420500, '点军', 3, 3);
-INSERT INTO `cn_nojd` VALUES (420505, '猇亭区', 420500, '猇亭', 3, 8);
-INSERT INTO `cn_nojd` VALUES (420506, '夷陵区', 420500, '夷陵', 3, 10);
-INSERT INTO `cn_nojd` VALUES (420525, '远安县', 420500, '远安', 3, 11);
-INSERT INTO `cn_nojd` VALUES (420526, '兴山县', 420500, '兴山', 3, 7);
-INSERT INTO `cn_nojd` VALUES (420527, '秭归县', 420500, '秭归', 3, 13);
-INSERT INTO `cn_nojd` VALUES (420528, '长阳土家族自治县', 420500, '长阳', 3, 1);
-INSERT INTO `cn_nojd` VALUES (420529, '五峰土家族自治县', 420500, '五峰', 3, 4);
-INSERT INTO `cn_nojd` VALUES (420581, '宜都市', 420500, '宜都', 3, 9);
-INSERT INTO `cn_nojd` VALUES (420582, '当阳市', 420500, '当阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (420583, '枝江市', 420500, '枝江', 3, 12);
-INSERT INTO `cn_nojd` VALUES (420600, '襄阳市', 420000, '襄阳', 2, 13);
-INSERT INTO `cn_nojd` VALUES (420602, '襄城区', 420600, '襄城', 3, 6);
-INSERT INTO `cn_nojd` VALUES (420606, '樊城区', 420600, '樊城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (420607, '襄州区', 420600, '襄州', 3, 7);
-INSERT INTO `cn_nojd` VALUES (420624, '南漳县', 420600, '南漳', 3, 5);
-INSERT INTO `cn_nojd` VALUES (420625, '谷城县', 420600, '谷城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (420626, '保康县', 420600, '保康', 3, 1);
-INSERT INTO `cn_nojd` VALUES (420682, '老河口市', 420600, '老河口', 3, 4);
-INSERT INTO `cn_nojd` VALUES (420683, '枣阳市', 420600, '枣阳', 3, 9);
-INSERT INTO `cn_nojd` VALUES (420684, '宜城市', 420600, '宜城', 3, 8);
-INSERT INTO `cn_nojd` VALUES (420700, '鄂州市', 420000, '鄂州', 2, 2);
-INSERT INTO `cn_nojd` VALUES (420702, '梁子湖区', 420700, '梁子湖', 3, 3);
-INSERT INTO `cn_nojd` VALUES (420703, '华容区', 420700, '华容', 3, 2);
-INSERT INTO `cn_nojd` VALUES (420704, '鄂城区', 420700, '鄂城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (420800, '荆门市', 420000, '荆门', 2, 5);
-INSERT INTO `cn_nojd` VALUES (420802, '东宝区', 420800, '东宝', 3, 1);
-INSERT INTO `cn_nojd` VALUES (420804, '掇刀区', 420800, '掇刀', 3, 2);
-INSERT INTO `cn_nojd` VALUES (420821, '京山县', 420800, '京山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (420822, '沙洋县', 420800, '沙洋', 3, 4);
-INSERT INTO `cn_nojd` VALUES (420881, '钟祥市', 420800, '钟祥', 3, 5);
-INSERT INTO `cn_nojd` VALUES (420900, '孝感市', 420000, '孝感', 2, 16);
-INSERT INTO `cn_nojd` VALUES (420902, '孝南区', 420900, '孝南', 3, 5);
-INSERT INTO `cn_nojd` VALUES (420921, '孝昌县', 420900, '孝昌', 3, 4);
-INSERT INTO `cn_nojd` VALUES (420922, '大悟县', 420900, '大悟', 3, 2);
-INSERT INTO `cn_nojd` VALUES (420923, '云梦县', 420900, '云梦', 3, 7);
-INSERT INTO `cn_nojd` VALUES (420981, '应城市', 420900, '应城', 3, 6);
-INSERT INTO `cn_nojd` VALUES (420982, '安陆市', 420900, '安陆', 3, 1);
-INSERT INTO `cn_nojd` VALUES (420984, '汉川市', 420900, '汉川', 3, 3);
-INSERT INTO `cn_nojd` VALUES (421000, '荆州市', 420000, '荆州', 2, 6);
-INSERT INTO `cn_nojd` VALUES (421002, '沙市区', 421000, '沙市', 3, 6);
-INSERT INTO `cn_nojd` VALUES (421003, '荆州区', 421000, '荆州', 3, 5);
-INSERT INTO `cn_nojd` VALUES (421022, '公安县', 421000, '公安', 3, 1);
-INSERT INTO `cn_nojd` VALUES (421023, '监利县', 421000, '监利', 3, 4);
-INSERT INTO `cn_nojd` VALUES (421024, '江陵县', 421000, '江陵', 3, 3);
-INSERT INTO `cn_nojd` VALUES (421081, '石首市', 421000, '石首', 3, 7);
-INSERT INTO `cn_nojd` VALUES (421083, '洪湖市', 421000, '洪湖', 3, 2);
-INSERT INTO `cn_nojd` VALUES (421087, '松滋市', 421000, '松滋', 3, 8);
-INSERT INTO `cn_nojd` VALUES (421100, '黄冈市', 420000, '黄冈', 2, 3);
-INSERT INTO `cn_nojd` VALUES (421102, '黄州区', 421100, '黄州', 3, 3);
-INSERT INTO `cn_nojd` VALUES (421121, '团风县', 421100, '团风', 3, 7);
-INSERT INTO `cn_nojd` VALUES (421122, '红安县', 421100, '红安', 3, 1);
-INSERT INTO `cn_nojd` VALUES (421123, '罗田县', 421100, '罗田', 3, 4);
-INSERT INTO `cn_nojd` VALUES (421124, '英山县', 421100, '英山', 3, 10);
-INSERT INTO `cn_nojd` VALUES (421125, '浠水县', 421100, '浠水', 3, 9);
-INSERT INTO `cn_nojd` VALUES (421126, '蕲春县', 421100, '蕲春', 3, 6);
-INSERT INTO `cn_nojd` VALUES (421127, '黄梅县', 421100, '黄梅', 3, 2);
-INSERT INTO `cn_nojd` VALUES (421181, '麻城市', 421100, '麻城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (421182, '武穴市', 421100, '武穴', 3, 8);
-INSERT INTO `cn_nojd` VALUES (421200, '咸宁市', 420000, '咸宁', 2, 14);
-INSERT INTO `cn_nojd` VALUES (421202, '咸安区', 421200, '咸安', 3, 6);
-INSERT INTO `cn_nojd` VALUES (421221, '嘉鱼县', 421200, '嘉鱼', 3, 3);
-INSERT INTO `cn_nojd` VALUES (421222, '通城县', 421200, '通城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (421223, '崇阳县', 421200, '崇阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (421224, '通山县', 421200, '通山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (421281, '赤壁市', 421200, '赤壁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (421300, '随州市', 420000, '随州', 2, 10);
-INSERT INTO `cn_nojd` VALUES (421302, '曾都区', 421300, '曾都', 3, 3);
-INSERT INTO `cn_nojd` VALUES (421321, '随县', 421300, '随县', 3, 2);
-INSERT INTO `cn_nojd` VALUES (421381, '广水市', 421300, '广水', 3, 1);
-INSERT INTO `cn_nojd` VALUES (422800, '恩施土家族苗族自治州', 420000, '恩施', 2, 1);
-INSERT INTO `cn_nojd` VALUES (422801, '恩施市', 422800, '恩施', 3, 2);
-INSERT INTO `cn_nojd` VALUES (422802, '利川市', 422800, '利川', 3, 6);
-INSERT INTO `cn_nojd` VALUES (422822, '建始县', 422800, '建始', 3, 4);
-INSERT INTO `cn_nojd` VALUES (422823, '巴东县', 422800, '巴东', 3, 1);
-INSERT INTO `cn_nojd` VALUES (422825, '宣恩县', 422800, '宣恩', 3, 8);
-INSERT INTO `cn_nojd` VALUES (422826, '咸丰县', 422800, '咸丰', 3, 7);
-INSERT INTO `cn_nojd` VALUES (422827, '来凤县', 422800, '来凤', 3, 5);
-INSERT INTO `cn_nojd` VALUES (422828, '鹤峰县', 422800, '鹤峰', 3, 3);
-INSERT INTO `cn_nojd` VALUES (429004, '仙桃市', 420000, '仙桃', 2, 15);
-INSERT INTO `cn_nojd` VALUES (429005, '潜江市', 420000, '潜江', 2, 7);
-INSERT INTO `cn_nojd` VALUES (429006, '天门市', 420000, '天门', 2, 11);
-INSERT INTO `cn_nojd` VALUES (429021, '神农架林区', 420000, '神农架', 2, 8);
-INSERT INTO `cn_nojd` VALUES (430000, '湖南省', 0, '湖南', 1, 18);
-INSERT INTO `cn_nojd` VALUES (430100, '长沙市', 430000, '长沙', 2, 2);
-INSERT INTO `cn_nojd` VALUES (430102, '芙蓉区', 430100, '芙蓉', 3, 2);
-INSERT INTO `cn_nojd` VALUES (430103, '天心区', 430100, '天心', 3, 6);
-INSERT INTO `cn_nojd` VALUES (430104, '岳麓区', 430100, '岳麓', 3, 8);
-INSERT INTO `cn_nojd` VALUES (430105, '开福区', 430100, '开福', 3, 3);
-INSERT INTO `cn_nojd` VALUES (430111, '雨花区', 430100, '雨花', 3, 9);
-INSERT INTO `cn_nojd` VALUES (430121, '长沙县', 430100, '长沙', 3, 1);
-INSERT INTO `cn_nojd` VALUES (430122, '望城区', 430100, '望城', 3, 7);
-INSERT INTO `cn_nojd` VALUES (430124, '宁乡县', 430100, '宁乡', 3, 5);
-INSERT INTO `cn_nojd` VALUES (430181, '浏阳市', 430100, '浏阳', 3, 4);
-INSERT INTO `cn_nojd` VALUES (430200, '株洲市', 430000, '株洲', 2, 14);
-INSERT INTO `cn_nojd` VALUES (430202, '荷塘区', 430200, '荷塘', 3, 2);
-INSERT INTO `cn_nojd` VALUES (430203, '芦淞区', 430200, '芦淞', 3, 4);
-INSERT INTO `cn_nojd` VALUES (430204, '石峰区', 430200, '石峰', 3, 5);
-INSERT INTO `cn_nojd` VALUES (430211, '天元区', 430200, '天元', 3, 6);
-INSERT INTO `cn_nojd` VALUES (430221, '株洲县', 430200, '株洲', 3, 9);
-INSERT INTO `cn_nojd` VALUES (430223, '攸县', 430200, '攸县', 3, 8);
-INSERT INTO `cn_nojd` VALUES (430224, '茶陵县', 430200, '茶陵', 3, 1);
-INSERT INTO `cn_nojd` VALUES (430225, '炎陵县', 430200, '炎陵', 3, 7);
-INSERT INTO `cn_nojd` VALUES (430281, '醴陵市', 430200, '醴陵', 3, 3);
-INSERT INTO `cn_nojd` VALUES (430300, '湘潭市', 430000, '湘潭', 2, 8);
-INSERT INTO `cn_nojd` VALUES (430302, '雨湖区', 430300, '雨湖', 3, 5);
-INSERT INTO `cn_nojd` VALUES (430304, '岳塘区', 430300, '岳塘', 3, 4);
-INSERT INTO `cn_nojd` VALUES (430321, '湘潭县', 430300, '湘潭', 3, 2);
-INSERT INTO `cn_nojd` VALUES (430381, '湘乡市', 430300, '湘乡', 3, 3);
-INSERT INTO `cn_nojd` VALUES (430382, '韶山市', 430300, '韶山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (430400, '衡阳市', 430000, '衡阳', 2, 4);
-INSERT INTO `cn_nojd` VALUES (430405, '珠晖区', 430400, '珠晖', 3, 12);
-INSERT INTO `cn_nojd` VALUES (430406, '雁峰区', 430400, '雁峰', 3, 10);
-INSERT INTO `cn_nojd` VALUES (430407, '石鼓区', 430400, '石鼓', 3, 9);
-INSERT INTO `cn_nojd` VALUES (430408, '蒸湘区', 430400, '蒸湘', 3, 11);
-INSERT INTO `cn_nojd` VALUES (430412, '南岳区', 430400, '南岳', 3, 7);
-INSERT INTO `cn_nojd` VALUES (430421, '衡阳县', 430400, '衡阳', 3, 5);
-INSERT INTO `cn_nojd` VALUES (430422, '衡南县', 430400, '衡南', 3, 3);
-INSERT INTO `cn_nojd` VALUES (430423, '衡山县', 430400, '衡山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (430424, '衡东县', 430400, '衡东', 3, 2);
-INSERT INTO `cn_nojd` VALUES (430426, '祁东县', 430400, '祁东', 3, 8);
-INSERT INTO `cn_nojd` VALUES (430481, '耒阳市', 430400, '耒阳', 3, 6);
-INSERT INTO `cn_nojd` VALUES (430482, '常宁市', 430400, '常宁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (430500, '邵阳市', 430000, '邵阳', 2, 7);
-INSERT INTO `cn_nojd` VALUES (430502, '双清区', 430500, '双清', 3, 8);
-INSERT INTO `cn_nojd` VALUES (430503, '大祥区', 430500, '大祥', 3, 3);
-INSERT INTO `cn_nojd` VALUES (430511, '北塔区', 430500, '北塔', 3, 1);
-INSERT INTO `cn_nojd` VALUES (430521, '邵东县', 430500, '邵东', 3, 6);
-INSERT INTO `cn_nojd` VALUES (430522, '新邵县', 430500, '新邵', 3, 12);
-INSERT INTO `cn_nojd` VALUES (430523, '邵阳县', 430500, '邵阳', 3, 7);
-INSERT INTO `cn_nojd` VALUES (430524, '隆回县', 430500, '隆回', 3, 5);
-INSERT INTO `cn_nojd` VALUES (430525, '洞口县', 430500, '洞口', 3, 4);
-INSERT INTO `cn_nojd` VALUES (430527, '绥宁县', 430500, '绥宁', 3, 9);
-INSERT INTO `cn_nojd` VALUES (430528, '新宁县', 430500, '新宁', 3, 11);
-INSERT INTO `cn_nojd` VALUES (430529, '城步苗族自治县', 430500, '城步', 3, 2);
-INSERT INTO `cn_nojd` VALUES (430581, '武冈市', 430500, '武冈', 3, 10);
-INSERT INTO `cn_nojd` VALUES (430600, '岳阳市', 430000, '岳阳', 2, 12);
-INSERT INTO `cn_nojd` VALUES (430602, '岳阳楼区', 430600, '岳阳楼', 3, 7);
-INSERT INTO `cn_nojd` VALUES (430603, '云溪区', 430600, '云溪', 3, 9);
-INSERT INTO `cn_nojd` VALUES (430611, '君山区', 430600, '君山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (430621, '岳阳县', 430600, '岳阳', 3, 8);
-INSERT INTO `cn_nojd` VALUES (430623, '华容县', 430600, '华容', 3, 1);
-INSERT INTO `cn_nojd` VALUES (430624, '湘阴县', 430600, '湘阴', 3, 6);
-INSERT INTO `cn_nojd` VALUES (430626, '平江县', 430600, '平江', 3, 5);
-INSERT INTO `cn_nojd` VALUES (430681, '汨罗市', 430600, '汨罗', 3, 4);
-INSERT INTO `cn_nojd` VALUES (430682, '临湘市', 430600, '临湘', 3, 3);
-INSERT INTO `cn_nojd` VALUES (430700, '常德市', 430000, '常德', 2, 1);
-INSERT INTO `cn_nojd` VALUES (430702, '武陵区', 430700, '武陵', 3, 9);
-INSERT INTO `cn_nojd` VALUES (430703, '鼎城区', 430700, '鼎城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (430721, '安乡县', 430700, '安乡', 3, 1);
-INSERT INTO `cn_nojd` VALUES (430722, '汉寿县', 430700, '汉寿', 3, 3);
-INSERT INTO `cn_nojd` VALUES (430723, '澧县', 430700, '澧县', 3, 6);
-INSERT INTO `cn_nojd` VALUES (430724, '临澧县', 430700, '临澧', 3, 5);
-INSERT INTO `cn_nojd` VALUES (430725, '桃源县', 430700, '桃源', 3, 8);
-INSERT INTO `cn_nojd` VALUES (430726, '石门县', 430700, '石门', 3, 7);
-INSERT INTO `cn_nojd` VALUES (430781, '津市市', 430700, '津市', 3, 4);
-INSERT INTO `cn_nojd` VALUES (430800, '张家界市', 430000, '张家界', 2, 13);
-INSERT INTO `cn_nojd` VALUES (430802, '永定区', 430800, '永定', 3, 4);
-INSERT INTO `cn_nojd` VALUES (430811, '武陵源区', 430800, '武陵源', 3, 3);
-INSERT INTO `cn_nojd` VALUES (430821, '慈利县', 430800, '慈利', 3, 1);
-INSERT INTO `cn_nojd` VALUES (430822, '桑植县', 430800, '桑植', 3, 2);
-INSERT INTO `cn_nojd` VALUES (430900, '益阳市', 430000, '益阳', 2, 10);
-INSERT INTO `cn_nojd` VALUES (430902, '资阳区', 430900, '资阳', 3, 6);
-INSERT INTO `cn_nojd` VALUES (430903, '赫山区', 430900, '赫山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (430921, '南县', 430900, '南县', 3, 3);
-INSERT INTO `cn_nojd` VALUES (430922, '桃江县', 430900, '桃江', 3, 4);
-INSERT INTO `cn_nojd` VALUES (430923, '安化县', 430900, '安化', 3, 1);
-INSERT INTO `cn_nojd` VALUES (430981, '沅江市', 430900, '沅江', 3, 5);
-INSERT INTO `cn_nojd` VALUES (431000, '郴州市', 430000, '郴州', 2, 3);
-INSERT INTO `cn_nojd` VALUES (431002, '北湖区', 431000, '北湖', 3, 2);
-INSERT INTO `cn_nojd` VALUES (431003, '苏仙区', 431000, '苏仙', 3, 8);
-INSERT INTO `cn_nojd` VALUES (431021, '桂阳县', 431000, '桂阳', 3, 4);
-INSERT INTO `cn_nojd` VALUES (431022, '宜章县', 431000, '宜章', 3, 9);
-INSERT INTO `cn_nojd` VALUES (431023, '永兴县', 431000, '永兴', 3, 10);
-INSERT INTO `cn_nojd` VALUES (431024, '嘉禾县', 431000, '嘉禾', 3, 5);
-INSERT INTO `cn_nojd` VALUES (431025, '临武县', 431000, '临武', 3, 6);
-INSERT INTO `cn_nojd` VALUES (431026, '汝城县', 431000, '汝城', 3, 7);
-INSERT INTO `cn_nojd` VALUES (431027, '桂东县', 431000, '桂东', 3, 3);
-INSERT INTO `cn_nojd` VALUES (431028, '安仁县', 431000, '安仁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (431081, '资兴市', 431000, '资兴', 3, 11);
-INSERT INTO `cn_nojd` VALUES (431100, '永州市', 430000, '永州', 2, 11);
-INSERT INTO `cn_nojd` VALUES (431102, '零陵区', 431100, '零陵', 3, 7);
-INSERT INTO `cn_nojd` VALUES (431103, '冷水滩区', 431100, '冷水滩', 3, 6);
-INSERT INTO `cn_nojd` VALUES (431121, '祁阳县', 431100, '祁阳', 3, 9);
-INSERT INTO `cn_nojd` VALUES (431122, '东安县', 431100, '东安', 3, 2);
-INSERT INTO `cn_nojd` VALUES (431123, '双牌县', 431100, '双牌', 3, 10);
-INSERT INTO `cn_nojd` VALUES (431124, '道县', 431100, '道县', 3, 1);
-INSERT INTO `cn_nojd` VALUES (431125, '江永县', 431100, '江永', 3, 4);
-INSERT INTO `cn_nojd` VALUES (431126, '宁远县', 431100, '宁远', 3, 8);
-INSERT INTO `cn_nojd` VALUES (431127, '蓝山县', 431100, '蓝山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (431128, '新田县', 431100, '新田', 3, 11);
-INSERT INTO `cn_nojd` VALUES (431129, '江华瑶族自治县', 431100, '江华', 3, 3);
-INSERT INTO `cn_nojd` VALUES (431200, '怀化市', 430000, '怀化', 2, 5);
-INSERT INTO `cn_nojd` VALUES (431202, '鹤城区', 431200, '鹤城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (431221, '中方县', 431200, '中方', 3, 12);
-INSERT INTO `cn_nojd` VALUES (431222, '沅陵县', 431200, '沅陵', 3, 10);
-INSERT INTO `cn_nojd` VALUES (431223, '辰溪县', 431200, '辰溪', 3, 1);
-INSERT INTO `cn_nojd` VALUES (431224, '溆浦县', 431200, '溆浦', 3, 9);
-INSERT INTO `cn_nojd` VALUES (431225, '会同县', 431200, '会同', 3, 4);
-INSERT INTO `cn_nojd` VALUES (431226, '麻阳苗族自治县', 431200, '麻阳', 3, 6);
-INSERT INTO `cn_nojd` VALUES (431227, '新晃侗族自治县', 431200, '新晃', 3, 8);
-INSERT INTO `cn_nojd` VALUES (431228, '芷江侗族自治县', 431200, '芷江', 3, 11);
-INSERT INTO `cn_nojd` VALUES (431229, '靖州苗族侗族自治县', 431200, '靖州', 3, 5);
-INSERT INTO `cn_nojd` VALUES (431230, '通道侗族自治县', 431200, '通道', 3, 7);
-INSERT INTO `cn_nojd` VALUES (431281, '洪江市', 431200, '洪江', 3, 3);
-INSERT INTO `cn_nojd` VALUES (431300, '娄底市', 430000, '娄底', 2, 6);
-INSERT INTO `cn_nojd` VALUES (431302, '娄星区', 431300, '娄星', 3, 3);
-INSERT INTO `cn_nojd` VALUES (431321, '双峰县', 431300, '双峰', 3, 4);
-INSERT INTO `cn_nojd` VALUES (431322, '新化县', 431300, '新化', 3, 5);
-INSERT INTO `cn_nojd` VALUES (431381, '冷水江市', 431300, '冷水江', 3, 1);
-INSERT INTO `cn_nojd` VALUES (431382, '涟源市', 431300, '涟源', 3, 2);
-INSERT INTO `cn_nojd` VALUES (433100, '湘西土家族苗族自治州', 430000, '湘西', 2, 9);
-INSERT INTO `cn_nojd` VALUES (433101, '吉首市', 433100, '吉首', 3, 5);
-INSERT INTO `cn_nojd` VALUES (433122, '泸溪县', 433100, '泸溪', 3, 7);
-INSERT INTO `cn_nojd` VALUES (433123, '凤凰县', 433100, '凤凰', 3, 2);
-INSERT INTO `cn_nojd` VALUES (433124, '花垣县', 433100, '花垣', 3, 4);
-INSERT INTO `cn_nojd` VALUES (433125, '保靖县', 433100, '保靖', 3, 1);
-INSERT INTO `cn_nojd` VALUES (433126, '古丈县', 433100, '古丈', 3, 3);
-INSERT INTO `cn_nojd` VALUES (433127, '永顺县', 433100, '永顺', 3, 8);
-INSERT INTO `cn_nojd` VALUES (433130, '龙山县', 433100, '龙山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (440000, '广东省', 0, '广东', 1, 19);
-INSERT INTO `cn_nojd` VALUES (440100, '广州市', 440000, '广州', 2, 5);
-INSERT INTO `cn_nojd` VALUES (440103, '荔湾区', 440100, '荔湾', 3, 7);
-INSERT INTO `cn_nojd` VALUES (440104, '越秀区', 440100, '越秀', 3, 3);
-INSERT INTO `cn_nojd` VALUES (440105, '海珠区', 440100, '海珠', 3, 4);
-INSERT INTO `cn_nojd` VALUES (440106, '天河区', 440100, '天河', 3, 11);
-INSERT INTO `cn_nojd` VALUES (440111, '白云区', 440100, '白云', 3, 1);
-INSERT INTO `cn_nojd` VALUES (440112, '黄埔区', 440100, '黄埔', 3, 6);
-INSERT INTO `cn_nojd` VALUES (440113, '番禺区', 440100, '番禺', 3, 10);
-INSERT INTO `cn_nojd` VALUES (440114, '花都区', 440100, '花都', 3, 5);
-INSERT INTO `cn_nojd` VALUES (440115, '南沙区', 440100, '南沙', 3, 9);
-INSERT INTO `cn_nojd` VALUES (440116, '萝岗区', 440100, '萝岗', 3, 8);
-INSERT INTO `cn_nojd` VALUES (440183, '增城市', 440100, '增城', 3, 12);
-INSERT INTO `cn_nojd` VALUES (440184, '从化市', 440100, '从化', 3, 2);
-INSERT INTO `cn_nojd` VALUES (440200, '韶关市', 440000, '韶关', 2, 15);
-INSERT INTO `cn_nojd` VALUES (440203, '武江区', 440200, '武江', 3, 8);
-INSERT INTO `cn_nojd` VALUES (440204, '浈江区', 440200, '浈江', 3, 10);
-INSERT INTO `cn_nojd` VALUES (440205, '曲江区', 440200, '曲江', 3, 3);
-INSERT INTO `cn_nojd` VALUES (440222, '始兴县', 440200, '始兴', 3, 6);
-INSERT INTO `cn_nojd` VALUES (440224, '仁化县', 440200, '仁化', 3, 4);
-INSERT INTO `cn_nojd` VALUES (440229, '翁源县', 440200, '翁源', 3, 7);
-INSERT INTO `cn_nojd` VALUES (440232, '乳源瑶族自治县', 440200, '乳源', 3, 5);
-INSERT INTO `cn_nojd` VALUES (440233, '新丰县', 440200, '新丰', 3, 9);
-INSERT INTO `cn_nojd` VALUES (440281, '乐昌市', 440200, '乐昌', 3, 1);
-INSERT INTO `cn_nojd` VALUES (440282, '南雄市', 440200, '南雄', 3, 2);
-INSERT INTO `cn_nojd` VALUES (440300, '深圳市', 440000, '深圳', 2, 16);
-INSERT INTO `cn_nojd` VALUES (440303, '罗湖区', 440300, '罗湖', 3, 7);
-INSERT INTO `cn_nojd` VALUES (440304, '福田区', 440300, '福田', 3, 3);
-INSERT INTO `cn_nojd` VALUES (440305, '南山区', 440300, '南山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (440306, '宝安区', 440300, '宝安', 3, 1);
-INSERT INTO `cn_nojd` VALUES (440307, '龙岗区', 440300, '龙岗', 3, 5);
-INSERT INTO `cn_nojd` VALUES (440308, '盐田区', 440300, '盐田', 3, 10);
-INSERT INTO `cn_nojd` VALUES (440320, '光明新区', 440300, '光明', 3, 4);
-INSERT INTO `cn_nojd` VALUES (440321, '坪山新区', 440300, '坪山', 3, 9);
-INSERT INTO `cn_nojd` VALUES (440322, '大鹏新区', 440300, '大鹏', 3, 2);
-INSERT INTO `cn_nojd` VALUES (440323, '龙华新区', 440300, '龙华', 3, 6);
-INSERT INTO `cn_nojd` VALUES (440400, '珠海市', 440000, '珠海', 2, 22);
-INSERT INTO `cn_nojd` VALUES (440402, '香洲区', 440400, '香洲', 3, 3);
-INSERT INTO `cn_nojd` VALUES (440403, '斗门区', 440400, '斗门', 3, 1);
-INSERT INTO `cn_nojd` VALUES (440404, '金湾区', 440400, '金湾', 3, 2);
-INSERT INTO `cn_nojd` VALUES (440500, '汕头市', 440000, '汕头', 2, 13);
-INSERT INTO `cn_nojd` VALUES (440507, '龙湖区', 440500, '龙湖', 3, 6);
-INSERT INTO `cn_nojd` VALUES (440511, '金平区', 440500, '金平', 3, 5);
-INSERT INTO `cn_nojd` VALUES (440512, '濠江区', 440500, '濠江', 3, 4);
-INSERT INTO `cn_nojd` VALUES (440513, '潮阳区', 440500, '潮阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (440514, '潮南区', 440500, '潮南', 3, 1);
-INSERT INTO `cn_nojd` VALUES (440515, '澄海区', 440500, '澄海', 3, 3);
-INSERT INTO `cn_nojd` VALUES (440523, '南澳县', 440500, '南澳', 3, 7);
-INSERT INTO `cn_nojd` VALUES (440600, '佛山市', 440000, '佛山', 2, 4);
-INSERT INTO `cn_nojd` VALUES (440604, '禅城区', 440600, '禅城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (440605, '南海区', 440600, '南海', 3, 3);
-INSERT INTO `cn_nojd` VALUES (440606, '顺德区', 440600, '顺德', 3, 5);
-INSERT INTO `cn_nojd` VALUES (440607, '三水区', 440600, '三水', 3, 4);
-INSERT INTO `cn_nojd` VALUES (440608, '高明区', 440600, '高明', 3, 2);
-INSERT INTO `cn_nojd` VALUES (440700, '江门市', 440000, '江门', 2, 8);
-INSERT INTO `cn_nojd` VALUES (440703, '蓬江区', 440700, '蓬江', 3, 5);
-INSERT INTO `cn_nojd` VALUES (440704, '江海区', 440700, '江海', 3, 3);
-INSERT INTO `cn_nojd` VALUES (440705, '新会区', 440700, '新会', 3, 7);
-INSERT INTO `cn_nojd` VALUES (440781, '台山市', 440700, '台山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (440783, '开平市', 440700, '开平', 3, 4);
-INSERT INTO `cn_nojd` VALUES (440784, '鹤山市', 440700, '鹤山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (440785, '恩平市', 440700, '恩平', 3, 1);
-INSERT INTO `cn_nojd` VALUES (440800, '湛江市', 440000, '湛江', 2, 19);
-INSERT INTO `cn_nojd` VALUES (440802, '赤坎区', 440800, '赤坎', 3, 1);
-INSERT INTO `cn_nojd` VALUES (440803, '霞山区', 440800, '霞山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (440804, '坡头区', 440800, '坡头', 3, 5);
-INSERT INTO `cn_nojd` VALUES (440811, '麻章区', 440800, '麻章', 3, 4);
-INSERT INTO `cn_nojd` VALUES (440823, '遂溪县', 440800, '遂溪', 3, 6);
-INSERT INTO `cn_nojd` VALUES (440825, '徐闻县', 440800, '徐闻', 3, 9);
-INSERT INTO `cn_nojd` VALUES (440881, '廉江市', 440800, '廉江', 3, 3);
-INSERT INTO `cn_nojd` VALUES (440882, '雷州市', 440800, '雷州', 3, 2);
-INSERT INTO `cn_nojd` VALUES (440883, '吴川市', 440800, '吴川', 3, 7);
-INSERT INTO `cn_nojd` VALUES (440900, '茂名市', 440000, '茂名', 2, 10);
-INSERT INTO `cn_nojd` VALUES (440902, '茂南区', 440900, '茂南', 3, 5);
-INSERT INTO `cn_nojd` VALUES (440903, '茂港区', 440900, '茂港', 3, 4);
-INSERT INTO `cn_nojd` VALUES (440923, '电白县', 440900, '电白', 3, 1);
-INSERT INTO `cn_nojd` VALUES (440981, '高州市', 440900, '高州', 3, 2);
-INSERT INTO `cn_nojd` VALUES (440982, '化州市', 440900, '化州', 3, 3);
-INSERT INTO `cn_nojd` VALUES (440983, '信宜市', 440900, '信宜', 3, 6);
-INSERT INTO `cn_nojd` VALUES (441200, '肇庆市', 440000, '肇庆', 2, 20);
-INSERT INTO `cn_nojd` VALUES (441202, '端州区', 441200, '端州', 3, 3);
-INSERT INTO `cn_nojd` VALUES (441203, '鼎湖区', 441200, '鼎湖', 3, 2);
-INSERT INTO `cn_nojd` VALUES (441223, '广宁县', 441200, '广宁', 3, 6);
-INSERT INTO `cn_nojd` VALUES (441224, '怀集县', 441200, '怀集', 3, 7);
-INSERT INTO `cn_nojd` VALUES (441225, '封开县', 441200, '封开', 3, 4);
-INSERT INTO `cn_nojd` VALUES (441226, '德庆县', 441200, '德庆', 3, 1);
-INSERT INTO `cn_nojd` VALUES (441283, '高要市', 441200, '高要', 3, 5);
-INSERT INTO `cn_nojd` VALUES (441284, '四会市', 441200, '四会', 3, 8);
-INSERT INTO `cn_nojd` VALUES (441300, '惠州市', 440000, '惠州', 2, 7);
-INSERT INTO `cn_nojd` VALUES (441302, '惠城区', 441300, '惠城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (441303, '惠阳区', 441300, '惠阳', 3, 4);
-INSERT INTO `cn_nojd` VALUES (441322, '博罗县', 441300, '博罗', 3, 1);
-INSERT INTO `cn_nojd` VALUES (441323, '惠东县', 441300, '惠东', 3, 3);
-INSERT INTO `cn_nojd` VALUES (441324, '龙门县', 441300, '龙门', 3, 5);
-INSERT INTO `cn_nojd` VALUES (441400, '梅州市', 440000, '梅州', 2, 11);
-INSERT INTO `cn_nojd` VALUES (441402, '梅江区', 441400, '梅江', 3, 4);
-INSERT INTO `cn_nojd` VALUES (441421, '梅县', 441400, '梅县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (441422, '大埔县', 441400, '大埔', 3, 1);
-INSERT INTO `cn_nojd` VALUES (441423, '丰顺县', 441400, '丰顺', 3, 2);
-INSERT INTO `cn_nojd` VALUES (441424, '五华县', 441400, '五华', 3, 7);
-INSERT INTO `cn_nojd` VALUES (441426, '平远县', 441400, '平远', 3, 6);
-INSERT INTO `cn_nojd` VALUES (441427, '蕉岭县', 441400, '蕉岭', 3, 3);
-INSERT INTO `cn_nojd` VALUES (441481, '兴宁市', 441400, '兴宁', 3, 8);
-INSERT INTO `cn_nojd` VALUES (441500, '汕尾市', 440000, '汕尾', 2, 14);
-INSERT INTO `cn_nojd` VALUES (441502, '城区', 441500, '城区', 3, 1);
-INSERT INTO `cn_nojd` VALUES (441521, '海丰县', 441500, '海丰', 3, 2);
-INSERT INTO `cn_nojd` VALUES (441523, '陆河县', 441500, '陆河', 3, 4);
-INSERT INTO `cn_nojd` VALUES (441581, '陆丰市', 441500, '陆丰', 3, 3);
-INSERT INTO `cn_nojd` VALUES (441600, '河源市', 440000, '河源', 2, 6);
-INSERT INTO `cn_nojd` VALUES (441602, '源城区', 441600, '源城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (441621, '紫金县', 441600, '紫金', 3, 6);
-INSERT INTO `cn_nojd` VALUES (441622, '龙川县', 441600, '龙川', 3, 4);
-INSERT INTO `cn_nojd` VALUES (441623, '连平县', 441600, '连平', 3, 3);
-INSERT INTO `cn_nojd` VALUES (441624, '和平县', 441600, '和平', 3, 2);
-INSERT INTO `cn_nojd` VALUES (441625, '东源县', 441600, '东源', 3, 1);
-INSERT INTO `cn_nojd` VALUES (441700, '阳江市', 440000, '阳江', 2, 17);
-INSERT INTO `cn_nojd` VALUES (441702, '江城区', 441700, '江城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (441721, '阳西县', 441700, '阳西', 3, 4);
-INSERT INTO `cn_nojd` VALUES (441723, '阳东县', 441700, '阳东', 3, 3);
-INSERT INTO `cn_nojd` VALUES (441781, '阳春市', 441700, '阳春', 3, 2);
-INSERT INTO `cn_nojd` VALUES (441800, '清远市', 440000, '清远', 2, 12);
-INSERT INTO `cn_nojd` VALUES (441802, '清城区', 441800, '清城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (441821, '佛冈县', 441800, '佛冈', 3, 1);
-INSERT INTO `cn_nojd` VALUES (441823, '阳山县', 441800, '阳山', 3, 7);
-INSERT INTO `cn_nojd` VALUES (441825, '连山壮族瑶族自治县', 441800, '连山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (441826, '连南瑶族自治县', 441800, '连南', 3, 2);
-INSERT INTO `cn_nojd` VALUES (441827, '清新区', 441800, '清新', 3, 6);
-INSERT INTO `cn_nojd` VALUES (441881, '英德市', 441800, '英德', 3, 8);
-INSERT INTO `cn_nojd` VALUES (441882, '连州市', 441800, '连州', 3, 4);
-INSERT INTO `cn_nojd` VALUES (441900, '东莞市', 440000, '东莞', 2, 2);
-INSERT INTO `cn_nojd` VALUES (442000, '中山市', 440000, '中山', 2, 21);
-INSERT INTO `cn_nojd` VALUES (442101, '东沙群岛', 440000, '东沙', 2, 3);
-INSERT INTO `cn_nojd` VALUES (445100, '潮州市', 440000, '潮州', 2, 1);
-INSERT INTO `cn_nojd` VALUES (445102, '湘桥区', 445100, '湘桥', 3, 3);
-INSERT INTO `cn_nojd` VALUES (445121, '潮安区', 445100, '潮安', 3, 1);
-INSERT INTO `cn_nojd` VALUES (445122, '饶平县', 445100, '饶平', 3, 2);
-INSERT INTO `cn_nojd` VALUES (445200, '揭阳市', 440000, '揭阳', 2, 9);
-INSERT INTO `cn_nojd` VALUES (445202, '榕城区', 445200, '榕城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (445221, '揭东区', 445200, '揭东', 3, 2);
-INSERT INTO `cn_nojd` VALUES (445222, '揭西县', 445200, '揭西', 3, 3);
-INSERT INTO `cn_nojd` VALUES (445224, '惠来县', 445200, '惠来', 3, 1);
-INSERT INTO `cn_nojd` VALUES (445281, '普宁市', 445200, '普宁', 3, 4);
-INSERT INTO `cn_nojd` VALUES (445300, '云浮市', 440000, '云浮', 2, 18);
-INSERT INTO `cn_nojd` VALUES (445302, '云城区', 445300, '云城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (445321, '新兴县', 445300, '新兴', 3, 2);
-INSERT INTO `cn_nojd` VALUES (445322, '郁南县', 445300, '郁南', 3, 3);
-INSERT INTO `cn_nojd` VALUES (445323, '云安县', 445300, '云安', 3, 4);
-INSERT INTO `cn_nojd` VALUES (445381, '罗定市', 445300, '罗定', 3, 1);
-INSERT INTO `cn_nojd` VALUES (450000, '广西壮族自治区', 0, '广西', 1, 20);
-INSERT INTO `cn_nojd` VALUES (450100, '南宁市', 450000, '南宁', 2, 11);
-INSERT INTO `cn_nojd` VALUES (450102, '兴宁区', 450100, '兴宁', 3, 10);
-INSERT INTO `cn_nojd` VALUES (450103, '青秀区', 450100, '青秀', 3, 7);
-INSERT INTO `cn_nojd` VALUES (450105, '江南区', 450100, '江南', 3, 3);
-INSERT INTO `cn_nojd` VALUES (450107, '西乡塘区', 450100, '西乡塘', 3, 11);
-INSERT INTO `cn_nojd` VALUES (450108, '良庆区', 450100, '良庆', 3, 4);
-INSERT INTO `cn_nojd` VALUES (450109, '邕宁区', 450100, '邕宁', 3, 12);
-INSERT INTO `cn_nojd` VALUES (450122, '武鸣县', 450100, '武鸣', 3, 9);
-INSERT INTO `cn_nojd` VALUES (450123, '隆安县', 450100, '隆安', 3, 5);
-INSERT INTO `cn_nojd` VALUES (450124, '马山县', 450100, '马山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (450125, '上林县', 450100, '上林', 3, 8);
-INSERT INTO `cn_nojd` VALUES (450126, '宾阳县', 450100, '宾阳', 3, 1);
-INSERT INTO `cn_nojd` VALUES (450127, '横县', 450100, '横县', 3, 2);
-INSERT INTO `cn_nojd` VALUES (450200, '柳州市', 450000, '柳州', 2, 10);
-INSERT INTO `cn_nojd` VALUES (450202, '城中区', 450200, '城中', 3, 1);
-INSERT INTO `cn_nojd` VALUES (450203, '鱼峰区', 450200, '鱼峰', 3, 10);
-INSERT INTO `cn_nojd` VALUES (450204, '柳南区', 450200, '柳南', 3, 5);
-INSERT INTO `cn_nojd` VALUES (450205, '柳北区', 450200, '柳北', 3, 2);
-INSERT INTO `cn_nojd` VALUES (450221, '柳江县', 450200, '柳江', 3, 4);
-INSERT INTO `cn_nojd` VALUES (450222, '柳城县', 450200, '柳城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (450223, '鹿寨县', 450200, '鹿寨', 3, 6);
-INSERT INTO `cn_nojd` VALUES (450224, '融安县', 450200, '融安', 3, 7);
-INSERT INTO `cn_nojd` VALUES (450225, '融水苗族自治县', 450200, '融水', 3, 8);
-INSERT INTO `cn_nojd` VALUES (450226, '三江侗族自治县', 450200, '三江', 3, 9);
-INSERT INTO `cn_nojd` VALUES (450300, '桂林市', 450000, '桂林', 2, 6);
-INSERT INTO `cn_nojd` VALUES (450302, '秀峰区', 450300, '秀峰', 3, 13);
-INSERT INTO `cn_nojd` VALUES (450303, '叠彩区', 450300, '叠彩', 3, 1);
-INSERT INTO `cn_nojd` VALUES (450304, '象山区', 450300, '象山', 3, 11);
-INSERT INTO `cn_nojd` VALUES (450305, '七星区', 450300, '七星', 3, 9);
-INSERT INTO `cn_nojd` VALUES (450311, '雁山区', 450300, '雁山', 3, 15);
-INSERT INTO `cn_nojd` VALUES (450321, '阳朔县', 450300, '阳朔', 3, 14);
-INSERT INTO `cn_nojd` VALUES (450322, '临桂区', 450300, '临桂', 3, 5);
-INSERT INTO `cn_nojd` VALUES (450323, '灵川县', 450300, '灵川', 3, 4);
-INSERT INTO `cn_nojd` VALUES (450324, '全州县', 450300, '全州', 3, 10);
-INSERT INTO `cn_nojd` VALUES (450325, '兴安县', 450300, '兴安', 3, 12);
-INSERT INTO `cn_nojd` VALUES (450326, '永福县', 450300, '永福', 3, 16);
-INSERT INTO `cn_nojd` VALUES (450327, '灌阳县', 450300, '灌阳', 3, 3);
-INSERT INTO `cn_nojd` VALUES (450328, '龙胜各族自治县', 450300, '龙胜', 3, 7);
-INSERT INTO `cn_nojd` VALUES (450329, '资源县', 450300, '资源', 3, 17);
-INSERT INTO `cn_nojd` VALUES (450330, '平乐县', 450300, '平乐', 3, 8);
-INSERT INTO `cn_nojd` VALUES (450331, '荔浦县', 450300, '荔浦', 3, 6);
-INSERT INTO `cn_nojd` VALUES (450332, '恭城瑶族自治县', 450300, '恭城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (450400, '梧州市', 450000, '梧州', 2, 13);
-INSERT INTO `cn_nojd` VALUES (450403, '万秀区', 450400, '万秀', 3, 4);
-INSERT INTO `cn_nojd` VALUES (450405, '长洲区', 450400, '长洲', 3, 3);
-INSERT INTO `cn_nojd` VALUES (450406, '龙圩区', 450400, '龙圩', 3, 5);
-INSERT INTO `cn_nojd` VALUES (450421, '苍梧县', 450400, '苍梧', 3, 1);
-INSERT INTO `cn_nojd` VALUES (450422, '藤县', 450400, '藤县', 3, 7);
-INSERT INTO `cn_nojd` VALUES (450423, '蒙山县', 450400, '蒙山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (450481, '岑溪市', 450400, '岑溪', 3, 2);
-INSERT INTO `cn_nojd` VALUES (450500, '北海市', 450000, '北海', 2, 1);
-INSERT INTO `cn_nojd` VALUES (450502, '海城区', 450500, '海城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (450503, '银海区', 450500, '银海', 3, 4);
-INSERT INTO `cn_nojd` VALUES (450512, '铁山港区', 450500, '铁山港', 3, 3);
-INSERT INTO `cn_nojd` VALUES (450521, '合浦县', 450500, '合浦', 3, 2);
-INSERT INTO `cn_nojd` VALUES (450600, '防城港市', 450000, '防城港', 2, 4);
-INSERT INTO `cn_nojd` VALUES (450602, '港口区', 450600, '港口', 3, 3);
-INSERT INTO `cn_nojd` VALUES (450603, '防城区', 450600, '防城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (450621, '上思县', 450600, '上思', 3, 4);
-INSERT INTO `cn_nojd` VALUES (450681, '东兴市', 450600, '东兴', 3, 1);
-INSERT INTO `cn_nojd` VALUES (450700, '钦州市', 450000, '钦州', 2, 12);
-INSERT INTO `cn_nojd` VALUES (450702, '钦南区', 450700, '钦南', 3, 4);
-INSERT INTO `cn_nojd` VALUES (450703, '钦北区', 450700, '钦北', 3, 3);
-INSERT INTO `cn_nojd` VALUES (450721, '灵山县', 450700, '灵山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (450722, '浦北县', 450700, '浦北', 3, 2);
-INSERT INTO `cn_nojd` VALUES (450800, '贵港市', 450000, '贵港', 2, 5);
-INSERT INTO `cn_nojd` VALUES (450802, '港北区', 450800, '港北', 3, 1);
-INSERT INTO `cn_nojd` VALUES (450803, '港南区', 450800, '港南', 3, 2);
-INSERT INTO `cn_nojd` VALUES (450804, '覃塘区', 450800, '覃塘', 3, 5);
-INSERT INTO `cn_nojd` VALUES (450821, '平南县', 450800, '平南', 3, 4);
-INSERT INTO `cn_nojd` VALUES (450881, '桂平市', 450800, '桂平', 3, 3);
-INSERT INTO `cn_nojd` VALUES (450900, '玉林市', 450000, '玉林', 2, 14);
-INSERT INTO `cn_nojd` VALUES (450902, '玉州区', 450900, '玉州', 3, 7);
-INSERT INTO `cn_nojd` VALUES (450903, '福绵区', 450900, '福绵', 3, 3);
-INSERT INTO `cn_nojd` VALUES (450921, '容县', 450900, '容县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (450922, '陆川县', 450900, '陆川', 3, 4);
-INSERT INTO `cn_nojd` VALUES (450923, '博白县', 450900, '博白', 3, 2);
-INSERT INTO `cn_nojd` VALUES (450924, '兴业县', 450900, '兴业', 3, 6);
-INSERT INTO `cn_nojd` VALUES (450981, '北流市', 450900, '北流', 3, 1);
-INSERT INTO `cn_nojd` VALUES (451000, '百色市', 450000, '百色', 2, 2);
-INSERT INTO `cn_nojd` VALUES (451002, '右江区', 451000, '右江', 3, 12);
-INSERT INTO `cn_nojd` VALUES (451021, '田阳县', 451000, '田阳', 3, 10);
-INSERT INTO `cn_nojd` VALUES (451022, '田东县', 451000, '田东', 3, 8);
-INSERT INTO `cn_nojd` VALUES (451023, '平果县', 451000, '平果', 3, 7);
-INSERT INTO `cn_nojd` VALUES (451024, '德保县', 451000, '德保', 3, 1);
-INSERT INTO `cn_nojd` VALUES (451025, '靖西县', 451000, '靖西', 3, 2);
-INSERT INTO `cn_nojd` VALUES (451026, '那坡县', 451000, '那坡', 3, 6);
-INSERT INTO `cn_nojd` VALUES (451027, '凌云县', 451000, '凌云', 3, 4);
-INSERT INTO `cn_nojd` VALUES (451028, '乐业县', 451000, '乐业', 3, 3);
-INSERT INTO `cn_nojd` VALUES (451029, '田林县', 451000, '田林', 3, 9);
-INSERT INTO `cn_nojd` VALUES (451030, '西林县', 451000, '西林', 3, 11);
-INSERT INTO `cn_nojd` VALUES (451031, '隆林各族自治县', 451000, '隆林', 3, 5);
-INSERT INTO `cn_nojd` VALUES (451100, '贺州市', 450000, '贺州', 2, 8);
-INSERT INTO `cn_nojd` VALUES (451102, '八步区', 451100, '八步', 3, 1);
-INSERT INTO `cn_nojd` VALUES (451119, '平桂管理区', 451100, '平桂', 3, 3);
-INSERT INTO `cn_nojd` VALUES (451121, '昭平县', 451100, '昭平', 3, 4);
-INSERT INTO `cn_nojd` VALUES (451122, '钟山县', 451100, '钟山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (451123, '富川瑶族自治县', 451100, '富川', 3, 2);
-INSERT INTO `cn_nojd` VALUES (451200, '河池市', 450000, '河池', 2, 7);
-INSERT INTO `cn_nojd` VALUES (451202, '金城江区', 451200, '金城江', 3, 7);
-INSERT INTO `cn_nojd` VALUES (451221, '南丹县', 451200, '南丹', 3, 9);
-INSERT INTO `cn_nojd` VALUES (451222, '天峨县', 451200, '天峨', 3, 10);
-INSERT INTO `cn_nojd` VALUES (451223, '凤山县', 451200, '凤山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (451224, '东兰县', 451200, '东兰', 3, 3);
-INSERT INTO `cn_nojd` VALUES (451225, '罗城仫佬族自治县', 451200, '罗城', 3, 8);
-INSERT INTO `cn_nojd` VALUES (451226, '环江毛南族自治县', 451200, '环江', 3, 6);
-INSERT INTO `cn_nojd` VALUES (451227, '巴马瑶族自治县', 451200, '巴马', 3, 1);
-INSERT INTO `cn_nojd` VALUES (451228, '都安瑶族自治县', 451200, '都安', 3, 4);
-INSERT INTO `cn_nojd` VALUES (451229, '大化瑶族自治县', 451200, '大化', 3, 2);
-INSERT INTO `cn_nojd` VALUES (451281, '宜州市', 451200, '宜州', 3, 11);
-INSERT INTO `cn_nojd` VALUES (451300, '来宾市', 450000, '来宾', 2, 9);
-INSERT INTO `cn_nojd` VALUES (451302, '兴宾区', 451300, '兴宾', 3, 6);
-INSERT INTO `cn_nojd` VALUES (451321, '忻城县', 451300, '忻城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (451322, '象州县', 451300, '象州', 3, 4);
-INSERT INTO `cn_nojd` VALUES (451323, '武宣县', 451300, '武宣', 3, 3);
-INSERT INTO `cn_nojd` VALUES (451324, '金秀瑶族自治县', 451300, '金秀', 3, 2);
-INSERT INTO `cn_nojd` VALUES (451381, '合山市', 451300, '合山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (451400, '崇左市', 450000, '崇左', 2, 3);
-INSERT INTO `cn_nojd` VALUES (451402, '江州区', 451400, '江州', 3, 3);
-INSERT INTO `cn_nojd` VALUES (451421, '扶绥县', 451400, '扶绥', 3, 2);
-INSERT INTO `cn_nojd` VALUES (451422, '宁明县', 451400, '宁明', 3, 5);
-INSERT INTO `cn_nojd` VALUES (451423, '龙州县', 451400, '龙州', 3, 4);
-INSERT INTO `cn_nojd` VALUES (451424, '大新县', 451400, '大新', 3, 1);
-INSERT INTO `cn_nojd` VALUES (451425, '天等县', 451400, '天等', 3, 7);
-INSERT INTO `cn_nojd` VALUES (451481, '凭祥市', 451400, '凭祥', 3, 6);
-INSERT INTO `cn_nojd` VALUES (460000, '海南省', 0, '海南', 1, 21);
-INSERT INTO `cn_nojd` VALUES (460100, '海口市', 460000, '海口', 2, 8);
-INSERT INTO `cn_nojd` VALUES (460105, '秀英区', 460100, '秀英', 3, 4);
-INSERT INTO `cn_nojd` VALUES (460106, '龙华区', 460100, '龙华', 3, 1);
-INSERT INTO `cn_nojd` VALUES (460107, '琼山区', 460100, '琼山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (460108, '美兰区', 460100, '美兰', 3, 2);
-INSERT INTO `cn_nojd` VALUES (460200, '三亚市', 460000, '三亚', 2, 15);
-INSERT INTO `cn_nojd` VALUES (460300, '三沙市', 460000, '三沙', 2, 14);
-INSERT INTO `cn_nojd` VALUES (460321, '西沙群岛', 460300, '西沙', 3, 2);
-INSERT INTO `cn_nojd` VALUES (460322, '南沙群岛', 460300, '南沙', 3, 1);
-INSERT INTO `cn_nojd` VALUES (460323, '中沙群岛的岛礁及其海域', 460300, '中沙', 3, 3);
-INSERT INTO `cn_nojd` VALUES (469001, '五指山市', 460000, '五指山', 2, 19);
-INSERT INTO `cn_nojd` VALUES (469002, '琼海市', 460000, '琼海', 2, 12);
-INSERT INTO `cn_nojd` VALUES (469003, '儋州市', 460000, '儋州', 2, 5);
-INSERT INTO `cn_nojd` VALUES (469005, '文昌市', 460000, '文昌', 2, 18);
-INSERT INTO `cn_nojd` VALUES (469006, '万宁市', 460000, '万宁', 2, 17);
-INSERT INTO `cn_nojd` VALUES (469007, '东方市', 460000, '东方', 2, 7);
-INSERT INTO `cn_nojd` VALUES (469025, '定安县', 460000, '定安', 2, 6);
-INSERT INTO `cn_nojd` VALUES (469026, '屯昌县', 460000, '屯昌', 2, 16);
-INSERT INTO `cn_nojd` VALUES (469027, '澄迈县', 460000, '澄迈', 2, 4);
-INSERT INTO `cn_nojd` VALUES (469028, '临高县', 460000, '临高', 2, 10);
-INSERT INTO `cn_nojd` VALUES (469030, '白沙黎族自治县', 460000, '白沙', 2, 1);
-INSERT INTO `cn_nojd` VALUES (469031, '昌江黎族自治县', 460000, '昌江', 2, 3);
-INSERT INTO `cn_nojd` VALUES (469033, '乐东黎族自治县', 460000, '乐东', 2, 9);
-INSERT INTO `cn_nojd` VALUES (469034, '陵水黎族自治县', 460000, '陵水', 2, 11);
-INSERT INTO `cn_nojd` VALUES (469035, '保亭黎族苗族自治县', 460000, '保亭', 2, 2);
-INSERT INTO `cn_nojd` VALUES (469036, '琼中黎族苗族自治县', 460000, '琼中', 2, 13);
-INSERT INTO `cn_nojd` VALUES (500000, '重庆', 0, '重庆', 1, 22);
-INSERT INTO `cn_nojd` VALUES (500100, '重庆市', 500000, '重庆', 2, 1);
-INSERT INTO `cn_nojd` VALUES (500101, '万州区', 500100, '万州', 3, 28);
-INSERT INTO `cn_nojd` VALUES (500102, '涪陵区', 500100, '涪陵', 3, 11);
-INSERT INTO `cn_nojd` VALUES (500103, '渝中区', 500100, '渝中', 3, 37);
-INSERT INTO `cn_nojd` VALUES (500104, '大渡口区', 500100, '大渡口', 3, 6);
-INSERT INTO `cn_nojd` VALUES (500105, '江北区', 500100, '江北', 3, 13);
-INSERT INTO `cn_nojd` VALUES (500106, '沙坪坝区', 500100, '沙坪坝', 3, 24);
-INSERT INTO `cn_nojd` VALUES (500107, '九龙坡区', 500100, '九龙坡', 3, 15);
-INSERT INTO `cn_nojd` VALUES (500108, '南岸区', 500100, '南岸', 3, 18);
-INSERT INTO `cn_nojd` VALUES (500109, '北碚区', 500100, '北碚', 3, 2);
-INSERT INTO `cn_nojd` VALUES (500112, '渝北区', 500100, '渝北', 3, 35);
-INSERT INTO `cn_nojd` VALUES (500113, '巴南区', 500100, '巴南', 3, 1);
-INSERT INTO `cn_nojd` VALUES (500114, '黔江区', 500100, '黔江', 3, 21);
-INSERT INTO `cn_nojd` VALUES (500115, '长寿区', 500100, '长寿', 3, 4);
-INSERT INTO `cn_nojd` VALUES (500222, '綦江区', 500100, '綦江', 3, 22);
-INSERT INTO `cn_nojd` VALUES (500223, '潼南县', 500100, '潼南', 3, 27);
-INSERT INTO `cn_nojd` VALUES (500224, '铜梁县', 500100, '铜梁', 3, 26);
-INSERT INTO `cn_nojd` VALUES (500225, '大足区', 500100, '大足', 3, 7);
-INSERT INTO `cn_nojd` VALUES (500226, '荣昌县', 500100, '荣昌', 3, 23);
-INSERT INTO `cn_nojd` VALUES (500227, '璧山县', 500100, '璧山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (500228, '梁平县', 500100, '梁平', 3, 17);
-INSERT INTO `cn_nojd` VALUES (500229, '城口县', 500100, '城口', 3, 5);
-INSERT INTO `cn_nojd` VALUES (500230, '丰都县', 500100, '丰都', 3, 9);
-INSERT INTO `cn_nojd` VALUES (500231, '垫江县', 500100, '垫江', 3, 8);
-INSERT INTO `cn_nojd` VALUES (500232, '武隆县', 500100, '武隆', 3, 29);
-INSERT INTO `cn_nojd` VALUES (500233, '忠县', 500100, '忠县', 3, 38);
-INSERT INTO `cn_nojd` VALUES (500234, '开县', 500100, '开县', 3, 16);
-INSERT INTO `cn_nojd` VALUES (500235, '云阳县', 500100, '云阳', 3, 36);
-INSERT INTO `cn_nojd` VALUES (500236, '奉节县', 500100, '奉节', 3, 10);
-INSERT INTO `cn_nojd` VALUES (500237, '巫山县', 500100, '巫山', 3, 30);
-INSERT INTO `cn_nojd` VALUES (500238, '巫溪县', 500100, '巫溪', 3, 31);
-INSERT INTO `cn_nojd` VALUES (500240, '石柱土家族自治县', 500100, '石柱', 3, 25);
-INSERT INTO `cn_nojd` VALUES (500241, '秀山土家族苗族自治县', 500100, '秀山', 3, 32);
-INSERT INTO `cn_nojd` VALUES (500242, '酉阳土家族苗族自治县', 500100, '酉阳', 3, 34);
-INSERT INTO `cn_nojd` VALUES (500243, '彭水苗族土家族自治县', 500100, '彭水', 3, 20);
-INSERT INTO `cn_nojd` VALUES (500381, '江津区', 500100, '江津', 3, 14);
-INSERT INTO `cn_nojd` VALUES (500382, '合川区', 500100, '合川', 3, 12);
-INSERT INTO `cn_nojd` VALUES (500383, '永川区', 500100, '永川', 3, 33);
-INSERT INTO `cn_nojd` VALUES (500384, '南川区', 500100, '南川', 3, 19);
-INSERT INTO `cn_nojd` VALUES (510000, '四川省', 0, '四川', 1, 23);
-INSERT INTO `cn_nojd` VALUES (510100, '成都市', 510000, '成都', 2, 3);
-INSERT INTO `cn_nojd` VALUES (510104, '锦江区', 510100, '锦江', 3, 5);
-INSERT INTO `cn_nojd` VALUES (510105, '青羊区', 510100, '青羊', 3, 13);
-INSERT INTO `cn_nojd` VALUES (510106, '金牛区', 510100, '金牛', 3, 6);
-INSERT INTO `cn_nojd` VALUES (510107, '武侯区', 510100, '武侯', 3, 17);
-INSERT INTO `cn_nojd` VALUES (510108, '成华区', 510100, '成华', 3, 1);
-INSERT INTO `cn_nojd` VALUES (510112, '龙泉驿区', 510100, '龙泉驿', 3, 8);
-INSERT INTO `cn_nojd` VALUES (510113, '青白江区', 510100, '青白江', 3, 12);
-INSERT INTO `cn_nojd` VALUES (510114, '新都区', 510100, '新都', 3, 18);
-INSERT INTO `cn_nojd` VALUES (510115, '温江区', 510100, '温江', 3, 16);
-INSERT INTO `cn_nojd` VALUES (510121, '金堂县', 510100, '金堂', 3, 7);
-INSERT INTO `cn_nojd` VALUES (510122, '双流县', 510100, '双流', 3, 15);
-INSERT INTO `cn_nojd` VALUES (510124, '郫县', 510100, '郫县', 3, 10);
-INSERT INTO `cn_nojd` VALUES (510129, '大邑县', 510100, '大邑', 3, 3);
-INSERT INTO `cn_nojd` VALUES (510131, '蒲江县', 510100, '蒲江', 3, 11);
-INSERT INTO `cn_nojd` VALUES (510132, '新津县', 510100, '新津', 3, 19);
-INSERT INTO `cn_nojd` VALUES (510181, '都江堰市', 510100, '都江堰', 3, 4);
-INSERT INTO `cn_nojd` VALUES (510182, '彭州市', 510100, '彭州', 3, 9);
-INSERT INTO `cn_nojd` VALUES (510183, '邛崃市', 510100, '邛崃', 3, 14);
-INSERT INTO `cn_nojd` VALUES (510184, '崇州市', 510100, '崇州', 3, 2);
-INSERT INTO `cn_nojd` VALUES (510300, '自贡市', 510000, '自贡', 2, 20);
-INSERT INTO `cn_nojd` VALUES (510302, '自流井区', 510300, '自流井', 3, 6);
-INSERT INTO `cn_nojd` VALUES (510303, '贡井区', 510300, '贡井', 3, 3);
-INSERT INTO `cn_nojd` VALUES (510304, '大安区', 510300, '大安', 3, 1);
-INSERT INTO `cn_nojd` VALUES (510311, '沿滩区', 510300, '沿滩', 3, 5);
-INSERT INTO `cn_nojd` VALUES (510321, '荣县', 510300, '荣县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (510322, '富顺县', 510300, '富顺', 3, 2);
-INSERT INTO `cn_nojd` VALUES (510400, '攀枝花市', 510000, '攀枝花', 2, 16);
-INSERT INTO `cn_nojd` VALUES (510402, '东区', 510400, '东区', 3, 1);
-INSERT INTO `cn_nojd` VALUES (510403, '西区', 510400, '西区', 3, 4);
-INSERT INTO `cn_nojd` VALUES (510411, '仁和区', 510400, '仁和', 3, 3);
-INSERT INTO `cn_nojd` VALUES (510421, '米易县', 510400, '米易', 3, 2);
-INSERT INTO `cn_nojd` VALUES (510422, '盐边县', 510400, '盐边', 3, 5);
-INSERT INTO `cn_nojd` VALUES (510500, '泸州市', 510000, '泸州', 2, 11);
-INSERT INTO `cn_nojd` VALUES (510502, '江阳区', 510500, '江阳', 3, 3);
-INSERT INTO `cn_nojd` VALUES (510503, '纳溪区', 510500, '纳溪', 3, 6);
-INSERT INTO `cn_nojd` VALUES (510504, '龙马潭区', 510500, '龙马潭', 3, 4);
-INSERT INTO `cn_nojd` VALUES (510521, '泸县', 510500, '泸县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (510522, '合江县', 510500, '合江', 3, 2);
-INSERT INTO `cn_nojd` VALUES (510524, '叙永县', 510500, '叙永', 3, 7);
-INSERT INTO `cn_nojd` VALUES (510525, '古蔺县', 510500, '古蔺', 3, 1);
-INSERT INTO `cn_nojd` VALUES (510600, '德阳市', 510000, '德阳', 2, 5);
-INSERT INTO `cn_nojd` VALUES (510603, '旌阳区', 510600, '旌阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (510623, '中江县', 510600, '中江', 3, 6);
-INSERT INTO `cn_nojd` VALUES (510626, '罗江县', 510600, '罗江', 3, 3);
-INSERT INTO `cn_nojd` VALUES (510681, '广汉市', 510600, '广汉', 3, 1);
-INSERT INTO `cn_nojd` VALUES (510682, '什邡市', 510600, '什邡', 3, 5);
-INSERT INTO `cn_nojd` VALUES (510683, '绵竹市', 510600, '绵竹', 3, 4);
-INSERT INTO `cn_nojd` VALUES (510700, '绵阳市', 510000, '绵阳', 2, 13);
-INSERT INTO `cn_nojd` VALUES (510703, '涪城区', 510700, '涪城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (510704, '游仙区', 510700, '游仙', 3, 8);
-INSERT INTO `cn_nojd` VALUES (510722, '三台县', 510700, '三台', 3, 6);
-INSERT INTO `cn_nojd` VALUES (510723, '盐亭县', 510700, '盐亭', 3, 7);
-INSERT INTO `cn_nojd` VALUES (510724, '安县', 510700, '安县', 3, 1);
-INSERT INTO `cn_nojd` VALUES (510725, '梓潼县', 510700, '梓潼', 3, 9);
-INSERT INTO `cn_nojd` VALUES (510726, '北川羌族自治县', 510700, '北川', 3, 2);
-INSERT INTO `cn_nojd` VALUES (510727, '平武县', 510700, '平武', 3, 5);
-INSERT INTO `cn_nojd` VALUES (510781, '江油市', 510700, '江油', 3, 4);
-INSERT INTO `cn_nojd` VALUES (510800, '广元市', 510000, '广元', 2, 8);
-INSERT INTO `cn_nojd` VALUES (510802, '利州区', 510800, '利州', 3, 4);
-INSERT INTO `cn_nojd` VALUES (510811, '昭化区', 510800, '昭化', 3, 7);
-INSERT INTO `cn_nojd` VALUES (510812, '朝天区', 510800, '朝天', 3, 2);
-INSERT INTO `cn_nojd` VALUES (510821, '旺苍县', 510800, '旺苍', 3, 6);
-INSERT INTO `cn_nojd` VALUES (510822, '青川县', 510800, '青川', 3, 5);
-INSERT INTO `cn_nojd` VALUES (510823, '剑阁县', 510800, '剑阁', 3, 3);
-INSERT INTO `cn_nojd` VALUES (510824, '苍溪县', 510800, '苍溪', 3, 1);
-INSERT INTO `cn_nojd` VALUES (510900, '遂宁市', 510000, '遂宁', 2, 17);
-INSERT INTO `cn_nojd` VALUES (510903, '船山区', 510900, '船山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (510904, '安居区', 510900, '安居', 3, 1);
-INSERT INTO `cn_nojd` VALUES (510921, '蓬溪县', 510900, '蓬溪', 3, 4);
-INSERT INTO `cn_nojd` VALUES (510922, '射洪县', 510900, '射洪', 3, 5);
-INSERT INTO `cn_nojd` VALUES (510923, '大英县', 510900, '大英', 3, 3);
-INSERT INTO `cn_nojd` VALUES (511000, '内江市', 510000, '内江', 2, 15);
-INSERT INTO `cn_nojd` VALUES (511002, '市中区', 511000, '市中', 3, 3);
-INSERT INTO `cn_nojd` VALUES (511011, '东兴区', 511000, '东兴', 3, 1);
-INSERT INTO `cn_nojd` VALUES (511024, '威远县', 511000, '威远', 3, 4);
-INSERT INTO `cn_nojd` VALUES (511025, '资中县', 511000, '资中', 3, 5);
-INSERT INTO `cn_nojd` VALUES (511028, '隆昌县', 511000, '隆昌', 3, 2);
-INSERT INTO `cn_nojd` VALUES (511100, '乐山市', 510000, '乐山', 2, 9);
-INSERT INTO `cn_nojd` VALUES (511102, '市中区', 511100, '市中', 3, 10);
-INSERT INTO `cn_nojd` VALUES (511111, '沙湾区', 511100, '沙湾', 3, 9);
-INSERT INTO `cn_nojd` VALUES (511112, '五通桥区', 511100, '五通桥', 3, 11);
-INSERT INTO `cn_nojd` VALUES (511113, '金口河区', 511100, '金口河', 3, 5);
-INSERT INTO `cn_nojd` VALUES (511123, '犍为县', 511100, '犍为', 3, 8);
-INSERT INTO `cn_nojd` VALUES (511124, '井研县', 511100, '井研', 3, 4);
-INSERT INTO `cn_nojd` VALUES (511126, '夹江县', 511100, '夹江', 3, 3);
-INSERT INTO `cn_nojd` VALUES (511129, '沐川县', 511100, '沐川', 3, 7);
-INSERT INTO `cn_nojd` VALUES (511132, '峨边彝族自治县', 511100, '峨边', 3, 1);
-INSERT INTO `cn_nojd` VALUES (511133, '马边彝族自治县', 511100, '马边', 3, 6);
-INSERT INTO `cn_nojd` VALUES (511181, '峨眉山市', 511100, '峨眉山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (511300, '南充市', 510000, '南充', 2, 14);
-INSERT INTO `cn_nojd` VALUES (511302, '顺庆区', 511300, '顺庆', 3, 6);
-INSERT INTO `cn_nojd` VALUES (511303, '高坪区', 511300, '高坪', 3, 1);
-INSERT INTO `cn_nojd` VALUES (511304, '嘉陵区', 511300, '嘉陵', 3, 2);
-INSERT INTO `cn_nojd` VALUES (511321, '南部县', 511300, '南部', 3, 4);
-INSERT INTO `cn_nojd` VALUES (511322, '营山县', 511300, '营山', 3, 9);
-INSERT INTO `cn_nojd` VALUES (511323, '蓬安县', 511300, '蓬安', 3, 5);
-INSERT INTO `cn_nojd` VALUES (511324, '仪陇县', 511300, '仪陇', 3, 8);
-INSERT INTO `cn_nojd` VALUES (511325, '西充县', 511300, '西充', 3, 7);
-INSERT INTO `cn_nojd` VALUES (511381, '阆中市', 511300, '阆中', 3, 3);
-INSERT INTO `cn_nojd` VALUES (511400, '眉山市', 510000, '眉山', 2, 12);
-INSERT INTO `cn_nojd` VALUES (511402, '东坡区', 511400, '东坡', 3, 2);
-INSERT INTO `cn_nojd` VALUES (511421, '仁寿县', 511400, '仁寿', 3, 6);
-INSERT INTO `cn_nojd` VALUES (511422, '彭山县', 511400, '彭山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (511423, '洪雅县', 511400, '洪雅', 3, 3);
-INSERT INTO `cn_nojd` VALUES (511424, '丹棱县', 511400, '丹棱', 3, 1);
-INSERT INTO `cn_nojd` VALUES (511425, '青神县', 511400, '青神', 3, 5);
-INSERT INTO `cn_nojd` VALUES (511500, '宜宾市', 510000, '宜宾', 2, 19);
-INSERT INTO `cn_nojd` VALUES (511502, '翠屏区', 511500, '翠屏', 3, 2);
-INSERT INTO `cn_nojd` VALUES (511521, '宜宾县', 511500, '宜宾', 3, 10);
-INSERT INTO `cn_nojd` VALUES (511522, '南溪区', 511500, '南溪', 3, 7);
-INSERT INTO `cn_nojd` VALUES (511523, '江安县', 511500, '江安', 3, 5);
-INSERT INTO `cn_nojd` VALUES (511524, '长宁县', 511500, '长宁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (511525, '高县', 511500, '高县', 3, 3);
-INSERT INTO `cn_nojd` VALUES (511526, '珙县', 511500, '珙县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (511527, '筠连县', 511500, '筠连', 3, 6);
-INSERT INTO `cn_nojd` VALUES (511528, '兴文县', 511500, '兴文', 3, 9);
-INSERT INTO `cn_nojd` VALUES (511529, '屏山县', 511500, '屏山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (511600, '广安市', 510000, '广安', 2, 7);
-INSERT INTO `cn_nojd` VALUES (511602, '广安区', 511600, '广安', 3, 1);
-INSERT INTO `cn_nojd` VALUES (511603, '前锋区', 511600, '前锋', 3, 4);
-INSERT INTO `cn_nojd` VALUES (511621, '岳池县', 511600, '岳池', 3, 6);
-INSERT INTO `cn_nojd` VALUES (511622, '武胜县', 511600, '武胜', 3, 5);
-INSERT INTO `cn_nojd` VALUES (511623, '邻水县', 511600, '邻水', 3, 3);
-INSERT INTO `cn_nojd` VALUES (511681, '华蓥市', 511600, '华蓥', 3, 2);
-INSERT INTO `cn_nojd` VALUES (511700, '达州市', 510000, '达州', 2, 4);
-INSERT INTO `cn_nojd` VALUES (511702, '通川区', 511700, '通川', 3, 5);
-INSERT INTO `cn_nojd` VALUES (511721, '达川区', 511700, '达川', 3, 1);
-INSERT INTO `cn_nojd` VALUES (511722, '宣汉县', 511700, '宣汉', 3, 7);
-INSERT INTO `cn_nojd` VALUES (511723, '开江县', 511700, '开江', 3, 3);
-INSERT INTO `cn_nojd` VALUES (511724, '大竹县', 511700, '大竹', 3, 2);
-INSERT INTO `cn_nojd` VALUES (511725, '渠县', 511700, '渠县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (511781, '万源市', 511700, '万源', 3, 6);
-INSERT INTO `cn_nojd` VALUES (511800, '雅安市', 510000, '雅安', 2, 18);
-INSERT INTO `cn_nojd` VALUES (511802, '雨城区', 511800, '雨城', 3, 8);
-INSERT INTO `cn_nojd` VALUES (511821, '名山区', 511800, '名山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (511822, '荥经县', 511800, '荥经', 3, 7);
-INSERT INTO `cn_nojd` VALUES (511823, '汉源县', 511800, '汉源', 3, 2);
-INSERT INTO `cn_nojd` VALUES (511824, '石棉县', 511800, '石棉', 3, 5);
-INSERT INTO `cn_nojd` VALUES (511825, '天全县', 511800, '天全', 3, 6);
-INSERT INTO `cn_nojd` VALUES (511826, '芦山县', 511800, '芦山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (511827, '宝兴县', 511800, '宝兴', 3, 1);
-INSERT INTO `cn_nojd` VALUES (511900, '巴中市', 510000, '巴中', 2, 2);
-INSERT INTO `cn_nojd` VALUES (511902, '巴州区', 511900, '巴州', 3, 1);
-INSERT INTO `cn_nojd` VALUES (511903, '恩阳区', 511900, '恩阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (511921, '通江县', 511900, '通江', 3, 5);
-INSERT INTO `cn_nojd` VALUES (511922, '南江县', 511900, '南江', 3, 3);
-INSERT INTO `cn_nojd` VALUES (511923, '平昌县', 511900, '平昌', 3, 4);
-INSERT INTO `cn_nojd` VALUES (512000, '资阳市', 510000, '资阳', 2, 21);
-INSERT INTO `cn_nojd` VALUES (512002, '雁江区', 512000, '雁江', 3, 4);
-INSERT INTO `cn_nojd` VALUES (512021, '安岳县', 512000, '安岳', 3, 1);
-INSERT INTO `cn_nojd` VALUES (512022, '乐至县', 512000, '乐至', 3, 3);
-INSERT INTO `cn_nojd` VALUES (512081, '简阳市', 512000, '简阳', 3, 2);
-INSERT INTO `cn_nojd` VALUES (513200, '阿坝藏族羌族自治州', 510000, '阿坝', 2, 1);
-INSERT INTO `cn_nojd` VALUES (513221, '汶川县', 513200, '汶川', 3, 12);
-INSERT INTO `cn_nojd` VALUES (513222, '理县', 513200, '理县', 3, 6);
-INSERT INTO `cn_nojd` VALUES (513223, '茂县', 513200, '茂县', 3, 8);
-INSERT INTO `cn_nojd` VALUES (513224, '松潘县', 513200, '松潘', 3, 11);
-INSERT INTO `cn_nojd` VALUES (513225, '九寨沟县', 513200, '九寨沟', 3, 5);
-INSERT INTO `cn_nojd` VALUES (513226, '金川县', 513200, '金川', 3, 4);
-INSERT INTO `cn_nojd` VALUES (513227, '小金县', 513200, '小金', 3, 13);
-INSERT INTO `cn_nojd` VALUES (513228, '黑水县', 513200, '黑水', 3, 2);
-INSERT INTO `cn_nojd` VALUES (513229, '马尔康县', 513200, '马尔康', 3, 7);
-INSERT INTO `cn_nojd` VALUES (513230, '壤塘县', 513200, '壤塘', 3, 9);
-INSERT INTO `cn_nojd` VALUES (513231, '阿坝县', 513200, '阿坝', 3, 1);
-INSERT INTO `cn_nojd` VALUES (513232, '若尔盖县', 513200, '若尔盖', 3, 10);
-INSERT INTO `cn_nojd` VALUES (513233, '红原县', 513200, '红原', 3, 3);
-INSERT INTO `cn_nojd` VALUES (513300, '甘孜藏族自治州', 510000, '甘孜', 2, 6);
-INSERT INTO `cn_nojd` VALUES (513321, '康定县', 513300, '康定', 3, 10);
-INSERT INTO `cn_nojd` VALUES (513322, '泸定县', 513300, '泸定', 3, 12);
-INSERT INTO `cn_nojd` VALUES (513323, '丹巴县', 513300, '丹巴', 3, 3);
-INSERT INTO `cn_nojd` VALUES (513324, '九龙县', 513300, '九龙', 3, 9);
-INSERT INTO `cn_nojd` VALUES (513325, '雅江县', 513300, '雅江', 3, 18);
-INSERT INTO `cn_nojd` VALUES (513326, '道孚县', 513300, '道孚', 3, 5);
-INSERT INTO `cn_nojd` VALUES (513327, '炉霍县', 513300, '炉霍', 3, 13);
-INSERT INTO `cn_nojd` VALUES (513328, '甘孜县', 513300, '甘孜', 3, 8);
-INSERT INTO `cn_nojd` VALUES (513329, '新龙县', 513300, '新龙', 3, 17);
-INSERT INTO `cn_nojd` VALUES (513330, '德格县', 513300, '德格', 3, 6);
-INSERT INTO `cn_nojd` VALUES (513331, '白玉县', 513300, '白玉', 3, 1);
-INSERT INTO `cn_nojd` VALUES (513332, '石渠县', 513300, '石渠', 3, 15);
-INSERT INTO `cn_nojd` VALUES (513333, '色达县', 513300, '色达', 3, 14);
-INSERT INTO `cn_nojd` VALUES (513334, '理塘县', 513300, '理塘', 3, 11);
-INSERT INTO `cn_nojd` VALUES (513335, '巴塘县', 513300, '巴塘', 3, 2);
-INSERT INTO `cn_nojd` VALUES (513336, '乡城县', 513300, '乡城', 3, 16);
-INSERT INTO `cn_nojd` VALUES (513337, '稻城县', 513300, '稻城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (513338, '得荣县', 513300, '得荣', 3, 7);
-INSERT INTO `cn_nojd` VALUES (513400, '凉山彝族自治州', 510000, '凉山', 2, 10);
-INSERT INTO `cn_nojd` VALUES (513401, '西昌市', 513400, '西昌', 3, 13);
-INSERT INTO `cn_nojd` VALUES (513422, '木里藏族自治县', 513400, '木里', 3, 10);
-INSERT INTO `cn_nojd` VALUES (513423, '盐源县', 513400, '盐源', 3, 15);
-INSERT INTO `cn_nojd` VALUES (513424, '德昌县', 513400, '德昌', 3, 2);
-INSERT INTO `cn_nojd` VALUES (513425, '会理县', 513400, '会理', 3, 5);
-INSERT INTO `cn_nojd` VALUES (513426, '会东县', 513400, '会东', 3, 4);
-INSERT INTO `cn_nojd` VALUES (513427, '宁南县', 513400, '宁南', 3, 11);
-INSERT INTO `cn_nojd` VALUES (513428, '普格县', 513400, '普格', 3, 12);
-INSERT INTO `cn_nojd` VALUES (513429, '布拖县', 513400, '布拖', 3, 1);
-INSERT INTO `cn_nojd` VALUES (513430, '金阳县', 513400, '金阳', 3, 6);
-INSERT INTO `cn_nojd` VALUES (513431, '昭觉县', 513400, '昭觉', 3, 17);
-INSERT INTO `cn_nojd` VALUES (513432, '喜德县', 513400, '喜德', 3, 14);
-INSERT INTO `cn_nojd` VALUES (513433, '冕宁县', 513400, '冕宁', 3, 9);
-INSERT INTO `cn_nojd` VALUES (513434, '越西县', 513400, '越西', 3, 16);
-INSERT INTO `cn_nojd` VALUES (513435, '甘洛县', 513400, '甘洛', 3, 3);
-INSERT INTO `cn_nojd` VALUES (513436, '美姑县', 513400, '美姑', 3, 8);
-INSERT INTO `cn_nojd` VALUES (513437, '雷波县', 513400, '雷波', 3, 7);
-INSERT INTO `cn_nojd` VALUES (520000, '贵州省', 0, '贵州', 1, 24);
-INSERT INTO `cn_nojd` VALUES (520100, '贵阳市', 520000, '贵阳', 2, 3);
-INSERT INTO `cn_nojd` VALUES (520102, '南明区', 520100, '南明', 3, 5);
-INSERT INTO `cn_nojd` VALUES (520103, '云岩区', 520100, '云岩', 3, 10);
-INSERT INTO `cn_nojd` VALUES (520111, '花溪区', 520100, '花溪', 3, 3);
-INSERT INTO `cn_nojd` VALUES (520112, '乌当区', 520100, '乌当', 3, 7);
-INSERT INTO `cn_nojd` VALUES (520113, '白云区', 520100, '白云', 3, 1);
-INSERT INTO `cn_nojd` VALUES (520121, '开阳县', 520100, '开阳', 3, 4);
-INSERT INTO `cn_nojd` VALUES (520122, '息烽县', 520100, '息烽', 3, 8);
-INSERT INTO `cn_nojd` VALUES (520123, '修文县', 520100, '修文', 3, 9);
-INSERT INTO `cn_nojd` VALUES (520151, '观山湖区', 520100, '观山湖', 3, 2);
-INSERT INTO `cn_nojd` VALUES (520181, '清镇市', 520100, '清镇', 3, 6);
-INSERT INTO `cn_nojd` VALUES (520200, '六盘水市', 520000, '六盘水', 2, 4);
-INSERT INTO `cn_nojd` VALUES (520201, '钟山区', 520200, '钟山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (520203, '六枝特区', 520200, '六枝特', 3, 1);
-INSERT INTO `cn_nojd` VALUES (520221, '水城县', 520200, '水城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (520222, '盘县', 520200, '盘县', 3, 2);
-INSERT INTO `cn_nojd` VALUES (520300, '遵义市', 520000, '遵义', 2, 9);
-INSERT INTO `cn_nojd` VALUES (520302, '红花岗区', 520300, '红花岗', 3, 4);
-INSERT INTO `cn_nojd` VALUES (520303, '汇川区', 520300, '汇川', 3, 5);
-INSERT INTO `cn_nojd` VALUES (520321, '遵义县', 520300, '遵义', 3, 14);
-INSERT INTO `cn_nojd` VALUES (520322, '桐梓县', 520300, '桐梓', 3, 9);
-INSERT INTO `cn_nojd` VALUES (520323, '绥阳县', 520300, '绥阳', 3, 8);
-INSERT INTO `cn_nojd` VALUES (520324, '正安县', 520300, '正安', 3, 13);
-INSERT INTO `cn_nojd` VALUES (520325, '道真仡佬族苗族自治县', 520300, '道真', 3, 2);
-INSERT INTO `cn_nojd` VALUES (520326, '务川仡佬族苗族自治县', 520300, '务川', 3, 10);
-INSERT INTO `cn_nojd` VALUES (520327, '凤冈县', 520300, '凤冈', 3, 3);
-INSERT INTO `cn_nojd` VALUES (520328, '湄潭县', 520300, '湄潭', 3, 6);
-INSERT INTO `cn_nojd` VALUES (520329, '余庆县', 520300, '余庆', 3, 12);
-INSERT INTO `cn_nojd` VALUES (520330, '习水县', 520300, '习水', 3, 11);
-INSERT INTO `cn_nojd` VALUES (520381, '赤水市', 520300, '赤水', 3, 1);
-INSERT INTO `cn_nojd` VALUES (520382, '仁怀市', 520300, '仁怀', 3, 7);
-INSERT INTO `cn_nojd` VALUES (520400, '安顺市', 520000, '安顺', 2, 1);
-INSERT INTO `cn_nojd` VALUES (520402, '西秀区', 520400, '西秀', 3, 4);
-INSERT INTO `cn_nojd` VALUES (520421, '平坝县', 520400, '平坝', 3, 2);
-INSERT INTO `cn_nojd` VALUES (520422, '普定县', 520400, '普定', 3, 3);
-INSERT INTO `cn_nojd` VALUES (520423, '镇宁布依族苗族自治县', 520400, '镇宁', 3, 5);
-INSERT INTO `cn_nojd` VALUES (520424, '关岭布依族苗族自治县', 520400, '关岭', 3, 1);
-INSERT INTO `cn_nojd` VALUES (520425, '紫云苗族布依族自治县', 520400, '紫云', 3, 6);
-INSERT INTO `cn_nojd` VALUES (522200, '铜仁市', 520000, '铜仁', 2, 8);
-INSERT INTO `cn_nojd` VALUES (522201, '碧江区', 522200, '碧江', 3, 1);
-INSERT INTO `cn_nojd` VALUES (522222, '江口县', 522200, '江口', 3, 3);
-INSERT INTO `cn_nojd` VALUES (522223, '玉屏侗族自治县', 522200, '玉屏', 3, 10);
-INSERT INTO `cn_nojd` VALUES (522224, '石阡县', 522200, '石阡', 3, 4);
-INSERT INTO `cn_nojd` VALUES (522225, '思南县', 522200, '思南', 3, 5);
-INSERT INTO `cn_nojd` VALUES (522226, '印江土家族苗族自治县', 522200, '印江', 3, 9);
-INSERT INTO `cn_nojd` VALUES (522227, '德江县', 522200, '德江', 3, 2);
-INSERT INTO `cn_nojd` VALUES (522228, '沿河土家族自治县', 522200, '沿河', 3, 8);
-INSERT INTO `cn_nojd` VALUES (522229, '松桃苗族自治县', 522200, '松桃', 3, 6);
-INSERT INTO `cn_nojd` VALUES (522230, '万山区', 522200, '万山', 3, 7);
-INSERT INTO `cn_nojd` VALUES (522300, '黔西南布依族苗族自治州', 520000, '黔西南', 2, 7);
-INSERT INTO `cn_nojd` VALUES (522301, '兴义市', 522300, '兴义', 3, 7);
-INSERT INTO `cn_nojd` VALUES (522322, '兴仁县', 522300, '兴仁', 3, 6);
-INSERT INTO `cn_nojd` VALUES (522323, '普安县', 522300, '普安', 3, 3);
-INSERT INTO `cn_nojd` VALUES (522324, '晴隆县', 522300, '晴隆', 3, 4);
-INSERT INTO `cn_nojd` VALUES (522325, '贞丰县', 522300, '贞丰', 3, 8);
-INSERT INTO `cn_nojd` VALUES (522326, '望谟县', 522300, '望谟', 3, 5);
-INSERT INTO `cn_nojd` VALUES (522327, '册亨县', 522300, '册亨', 3, 2);
-INSERT INTO `cn_nojd` VALUES (522328, '安龙县', 522300, '安龙', 3, 1);
-INSERT INTO `cn_nojd` VALUES (522400, '毕节市', 520000, '毕节', 2, 2);
-INSERT INTO `cn_nojd` VALUES (522401, '七星关区', 522400, '七星关', 3, 6);
-INSERT INTO `cn_nojd` VALUES (522422, '大方县', 522400, '大方', 3, 1);
-INSERT INTO `cn_nojd` VALUES (522423, '黔西县', 522400, '黔西', 3, 5);
-INSERT INTO `cn_nojd` VALUES (522424, '金沙县', 522400, '金沙', 3, 3);
-INSERT INTO `cn_nojd` VALUES (522425, '织金县', 522400, '织金', 3, 8);
-INSERT INTO `cn_nojd` VALUES (522426, '纳雍县', 522400, '纳雍', 3, 4);
-INSERT INTO `cn_nojd` VALUES (522427, '威宁彝族回族苗族自治县', 522400, '威宁', 3, 7);
-INSERT INTO `cn_nojd` VALUES (522428, '赫章县', 522400, '赫章', 3, 2);
-INSERT INTO `cn_nojd` VALUES (522600, '黔东南苗族侗族自治州', 520000, '黔东南', 2, 5);
-INSERT INTO `cn_nojd` VALUES (522601, '凯里市', 522600, '凯里', 3, 7);
-INSERT INTO `cn_nojd` VALUES (522622, '黄平县', 522600, '黄平', 3, 4);
-INSERT INTO `cn_nojd` VALUES (522623, '施秉县', 522600, '施秉', 3, 13);
-INSERT INTO `cn_nojd` VALUES (522624, '三穗县', 522600, '三穗', 3, 12);
-INSERT INTO `cn_nojd` VALUES (522625, '镇远县', 522600, '镇远', 3, 16);
-INSERT INTO `cn_nojd` VALUES (522626, '岑巩县', 522600, '岑巩', 3, 1);
-INSERT INTO `cn_nojd` VALUES (522627, '天柱县', 522600, '天柱', 3, 15);
-INSERT INTO `cn_nojd` VALUES (522628, '锦屏县', 522600, '锦屏', 3, 6);
-INSERT INTO `cn_nojd` VALUES (522629, '剑河县', 522600, '剑河', 3, 5);
-INSERT INTO `cn_nojd` VALUES (522630, '台江县', 522600, '台江', 3, 14);
-INSERT INTO `cn_nojd` VALUES (522631, '黎平县', 522600, '黎平', 3, 9);
-INSERT INTO `cn_nojd` VALUES (522632, '榕江县', 522600, '榕江', 3, 11);
-INSERT INTO `cn_nojd` VALUES (522633, '从江县', 522600, '从江', 3, 2);
-INSERT INTO `cn_nojd` VALUES (522634, '雷山县', 522600, '雷山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (522635, '麻江县', 522600, '麻江', 3, 10);
-INSERT INTO `cn_nojd` VALUES (522636, '丹寨县', 522600, '丹寨', 3, 3);
-INSERT INTO `cn_nojd` VALUES (522700, '黔南布依族苗族自治州', 520000, '黔南', 2, 6);
-INSERT INTO `cn_nojd` VALUES (522701, '都匀市', 522700, '都匀', 3, 3);
-INSERT INTO `cn_nojd` VALUES (522702, '福泉市', 522700, '福泉', 3, 4);
-INSERT INTO `cn_nojd` VALUES (522722, '荔波县', 522700, '荔波', 3, 7);
-INSERT INTO `cn_nojd` VALUES (522723, '贵定县', 522700, '贵定', 3, 5);
-INSERT INTO `cn_nojd` VALUES (522725, '瓮安县', 522700, '瓮安', 3, 12);
-INSERT INTO `cn_nojd` VALUES (522726, '独山县', 522700, '独山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (522727, '平塘县', 522700, '平塘', 3, 10);
-INSERT INTO `cn_nojd` VALUES (522728, '罗甸县', 522700, '罗甸', 3, 9);
-INSERT INTO `cn_nojd` VALUES (522729, '长顺县', 522700, '长顺', 3, 1);
-INSERT INTO `cn_nojd` VALUES (522730, '龙里县', 522700, '龙里', 3, 8);
-INSERT INTO `cn_nojd` VALUES (522731, '惠水县', 522700, '惠水', 3, 6);
-INSERT INTO `cn_nojd` VALUES (522732, '三都水族自治县', 522700, '三都', 3, 11);
-INSERT INTO `cn_nojd` VALUES (530000, '云南省', 0, '云南', 1, 25);
-INSERT INTO `cn_nojd` VALUES (530100, '昆明市', 530000, '昆明', 2, 7);
-INSERT INTO `cn_nojd` VALUES (530102, '五华区', 530100, '五华', 3, 11);
-INSERT INTO `cn_nojd` VALUES (530103, '盘龙区', 530100, '盘龙', 3, 8);
-INSERT INTO `cn_nojd` VALUES (530111, '官渡区', 530100, '官渡', 3, 5);
-INSERT INTO `cn_nojd` VALUES (530112, '西山区', 530100, '西山', 3, 12);
-INSERT INTO `cn_nojd` VALUES (530113, '东川区', 530100, '东川', 3, 3);
-INSERT INTO `cn_nojd` VALUES (530121, '呈贡区', 530100, '呈贡', 3, 2);
-INSERT INTO `cn_nojd` VALUES (530122, '晋宁县', 530100, '晋宁', 3, 6);
-INSERT INTO `cn_nojd` VALUES (530124, '富民县', 530100, '富民', 3, 4);
-INSERT INTO `cn_nojd` VALUES (530125, '宜良县', 530100, '宜良', 3, 14);
-INSERT INTO `cn_nojd` VALUES (530126, '石林彝族自治县', 530100, '石林', 3, 9);
-INSERT INTO `cn_nojd` VALUES (530127, '嵩明县', 530100, '嵩明', 3, 10);
-INSERT INTO `cn_nojd` VALUES (530128, '禄劝彝族苗族自治县', 530100, '禄劝', 3, 7);
-INSERT INTO `cn_nojd` VALUES (530129, '寻甸回族彝族自治县', 530100, '寻甸', 3, 13);
-INSERT INTO `cn_nojd` VALUES (530181, '安宁市', 530100, '安宁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (530300, '曲靖市', 530000, '曲靖', 2, 12);
-INSERT INTO `cn_nojd` VALUES (530302, '麒麟区', 530300, '麒麟', 3, 6);
-INSERT INTO `cn_nojd` VALUES (530321, '马龙县', 530300, '马龙', 3, 5);
-INSERT INTO `cn_nojd` VALUES (530322, '陆良县', 530300, '陆良', 3, 3);
-INSERT INTO `cn_nojd` VALUES (530323, '师宗县', 530300, '师宗', 3, 7);
-INSERT INTO `cn_nojd` VALUES (530324, '罗平县', 530300, '罗平', 3, 4);
-INSERT INTO `cn_nojd` VALUES (530325, '富源县', 530300, '富源', 3, 1);
-INSERT INTO `cn_nojd` VALUES (530326, '会泽县', 530300, '会泽', 3, 2);
-INSERT INTO `cn_nojd` VALUES (530328, '沾益县', 530300, '沾益', 3, 9);
-INSERT INTO `cn_nojd` VALUES (530381, '宣威市', 530300, '宣威', 3, 8);
-INSERT INTO `cn_nojd` VALUES (530400, '玉溪市', 530000, '玉溪', 2, 15);
-INSERT INTO `cn_nojd` VALUES (530402, '红塔区', 530400, '红塔', 3, 3);
-INSERT INTO `cn_nojd` VALUES (530421, '江川县', 530400, '江川', 3, 5);
-INSERT INTO `cn_nojd` VALUES (530422, '澄江县', 530400, '澄江', 3, 1);
-INSERT INTO `cn_nojd` VALUES (530423, '通海县', 530400, '通海', 3, 6);
-INSERT INTO `cn_nojd` VALUES (530424, '华宁县', 530400, '华宁', 3, 4);
-INSERT INTO `cn_nojd` VALUES (530425, '易门县', 530400, '易门', 3, 8);
-INSERT INTO `cn_nojd` VALUES (530426, '峨山彝族自治县', 530400, '峨山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (530427, '新平彝族傣族自治县', 530400, '新平', 3, 7);
-INSERT INTO `cn_nojd` VALUES (530428, '元江哈尼族彝族傣族自治县', 530400, '元江', 3, 9);
-INSERT INTO `cn_nojd` VALUES (530500, '保山市', 530000, '保山', 2, 1);
-INSERT INTO `cn_nojd` VALUES (530502, '隆阳区', 530500, '隆阳', 3, 3);
-INSERT INTO `cn_nojd` VALUES (530521, '施甸县', 530500, '施甸', 3, 4);
-INSERT INTO `cn_nojd` VALUES (530522, '腾冲县', 530500, '腾冲', 3, 5);
-INSERT INTO `cn_nojd` VALUES (530523, '龙陵县', 530500, '龙陵', 3, 2);
-INSERT INTO `cn_nojd` VALUES (530524, '昌宁县', 530500, '昌宁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (530600, '昭通市', 530000, '昭通', 2, 16);
-INSERT INTO `cn_nojd` VALUES (530602, '昭阳区', 530600, '昭阳', 3, 10);
-INSERT INTO `cn_nojd` VALUES (530621, '鲁甸县', 530600, '鲁甸', 3, 2);
-INSERT INTO `cn_nojd` VALUES (530622, '巧家县', 530600, '巧家', 3, 3);
-INSERT INTO `cn_nojd` VALUES (530623, '盐津县', 530600, '盐津', 3, 7);
-INSERT INTO `cn_nojd` VALUES (530624, '大关县', 530600, '大关', 3, 1);
-INSERT INTO `cn_nojd` VALUES (530625, '永善县', 530600, '永善', 3, 9);
-INSERT INTO `cn_nojd` VALUES (530626, '绥江县', 530600, '绥江', 3, 5);
-INSERT INTO `cn_nojd` VALUES (530627, '镇雄县', 530600, '镇雄', 3, 11);
-INSERT INTO `cn_nojd` VALUES (530628, '彝良县', 530600, '彝良', 3, 8);
-INSERT INTO `cn_nojd` VALUES (530629, '威信县', 530600, '威信', 3, 6);
-INSERT INTO `cn_nojd` VALUES (530630, '水富县', 530600, '水富', 3, 4);
-INSERT INTO `cn_nojd` VALUES (530700, '丽江市', 530000, '丽江', 2, 8);
-INSERT INTO `cn_nojd` VALUES (530702, '古城区', 530700, '古城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (530721, '玉龙纳西族自治县', 530700, '玉龙', 3, 5);
-INSERT INTO `cn_nojd` VALUES (530722, '永胜县', 530700, '永胜', 3, 4);
-INSERT INTO `cn_nojd` VALUES (530723, '华坪县', 530700, '华坪', 3, 2);
-INSERT INTO `cn_nojd` VALUES (530724, '宁蒗彝族自治县', 530700, '宁蒗', 3, 3);
-INSERT INTO `cn_nojd` VALUES (530800, '普洱市', 530000, '普洱', 2, 11);
-INSERT INTO `cn_nojd` VALUES (530802, '思茅区', 530800, '思茅', 3, 8);
-INSERT INTO `cn_nojd` VALUES (530821, '宁洱哈尼族彝族自治县', 530800, '宁洱', 3, 7);
-INSERT INTO `cn_nojd` VALUES (530822, '墨江哈尼族自治县', 530800, '墨江', 3, 6);
-INSERT INTO `cn_nojd` VALUES (530823, '景东彝族自治县', 530800, '景东', 3, 2);
-INSERT INTO `cn_nojd` VALUES (530824, '景谷傣族彝族自治县', 530800, '景谷', 3, 3);
-INSERT INTO `cn_nojd` VALUES (530825, '镇沅彝族哈尼族拉祜族自治县', 530800, '镇沅', 3, 10);
-INSERT INTO `cn_nojd` VALUES (530826, '江城哈尼族彝族自治县', 530800, '江城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (530827, '孟连傣族拉祜族佤族自治县', 530800, '孟连', 3, 5);
-INSERT INTO `cn_nojd` VALUES (530828, '澜沧拉祜族自治县', 530800, '澜沧', 3, 4);
-INSERT INTO `cn_nojd` VALUES (530829, '西盟佤族自治县', 530800, '西盟', 3, 9);
-INSERT INTO `cn_nojd` VALUES (530900, '临沧市', 530000, '临沧', 2, 9);
-INSERT INTO `cn_nojd` VALUES (530902, '临翔区', 530900, '临翔', 3, 4);
-INSERT INTO `cn_nojd` VALUES (530921, '凤庆县', 530900, '凤庆', 3, 2);
-INSERT INTO `cn_nojd` VALUES (530922, '云县', 530900, '云县', 3, 7);
-INSERT INTO `cn_nojd` VALUES (530923, '永德县', 530900, '永德', 3, 6);
-INSERT INTO `cn_nojd` VALUES (530924, '镇康县', 530900, '镇康', 3, 8);
-INSERT INTO `cn_nojd` VALUES (530925, '双江拉祜族佤族布朗族傣族自治县', 530900, '双江', 3, 5);
-INSERT INTO `cn_nojd` VALUES (530926, '耿马傣族佤族自治县', 530900, '耿马', 3, 3);
-INSERT INTO `cn_nojd` VALUES (530927, '沧源佤族自治县', 530900, '沧源', 3, 1);
-INSERT INTO `cn_nojd` VALUES (532300, '楚雄彝族自治州', 530000, '楚雄', 2, 2);
-INSERT INTO `cn_nojd` VALUES (532301, '楚雄市', 532300, '楚雄', 3, 1);
-INSERT INTO `cn_nojd` VALUES (532322, '双柏县', 532300, '双柏', 3, 6);
-INSERT INTO `cn_nojd` VALUES (532323, '牟定县', 532300, '牟定', 3, 4);
-INSERT INTO `cn_nojd` VALUES (532324, '南华县', 532300, '南华', 3, 5);
-INSERT INTO `cn_nojd` VALUES (532325, '姚安县', 532300, '姚安', 3, 8);
-INSERT INTO `cn_nojd` VALUES (532326, '大姚县', 532300, '大姚', 3, 2);
-INSERT INTO `cn_nojd` VALUES (532327, '永仁县', 532300, '永仁', 3, 9);
-INSERT INTO `cn_nojd` VALUES (532328, '元谋县', 532300, '元谋', 3, 10);
-INSERT INTO `cn_nojd` VALUES (532329, '武定县', 532300, '武定', 3, 7);
-INSERT INTO `cn_nojd` VALUES (532331, '禄丰县', 532300, '禄丰', 3, 3);
-INSERT INTO `cn_nojd` VALUES (532500, '红河哈尼族彝族自治州', 530000, '红河', 2, 6);
-INSERT INTO `cn_nojd` VALUES (532501, '个旧市', 532500, '个旧', 3, 1);
-INSERT INTO `cn_nojd` VALUES (532502, '开远市', 532500, '开远', 3, 6);
-INSERT INTO `cn_nojd` VALUES (532522, '蒙自市', 532500, '蒙自', 3, 9);
-INSERT INTO `cn_nojd` VALUES (532523, '屏边苗族自治县', 532500, '屏边', 3, 11);
-INSERT INTO `cn_nojd` VALUES (532524, '建水县', 532500, '建水', 3, 4);
-INSERT INTO `cn_nojd` VALUES (532525, '石屏县', 532500, '石屏', 3, 12);
-INSERT INTO `cn_nojd` VALUES (532526, '弥勒市', 532500, '弥勒', 3, 10);
-INSERT INTO `cn_nojd` VALUES (532527, '泸西县', 532500, '泸西', 3, 7);
-INSERT INTO `cn_nojd` VALUES (532528, '元阳县', 532500, '元阳', 3, 13);
-INSERT INTO `cn_nojd` VALUES (532529, '红河县', 532500, '红河', 3, 3);
-INSERT INTO `cn_nojd` VALUES (532530, '金平苗族瑶族傣族自治县', 532500, '金平', 3, 5);
-INSERT INTO `cn_nojd` VALUES (532531, '绿春县', 532500, '绿春', 3, 8);
-INSERT INTO `cn_nojd` VALUES (532532, '河口瑶族自治县', 532500, '河口', 3, 2);
-INSERT INTO `cn_nojd` VALUES (532600, '文山壮族苗族自治州', 530000, '文山', 2, 13);
-INSERT INTO `cn_nojd` VALUES (532621, '文山市', 532600, '文山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (532622, '砚山县', 532600, '砚山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (532623, '西畴县', 532600, '西畴', 3, 7);
-INSERT INTO `cn_nojd` VALUES (532624, '麻栗坡县', 532600, '麻栗坡', 3, 4);
-INSERT INTO `cn_nojd` VALUES (532625, '马关县', 532600, '马关', 3, 3);
-INSERT INTO `cn_nojd` VALUES (532626, '丘北县', 532600, '丘北', 3, 5);
-INSERT INTO `cn_nojd` VALUES (532627, '广南县', 532600, '广南', 3, 2);
-INSERT INTO `cn_nojd` VALUES (532628, '富宁县', 532600, '富宁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (532800, '西双版纳傣族自治州', 530000, '西双版纳', 2, 14);
-INSERT INTO `cn_nojd` VALUES (532801, '景洪市', 532800, '景洪', 3, 1);
-INSERT INTO `cn_nojd` VALUES (532822, '勐海县', 532800, '勐海', 3, 2);
-INSERT INTO `cn_nojd` VALUES (532823, '勐腊县', 532800, '勐腊', 3, 3);
-INSERT INTO `cn_nojd` VALUES (532900, '大理白族自治州', 530000, '大理', 2, 3);
-INSERT INTO `cn_nojd` VALUES (532901, '大理市', 532900, '大理', 3, 2);
-INSERT INTO `cn_nojd` VALUES (532922, '漾濞彝族自治县', 532900, '漾濞', 3, 10);
-INSERT INTO `cn_nojd` VALUES (532923, '祥云县', 532900, '祥云', 3, 9);
-INSERT INTO `cn_nojd` VALUES (532924, '宾川县', 532900, '宾川', 3, 1);
-INSERT INTO `cn_nojd` VALUES (532925, '弥渡县', 532900, '弥渡', 3, 6);
-INSERT INTO `cn_nojd` VALUES (532926, '南涧彝族自治县', 532900, '南涧', 3, 7);
-INSERT INTO `cn_nojd` VALUES (532927, '巍山彝族回族自治县', 532900, '巍山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (532928, '永平县', 532900, '永平', 3, 11);
-INSERT INTO `cn_nojd` VALUES (532929, '云龙县', 532900, '云龙', 3, 12);
-INSERT INTO `cn_nojd` VALUES (532930, '洱源县', 532900, '洱源', 3, 3);
-INSERT INTO `cn_nojd` VALUES (532931, '剑川县', 532900, '剑川', 3, 5);
-INSERT INTO `cn_nojd` VALUES (532932, '鹤庆县', 532900, '鹤庆', 3, 4);
-INSERT INTO `cn_nojd` VALUES (533100, '德宏傣族景颇族自治州', 530000, '德宏', 2, 4);
-INSERT INTO `cn_nojd` VALUES (533102, '瑞丽市', 533100, '瑞丽', 3, 4);
-INSERT INTO `cn_nojd` VALUES (533103, '芒市', 533100, '芒市', 3, 3);
-INSERT INTO `cn_nojd` VALUES (533122, '梁河县', 533100, '梁河', 3, 1);
-INSERT INTO `cn_nojd` VALUES (533123, '盈江县', 533100, '盈江', 3, 5);
-INSERT INTO `cn_nojd` VALUES (533124, '陇川县', 533100, '陇川', 3, 2);
-INSERT INTO `cn_nojd` VALUES (533300, '怒江傈僳族自治州', 530000, '怒江', 2, 10);
-INSERT INTO `cn_nojd` VALUES (533321, '泸水县', 533300, '泸水', 3, 4);
-INSERT INTO `cn_nojd` VALUES (533323, '福贡县', 533300, '福贡', 3, 1);
-INSERT INTO `cn_nojd` VALUES (533324, '贡山独龙族怒族自治县', 533300, '贡山', 3, 2);
-INSERT INTO `cn_nojd` VALUES (533325, '兰坪白族普米族自治县', 533300, '兰坪', 3, 3);
-INSERT INTO `cn_nojd` VALUES (533400, '迪庆藏族自治州', 530000, '迪庆', 2, 5);
-INSERT INTO `cn_nojd` VALUES (533421, '香格里拉县', 533400, '香格里拉', 3, 3);
-INSERT INTO `cn_nojd` VALUES (533422, '德钦县', 533400, '德钦', 3, 1);
-INSERT INTO `cn_nojd` VALUES (533423, '维西傈僳族自治县', 533400, '维西', 3, 2);
-INSERT INTO `cn_nojd` VALUES (540000, '西藏自治区', 0, '西藏', 1, 26);
-INSERT INTO `cn_nojd` VALUES (540100, '拉萨市', 540000, '拉萨', 2, 3);
-INSERT INTO `cn_nojd` VALUES (540102, '城关区', 540100, '城关', 3, 1);
-INSERT INTO `cn_nojd` VALUES (540121, '林周县', 540100, '林周', 3, 5);
-INSERT INTO `cn_nojd` VALUES (540122, '当雄县', 540100, '当雄', 3, 2);
-INSERT INTO `cn_nojd` VALUES (540123, '尼木县', 540100, '尼木', 3, 7);
-INSERT INTO `cn_nojd` VALUES (540124, '曲水县', 540100, '曲水', 3, 8);
-INSERT INTO `cn_nojd` VALUES (540125, '堆龙德庆县', 540100, '堆龙德庆', 3, 4);
-INSERT INTO `cn_nojd` VALUES (540126, '达孜县', 540100, '达孜', 3, 3);
-INSERT INTO `cn_nojd` VALUES (540127, '墨竹工卡县', 540100, '墨竹工卡', 3, 6);
-INSERT INTO `cn_nojd` VALUES (542100, '昌都地区', 540000, '昌都', 2, 2);
-INSERT INTO `cn_nojd` VALUES (542121, '昌都县', 542100, '昌都', 3, 3);
-INSERT INTO `cn_nojd` VALUES (542122, '江达县', 542100, '江达', 3, 7);
-INSERT INTO `cn_nojd` VALUES (542123, '贡觉县', 542100, '贡觉', 3, 6);
-INSERT INTO `cn_nojd` VALUES (542124, '类乌齐县', 542100, '类乌齐', 3, 8);
-INSERT INTO `cn_nojd` VALUES (542125, '丁青县', 542100, '丁青', 3, 5);
-INSERT INTO `cn_nojd` VALUES (542126, '察雅县', 542100, '察雅', 3, 4);
-INSERT INTO `cn_nojd` VALUES (542127, '八宿县', 542100, '八宿', 3, 1);
-INSERT INTO `cn_nojd` VALUES (542128, '左贡县', 542100, '左贡', 3, 11);
-INSERT INTO `cn_nojd` VALUES (542129, '芒康县', 542100, '芒康', 3, 10);
-INSERT INTO `cn_nojd` VALUES (542132, '洛隆县', 542100, '洛隆', 3, 9);
-INSERT INTO `cn_nojd` VALUES (542133, '边坝县', 542100, '边坝', 3, 2);
-INSERT INTO `cn_nojd` VALUES (542200, '山南地区', 540000, '山南', 2, 7);
-INSERT INTO `cn_nojd` VALUES (542221, '乃东县', 542200, '乃东', 3, 8);
-INSERT INTO `cn_nojd` VALUES (542222, '扎囊县', 542200, '扎囊', 3, 12);
-INSERT INTO `cn_nojd` VALUES (542223, '贡嘎县', 542200, '贡嘎', 3, 3);
-INSERT INTO `cn_nojd` VALUES (542224, '桑日县', 542200, '桑日', 3, 11);
-INSERT INTO `cn_nojd` VALUES (542225, '琼结县', 542200, '琼结', 3, 9);
-INSERT INTO `cn_nojd` VALUES (542226, '曲松县', 542200, '曲松', 3, 10);
-INSERT INTO `cn_nojd` VALUES (542227, '措美县', 542200, '措美', 3, 1);
-INSERT INTO `cn_nojd` VALUES (542228, '洛扎县', 542200, '洛扎', 3, 7);
-INSERT INTO `cn_nojd` VALUES (542229, '加查县', 542200, '加查', 3, 4);
-INSERT INTO `cn_nojd` VALUES (542231, '隆子县', 542200, '隆子', 3, 6);
-INSERT INTO `cn_nojd` VALUES (542232, '错那县', 542200, '错那', 3, 2);
-INSERT INTO `cn_nojd` VALUES (542233, '浪卡子县', 542200, '浪卡子', 3, 5);
-INSERT INTO `cn_nojd` VALUES (542300, '日喀则地区', 540000, '日喀则', 2, 6);
-INSERT INTO `cn_nojd` VALUES (542301, '日喀则市', 542300, '日喀则', 3, 13);
-INSERT INTO `cn_nojd` VALUES (542322, '南木林县', 542300, '南木林', 3, 10);
-INSERT INTO `cn_nojd` VALUES (542323, '江孜县', 542300, '江孜', 3, 6);
-INSERT INTO `cn_nojd` VALUES (542324, '定日县', 542300, '定日', 3, 4);
-INSERT INTO `cn_nojd` VALUES (542325, '萨迦县', 542300, '萨迦', 3, 15);
-INSERT INTO `cn_nojd` VALUES (542326, '拉孜县', 542300, '拉孜', 3, 9);
-INSERT INTO `cn_nojd` VALUES (542327, '昂仁县', 542300, '昂仁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (542328, '谢通门县', 542300, '谢通门', 3, 16);
-INSERT INTO `cn_nojd` VALUES (542329, '白朗县', 542300, '白朗', 3, 2);
-INSERT INTO `cn_nojd` VALUES (542330, '仁布县', 542300, '仁布', 3, 12);
-INSERT INTO `cn_nojd` VALUES (542331, '康马县', 542300, '康马', 3, 8);
-INSERT INTO `cn_nojd` VALUES (542332, '定结县', 542300, '定结', 3, 3);
-INSERT INTO `cn_nojd` VALUES (542333, '仲巴县', 542300, '仲巴', 3, 18);
-INSERT INTO `cn_nojd` VALUES (542334, '亚东县', 542300, '亚东', 3, 17);
-INSERT INTO `cn_nojd` VALUES (542335, '吉隆县', 542300, '吉隆', 3, 7);
-INSERT INTO `cn_nojd` VALUES (542336, '聂拉木县', 542300, '聂拉木', 3, 11);
-INSERT INTO `cn_nojd` VALUES (542337, '萨嘎县', 542300, '萨嘎', 3, 14);
-INSERT INTO `cn_nojd` VALUES (542338, '岗巴县', 542300, '岗巴', 3, 5);
-INSERT INTO `cn_nojd` VALUES (542400, '那曲地区', 540000, '那曲', 2, 5);
-INSERT INTO `cn_nojd` VALUES (542421, '那曲县', 542400, '那曲', 3, 6);
-INSERT INTO `cn_nojd` VALUES (542422, '嘉黎县', 542400, '嘉黎', 3, 5);
-INSERT INTO `cn_nojd` VALUES (542423, '比如县', 542400, '比如', 3, 4);
-INSERT INTO `cn_nojd` VALUES (542424, '聂荣县', 542400, '聂荣', 3, 7);
-INSERT INTO `cn_nojd` VALUES (542425, '安多县', 542400, '安多', 3, 1);
-INSERT INTO `cn_nojd` VALUES (542426, '申扎县', 542400, '申扎', 3, 9);
-INSERT INTO `cn_nojd` VALUES (542427, '索县', 542400, '索县', 3, 11);
-INSERT INTO `cn_nojd` VALUES (542428, '班戈县', 542400, '班戈', 3, 2);
-INSERT INTO `cn_nojd` VALUES (542429, '巴青县', 542400, '巴青', 3, 3);
-INSERT INTO `cn_nojd` VALUES (542430, '尼玛县', 542400, '尼玛', 3, 8);
-INSERT INTO `cn_nojd` VALUES (542432, '双湖县', 542400, '双湖', 3, 10);
-INSERT INTO `cn_nojd` VALUES (542500, '阿里地区', 540000, '阿里', 2, 1);
-INSERT INTO `cn_nojd` VALUES (542521, '普兰县', 542500, '普兰', 3, 5);
-INSERT INTO `cn_nojd` VALUES (542522, '札达县', 542500, '札达', 3, 7);
-INSERT INTO `cn_nojd` VALUES (542523, '噶尔县', 542500, '噶尔', 3, 2);
-INSERT INTO `cn_nojd` VALUES (542524, '日土县', 542500, '日土', 3, 6);
-INSERT INTO `cn_nojd` VALUES (542525, '革吉县', 542500, '革吉', 3, 4);
-INSERT INTO `cn_nojd` VALUES (542526, '改则县', 542500, '改则', 3, 3);
-INSERT INTO `cn_nojd` VALUES (542527, '措勤县', 542500, '措勤', 3, 1);
-INSERT INTO `cn_nojd` VALUES (542600, '林芝地区', 540000, '林芝', 2, 4);
-INSERT INTO `cn_nojd` VALUES (542621, '林芝县', 542600, '林芝', 3, 5);
-INSERT INTO `cn_nojd` VALUES (542622, '工布江达县', 542600, '工布江达', 3, 3);
-INSERT INTO `cn_nojd` VALUES (542623, '米林县', 542600, '米林', 3, 6);
-INSERT INTO `cn_nojd` VALUES (542624, '墨脱县', 542600, '墨脱', 3, 7);
-INSERT INTO `cn_nojd` VALUES (542625, '波密县', 542600, '波密', 3, 1);
-INSERT INTO `cn_nojd` VALUES (542626, '察隅县', 542600, '察隅', 3, 2);
-INSERT INTO `cn_nojd` VALUES (542627, '朗县', 542600, '朗县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (610000, '陕西省', 0, '陕西', 1, 27);
-INSERT INTO `cn_nojd` VALUES (610100, '西安市', 610000, '西安', 2, 7);
-INSERT INTO `cn_nojd` VALUES (610102, '新城区', 610100, '新城', 3, 10);
-INSERT INTO `cn_nojd` VALUES (610103, '碑林区', 610100, '碑林', 3, 2);
-INSERT INTO `cn_nojd` VALUES (610104, '莲湖区', 610100, '莲湖', 3, 7);
-INSERT INTO `cn_nojd` VALUES (610111, '灞桥区', 610100, '灞桥', 3, 1);
-INSERT INTO `cn_nojd` VALUES (610112, '未央区', 610100, '未央', 3, 9);
-INSERT INTO `cn_nojd` VALUES (610113, '雁塔区', 610100, '雁塔', 3, 12);
-INSERT INTO `cn_nojd` VALUES (610114, '阎良区', 610100, '阎良', 3, 11);
-INSERT INTO `cn_nojd` VALUES (610115, '临潼区', 610100, '临潼', 3, 8);
-INSERT INTO `cn_nojd` VALUES (610116, '长安区', 610100, '长安', 3, 3);
-INSERT INTO `cn_nojd` VALUES (610122, '蓝田县', 610100, '蓝田', 3, 6);
-INSERT INTO `cn_nojd` VALUES (610124, '周至县', 610100, '周至', 3, 13);
-INSERT INTO `cn_nojd` VALUES (610125, '户县', 610100, '户县', 3, 5);
-INSERT INTO `cn_nojd` VALUES (610126, '高陵县', 610100, '高陵', 3, 4);
-INSERT INTO `cn_nojd` VALUES (610200, '铜川市', 610000, '铜川', 2, 5);
-INSERT INTO `cn_nojd` VALUES (610202, '王益区', 610200, '王益', 3, 1);
-INSERT INTO `cn_nojd` VALUES (610203, '印台区', 610200, '印台', 3, 4);
-INSERT INTO `cn_nojd` VALUES (610204, '耀州区', 610200, '耀州', 3, 2);
-INSERT INTO `cn_nojd` VALUES (610222, '宜君县', 610200, '宜君', 3, 3);
-INSERT INTO `cn_nojd` VALUES (610300, '宝鸡市', 610000, '宝鸡', 2, 2);
-INSERT INTO `cn_nojd` VALUES (610302, '渭滨区', 610300, '渭滨', 3, 12);
-INSERT INTO `cn_nojd` VALUES (610303, '金台区', 610300, '金台', 3, 5);
-INSERT INTO `cn_nojd` VALUES (610304, '陈仓区', 610300, '陈仓', 3, 1);
-INSERT INTO `cn_nojd` VALUES (610322, '凤翔县', 610300, '凤翔', 3, 3);
-INSERT INTO `cn_nojd` VALUES (610323, '岐山县', 610300, '岐山', 3, 10);
-INSERT INTO `cn_nojd` VALUES (610324, '扶风县', 610300, '扶风', 3, 4);
-INSERT INTO `cn_nojd` VALUES (610326, '眉县', 610300, '眉县', 3, 8);
-INSERT INTO `cn_nojd` VALUES (610327, '陇县', 610300, '陇县', 3, 7);
-INSERT INTO `cn_nojd` VALUES (610328, '千阳县', 610300, '千阳', 3, 9);
-INSERT INTO `cn_nojd` VALUES (610329, '麟游县', 610300, '麟游', 3, 6);
-INSERT INTO `cn_nojd` VALUES (610330, '凤县', 610300, '凤县', 3, 2);
-INSERT INTO `cn_nojd` VALUES (610331, '太白县', 610300, '太白', 3, 11);
-INSERT INTO `cn_nojd` VALUES (610400, '咸阳市', 610000, '咸阳', 2, 8);
-INSERT INTO `cn_nojd` VALUES (610402, '秦都区', 610400, '秦都', 3, 7);
-INSERT INTO `cn_nojd` VALUES (610403, '杨陵区', 610400, '杨陵', 3, 13);
-INSERT INTO `cn_nojd` VALUES (610404, '渭城区', 610400, '渭城', 3, 9);
-INSERT INTO `cn_nojd` VALUES (610422, '三原县', 610400, '三原', 3, 8);
-INSERT INTO `cn_nojd` VALUES (610423, '泾阳县', 610400, '泾阳', 3, 4);
-INSERT INTO `cn_nojd` VALUES (610424, '乾县', 610400, '乾县', 3, 6);
-INSERT INTO `cn_nojd` VALUES (610425, '礼泉县', 610400, '礼泉', 3, 5);
-INSERT INTO `cn_nojd` VALUES (610426, '永寿县', 610400, '永寿', 3, 14);
-INSERT INTO `cn_nojd` VALUES (610427, '彬县', 610400, '彬县', 3, 1);
-INSERT INTO `cn_nojd` VALUES (610428, '长武县', 610400, '长武', 3, 2);
-INSERT INTO `cn_nojd` VALUES (610429, '旬邑县', 610400, '旬邑', 3, 12);
-INSERT INTO `cn_nojd` VALUES (610430, '淳化县', 610400, '淳化', 3, 3);
-INSERT INTO `cn_nojd` VALUES (610431, '武功县', 610400, '武功', 3, 10);
-INSERT INTO `cn_nojd` VALUES (610481, '兴平市', 610400, '兴平', 3, 11);
-INSERT INTO `cn_nojd` VALUES (610500, '渭南市', 610000, '渭南', 2, 6);
-INSERT INTO `cn_nojd` VALUES (610502, '临渭区', 610500, '临渭', 3, 9);
-INSERT INTO `cn_nojd` VALUES (610521, '华县', 610500, '华县', 3, 7);
-INSERT INTO `cn_nojd` VALUES (610522, '潼关县', 610500, '潼关', 3, 11);
-INSERT INTO `cn_nojd` VALUES (610523, '大荔县', 610500, '大荔', 3, 3);
-INSERT INTO `cn_nojd` VALUES (610524, '合阳县', 610500, '合阳', 3, 6);
-INSERT INTO `cn_nojd` VALUES (610525, '澄城县', 610500, '澄城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (610526, '蒲城县', 610500, '蒲城', 3, 10);
-INSERT INTO `cn_nojd` VALUES (610527, '白水县', 610500, '白水', 3, 1);
-INSERT INTO `cn_nojd` VALUES (610528, '富平县', 610500, '富平', 3, 4);
-INSERT INTO `cn_nojd` VALUES (610581, '韩城市', 610500, '韩城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (610582, '华阴市', 610500, '华阴', 3, 8);
-INSERT INTO `cn_nojd` VALUES (610600, '延安市', 610000, '延安', 2, 9);
-INSERT INTO `cn_nojd` VALUES (610602, '宝塔区', 610600, '宝塔', 3, 2);
-INSERT INTO `cn_nojd` VALUES (610621, '延长县', 610600, '延长', 3, 9);
-INSERT INTO `cn_nojd` VALUES (610622, '延川县', 610600, '延川', 3, 10);
-INSERT INTO `cn_nojd` VALUES (610623, '子长县', 610600, '子长', 3, 13);
-INSERT INTO `cn_nojd` VALUES (610624, '安塞县', 610600, '安塞', 3, 1);
-INSERT INTO `cn_nojd` VALUES (610625, '志丹县', 610600, '志丹', 3, 12);
-INSERT INTO `cn_nojd` VALUES (610626, '吴起县', 610600, '吴起', 3, 8);
-INSERT INTO `cn_nojd` VALUES (610627, '甘泉县', 610600, '甘泉', 3, 4);
-INSERT INTO `cn_nojd` VALUES (610628, '富县', 610600, '富县', 3, 3);
-INSERT INTO `cn_nojd` VALUES (610629, '洛川县', 610600, '洛川', 3, 7);
-INSERT INTO `cn_nojd` VALUES (610630, '宜川县', 610600, '宜川', 3, 11);
-INSERT INTO `cn_nojd` VALUES (610631, '黄龙县', 610600, '黄龙', 3, 6);
-INSERT INTO `cn_nojd` VALUES (610632, '黄陵县', 610600, '黄陵', 3, 5);
-INSERT INTO `cn_nojd` VALUES (610700, '汉中市', 610000, '汉中', 2, 3);
-INSERT INTO `cn_nojd` VALUES (610702, '汉台区', 610700, '汉台', 3, 3);
-INSERT INTO `cn_nojd` VALUES (610721, '南郑县', 610700, '南郑', 3, 7);
-INSERT INTO `cn_nojd` VALUES (610722, '城固县', 610700, '城固', 3, 1);
-INSERT INTO `cn_nojd` VALUES (610723, '洋县', 610700, '洋县', 3, 10);
-INSERT INTO `cn_nojd` VALUES (610724, '西乡县', 610700, '西乡', 3, 9);
-INSERT INTO `cn_nojd` VALUES (610725, '勉县', 610700, '勉县', 3, 6);
-INSERT INTO `cn_nojd` VALUES (610726, '宁强县', 610700, '宁强', 3, 8);
-INSERT INTO `cn_nojd` VALUES (610727, '略阳县', 610700, '略阳', 3, 5);
-INSERT INTO `cn_nojd` VALUES (610728, '镇巴县', 610700, '镇巴', 3, 11);
-INSERT INTO `cn_nojd` VALUES (610729, '留坝县', 610700, '留坝', 3, 4);
-INSERT INTO `cn_nojd` VALUES (610730, '佛坪县', 610700, '佛坪', 3, 2);
-INSERT INTO `cn_nojd` VALUES (610800, '榆林市', 610000, '榆林', 2, 10);
-INSERT INTO `cn_nojd` VALUES (610802, '榆阳区', 610800, '榆阳', 3, 11);
-INSERT INTO `cn_nojd` VALUES (610821, '神木县', 610800, '神木', 3, 8);
-INSERT INTO `cn_nojd` VALUES (610822, '府谷县', 610800, '府谷', 3, 2);
-INSERT INTO `cn_nojd` VALUES (610823, '横山县', 610800, '横山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (610824, '靖边县', 610800, '靖边', 3, 5);
-INSERT INTO `cn_nojd` VALUES (610825, '定边县', 610800, '定边', 3, 1);
-INSERT INTO `cn_nojd` VALUES (610826, '绥德县', 610800, '绥德', 3, 9);
-INSERT INTO `cn_nojd` VALUES (610827, '米脂县', 610800, '米脂', 3, 6);
-INSERT INTO `cn_nojd` VALUES (610828, '佳县', 610800, '佳县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (610829, '吴堡县', 610800, '吴堡', 3, 10);
-INSERT INTO `cn_nojd` VALUES (610830, '清涧县', 610800, '清涧', 3, 7);
-INSERT INTO `cn_nojd` VALUES (610831, '子洲县', 610800, '子洲', 3, 12);
-INSERT INTO `cn_nojd` VALUES (610900, '安康市', 610000, '安康', 2, 1);
-INSERT INTO `cn_nojd` VALUES (610902, '汉滨区', 610900, '汉滨', 3, 2);
-INSERT INTO `cn_nojd` VALUES (610921, '汉阴县', 610900, '汉阴', 3, 3);
-INSERT INTO `cn_nojd` VALUES (610922, '石泉县', 610900, '石泉', 3, 7);
-INSERT INTO `cn_nojd` VALUES (610923, '宁陕县', 610900, '宁陕', 3, 5);
-INSERT INTO `cn_nojd` VALUES (610924, '紫阳县', 610900, '紫阳', 3, 10);
-INSERT INTO `cn_nojd` VALUES (610925, '岚皋县', 610900, '岚皋', 3, 4);
-INSERT INTO `cn_nojd` VALUES (610926, '平利县', 610900, '平利', 3, 6);
-INSERT INTO `cn_nojd` VALUES (610927, '镇坪县', 610900, '镇坪', 3, 9);
-INSERT INTO `cn_nojd` VALUES (610928, '旬阳县', 610900, '旬阳', 3, 8);
-INSERT INTO `cn_nojd` VALUES (610929, '白河县', 610900, '白河', 3, 1);
-INSERT INTO `cn_nojd` VALUES (611000, '商洛市', 610000, '商洛', 2, 4);
-INSERT INTO `cn_nojd` VALUES (611002, '商州区', 611000, '商州', 3, 4);
-INSERT INTO `cn_nojd` VALUES (611021, '洛南县', 611000, '洛南', 3, 2);
-INSERT INTO `cn_nojd` VALUES (611022, '丹凤县', 611000, '丹凤', 3, 1);
-INSERT INTO `cn_nojd` VALUES (611023, '商南县', 611000, '商南', 3, 3);
-INSERT INTO `cn_nojd` VALUES (611024, '山阳县', 611000, '山阳', 3, 5);
-INSERT INTO `cn_nojd` VALUES (611025, '镇安县', 611000, '镇安', 3, 7);
-INSERT INTO `cn_nojd` VALUES (611026, '柞水县', 611000, '柞水', 3, 6);
-INSERT INTO `cn_nojd` VALUES (620000, '甘肃省', 0, '甘肃', 1, 28);
-INSERT INTO `cn_nojd` VALUES (620100, '兰州市', 620000, '兰州', 2, 7);
-INSERT INTO `cn_nojd` VALUES (620102, '城关区', 620100, '城关', 3, 2);
-INSERT INTO `cn_nojd` VALUES (620103, '七里河区', 620100, '七里河', 3, 5);
-INSERT INTO `cn_nojd` VALUES (620104, '西固区', 620100, '西固', 3, 6);
-INSERT INTO `cn_nojd` VALUES (620105, '安宁区', 620100, '安宁', 3, 1);
-INSERT INTO `cn_nojd` VALUES (620111, '红古区', 620100, '红古', 3, 4);
-INSERT INTO `cn_nojd` VALUES (620121, '永登县', 620100, '永登', 3, 7);
-INSERT INTO `cn_nojd` VALUES (620122, '皋兰县', 620100, '皋兰', 3, 3);
-INSERT INTO `cn_nojd` VALUES (620123, '榆中县', 620100, '榆中', 3, 8);
-INSERT INTO `cn_nojd` VALUES (620200, '嘉峪关市', 620000, '嘉峪关', 2, 4);
-INSERT INTO `cn_nojd` VALUES (620300, '金昌市', 620000, '金昌', 2, 5);
-INSERT INTO `cn_nojd` VALUES (620302, '金川区', 620300, '金川', 3, 1);
-INSERT INTO `cn_nojd` VALUES (620321, '永昌县', 620300, '永昌', 3, 2);
-INSERT INTO `cn_nojd` VALUES (620400, '白银市', 620000, '白银', 2, 1);
-INSERT INTO `cn_nojd` VALUES (620402, '白银区', 620400, '白银', 3, 1);
-INSERT INTO `cn_nojd` VALUES (620403, '平川区', 620400, '平川', 3, 5);
-INSERT INTO `cn_nojd` VALUES (620421, '靖远县', 620400, '靖远', 3, 4);
-INSERT INTO `cn_nojd` VALUES (620422, '会宁县', 620400, '会宁', 3, 2);
-INSERT INTO `cn_nojd` VALUES (620423, '景泰县', 620400, '景泰', 3, 3);
-INSERT INTO `cn_nojd` VALUES (620500, '天水市', 620000, '天水', 2, 12);
-INSERT INTO `cn_nojd` VALUES (620502, '秦州区', 620500, '秦州', 3, 5);
-INSERT INTO `cn_nojd` VALUES (620503, '麦积区', 620500, '麦积', 3, 2);
-INSERT INTO `cn_nojd` VALUES (620521, '清水县', 620500, '清水', 3, 4);
-INSERT INTO `cn_nojd` VALUES (620522, '秦安县', 620500, '秦安', 3, 3);
-INSERT INTO `cn_nojd` VALUES (620523, '甘谷县', 620500, '甘谷', 3, 1);
-INSERT INTO `cn_nojd` VALUES (620524, '武山县', 620500, '武山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (620525, '张家川回族自治县', 620500, '张家川', 3, 7);
-INSERT INTO `cn_nojd` VALUES (620600, '武威市', 620000, '武威', 2, 13);
-INSERT INTO `cn_nojd` VALUES (620602, '凉州区', 620600, '凉州', 3, 2);
-INSERT INTO `cn_nojd` VALUES (620621, '民勤县', 620600, '民勤', 3, 3);
-INSERT INTO `cn_nojd` VALUES (620622, '古浪县', 620600, '古浪', 3, 1);
-INSERT INTO `cn_nojd` VALUES (620623, '天祝藏族自治县', 620600, '天祝', 3, 4);
-INSERT INTO `cn_nojd` VALUES (620700, '张掖市', 620000, '张掖', 2, 14);
-INSERT INTO `cn_nojd` VALUES (620702, '甘州区', 620700, '甘州', 3, 1);
-INSERT INTO `cn_nojd` VALUES (620721, '肃南裕固族自治县', 620700, '肃南', 3, 6);
-INSERT INTO `cn_nojd` VALUES (620722, '民乐县', 620700, '民乐', 3, 4);
-INSERT INTO `cn_nojd` VALUES (620723, '临泽县', 620700, '临泽', 3, 3);
-INSERT INTO `cn_nojd` VALUES (620724, '高台县', 620700, '高台', 3, 2);
-INSERT INTO `cn_nojd` VALUES (620725, '山丹县', 620700, '山丹', 3, 5);
-INSERT INTO `cn_nojd` VALUES (620800, '平凉市', 620000, '平凉', 2, 10);
-INSERT INTO `cn_nojd` VALUES (620802, '崆峒区', 620800, '崆峒', 3, 5);
-INSERT INTO `cn_nojd` VALUES (620821, '泾川县', 620800, '泾川', 3, 3);
-INSERT INTO `cn_nojd` VALUES (620822, '灵台县', 620800, '灵台', 3, 6);
-INSERT INTO `cn_nojd` VALUES (620823, '崇信县', 620800, '崇信', 3, 1);
-INSERT INTO `cn_nojd` VALUES (620824, '华亭县', 620800, '华亭', 3, 2);
-INSERT INTO `cn_nojd` VALUES (620825, '庄浪县', 620800, '庄浪', 3, 7);
-INSERT INTO `cn_nojd` VALUES (620826, '静宁县', 620800, '静宁', 3, 4);
-INSERT INTO `cn_nojd` VALUES (620900, '酒泉市', 620000, '酒泉', 2, 6);
-INSERT INTO `cn_nojd` VALUES (620902, '肃州区', 620900, '肃州', 3, 6);
-INSERT INTO `cn_nojd` VALUES (620921, '金塔县', 620900, '金塔', 3, 4);
-INSERT INTO `cn_nojd` VALUES (620922, '瓜州县', 620900, '瓜州', 3, 3);
-INSERT INTO `cn_nojd` VALUES (620923, '肃北蒙古族自治县', 620900, '肃北', 3, 5);
-INSERT INTO `cn_nojd` VALUES (620924, '阿克塞哈萨克族自治县', 620900, '阿克塞', 3, 1);
-INSERT INTO `cn_nojd` VALUES (620981, '玉门市', 620900, '玉门', 3, 7);
-INSERT INTO `cn_nojd` VALUES (620982, '敦煌市', 620900, '敦煌', 3, 2);
-INSERT INTO `cn_nojd` VALUES (621000, '庆阳市', 620000, '庆阳', 2, 11);
-INSERT INTO `cn_nojd` VALUES (621002, '西峰区', 621000, '西峰', 3, 6);
-INSERT INTO `cn_nojd` VALUES (621021, '庆城县', 621000, '庆城', 3, 5);
-INSERT INTO `cn_nojd` VALUES (621022, '环县', 621000, '环县', 3, 3);
-INSERT INTO `cn_nojd` VALUES (621023, '华池县', 621000, '华池', 3, 2);
-INSERT INTO `cn_nojd` VALUES (621024, '合水县', 621000, '合水', 3, 1);
-INSERT INTO `cn_nojd` VALUES (621025, '正宁县', 621000, '正宁', 3, 7);
-INSERT INTO `cn_nojd` VALUES (621026, '宁县', 621000, '宁县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (621027, '镇原县', 621000, '镇原', 3, 8);
-INSERT INTO `cn_nojd` VALUES (621100, '定西市', 620000, '定西', 2, 2);
-INSERT INTO `cn_nojd` VALUES (621102, '安定区', 621100, '安定', 3, 1);
-INSERT INTO `cn_nojd` VALUES (621121, '通渭县', 621100, '通渭', 3, 5);
-INSERT INTO `cn_nojd` VALUES (621122, '陇西县', 621100, '陇西', 3, 3);
-INSERT INTO `cn_nojd` VALUES (621123, '渭源县', 621100, '渭源', 3, 6);
-INSERT INTO `cn_nojd` VALUES (621124, '临洮县', 621100, '临洮', 3, 2);
-INSERT INTO `cn_nojd` VALUES (621125, '漳县', 621100, '漳县', 3, 7);
-INSERT INTO `cn_nojd` VALUES (621126, '岷县', 621100, '岷县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (621200, '陇南市', 620000, '陇南', 2, 9);
-INSERT INTO `cn_nojd` VALUES (621202, '武都区', 621200, '武都', 3, 8);
-INSERT INTO `cn_nojd` VALUES (621221, '成县', 621200, '成县', 3, 1);
-INSERT INTO `cn_nojd` VALUES (621222, '文县', 621200, '文县', 3, 7);
-INSERT INTO `cn_nojd` VALUES (621223, '宕昌县', 621200, '宕昌', 3, 2);
-INSERT INTO `cn_nojd` VALUES (621224, '康县', 621200, '康县', 3, 4);
-INSERT INTO `cn_nojd` VALUES (621225, '西和县', 621200, '西和', 3, 9);
-INSERT INTO `cn_nojd` VALUES (621226, '礼县', 621200, '礼县', 3, 6);
-INSERT INTO `cn_nojd` VALUES (621227, '徽县', 621200, '徽县', 3, 3);
-INSERT INTO `cn_nojd` VALUES (621228, '两当县', 621200, '两当', 3, 5);
-INSERT INTO `cn_nojd` VALUES (622900, '临夏回族自治州', 620000, '临夏', 2, 8);
-INSERT INTO `cn_nojd` VALUES (622901, '临夏市', 622900, '临夏市', 3, 6);
-INSERT INTO `cn_nojd` VALUES (622921, '临夏县', 622900, '临夏县', 3, 7);
-INSERT INTO `cn_nojd` VALUES (622922, '康乐县', 622900, '康乐', 3, 5);
-INSERT INTO `cn_nojd` VALUES (622923, '永靖县', 622900, '永靖', 3, 8);
-INSERT INTO `cn_nojd` VALUES (622924, '广河县', 622900, '广河', 3, 2);
-INSERT INTO `cn_nojd` VALUES (622925, '和政县', 622900, '和政', 3, 3);
-INSERT INTO `cn_nojd` VALUES (622926, '东乡族自治县', 622900, '东乡', 3, 1);
-INSERT INTO `cn_nojd` VALUES (622927, '积石山保安族东乡族撒拉族自治县', 622900, '积石山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (623000, '甘南藏族自治州', 620000, '甘南', 2, 3);
-INSERT INTO `cn_nojd` VALUES (623001, '合作市', 623000, '合作', 3, 2);
-INSERT INTO `cn_nojd` VALUES (623021, '临潭县', 623000, '临潭', 3, 3);
-INSERT INTO `cn_nojd` VALUES (623022, '卓尼县', 623000, '卓尼', 3, 8);
-INSERT INTO `cn_nojd` VALUES (623023, '舟曲县', 623000, '舟曲', 3, 7);
-INSERT INTO `cn_nojd` VALUES (623024, '迭部县', 623000, '迭部', 3, 1);
-INSERT INTO `cn_nojd` VALUES (623025, '玛曲县', 623000, '玛曲', 3, 5);
-INSERT INTO `cn_nojd` VALUES (623026, '碌曲县', 623000, '碌曲', 3, 4);
-INSERT INTO `cn_nojd` VALUES (623027, '夏河县', 623000, '夏河', 3, 6);
-INSERT INTO `cn_nojd` VALUES (630000, '青海省', 0, '青海', 1, 29);
-INSERT INTO `cn_nojd` VALUES (630100, '西宁市', 630000, '西宁', 2, 7);
-INSERT INTO `cn_nojd` VALUES (630102, '城东区', 630100, '城东', 3, 2);
-INSERT INTO `cn_nojd` VALUES (630103, '城中区', 630100, '城中', 3, 4);
-INSERT INTO `cn_nojd` VALUES (630104, '城西区', 630100, '城西', 3, 3);
-INSERT INTO `cn_nojd` VALUES (630105, '城北区', 630100, '城北', 3, 1);
-INSERT INTO `cn_nojd` VALUES (630121, '大通回族土族自治县', 630100, '大通', 3, 5);
-INSERT INTO `cn_nojd` VALUES (630122, '湟中县', 630100, '湟中', 3, 7);
-INSERT INTO `cn_nojd` VALUES (630123, '湟源县', 630100, '湟源', 3, 6);
-INSERT INTO `cn_nojd` VALUES (632100, '海东市', 630000, '海东', 2, 3);
-INSERT INTO `cn_nojd` VALUES (632121, '平安县', 632100, '平安', 3, 5);
-INSERT INTO `cn_nojd` VALUES (632122, '民和回族土族自治县', 632100, '民和', 3, 4);
-INSERT INTO `cn_nojd` VALUES (632123, '乐都区', 632100, '乐都', 3, 3);
-INSERT INTO `cn_nojd` VALUES (632126, '互助土族自治县', 632100, '互助', 3, 2);
-INSERT INTO `cn_nojd` VALUES (632127, '化隆回族自治县', 632100, '化隆', 3, 1);
-INSERT INTO `cn_nojd` VALUES (632128, '循化撒拉族自治县', 632100, '循化', 3, 6);
-INSERT INTO `cn_nojd` VALUES (632200, '海北藏族自治州', 630000, '海北', 2, 2);
-INSERT INTO `cn_nojd` VALUES (632221, '门源回族自治县', 632200, '门源', 3, 3);
-INSERT INTO `cn_nojd` VALUES (632222, '祁连县', 632200, '祁连', 3, 4);
-INSERT INTO `cn_nojd` VALUES (632223, '海晏县', 632200, '海晏', 3, 2);
-INSERT INTO `cn_nojd` VALUES (632224, '刚察县', 632200, '刚察', 3, 1);
-INSERT INTO `cn_nojd` VALUES (632300, '黄南藏族自治州', 630000, '黄南', 2, 6);
-INSERT INTO `cn_nojd` VALUES (632321, '同仁县', 632300, '同仁', 3, 3);
-INSERT INTO `cn_nojd` VALUES (632322, '尖扎县', 632300, '尖扎', 3, 2);
-INSERT INTO `cn_nojd` VALUES (632323, '泽库县', 632300, '泽库', 3, 4);
-INSERT INTO `cn_nojd` VALUES (632324, '河南蒙古族自治县', 632300, '河南', 3, 1);
-INSERT INTO `cn_nojd` VALUES (632500, '海南藏族自治州', 630000, '海南藏族', 2, 4);
-INSERT INTO `cn_nojd` VALUES (632521, '共和县', 632500, '共和', 3, 1);
-INSERT INTO `cn_nojd` VALUES (632522, '同德县', 632500, '同德', 3, 4);
-INSERT INTO `cn_nojd` VALUES (632523, '贵德县', 632500, '贵德', 3, 2);
-INSERT INTO `cn_nojd` VALUES (632524, '兴海县', 632500, '兴海', 3, 5);
-INSERT INTO `cn_nojd` VALUES (632525, '贵南县', 632500, '贵南', 3, 3);
-INSERT INTO `cn_nojd` VALUES (632600, '果洛藏族自治州', 630000, '果洛', 2, 1);
-INSERT INTO `cn_nojd` VALUES (632621, '玛沁县', 632600, '玛沁', 3, 6);
-INSERT INTO `cn_nojd` VALUES (632622, '班玛县', 632600, '班玛', 3, 1);
-INSERT INTO `cn_nojd` VALUES (632623, '甘德县', 632600, '甘德', 3, 3);
-INSERT INTO `cn_nojd` VALUES (632624, '达日县', 632600, '达日', 3, 2);
-INSERT INTO `cn_nojd` VALUES (632625, '久治县', 632600, '久治', 3, 4);
-INSERT INTO `cn_nojd` VALUES (632626, '玛多县', 632600, '玛多', 3, 5);
-INSERT INTO `cn_nojd` VALUES (632700, '玉树藏族自治州', 630000, '玉树', 2, 8);
-INSERT INTO `cn_nojd` VALUES (632721, '玉树市', 632700, '玉树', 3, 4);
-INSERT INTO `cn_nojd` VALUES (632722, '杂多县', 632700, '杂多', 3, 5);
-INSERT INTO `cn_nojd` VALUES (632723, '称多县', 632700, '称多', 3, 1);
-INSERT INTO `cn_nojd` VALUES (632724, '治多县', 632700, '治多', 3, 6);
-INSERT INTO `cn_nojd` VALUES (632725, '囊谦县', 632700, '囊谦', 3, 2);
-INSERT INTO `cn_nojd` VALUES (632726, '曲麻莱县', 632700, '曲麻莱', 3, 3);
-INSERT INTO `cn_nojd` VALUES (632800, '海西蒙古族藏族自治州', 630000, '海西', 2, 5);
-INSERT INTO `cn_nojd` VALUES (632801, '格尔木市', 632800, '格尔木', 3, 3);
-INSERT INTO `cn_nojd` VALUES (632802, '德令哈市', 632800, '德令哈', 3, 1);
-INSERT INTO `cn_nojd` VALUES (632821, '乌兰县', 632800, '乌兰', 3, 5);
-INSERT INTO `cn_nojd` VALUES (632822, '都兰县', 632800, '都兰', 3, 2);
-INSERT INTO `cn_nojd` VALUES (632823, '天峻县', 632800, '天峻', 3, 4);
-INSERT INTO `cn_nojd` VALUES (640000, '宁夏回族自治区', 0, '宁夏', 1, 30);
-INSERT INTO `cn_nojd` VALUES (640100, '银川市', 640000, '银川', 2, 4);
-INSERT INTO `cn_nojd` VALUES (640104, '兴庆区', 640100, '兴庆', 3, 4);
-INSERT INTO `cn_nojd` VALUES (640105, '西夏区', 640100, '西夏', 3, 5);
-INSERT INTO `cn_nojd` VALUES (640106, '金凤区', 640100, '金凤', 3, 2);
-INSERT INTO `cn_nojd` VALUES (640121, '永宁县', 640100, '永宁', 3, 6);
-INSERT INTO `cn_nojd` VALUES (640122, '贺兰县', 640100, '贺兰', 3, 1);
-INSERT INTO `cn_nojd` VALUES (640181, '灵武市', 640100, '灵武', 3, 3);
-INSERT INTO `cn_nojd` VALUES (640200, '石嘴山市', 640000, '石嘴山', 2, 2);
-INSERT INTO `cn_nojd` VALUES (640202, '大武口区', 640200, '大武口', 3, 1);
-INSERT INTO `cn_nojd` VALUES (640205, '惠农区', 640200, '惠农', 3, 2);
-INSERT INTO `cn_nojd` VALUES (640221, '平罗县', 640200, '平罗', 3, 3);
-INSERT INTO `cn_nojd` VALUES (640300, '吴忠市', 640000, '吴忠', 2, 3);
-INSERT INTO `cn_nojd` VALUES (640302, '利通区', 640300, '利通', 3, 2);
-INSERT INTO `cn_nojd` VALUES (640303, '红寺堡区', 640300, '红寺堡', 3, 1);
-INSERT INTO `cn_nojd` VALUES (640323, '盐池县', 640300, '盐池', 3, 5);
-INSERT INTO `cn_nojd` VALUES (640324, '同心县', 640300, '同心', 3, 4);
-INSERT INTO `cn_nojd` VALUES (640381, '青铜峡市', 640300, '青铜峡', 3, 3);
-INSERT INTO `cn_nojd` VALUES (640400, '固原市', 640000, '固原', 2, 1);
-INSERT INTO `cn_nojd` VALUES (640402, '原州区', 640400, '原州', 3, 5);
-INSERT INTO `cn_nojd` VALUES (640422, '西吉县', 640400, '西吉', 3, 4);
-INSERT INTO `cn_nojd` VALUES (640423, '隆德县', 640400, '隆德', 3, 2);
-INSERT INTO `cn_nojd` VALUES (640424, '泾源县', 640400, '泾源', 3, 1);
-INSERT INTO `cn_nojd` VALUES (640425, '彭阳县', 640400, '彭阳', 3, 3);
-INSERT INTO `cn_nojd` VALUES (640500, '中卫市', 640000, '中卫', 2, 5);
-INSERT INTO `cn_nojd` VALUES (640502, '沙坡头区', 640500, '沙坡头', 3, 2);
-INSERT INTO `cn_nojd` VALUES (640521, '中宁县', 640500, '中宁', 3, 3);
-INSERT INTO `cn_nojd` VALUES (640522, '海原县', 640500, '海原', 3, 1);
-INSERT INTO `cn_nojd` VALUES (650000, '新疆维吾尔自治区', 0, '新疆', 1, 31);
-INSERT INTO `cn_nojd` VALUES (650100, '乌鲁木齐市', 650000, '乌鲁木齐', 2, 17);
-INSERT INTO `cn_nojd` VALUES (650102, '天山区', 650100, '天山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (650103, '沙依巴克区', 650100, '沙依巴克', 3, 3);
-INSERT INTO `cn_nojd` VALUES (650104, '新市区', 650100, '新市', 3, 8);
-INSERT INTO `cn_nojd` VALUES (650105, '水磨沟区', 650100, '水磨沟', 3, 4);
-INSERT INTO `cn_nojd` VALUES (650106, '头屯河区', 650100, '头屯河', 3, 6);
-INSERT INTO `cn_nojd` VALUES (650107, '达坂城区', 650100, '达坂城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (650109, '米东区', 650100, '米东', 3, 2);
-INSERT INTO `cn_nojd` VALUES (650121, '乌鲁木齐县', 650100, '乌鲁木齐', 3, 7);
-INSERT INTO `cn_nojd` VALUES (650200, '克拉玛依市', 650000, '克拉玛依', 2, 10);
-INSERT INTO `cn_nojd` VALUES (650202, '独山子区', 650200, '独山子', 3, 2);
-INSERT INTO `cn_nojd` VALUES (650203, '克拉玛依区', 650200, '克拉玛依', 3, 3);
-INSERT INTO `cn_nojd` VALUES (650204, '白碱滩区', 650200, '白碱滩', 3, 1);
-INSERT INTO `cn_nojd` VALUES (650205, '乌尔禾区', 650200, '乌尔禾', 3, 4);
-INSERT INTO `cn_nojd` VALUES (652100, '吐鲁番地区', 650000, '吐鲁番', 2, 14);
-INSERT INTO `cn_nojd` VALUES (652101, '吐鲁番市', 652100, '吐鲁番', 3, 2);
-INSERT INTO `cn_nojd` VALUES (652122, '鄯善县', 652100, '鄯善', 3, 1);
-INSERT INTO `cn_nojd` VALUES (652123, '托克逊县', 652100, '托克逊', 3, 3);
-INSERT INTO `cn_nojd` VALUES (652200, '哈密地区', 650000, '哈密', 2, 7);
-INSERT INTO `cn_nojd` VALUES (652201, '哈密市', 652200, '哈密', 3, 2);
-INSERT INTO `cn_nojd` VALUES (652222, '巴里坤哈萨克自治县', 652200, '巴里坤', 3, 1);
-INSERT INTO `cn_nojd` VALUES (652223, '伊吾县', 652200, '伊吾', 3, 3);
-INSERT INTO `cn_nojd` VALUES (652300, '昌吉回族自治州', 650000, '昌吉', 2, 6);
-INSERT INTO `cn_nojd` VALUES (652301, '昌吉市', 652300, '昌吉', 3, 1);
-INSERT INTO `cn_nojd` VALUES (652302, '阜康市', 652300, '阜康', 3, 2);
-INSERT INTO `cn_nojd` VALUES (652323, '呼图壁县', 652300, '呼图壁', 3, 3);
-INSERT INTO `cn_nojd` VALUES (652324, '玛纳斯县', 652300, '玛纳斯', 3, 5);
-INSERT INTO `cn_nojd` VALUES (652325, '奇台县', 652300, '奇台', 3, 7);
-INSERT INTO `cn_nojd` VALUES (652327, '吉木萨尔县', 652300, '吉木萨尔', 3, 4);
-INSERT INTO `cn_nojd` VALUES (652328, '木垒哈萨克自治县', 652300, '木垒', 3, 6);
-INSERT INTO `cn_nojd` VALUES (652700, '博尔塔拉蒙古自治州', 650000, '博尔塔拉', 2, 5);
-INSERT INTO `cn_nojd` VALUES (652701, '博乐市', 652700, '博乐', 3, 2);
-INSERT INTO `cn_nojd` VALUES (652702, '阿拉山口市', 652700, '阿拉山口', 3, 1);
-INSERT INTO `cn_nojd` VALUES (652722, '精河县', 652700, '精河', 3, 3);
-INSERT INTO `cn_nojd` VALUES (652723, '温泉县', 652700, '温泉', 3, 4);
-INSERT INTO `cn_nojd` VALUES (652800, '巴音郭楞蒙古自治州', 650000, '巴音郭楞', 2, 4);
-INSERT INTO `cn_nojd` VALUES (652801, '库尔勒市', 652800, '库尔勒', 3, 5);
-INSERT INTO `cn_nojd` VALUES (652822, '轮台县', 652800, '轮台', 3, 6);
-INSERT INTO `cn_nojd` VALUES (652823, '尉犁县', 652800, '尉犁', 3, 9);
-INSERT INTO `cn_nojd` VALUES (652824, '若羌县', 652800, '若羌', 3, 7);
-INSERT INTO `cn_nojd` VALUES (652825, '且末县', 652800, '且末', 3, 4);
-INSERT INTO `cn_nojd` VALUES (652826, '焉耆回族自治县', 652800, '焉耆', 3, 8);
-INSERT INTO `cn_nojd` VALUES (652827, '和静县', 652800, '和静', 3, 2);
-INSERT INTO `cn_nojd` VALUES (652828, '和硕县', 652800, '和硕', 3, 3);
-INSERT INTO `cn_nojd` VALUES (652829, '博湖县', 652800, '博湖', 3, 1);
-INSERT INTO `cn_nojd` VALUES (652900, '阿克苏地区', 650000, '阿克苏', 2, 1);
-INSERT INTO `cn_nojd` VALUES (652901, '阿克苏市', 652900, '阿克苏', 3, 1);
-INSERT INTO `cn_nojd` VALUES (652922, '温宿县', 652900, '温宿', 3, 7);
-INSERT INTO `cn_nojd` VALUES (652923, '库车县', 652900, '库车', 3, 5);
-INSERT INTO `cn_nojd` VALUES (652924, '沙雅县', 652900, '沙雅', 3, 6);
-INSERT INTO `cn_nojd` VALUES (652925, '新和县', 652900, '新和', 3, 9);
-INSERT INTO `cn_nojd` VALUES (652926, '拜城县', 652900, '拜城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (652927, '乌什县', 652900, '乌什', 3, 8);
-INSERT INTO `cn_nojd` VALUES (652928, '阿瓦提县', 652900, '阿瓦提', 3, 2);
-INSERT INTO `cn_nojd` VALUES (652929, '柯坪县', 652900, '柯坪', 3, 4);
-INSERT INTO `cn_nojd` VALUES (653000, '克孜勒苏柯尔克孜自治州', 650000, '克孜勒苏柯尔克孜', 2, 11);
-INSERT INTO `cn_nojd` VALUES (653001, '阿图什市', 653000, '阿图什', 3, 3);
-INSERT INTO `cn_nojd` VALUES (653022, '阿克陶县', 653000, '阿克陶', 3, 2);
-INSERT INTO `cn_nojd` VALUES (653023, '阿合奇县', 653000, '阿合奇', 3, 1);
-INSERT INTO `cn_nojd` VALUES (653024, '乌恰县', 653000, '乌恰', 3, 4);
-INSERT INTO `cn_nojd` VALUES (653100, '喀什地区', 650000, '喀什', 2, 9);
-INSERT INTO `cn_nojd` VALUES (653101, '喀什市', 653100, '喀什', 3, 3);
-INSERT INTO `cn_nojd` VALUES (653121, '疏附县', 653100, '疏附', 3, 6);
-INSERT INTO `cn_nojd` VALUES (653122, '疏勒县', 653100, '疏勒', 3, 7);
-INSERT INTO `cn_nojd` VALUES (653123, '英吉沙县', 653100, '英吉沙', 3, 10);
-INSERT INTO `cn_nojd` VALUES (653124, '泽普县', 653100, '泽普', 3, 12);
-INSERT INTO `cn_nojd` VALUES (653125, '莎车县', 653100, '莎车', 3, 5);
-INSERT INTO `cn_nojd` VALUES (653126, '叶城县', 653100, '叶城', 3, 9);
-INSERT INTO `cn_nojd` VALUES (653127, '麦盖提县', 653100, '麦盖提', 3, 4);
-INSERT INTO `cn_nojd` VALUES (653128, '岳普湖县', 653100, '岳普湖', 3, 11);
-INSERT INTO `cn_nojd` VALUES (653129, '伽师县', 653100, '伽师', 3, 2);
-INSERT INTO `cn_nojd` VALUES (653130, '巴楚县', 653100, '巴楚', 3, 1);
-INSERT INTO `cn_nojd` VALUES (653131, '塔什库尔干塔吉克自治县', 653100, '塔什库尔干', 3, 8);
-INSERT INTO `cn_nojd` VALUES (653200, '和田地区', 650000, '和田', 2, 8);
-INSERT INTO `cn_nojd` VALUES (653201, '和田市', 653200, '和田市', 3, 2);
-INSERT INTO `cn_nojd` VALUES (653221, '和田县', 653200, '和田县', 3, 3);
-INSERT INTO `cn_nojd` VALUES (653222, '墨玉县', 653200, '墨玉', 3, 6);
-INSERT INTO `cn_nojd` VALUES (653223, '皮山县', 653200, '皮山', 3, 7);
-INSERT INTO `cn_nojd` VALUES (653224, '洛浦县', 653200, '洛浦', 3, 4);
-INSERT INTO `cn_nojd` VALUES (653225, '策勒县', 653200, '策勒', 3, 1);
-INSERT INTO `cn_nojd` VALUES (653226, '于田县', 653200, '于田', 3, 8);
-INSERT INTO `cn_nojd` VALUES (653227, '民丰县', 653200, '民丰', 3, 5);
-INSERT INTO `cn_nojd` VALUES (654000, '伊犁哈萨克自治州', 650000, '伊犁', 2, 18);
-INSERT INTO `cn_nojd` VALUES (654002, '伊宁市', 654000, '伊宁市', 3, 8);
-INSERT INTO `cn_nojd` VALUES (654003, '奎屯市', 654000, '奎屯', 3, 4);
-INSERT INTO `cn_nojd` VALUES (654021, '伊宁县', 654000, '伊宁县', 3, 9);
-INSERT INTO `cn_nojd` VALUES (654022, '察布查尔锡伯自治县', 654000, '察布查尔', 3, 1);
-INSERT INTO `cn_nojd` VALUES (654023, '霍城县', 654000, '霍城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (654024, '巩留县', 654000, '巩留', 3, 2);
-INSERT INTO `cn_nojd` VALUES (654025, '新源县', 654000, '新源', 3, 7);
-INSERT INTO `cn_nojd` VALUES (654026, '昭苏县', 654000, '昭苏', 3, 10);
-INSERT INTO `cn_nojd` VALUES (654027, '特克斯县', 654000, '特克斯', 3, 6);
-INSERT INTO `cn_nojd` VALUES (654028, '尼勒克县', 654000, '尼勒克', 3, 5);
-INSERT INTO `cn_nojd` VALUES (654200, '塔城地区', 650000, '塔城', 2, 13);
-INSERT INTO `cn_nojd` VALUES (654201, '塔城市', 654200, '塔城', 3, 4);
-INSERT INTO `cn_nojd` VALUES (654202, '乌苏市', 654200, '乌苏', 3, 6);
-INSERT INTO `cn_nojd` VALUES (654221, '额敏县', 654200, '额敏', 3, 1);
-INSERT INTO `cn_nojd` VALUES (654223, '沙湾县', 654200, '沙湾', 3, 3);
-INSERT INTO `cn_nojd` VALUES (654224, '托里县', 654200, '托里', 3, 5);
-INSERT INTO `cn_nojd` VALUES (654225, '裕民县', 654200, '裕民', 3, 7);
-INSERT INTO `cn_nojd` VALUES (654226, '和布克赛尔蒙古自治县', 654200, '和布克赛尔', 3, 2);
-INSERT INTO `cn_nojd` VALUES (654300, '阿勒泰地区', 650000, '阿勒泰', 2, 3);
-INSERT INTO `cn_nojd` VALUES (654301, '阿勒泰市', 654300, '阿勒泰', 3, 1);
-INSERT INTO `cn_nojd` VALUES (654321, '布尔津县', 654300, '布尔津', 3, 2);
-INSERT INTO `cn_nojd` VALUES (654322, '富蕴县', 654300, '富蕴', 3, 4);
-INSERT INTO `cn_nojd` VALUES (654323, '福海县', 654300, '福海', 3, 3);
-INSERT INTO `cn_nojd` VALUES (654324, '哈巴河县', 654300, '哈巴河', 3, 5);
-INSERT INTO `cn_nojd` VALUES (654325, '青河县', 654300, '青河', 3, 7);
-INSERT INTO `cn_nojd` VALUES (654326, '吉木乃县', 654300, '吉木乃', 3, 6);
-INSERT INTO `cn_nojd` VALUES (659001, '石河子市', 650000, '石河子', 2, 12);
-INSERT INTO `cn_nojd` VALUES (659002, '阿拉尔市', 650000, '阿拉尔', 2, 2);
-INSERT INTO `cn_nojd` VALUES (659003, '图木舒克市', 650000, '图木舒克', 2, 15);
-INSERT INTO `cn_nojd` VALUES (659004, '五家渠市', 650000, '五家渠', 2, 16);
-INSERT INTO `cn_nojd` VALUES (710000, '台湾', 0, '台湾', 1, 34);
-INSERT INTO `cn_nojd` VALUES (710100, '台北市', 710000, '台北', 2, 12);
-INSERT INTO `cn_nojd` VALUES (710101, '中正区', 710100, '中正', 3, 12);
-INSERT INTO `cn_nojd` VALUES (710102, '大同区', 710100, '大同', 3, 3);
-INSERT INTO `cn_nojd` VALUES (710103, '中山区', 710100, '中山', 3, 11);
-INSERT INTO `cn_nojd` VALUES (710104, '松山区', 710100, '松山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (710105, '大安区', 710100, '大安', 3, 2);
-INSERT INTO `cn_nojd` VALUES (710106, '万华区', 710100, '万华', 3, 9);
-INSERT INTO `cn_nojd` VALUES (710107, '信义区', 710100, '信义', 3, 6);
-INSERT INTO `cn_nojd` VALUES (710108, '士林区', 710100, '士林', 3, 7);
-INSERT INTO `cn_nojd` VALUES (710109, '北投区', 710100, '北投', 3, 1);
-INSERT INTO `cn_nojd` VALUES (710110, '内湖区', 710100, '内湖', 3, 5);
-INSERT INTO `cn_nojd` VALUES (710111, '南港区', 710100, '南港', 3, 4);
-INSERT INTO `cn_nojd` VALUES (710112, '文山区', 710100, '文山', 3, 10);
-INSERT INTO `cn_nojd` VALUES (710200, '高雄市', 710000, '高雄', 2, 1);
-INSERT INTO `cn_nojd` VALUES (710201, '新兴区', 710200, '新兴', 3, 34);
-INSERT INTO `cn_nojd` VALUES (710202, '前金区', 710200, '前金', 3, 21);
-INSERT INTO `cn_nojd` VALUES (710203, '芩雅区', 710200, '芩雅', 3, 26);
-INSERT INTO `cn_nojd` VALUES (710204, '盐埕区', 710200, '盐埕', 3, 36);
-INSERT INTO `cn_nojd` VALUES (710205, '鼓山区', 710200, '鼓山', 3, 7);
-INSERT INTO `cn_nojd` VALUES (710206, '旗津区', 710200, '旗津', 3, 25);
-INSERT INTO `cn_nojd` VALUES (710207, '前镇区', 710200, '前镇', 3, 22);
-INSERT INTO `cn_nojd` VALUES (710208, '三民区', 710200, '三民', 3, 29);
-INSERT INTO `cn_nojd` VALUES (710209, '左营区', 710200, '左营', 3, 39);
-INSERT INTO `cn_nojd` VALUES (710210, '楠梓区', 710200, '楠梓', 3, 18);
-INSERT INTO `cn_nojd` VALUES (710211, '小港区', 710200, '小港', 3, 33);
-INSERT INTO `cn_nojd` VALUES (710241, '苓雅区', 710200, '苓雅', 3, 10);
-INSERT INTO `cn_nojd` VALUES (710242, '仁武区', 710200, '仁武', 3, 28);
-INSERT INTO `cn_nojd` VALUES (710243, '大社区', 710200, '大社', 3, 3);
-INSERT INTO `cn_nojd` VALUES (710244, '冈山区', 710200, '冈山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (710245, '路竹区', 710200, '路竹', 3, 13);
-INSERT INTO `cn_nojd` VALUES (710246, '阿莲区', 710200, '阿莲', 3, 1);
-INSERT INTO `cn_nojd` VALUES (710247, '田寮区', 710200, '田寮', 3, 32);
-INSERT INTO `cn_nojd` VALUES (710248, '燕巢区', 710200, '燕巢', 3, 35);
-INSERT INTO `cn_nojd` VALUES (710249, '桥头区', 710200, '桥头', 3, 23);
-INSERT INTO `cn_nojd` VALUES (710250, '梓官区', 710200, '梓官', 3, 38);
-INSERT INTO `cn_nojd` VALUES (710251, '弥陀区', 710200, '弥陀', 3, 16);
-INSERT INTO `cn_nojd` VALUES (710252, '永安区', 710200, '永安', 3, 37);
-INSERT INTO `cn_nojd` VALUES (710253, '湖内区', 710200, '湖内', 3, 8);
-INSERT INTO `cn_nojd` VALUES (710254, '凤山区', 710200, '凤山', 3, 5);
-INSERT INTO `cn_nojd` VALUES (710255, '大寮区', 710200, '大寮', 3, 2);
-INSERT INTO `cn_nojd` VALUES (710256, '林园区', 710200, '林园', 3, 11);
-INSERT INTO `cn_nojd` VALUES (710257, '鸟松区', 710200, '鸟松', 3, 20);
-INSERT INTO `cn_nojd` VALUES (710258, '大树区', 710200, '大树', 3, 4);
-INSERT INTO `cn_nojd` VALUES (710259, '旗山区', 710200, '旗山', 3, 27);
-INSERT INTO `cn_nojd` VALUES (710260, '美浓区', 710200, '美浓', 3, 15);
-INSERT INTO `cn_nojd` VALUES (710261, '六龟区', 710200, '六龟', 3, 12);
-INSERT INTO `cn_nojd` VALUES (710262, '内门区', 710200, '内门', 3, 19);
-INSERT INTO `cn_nojd` VALUES (710263, '杉林区', 710200, '杉林', 3, 30);
-INSERT INTO `cn_nojd` VALUES (710264, '甲仙区', 710200, '甲仙', 3, 9);
-INSERT INTO `cn_nojd` VALUES (710265, '桃源区', 710200, '桃源', 3, 31);
-INSERT INTO `cn_nojd` VALUES (710266, '那玛夏区', 710200, '那玛夏', 3, 17);
-INSERT INTO `cn_nojd` VALUES (710267, '茂林区', 710200, '茂林', 3, 14);
-INSERT INTO `cn_nojd` VALUES (710268, '茄萣区', 710200, '茄萣', 3, 24);
-INSERT INTO `cn_nojd` VALUES (710300, '台南市', 710000, '台南', 2, 14);
-INSERT INTO `cn_nojd` VALUES (710301, '中西区', 710300, '中西', 3, 36);
-INSERT INTO `cn_nojd` VALUES (710302, '东区', 710300, '东区', 3, 8);
-INSERT INTO `cn_nojd` VALUES (710303, '南区', 710300, '南区', 3, 21);
-INSERT INTO `cn_nojd` VALUES (710304, '北区', 710300, '北区', 3, 6);
-INSERT INTO `cn_nojd` VALUES (710305, '安平区', 710300, '安平', 3, 3);
-INSERT INTO `cn_nojd` VALUES (710306, '安南区', 710300, '安南', 3, 2);
-INSERT INTO `cn_nojd` VALUES (710339, '永康区', 710300, '永康', 3, 34);
-INSERT INTO `cn_nojd` VALUES (710340, '归仁区', 710300, '归仁', 3, 12);
-INSERT INTO `cn_nojd` VALUES (710341, '新化区', 710300, '新化', 3, 29);
-INSERT INTO `cn_nojd` VALUES (710342, '左镇区', 710300, '左镇', 3, 37);
-INSERT INTO `cn_nojd` VALUES (710343, '玉井区', 710300, '玉井', 3, 35);
-INSERT INTO `cn_nojd` VALUES (710344, '楠西区', 710300, '楠西', 3, 22);
-INSERT INTO `cn_nojd` VALUES (710345, '南化区', 710300, '南化', 3, 20);
-INSERT INTO `cn_nojd` VALUES (710346, '仁德区', 710300, '仁德', 3, 24);
-INSERT INTO `cn_nojd` VALUES (710347, '关庙区', 710300, '关庙', 3, 10);
-INSERT INTO `cn_nojd` VALUES (710348, '龙崎区', 710300, '龙崎', 3, 18);
-INSERT INTO `cn_nojd` VALUES (710349, '官田区', 710300, '官田', 3, 11);
-INSERT INTO `cn_nojd` VALUES (710350, '麻豆区', 710300, '麻豆', 3, 19);
-INSERT INTO `cn_nojd` VALUES (710351, '佳里区', 710300, '佳里', 3, 14);
-INSERT INTO `cn_nojd` VALUES (710352, '西港区', 710300, '西港', 3, 28);
-INSERT INTO `cn_nojd` VALUES (710353, '七股区', 710300, '七股', 3, 23);
-INSERT INTO `cn_nojd` VALUES (710354, '将军区', 710300, '将军', 3, 15);
-INSERT INTO `cn_nojd` VALUES (710355, '学甲区', 710300, '学甲', 3, 32);
-INSERT INTO `cn_nojd` VALUES (710356, '北门区', 710300, '北门', 3, 5);
-INSERT INTO `cn_nojd` VALUES (710357, '新营区', 710300, '新营', 3, 31);
-INSERT INTO `cn_nojd` VALUES (710358, '后壁区', 710300, '后壁', 3, 13);
-INSERT INTO `cn_nojd` VALUES (710359, '白河区', 710300, '白河', 3, 4);
-INSERT INTO `cn_nojd` VALUES (710360, '东山区', 710300, '东山', 3, 9);
-INSERT INTO `cn_nojd` VALUES (710361, '六甲区', 710300, '六甲', 3, 16);
-INSERT INTO `cn_nojd` VALUES (710362, '下营区', 710300, '下营', 3, 27);
-INSERT INTO `cn_nojd` VALUES (710363, '柳营区', 710300, '柳营', 3, 17);
-INSERT INTO `cn_nojd` VALUES (710364, '盐水区', 710300, '盐水', 3, 33);
-INSERT INTO `cn_nojd` VALUES (710365, '善化区', 710300, '善化', 3, 25);
-INSERT INTO `cn_nojd` VALUES (710366, '大内区', 710300, '大内', 3, 7);
-INSERT INTO `cn_nojd` VALUES (710367, '山上区', 710300, '山上', 3, 26);
-INSERT INTO `cn_nojd` VALUES (710368, '新市区', 710300, '新市', 3, 30);
-INSERT INTO `cn_nojd` VALUES (710369, '安定区', 710300, '安定', 3, 1);
-INSERT INTO `cn_nojd` VALUES (710400, '台中市', 710000, '台中', 2, 15);
-INSERT INTO `cn_nojd` VALUES (710401, '中区', 710400, '中区', 3, 29);
-INSERT INTO `cn_nojd` VALUES (710402, '东区', 710400, '东区', 3, 8);
-INSERT INTO `cn_nojd` VALUES (710403, '南区', 710400, '南区', 3, 14);
-INSERT INTO `cn_nojd` VALUES (710404, '西区', 710400, '西区', 3, 27);
-INSERT INTO `cn_nojd` VALUES (710405, '北区', 710400, '北区', 3, 1);
-INSERT INTO `cn_nojd` VALUES (710406, '北屯区', 710400, '北屯', 3, 2);
-INSERT INTO `cn_nojd` VALUES (710407, '西屯区', 710400, '西屯', 3, 28);
-INSERT INTO `cn_nojd` VALUES (710408, '南屯区', 710400, '南屯', 3, 15);
-INSERT INTO `cn_nojd` VALUES (710431, '太平区', 710400, '太平', 3, 20);
-INSERT INTO `cn_nojd` VALUES (710432, '大里区', 710400, '大里', 3, 6);
-INSERT INTO `cn_nojd` VALUES (710433, '雾峰区', 710400, '雾峰', 3, 23);
-INSERT INTO `cn_nojd` VALUES (710434, '乌日区', 710400, '乌日', 3, 25);
-INSERT INTO `cn_nojd` VALUES (710435, '丰原区', 710400, '丰原', 3, 10);
-INSERT INTO `cn_nojd` VALUES (710436, '后里区', 710400, '后里', 3, 12);
-INSERT INTO `cn_nojd` VALUES (710437, '石冈区', 710400, '石冈', 3, 19);
-INSERT INTO `cn_nojd` VALUES (710438, '东势区', 710400, '东势', 3, 9);
-INSERT INTO `cn_nojd` VALUES (710439, '和平区', 710400, '和平', 3, 11);
-INSERT INTO `cn_nojd` VALUES (710440, '新社区', 710400, '新社', 3, 26);
-INSERT INTO `cn_nojd` VALUES (710441, '潭子区', 710400, '潭子', 3, 21);
-INSERT INTO `cn_nojd` VALUES (710442, '大雅区', 710400, '大雅', 3, 7);
-INSERT INTO `cn_nojd` VALUES (710443, '神冈区', 710400, '神冈', 3, 18);
-INSERT INTO `cn_nojd` VALUES (710444, '大肚区', 710400, '大肚', 3, 4);
-INSERT INTO `cn_nojd` VALUES (710445, '沙鹿区', 710400, '沙鹿', 3, 17);
-INSERT INTO `cn_nojd` VALUES (710446, '龙井区', 710400, '龙井', 3, 13);
-INSERT INTO `cn_nojd` VALUES (710447, '梧栖区', 710400, '梧栖', 3, 24);
-INSERT INTO `cn_nojd` VALUES (710448, '清水区', 710400, '清水', 3, 16);
-INSERT INTO `cn_nojd` VALUES (710449, '大甲区', 710400, '大甲', 3, 5);
-INSERT INTO `cn_nojd` VALUES (710450, '外埔区', 710400, '外埔', 3, 22);
-INSERT INTO `cn_nojd` VALUES (710451, '大安区', 710400, '大安', 3, 3);
-INSERT INTO `cn_nojd` VALUES (710500, '金门县', 710000, '金门', 2, 6);
-INSERT INTO `cn_nojd` VALUES (710507, '金沙镇', 710500, '金沙', 3, 4);
-INSERT INTO `cn_nojd` VALUES (710508, '金湖镇', 710500, '金湖', 3, 2);
-INSERT INTO `cn_nojd` VALUES (710509, '金宁乡', 710500, '金宁', 3, 3);
-INSERT INTO `cn_nojd` VALUES (710510, '金城镇', 710500, '金城', 3, 1);
-INSERT INTO `cn_nojd` VALUES (710511, '烈屿乡', 710500, '烈屿', 3, 5);
-INSERT INTO `cn_nojd` VALUES (710512, '乌坵乡', 710500, '乌坵', 3, 6);
-INSERT INTO `cn_nojd` VALUES (710600, '南投县', 710000, '南投', 2, 9);
-INSERT INTO `cn_nojd` VALUES (710614, '南投市', 710600, '南投', 3, 8);
-INSERT INTO `cn_nojd` VALUES (710615, '中寮乡', 710600, '中寮', 3, 3);
-INSERT INTO `cn_nojd` VALUES (710616, '草屯镇', 710600, '草屯', 3, 1);
-INSERT INTO `cn_nojd` VALUES (710617, '国姓乡', 710600, '国姓', 3, 2);
-INSERT INTO `cn_nojd` VALUES (710618, '埔里镇', 710600, '埔里', 3, 9);
-INSERT INTO `cn_nojd` VALUES (710619, '仁爱乡', 710600, '仁爱', 3, 10);
-INSERT INTO `cn_nojd` VALUES (710620, '名间乡', 710600, '名间', 3, 7);
-INSERT INTO `cn_nojd` VALUES (710621, '集集镇', 710600, '集集', 3, 5);
-INSERT INTO `cn_nojd` VALUES (710622, '水里乡', 710600, '水里', 3, 11);
-INSERT INTO `cn_nojd` VALUES (710623, '鱼池乡', 710600, '鱼池', 3, 13);
-INSERT INTO `cn_nojd` VALUES (710624, '信义乡', 710600, '信义', 3, 12);
-INSERT INTO `cn_nojd` VALUES (710625, '竹山镇', 710600, '竹山', 3, 4);
-INSERT INTO `cn_nojd` VALUES (710626, '鹿谷乡', 710600, '鹿谷', 3, 6);
-INSERT INTO `cn_nojd` VALUES (710700, '基隆市', 710000, '基隆', 2, 5);
-INSERT INTO `cn_nojd` VALUES (710701, '仁爱区', 710700, '仁爱', 3, 4);
-INSERT INTO `cn_nojd` VALUES (710702, '信义区', 710700, '信义', 3, 5);
-INSERT INTO `cn_nojd` VALUES (710703, '中正区', 710700, '中正', 3, 7);
-INSERT INTO `cn_nojd` VALUES (710704, '中山区', 710700, '中山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (710705, '安乐区', 710700, '安乐', 3, 1);
-INSERT INTO `cn_nojd` VALUES (710706, '暖暖区', 710700, '暖暖', 3, 2);
-INSERT INTO `cn_nojd` VALUES (710707, '七堵区', 710700, '七堵', 3, 3);
-INSERT INTO `cn_nojd` VALUES (710800, '新竹市', 710000, '新竹', 2, 18);
-INSERT INTO `cn_nojd` VALUES (710801, '东区', 710800, '东区', 3, 2);
-INSERT INTO `cn_nojd` VALUES (710802, '北区', 710800, '北区', 3, 1);
-INSERT INTO `cn_nojd` VALUES (710803, '香山区', 710800, '香山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (710900, '嘉义市', 710000, '嘉义', 2, 3);
-INSERT INTO `cn_nojd` VALUES (710901, '东区', 710900, '东区', 3, 1);
-INSERT INTO `cn_nojd` VALUES (710902, '西区', 710900, '西区', 3, 2);
-INSERT INTO `cn_nojd` VALUES (711100, '新北市', 710000, '新北', 2, 17);
-INSERT INTO `cn_nojd` VALUES (711130, '万里区', 711100, '万里', 3, 25);
-INSERT INTO `cn_nojd` VALUES (711131, '金山区', 711100, '金山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (711132, '板桥区', 711100, '板桥', 3, 2);
-INSERT INTO `cn_nojd` VALUES (711133, '汐止区', 711100, '汐止', 3, 20);
-INSERT INTO `cn_nojd` VALUES (711134, '深坑区', 711100, '深坑', 3, 15);
-INSERT INTO `cn_nojd` VALUES (711135, '石碇区', 711100, '石碇', 3, 16);
-INSERT INTO `cn_nojd` VALUES (711136, '瑞芳区', 711100, '瑞芳', 3, 11);
-INSERT INTO `cn_nojd` VALUES (711137, '平溪区', 711100, '平溪', 3, 10);
-INSERT INTO `cn_nojd` VALUES (711138, '双溪区', 711100, '双溪', 3, 18);
-INSERT INTO `cn_nojd` VALUES (711139, '贡寮区', 711100, '贡寮', 3, 4);
-INSERT INTO `cn_nojd` VALUES (711140, '新店区', 711100, '新店', 3, 21);
-INSERT INTO `cn_nojd` VALUES (711141, '坪林区', 711100, '坪林', 3, 9);
-INSERT INTO `cn_nojd` VALUES (711142, '乌来区', 711100, '乌来', 3, 27);
-INSERT INTO `cn_nojd` VALUES (711143, '永和区', 711100, '永和', 3, 29);
-INSERT INTO `cn_nojd` VALUES (711144, '中和区', 711100, '中和', 3, 5);
-INSERT INTO `cn_nojd` VALUES (711145, '土城区', 711100, '土城', 3, 24);
-INSERT INTO `cn_nojd` VALUES (711146, '三峡区', 711100, '三峡', 3, 14);
-INSERT INTO `cn_nojd` VALUES (711147, '树林区', 711100, '树林', 3, 19);
-INSERT INTO `cn_nojd` VALUES (711148, '莺歌区', 711100, '莺歌', 3, 28);
-INSERT INTO `cn_nojd` VALUES (711149, '三重区', 711100, '三重', 3, 12);
-INSERT INTO `cn_nojd` VALUES (711150, '新庄区', 711100, '新庄', 3, 22);
-INSERT INTO `cn_nojd` VALUES (711151, '泰山区', 711100, '泰山', 3, 23);
-INSERT INTO `cn_nojd` VALUES (711152, '林口区', 711100, '林口', 3, 7);
-INSERT INTO `cn_nojd` VALUES (711153, '芦洲区', 711100, '芦洲', 3, 8);
-INSERT INTO `cn_nojd` VALUES (711154, '五股区', 711100, '五股', 3, 26);
-INSERT INTO `cn_nojd` VALUES (711155, '八里区', 711100, '八里', 3, 1);
-INSERT INTO `cn_nojd` VALUES (711156, '淡水区', 711100, '淡水', 3, 3);
-INSERT INTO `cn_nojd` VALUES (711157, '三芝区', 711100, '三芝', 3, 13);
-INSERT INTO `cn_nojd` VALUES (711158, '石门区', 711100, '石门', 3, 17);
-INSERT INTO `cn_nojd` VALUES (711200, '宜兰县', 710000, '宜兰', 2, 20);
-INSERT INTO `cn_nojd` VALUES (711214, '宜兰市', 711200, '宜兰', 3, 12);
-INSERT INTO `cn_nojd` VALUES (711215, '头城镇', 711200, '头城', 3, 10);
-INSERT INTO `cn_nojd` VALUES (711216, '礁溪乡', 711200, '礁溪', 3, 5);
-INSERT INTO `cn_nojd` VALUES (711217, '壮围乡', 711200, '壮围', 3, 4);
-INSERT INTO `cn_nojd` VALUES (711218, '员山乡', 711200, '员山', 3, 13);
-INSERT INTO `cn_nojd` VALUES (711219, '罗东镇', 711200, '罗东', 3, 6);
-INSERT INTO `cn_nojd` VALUES (711220, '三星乡', 711200, '三星', 3, 8);
-INSERT INTO `cn_nojd` VALUES (711221, '大同乡', 711200, '大同', 3, 1);
-INSERT INTO `cn_nojd` VALUES (711222, '五结乡', 711200, '五结', 3, 11);
-INSERT INTO `cn_nojd` VALUES (711223, '冬山乡', 711200, '冬山', 3, 3);
-INSERT INTO `cn_nojd` VALUES (711224, '苏澳镇', 711200, '苏澳', 3, 9);
-INSERT INTO `cn_nojd` VALUES (711225, '南澳乡', 711200, '南澳', 3, 7);
-INSERT INTO `cn_nojd` VALUES (711226, '钓鱼台', 711200, '钓鱼', 3, 2);
-INSERT INTO `cn_nojd` VALUES (711300, '新竹县', 710000, '新竹', 2, 19);
-INSERT INTO `cn_nojd` VALUES (711314, '竹北市', 711300, '竹北', 3, 8);
-INSERT INTO `cn_nojd` VALUES (711315, '湖口乡', 711300, '湖口', 3, 7);
-INSERT INTO `cn_nojd` VALUES (711316, '新丰乡', 711300, '新丰', 3, 11);
-INSERT INTO `cn_nojd` VALUES (711317, '新埔镇', 711300, '新埔', 3, 12);
-INSERT INTO `cn_nojd` VALUES (711318, '关西镇', 711300, '关西', 3, 5);
-INSERT INTO `cn_nojd` VALUES (711319, '芎林乡', 711300, '芎林', 3, 3);
-INSERT INTO `cn_nojd` VALUES (711320, '宝山乡', 711300, '宝山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (711321, '竹东镇', 711300, '竹东', 3, 9);
-INSERT INTO `cn_nojd` VALUES (711322, '五峰乡', 711300, '五峰', 3, 13);
-INSERT INTO `cn_nojd` VALUES (711323, '横山乡', 711300, '横山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (711324, '尖石乡', 711300, '尖石', 3, 10);
-INSERT INTO `cn_nojd` VALUES (711325, '北埔乡', 711300, '北埔', 3, 2);
-INSERT INTO `cn_nojd` VALUES (711326, '峨眉乡', 711300, '峨眉', 3, 4);
-INSERT INTO `cn_nojd` VALUES (711400, '桃园县', 710000, '桃园', 2, 16);
-INSERT INTO `cn_nojd` VALUES (711414, '中坜市', 711400, '中坜', 3, 7);
-INSERT INTO `cn_nojd` VALUES (711415, '平镇市', 711400, '平镇', 3, 10);
-INSERT INTO `cn_nojd` VALUES (711416, '龙潭乡', 711400, '龙潭', 3, 8);
-INSERT INTO `cn_nojd` VALUES (711417, '杨梅市', 711400, '杨梅', 3, 13);
-INSERT INTO `cn_nojd` VALUES (711418, '新屋乡', 711400, '新屋', 3, 11);
-INSERT INTO `cn_nojd` VALUES (711419, '观音乡', 711400, '观音', 3, 5);
-INSERT INTO `cn_nojd` VALUES (711420, '桃园市', 711400, '桃园', 3, 12);
-INSERT INTO `cn_nojd` VALUES (711421, '龟山乡', 711400, '龟山', 3, 6);
-INSERT INTO `cn_nojd` VALUES (711422, '八德市', 711400, '八德', 3, 1);
-INSERT INTO `cn_nojd` VALUES (711423, '大溪镇', 711400, '大溪', 3, 2);
-INSERT INTO `cn_nojd` VALUES (711424, '复兴乡', 711400, '复兴', 3, 4);
-INSERT INTO `cn_nojd` VALUES (711425, '大园乡', 711400, '大园', 3, 3);
-INSERT INTO `cn_nojd` VALUES (711426, '芦竹乡', 711400, '芦竹', 3, 9);
-INSERT INTO `cn_nojd` VALUES (711500, '苗栗县', 710000, '苗栗', 2, 8);
-INSERT INTO `cn_nojd` VALUES (711519, '竹南镇', 711500, '竹南', 3, 4);
-INSERT INTO `cn_nojd` VALUES (711520, '头份镇', 711500, '头份', 3, 15);
-INSERT INTO `cn_nojd` VALUES (711521, '三湾乡', 711500, '三湾', 3, 8);
-INSERT INTO `cn_nojd` VALUES (711522, '南庄乡', 711500, '南庄', 3, 7);
-INSERT INTO `cn_nojd` VALUES (711523, '狮潭乡', 711500, '狮潭', 3, 10);
-INSERT INTO `cn_nojd` VALUES (711524, '后龙镇', 711500, '后龙', 3, 3);
-INSERT INTO `cn_nojd` VALUES (711525, '通霄镇', 711500, '通霄', 3, 14);
-INSERT INTO `cn_nojd` VALUES (711526, '苑里镇', 711500, '苑里', 3, 17);
-INSERT INTO `cn_nojd` VALUES (711527, '苗栗市', 711500, '苗栗', 3, 6);
-INSERT INTO `cn_nojd` VALUES (711528, '造桥乡', 711500, '造桥', 3, 18);
-INSERT INTO `cn_nojd` VALUES (711529, '头屋乡', 711500, '头屋', 3, 16);
-INSERT INTO `cn_nojd` VALUES (711530, '公馆乡', 711500, '公馆', 3, 2);
-INSERT INTO `cn_nojd` VALUES (711531, '大湖乡', 711500, '大湖', 3, 1);
-INSERT INTO `cn_nojd` VALUES (711532, '泰安乡', 711500, '泰安', 3, 12);
-INSERT INTO `cn_nojd` VALUES (711533, '铜锣乡', 711500, '铜锣', 3, 13);
-INSERT INTO `cn_nojd` VALUES (711534, '三义乡', 711500, '三义', 3, 9);
-INSERT INTO `cn_nojd` VALUES (711535, '西湖乡', 711500, '西湖', 3, 11);
-INSERT INTO `cn_nojd` VALUES (711536, '卓兰镇', 711500, '卓兰', 3, 5);
-INSERT INTO `cn_nojd` VALUES (711700, '彰化县', 710000, '彰化', 2, 22);
-INSERT INTO `cn_nojd` VALUES (711727, '彰化市', 711700, '彰化', 3, 11);
-INSERT INTO `cn_nojd` VALUES (711728, '芬园乡', 711700, '芬园', 3, 7);
-INSERT INTO `cn_nojd` VALUES (711729, '花坛乡', 711700, '花坛', 3, 10);
-INSERT INTO `cn_nojd` VALUES (711730, '秀水乡', 711700, '秀水', 3, 22);
-INSERT INTO `cn_nojd` VALUES (711731, '鹿港镇', 711700, '鹿港', 3, 13);
-INSERT INTO `cn_nojd` VALUES (711732, '福兴乡', 711700, '福兴', 3, 8);
-INSERT INTO `cn_nojd` VALUES (711733, '线西乡', 711700, '线西', 3, 19);
-INSERT INTO `cn_nojd` VALUES (711734, '和美镇', 711700, '和美', 3, 9);
-INSERT INTO `cn_nojd` VALUES (711735, '伸港乡', 711700, '伸港', 3, 17);
-INSERT INTO `cn_nojd` VALUES (711736, '员林镇', 711700, '员林', 3, 26);
-INSERT INTO `cn_nojd` VALUES (711737, '社头乡', 711700, '社头', 3, 18);
-INSERT INTO `cn_nojd` VALUES (711738, '永靖乡', 711700, '永靖', 3, 25);
-INSERT INTO `cn_nojd` VALUES (711739, '埔心乡', 711700, '埔心', 3, 15);
-INSERT INTO `cn_nojd` VALUES (711740, '溪湖镇', 711700, '溪湖', 3, 20);
-INSERT INTO `cn_nojd` VALUES (711741, '大村乡', 711700, '大村', 3, 3);
-INSERT INTO `cn_nojd` VALUES (711742, '埔盐乡', 711700, '埔盐', 3, 16);
-INSERT INTO `cn_nojd` VALUES (711743, '田中镇', 711700, '田中', 3, 23);
-INSERT INTO `cn_nojd` VALUES (711744, '北斗镇', 711700, '北斗', 3, 1);
-INSERT INTO `cn_nojd` VALUES (711745, '田尾乡', 711700, '田尾', 3, 24);
-INSERT INTO `cn_nojd` VALUES (711746, '埤头乡', 711700, '埤头', 3, 14);
-INSERT INTO `cn_nojd` VALUES (711747, '溪州乡', 711700, '溪州', 3, 21);
-INSERT INTO `cn_nojd` VALUES (711748, '竹塘乡', 711700, '竹塘', 3, 12);
-INSERT INTO `cn_nojd` VALUES (711749, '二林镇', 711700, '二林', 3, 4);
-INSERT INTO `cn_nojd` VALUES (711750, '大城乡', 711700, '大城', 3, 2);
-INSERT INTO `cn_nojd` VALUES (711751, '芳苑乡', 711700, '芳苑', 3, 6);
-INSERT INTO `cn_nojd` VALUES (711752, '二水乡', 711700, '二水', 3, 5);
-INSERT INTO `cn_nojd` VALUES (711900, '嘉义县', 710000, '嘉义', 2, 4);
-INSERT INTO `cn_nojd` VALUES (711919, '番路乡', 711900, '番路', 3, 7);
-INSERT INTO `cn_nojd` VALUES (711920, '梅山乡', 711900, '梅山', 3, 11);
-INSERT INTO `cn_nojd` VALUES (711921, '竹崎乡', 711900, '竹崎', 3, 9);
-INSERT INTO `cn_nojd` VALUES (711922, '阿里山乡', 711900, '阿里山', 3, 1);
-INSERT INTO `cn_nojd` VALUES (711923, '中埔乡', 711900, '中埔', 3, 8);
-INSERT INTO `cn_nojd` VALUES (711924, '大埔乡', 711900, '大埔', 3, 5);
-INSERT INTO `cn_nojd` VALUES (711925, '水上乡', 711900, '水上', 3, 14);
-INSERT INTO `cn_nojd` VALUES (711926, '鹿草乡', 711900, '鹿草', 3, 2);
-INSERT INTO `cn_nojd` VALUES (711927, '太保市', 711900, '太保', 3, 17);
-INSERT INTO `cn_nojd` VALUES (711928, '朴子市', 711900, '朴子', 3, 13);
-INSERT INTO `cn_nojd` VALUES (711929, '东石乡', 711900, '东石', 3, 6);
-INSERT INTO `cn_nojd` VALUES (711930, '六脚乡', 711900, '六脚', 3, 10);
-INSERT INTO `cn_nojd` VALUES (711931, '新港乡', 711900, '新港', 3, 16);
-INSERT INTO `cn_nojd` VALUES (711932, '民雄乡', 711900, '民雄', 3, 12);
-INSERT INTO `cn_nojd` VALUES (711933, '大林镇', 711900, '大林', 3, 4);
-INSERT INTO `cn_nojd` VALUES (711934, '溪口乡', 711900, '溪口', 3, 15);
-INSERT INTO `cn_nojd` VALUES (711935, '义竹乡', 711900, '义竹', 3, 18);
-INSERT INTO `cn_nojd` VALUES (711936, '布袋镇', 711900, '布袋', 3, 3);
-INSERT INTO `cn_nojd` VALUES (712100, '云林县', 710000, '云林', 2, 21);
-INSERT INTO `cn_nojd` VALUES (712121, '斗南镇', 712100, '斗南', 3, 7);
-INSERT INTO `cn_nojd` VALUES (712122, '大埤乡', 712100, '大埤', 3, 4);
-INSERT INTO `cn_nojd` VALUES (712123, '虎尾镇', 712100, '虎尾', 3, 10);
-INSERT INTO `cn_nojd` VALUES (712124, '土库镇', 712100, '土库', 3, 19);
-INSERT INTO `cn_nojd` VALUES (712125, '褒忠乡', 712100, '褒忠', 3, 1);
-INSERT INTO `cn_nojd` VALUES (712126, '东势乡', 712100, '东势', 3, 5);
-INSERT INTO `cn_nojd` VALUES (712127, '台西乡', 712100, '台西', 3, 18);
-INSERT INTO `cn_nojd` VALUES (712128, '仑背乡', 712100, '仑背', 3, 13);
-INSERT INTO `cn_nojd` VALUES (712129, '麦寮乡', 712100, '麦寮', 3, 14);
-INSERT INTO `cn_nojd` VALUES (712130, '斗六市', 712100, '斗六', 3, 6);
-INSERT INTO `cn_nojd` VALUES (712131, '林内乡', 712100, '林内', 3, 12);
-INSERT INTO `cn_nojd` VALUES (712132, '古坑乡', 712100, '古坑', 3, 9);
-INSERT INTO `cn_nojd` VALUES (712133, '莿桐乡', 712100, '莿桐', 3, 3);
-INSERT INTO `cn_nojd` VALUES (712134, '西螺镇', 712100, '西螺', 3, 17);
-INSERT INTO `cn_nojd` VALUES (712135, '二仑乡', 712100, '二仑', 3, 8);
-INSERT INTO `cn_nojd` VALUES (712136, '北港镇', 712100, '北港', 3, 2);
-INSERT INTO `cn_nojd` VALUES (712137, '水林乡', 712100, '水林', 3, 15);
-INSERT INTO `cn_nojd` VALUES (712138, '口湖乡', 712100, '口湖', 3, 11);
-INSERT INTO `cn_nojd` VALUES (712139, '四湖乡', 712100, '四湖', 3, 16);
-INSERT INTO `cn_nojd` VALUES (712140, '元长乡', 712100, '元长', 3, 20);
-INSERT INTO `cn_nojd` VALUES (712400, '屏东县', 710000, '屏东', 2, 11);
-INSERT INTO `cn_nojd` VALUES (712434, '屏东市', 712400, '屏东', 3, 24);
-INSERT INTO `cn_nojd` VALUES (712435, '三地门乡', 712400, '三地门', 3, 25);
-INSERT INTO `cn_nojd` VALUES (712436, '雾台乡', 712400, '雾台', 3, 32);
-INSERT INTO `cn_nojd` VALUES (712437, '玛家乡', 712400, '玛家', 3, 19);
-INSERT INTO `cn_nojd` VALUES (712438, '九如乡', 712400, '九如', 3, 12);
-INSERT INTO `cn_nojd` VALUES (712439, '里港乡', 712400, '里港', 3, 15);
-INSERT INTO `cn_nojd` VALUES (712440, '高树乡', 712400, '高树', 3, 8);
-INSERT INTO `cn_nojd` VALUES (712441, '盐埔乡', 712400, '盐埔', 3, 33);
-INSERT INTO `cn_nojd` VALUES (712442, '长治乡', 712400, '长治', 3, 1);
-INSERT INTO `cn_nojd` VALUES (712443, '麟洛乡', 712400, '麟洛', 3, 17);
-INSERT INTO `cn_nojd` VALUES (712444, '竹田乡', 712400, '竹田', 3, 10);
-INSERT INTO `cn_nojd` VALUES (712445, '内埔乡', 712400, '内埔', 3, 23);
-INSERT INTO `cn_nojd` VALUES (712446, '万丹乡', 712400, '万丹', 3, 30);
-INSERT INTO `cn_nojd` VALUES (712447, '潮州镇', 712400, '潮州', 3, 2);
-INSERT INTO `cn_nojd` VALUES (712448, '泰武乡', 712400, '泰武', 3, 29);
-INSERT INTO `cn_nojd` VALUES (712449, '来义乡', 712400, '来义', 3, 14);
-INSERT INTO `cn_nojd` VALUES (712450, '万峦乡', 712400, '万峦', 3, 31);
-INSERT INTO `cn_nojd` VALUES (712451, '崁顶乡', 712400, '崁顶', 3, 13);
-INSERT INTO `cn_nojd` VALUES (712452, '新埤乡', 712400, '新埤', 3, 27);
-INSERT INTO `cn_nojd` VALUES (712453, '南州乡', 712400, '南州', 3, 22);
-INSERT INTO `cn_nojd` VALUES (712454, '林边乡', 712400, '林边', 3, 16);
-INSERT INTO `cn_nojd` VALUES (712455, '东港镇', 712400, '东港', 3, 5);
-INSERT INTO `cn_nojd` VALUES (712456, '琉球乡', 712400, '琉球', 3, 18);
-INSERT INTO `cn_nojd` VALUES (712457, '佳冬乡', 712400, '佳冬', 3, 11);
-INSERT INTO `cn_nojd` VALUES (712458, '新园乡', 712400, '新园', 3, 28);
-INSERT INTO `cn_nojd` VALUES (712459, '枋寮乡', 712400, '枋寮', 3, 6);
-INSERT INTO `cn_nojd` VALUES (712460, '枋山乡', 712400, '枋山', 3, 7);
-INSERT INTO `cn_nojd` VALUES (712461, '春日乡', 712400, '春日', 3, 4);
-INSERT INTO `cn_nojd` VALUES (712462, '狮子乡', 712400, '狮子', 3, 26);
-INSERT INTO `cn_nojd` VALUES (712463, '车城乡', 712400, '车城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (712464, '牡丹乡', 712400, '牡丹', 3, 21);
-INSERT INTO `cn_nojd` VALUES (712465, '恒春镇', 712400, '恒春', 3, 9);
-INSERT INTO `cn_nojd` VALUES (712466, '满州乡', 712400, '满州', 3, 20);
-INSERT INTO `cn_nojd` VALUES (712500, '台东县', 710000, '台东', 2, 13);
-INSERT INTO `cn_nojd` VALUES (712517, '台东市', 712500, '台东', 3, 14);
-INSERT INTO `cn_nojd` VALUES (712518, '绿岛乡', 712500, '绿岛', 3, 13);
-INSERT INTO `cn_nojd` VALUES (712519, '兰屿乡', 712500, '兰屿', 3, 11);
-INSERT INTO `cn_nojd` VALUES (712520, '延平乡', 712500, '延平', 3, 16);
-INSERT INTO `cn_nojd` VALUES (712521, '卑南乡', 712500, '卑南', 3, 1);
-INSERT INTO `cn_nojd` VALUES (712522, '鹿野乡', 712500, '鹿野', 3, 12);
-INSERT INTO `cn_nojd` VALUES (712523, '关山镇', 712500, '关山', 3, 8);
-INSERT INTO `cn_nojd` VALUES (712524, '海端乡', 712500, '海端', 3, 9);
-INSERT INTO `cn_nojd` VALUES (712525, '池上乡', 712500, '池上', 3, 4);
-INSERT INTO `cn_nojd` VALUES (712526, '东河乡', 712500, '东河', 3, 7);
-INSERT INTO `cn_nojd` VALUES (712527, '成功镇', 712500, '成功', 3, 3);
-INSERT INTO `cn_nojd` VALUES (712528, '长滨乡', 712500, '长滨', 3, 2);
-INSERT INTO `cn_nojd` VALUES (712529, '金峰乡', 712500, '金峰', 3, 10);
-INSERT INTO `cn_nojd` VALUES (712530, '大武乡', 712500, '大武', 3, 6);
-INSERT INTO `cn_nojd` VALUES (712531, '达仁乡', 712500, '达仁', 3, 5);
-INSERT INTO `cn_nojd` VALUES (712532, '太麻里乡', 712500, '太麻里', 3, 15);
-INSERT INTO `cn_nojd` VALUES (712600, '花莲县', 710000, '花莲', 2, 2);
-INSERT INTO `cn_nojd` VALUES (712615, '花莲市', 712600, '花莲', 3, 5);
-INSERT INTO `cn_nojd` VALUES (712616, '新城乡', 712600, '新城', 3, 10);
-INSERT INTO `cn_nojd` VALUES (712617, '太鲁阁', 712600, '太鲁', 3, 12);
-INSERT INTO `cn_nojd` VALUES (712618, '秀林乡', 712600, '秀林', 3, 11);
-INSERT INTO `cn_nojd` VALUES (712619, '吉安乡', 712600, '吉安', 3, 7);
-INSERT INTO `cn_nojd` VALUES (712620, '寿丰乡', 712600, '寿丰', 3, 9);
-INSERT INTO `cn_nojd` VALUES (712621, '凤林镇', 712600, '凤林', 3, 2);
-INSERT INTO `cn_nojd` VALUES (712622, '光复乡', 712600, '光复', 3, 4);
-INSERT INTO `cn_nojd` VALUES (712623, '丰滨乡', 712600, '丰滨', 3, 1);
-INSERT INTO `cn_nojd` VALUES (712624, '瑞穗乡', 712600, '瑞穗', 3, 8);
-INSERT INTO `cn_nojd` VALUES (712625, '万荣乡', 712600, '万荣', 3, 13);
-INSERT INTO `cn_nojd` VALUES (712626, '玉里镇', 712600, '玉里', 3, 14);
-INSERT INTO `cn_nojd` VALUES (712627, '卓溪乡', 712600, '卓溪', 3, 6);
-INSERT INTO `cn_nojd` VALUES (712628, '富里乡', 712600, '富里', 3, 3);
-INSERT INTO `cn_nojd` VALUES (712700, '澎湖县', 710000, '澎湖', 2, 10);
-INSERT INTO `cn_nojd` VALUES (712707, '马公市', 712700, '马公', 3, 4);
-INSERT INTO `cn_nojd` VALUES (712708, '西屿乡', 712700, '西屿', 3, 5);
-INSERT INTO `cn_nojd` VALUES (712709, '望安乡', 712700, '望安', 3, 6);
-INSERT INTO `cn_nojd` VALUES (712710, '七美乡', 712700, '七美', 3, 2);
-INSERT INTO `cn_nojd` VALUES (712711, '白沙乡', 712700, '白沙', 3, 1);
-INSERT INTO `cn_nojd` VALUES (712712, '湖西乡', 712700, '湖西', 3, 3);
-INSERT INTO `cn_nojd` VALUES (712800, '连江县', 710000, '连江', 2, 7);
-INSERT INTO `cn_nojd` VALUES (712805, '南竿乡', 712800, '南竿', 3, 4);
-INSERT INTO `cn_nojd` VALUES (712806, '北竿乡', 712800, '北竿', 3, 1);
-INSERT INTO `cn_nojd` VALUES (712807, '莒光乡', 712800, '莒光', 3, 3);
-INSERT INTO `cn_nojd` VALUES (712808, '东引乡', 712800, '东引', 3, 2);
-INSERT INTO `cn_nojd` VALUES (810000, '香港特别行政区', 0, '香港', 1, 32);
-INSERT INTO `cn_nojd` VALUES (810100, '香港岛', 810000, '香港岛', 2, 2);
-INSERT INTO `cn_nojd` VALUES (810101, '中西区', 810100, '中西', 3, 4);
-INSERT INTO `cn_nojd` VALUES (810102, '湾仔', 810100, '湾仔', 3, 3);
-INSERT INTO `cn_nojd` VALUES (810103, '东区', 810100, '东区', 3, 1);
-INSERT INTO `cn_nojd` VALUES (810104, '南区', 810100, '南区', 3, 2);
-INSERT INTO `cn_nojd` VALUES (810200, '九龙', 810000, '九龙', 2, 1);
-INSERT INTO `cn_nojd` VALUES (810201, '九龙城区', 810200, '九龙城', 3, 3);
-INSERT INTO `cn_nojd` VALUES (810202, '油尖旺区', 810200, '油尖旺', 3, 5);
-INSERT INTO `cn_nojd` VALUES (810203, '深水埗区', 810200, '深水埗', 3, 4);
-INSERT INTO `cn_nojd` VALUES (810204, '黄大仙区', 810200, '黄大仙', 3, 2);
-INSERT INTO `cn_nojd` VALUES (810205, '观塘区', 810200, '观塘', 3, 1);
-INSERT INTO `cn_nojd` VALUES (810300, '新界', 810000, '新界', 2, 3);
-INSERT INTO `cn_nojd` VALUES (810301, '北区', 810300, '北区', 3, 1);
-INSERT INTO `cn_nojd` VALUES (810302, '大埔区', 810300, '大埔', 3, 2);
-INSERT INTO `cn_nojd` VALUES (810303, '沙田区', 810300, '沙田', 3, 6);
-INSERT INTO `cn_nojd` VALUES (810304, '西贡区', 810300, '西贡', 3, 8);
-INSERT INTO `cn_nojd` VALUES (810305, '元朗区', 810300, '元朗', 3, 9);
-INSERT INTO `cn_nojd` VALUES (810306, '屯门区', 810300, '屯门', 3, 7);
-INSERT INTO `cn_nojd` VALUES (810307, '荃湾区', 810300, '荃湾', 3, 5);
-INSERT INTO `cn_nojd` VALUES (810308, '葵青区', 810300, '葵青', 3, 3);
-INSERT INTO `cn_nojd` VALUES (810309, '离岛区', 810300, '离岛', 3, 4);
-INSERT INTO `cn_nojd` VALUES (820000, '澳门特别行政区', 0, '澳门', 1, 33);
-INSERT INTO `cn_nojd` VALUES (820100, '澳门半岛', 820000, '澳门半岛', 2, 1);
-INSERT INTO `cn_nojd` VALUES (820200, '离岛', 820000, '离岛', 2, 2);
+--
+-- Dumping data for table `cn_nojd`
+--
 
--- ----------------------------
--- Table structure for commission
--- ----------------------------
+LOCK TABLES `cn_nojd` WRITE;
+/*!40000 ALTER TABLE `cn_nojd` DISABLE KEYS */;
+INSERT INTO `cn_nojd` VALUES (110000,'北京',0,'北京',1,1),(110100,'北京市',110000,'北京',2,1),(110101,'东城区',110100,'东城',3,3),(110102,'西城区',110100,'西城',3,15),(110105,'朝阳区',110100,'朝阳',3,2),(110106,'丰台区',110100,'丰台',3,6),(110107,'石景山区',110100,'石景山',3,12),(110108,'海淀区',110100,'海淀',3,7),(110109,'门头沟区',110100,'门头沟',3,9),(110111,'房山区',110100,'房山',3,5),(110112,'通州区',110100,'通州',3,14),(110113,'顺义区',110100,'顺义',3,13),(110114,'昌平区',110100,'昌平',3,1),(110115,'大兴区',110100,'大兴',3,4),(110116,'怀柔区',110100,'怀柔',3,8),(110117,'平谷区',110100,'平谷',3,11),(110228,'密云县',110100,'密云',3,10),(110229,'延庆县',110100,'延庆',3,16),(120000,'天津',0,'天津',1,2),(120100,'天津市',120000,'天津',2,1),(120101,'和平区',120100,'和平',3,7),(120102,'河东区',120100,'河东',3,6),(120103,'河西区',120100,'河西',3,8),(120104,'南开区',120100,'南开',3,13),(120105,'河北区',120100,'河北',3,5),(120106,'红桥区',120100,'红桥',3,9),(120110,'东丽区',120100,'东丽',3,4),(120111,'西青区',120100,'西青',3,16),(120112,'津南区',120100,'津南',3,11),(120113,'北辰区',120100,'北辰',3,2),(120114,'武清区',120100,'武清',3,15),(120115,'宝坻区',120100,'宝坻',3,1),(120116,'滨海新区',120100,'滨海',3,3),(120221,'宁河县',120100,'宁河',3,14),(120223,'静海县',120100,'静海',3,10),(120225,'蓟县',120100,'蓟县',3,12),(130000,'河北省',0,'河北',1,3),(130100,'石家庄市',130000,'石家庄',2,8),(130102,'长安区',130100,'长安',3,1),(130103,'桥东区',130100,'桥东',3,11),(130104,'桥西区',130100,'桥西',3,12),(130105,'新华区',130100,'新华',3,16),(130107,'井陉矿区',130100,'井陉矿',3,4),(130108,'裕华区',130100,'裕华',3,20),(130121,'井陉县',130100,'井陉',3,5),(130123,'正定县',130100,'正定',3,23),(130124,'栾城县',130100,'栾城',3,8),(130125,'行唐县',130100,'行唐',3,15),(130126,'灵寿县',130100,'灵寿',3,7),(130127,'高邑县',130100,'高邑',3,3),(130128,'深泽县',130100,'深泽',3,13),(130129,'赞皇县',130100,'赞皇',3,21),(130130,'无极县',130100,'无极',3,14),(130131,'平山县',130100,'平山',3,10),(130132,'元氏县',130100,'元氏',3,19),(130133,'赵县',130100,'赵县',3,22),(130181,'辛集市',130100,'辛集',3,17),(130182,'藁城市',130100,'藁城',3,2),(130183,'晋州市',130100,'晋州',3,6),(130184,'新乐市',130100,'新乐',3,18),(130185,'鹿泉市',130100,'鹿泉',3,9),(130200,'唐山市',130000,'唐山',2,9),(130202,'路南区',130200,'路南',3,10),(130203,'路北区',130200,'路北',3,9),(130204,'古冶区',130200,'古冶',3,4),(130205,'开平区',130200,'开平',3,5),(130207,'丰南区',130200,'丰南',3,2),(130208,'丰润区',130200,'丰润',3,3),(130223,'滦县',130200,'滦县',3,8),(130224,'滦南县',130200,'滦南',3,7),(130225,'乐亭县',130200,'乐亭',3,6),(130227,'迁西县',130200,'迁西',3,12),(130229,'玉田县',130200,'玉田',3,13),(130230,'曹妃甸区',130200,'曹妃甸',3,1),(130281,'遵化市',130200,'遵化',3,14),(130283,'迁安市',130200,'迁安',3,11),(130300,'秦皇岛市',130000,'秦皇岛',2,7),(130302,'海港区',130300,'海港',3,4),(130303,'山海关区',130300,'山海关',3,7),(130304,'北戴河区',130300,'北戴河',3,1),(130321,'青龙满族自治县',130300,'青龙',3,6),(130322,'昌黎县',130300,'昌黎',3,2),(130323,'抚宁县',130300,'抚宁',3,3),(130324,'卢龙县',130300,'卢龙',3,5),(130400,'邯郸市',130000,'邯郸',2,4),(130402,'邯山区',130400,'邯山',3,11),(130403,'丛台区',130400,'丛台',3,3),(130404,'复兴区',130400,'复兴',3,7),(130406,'峰峰矿区',130400,'峰峰矿',3,6),(130421,'邯郸县',130400,'邯郸',3,10),(130423,'临漳县',130400,'临漳',3,13),(130424,'成安县',130400,'成安',3,1),(130425,'大名县',130400,'大名',3,4),(130426,'涉县',130400,'涉县',3,16),(130427,'磁县',130400,'磁县',3,2),(130428,'肥乡县',130400,'肥乡',3,5),(130429,'永年县',130400,'永年',3,19),(130430,'邱县',130400,'邱县',3,14),(130431,'鸡泽县',130400,'鸡泽',3,12),(130432,'广平县',130400,'广平',3,8),(130433,'馆陶县',130400,'馆陶',3,9),(130434,'魏县',130400,'魏县',3,17),(130435,'曲周县',130400,'曲周',3,15),(130481,'武安市',130400,'武安',3,18),(130500,'邢台市',130000,'邢台',2,10),(130502,'桥东区',130500,'桥东',3,12),(130503,'桥西区',130500,'桥西',3,13),(130521,'邢台县',130500,'邢台',3,18),(130522,'临城县',130500,'临城',3,4),(130523,'内丘县',130500,'内丘',3,9),(130524,'柏乡县',130500,'柏乡',3,1),(130525,'隆尧县',130500,'隆尧',3,6),(130526,'任县',130500,'任县',3,15),(130527,'南和县',130500,'南和',3,8),(130528,'宁晋县',130500,'宁晋',3,10),(130529,'巨鹿县',130500,'巨鹿',3,3),(130530,'新河县',130500,'新河',3,19),(130531,'广宗县',130500,'广宗',3,2),(130532,'平乡县',130500,'平乡',3,11),(130533,'威县',130500,'威县',3,17),(130534,'清河县',130500,'清河',3,14),(130535,'临西县',130500,'临西',3,5),(130581,'南宫市',130500,'南宫',3,7),(130582,'沙河市',130500,'沙河',3,16),(130600,'保定市',130000,'保定',2,1),(130602,'新市区',130600,'新市',3,21),(130603,'北市区',130600,'北市',3,3),(130604,'南市区',130600,'南市',3,14),(130621,'满城县',130600,'满城',3,13),(130622,'清苑县',130600,'清苑',3,15),(130623,'涞水县',130600,'涞水',3,10),(130624,'阜平县',130600,'阜平',3,7),(130625,'徐水县',130600,'徐水',3,23),(130626,'定兴县',130600,'定兴',3,5),(130627,'唐县',130600,'唐县',3,19),(130628,'高阳县',130600,'高阳',3,9),(130629,'容城县',130600,'容城',3,17),(130630,'涞源县',130600,'涞源',3,11),(130631,'望都县',130600,'望都',3,20),(130632,'安新县',130600,'安新',3,2),(130633,'易县',130600,'易县',3,24),(130634,'曲阳县',130600,'曲阳',3,16),(130635,'蠡县',130600,'蠡县',3,12),(130636,'顺平县',130600,'顺平',3,18),(130637,'博野县',130600,'博野',3,4),(130638,'雄县',130600,'雄县',3,22),(130681,'涿州市',130600,'涿州',3,25),(130682,'定州市',130600,'定州',3,6),(130683,'安国市',130600,'安国',3,1),(130684,'高碑店市',130600,'高碑店',3,8),(130700,'张家口市',130000,'张家口',2,11),(130702,'桥东区',130700,'桥东',3,7),(130703,'桥西区',130700,'桥西',3,8),(130705,'宣化区',130700,'宣化区',3,12),(130706,'下花园区',130700,'下花园',3,11),(130721,'宣化县',130700,'宣化县',3,13),(130722,'张北县',130700,'张北',3,16),(130723,'康保县',130700,'康保',3,6),(130724,'沽源县',130700,'沽源',3,3),(130725,'尚义县',130700,'尚义',3,9),(130726,'蔚县',130700,'蔚县',3,15),(130727,'阳原县',130700,'阳原',3,14),(130728,'怀安县',130700,'怀安',3,4),(130729,'万全县',130700,'万全',3,10),(130730,'怀来县',130700,'怀来',3,5),(130731,'涿鹿县',130700,'涿鹿',3,17),(130732,'赤城县',130700,'赤城',3,1),(130733,'崇礼县',130700,'崇礼',3,2),(130800,'承德市',130000,'承德',2,3),(130802,'双桥区',130800,'双桥',3,8),(130803,'双滦区',130800,'双滦',3,7),(130804,'鹰手营子矿区',130800,'鹰手营子矿',3,11),(130821,'承德县',130800,'承德',3,1),(130822,'兴隆县',130800,'兴隆',3,10),(130823,'平泉县',130800,'平泉',3,6),(130824,'滦平县',130800,'滦平',3,5),(130825,'隆化县',130800,'隆化',3,4),(130826,'丰宁满族自治县',130800,'丰宁',3,2),(130827,'宽城满族自治县',130800,'宽城',3,3),(130828,'围场满族蒙古族自治县',130800,'围场',3,9),(130900,'沧州市',130000,'沧州',2,2),(130902,'新华区',130900,'新华',3,14),(130903,'运河区',130900,'运河',3,16),(130921,'沧县',130900,'沧县',3,2),(130922,'青县',130900,'青县',3,9),(130923,'东光县',130900,'东光',3,3),(130924,'海兴县',130900,'海兴',3,4),(130925,'盐山县',130900,'盐山',3,15),(130926,'肃宁县',130900,'肃宁',3,11),(130927,'南皮县',130900,'南皮',3,8),(130928,'吴桥县',130900,'吴桥',3,12),(130929,'献县',130900,'献县',3,13),(130930,'孟村回族自治县',130900,'孟村',3,7),(130981,'泊头市',130900,'泊头',3,1),(130982,'任丘市',130900,'任丘',3,10),(130983,'黄骅市',130900,'黄骅',3,6),(130984,'河间市',130900,'河间',3,5),(131000,'廊坊市',130000,'廊坊',2,6),(131002,'安次区',131000,'安次',3,1),(131003,'广阳区',131000,'广阳',3,5),(131022,'固安县',131000,'固安',3,6),(131023,'永清县',131000,'永清',3,10),(131024,'香河县',131000,'香河',3,9),(131025,'大城县',131000,'大城',3,4),(131026,'文安县',131000,'文安',3,8),(131028,'大厂回族自治县',131000,'大厂',3,3),(131081,'霸州市',131000,'霸州',3,2),(131082,'三河市',131000,'三河',3,7),(131100,'衡水市',130000,'衡水',2,5),(131102,'桃城区',131100,'桃城',3,8),(131121,'枣强县',131100,'枣强',3,11),(131122,'武邑县',131100,'武邑',3,10),(131123,'武强县',131100,'武强',3,9),(131124,'饶阳县',131100,'饶阳',3,6),(131125,'安平县',131100,'安平',3,1),(131126,'故城县',131100,'故城',3,3),(131127,'景县',131100,'景县',3,4),(131128,'阜城县',131100,'阜城',3,2),(131181,'冀州市',131100,'冀州',3,5),(131182,'深州市',131100,'深州',3,7),(140000,'山西省',0,'山西',1,4),(140100,'太原市',140000,'太原',2,8),(140105,'小店区',140100,'小店',3,7),(140106,'迎泽区',140100,'迎泽',3,10),(140107,'杏花岭区',140100,'杏花岭',3,8),(140108,'尖草坪区',140100,'尖草坪',3,2),(140109,'万柏林区',140100,'万柏林',3,6),(140110,'晋源区',140100,'晋源',3,3),(140121,'清徐县',140100,'清徐',3,5),(140122,'阳曲县',140100,'阳曲',3,9),(140123,'娄烦县',140100,'娄烦',3,4),(140181,'古交市',140100,'古交',3,1),(140200,'大同市',140000,'大同',2,2),(140202,'城区',140200,'城区',3,1),(140203,'矿区',140200,'矿区',3,5),(140211,'南郊区',140200,'南郊',3,7),(140212,'新荣区',140200,'新荣',3,9),(140221,'阳高县',140200,'阳高',3,10),(140222,'天镇县',140200,'天镇',3,8),(140223,'广灵县',140200,'广灵',3,3),(140224,'灵丘县',140200,'灵丘',3,6),(140225,'浑源县',140200,'浑源',3,4),(140226,'左云县',140200,'左云',3,11),(140227,'大同县',140200,'大同',3,2),(140300,'阳泉市',140000,'阳泉',2,10),(140302,'城区',140300,'城区',3,1),(140303,'矿区',140300,'矿区',3,3),(140311,'郊区',140300,'郊区',3,2),(140321,'平定县',140300,'平定',3,4),(140322,'盂县',140300,'盂县',3,5),(140400,'长治市',140000,'长治',2,1),(140421,'长治县',140400,'长治',3,1),(140423,'襄垣县',140400,'襄垣',3,12),(140424,'屯留县',140400,'屯留',3,10),(140425,'平顺县',140400,'平顺',3,7),(140426,'黎城县',140400,'黎城',3,5),(140427,'壶关县',140400,'壶关',3,3),(140428,'长子县',140400,'长子',3,13),(140429,'武乡县',140400,'武乡',3,11),(140430,'沁县',140400,'沁县',3,8),(140431,'沁源县',140400,'沁源',3,9),(140481,'潞城市',140400,'潞城',3,6),(140482,'城区',140400,'城区',3,2),(140483,'郊区',140400,'郊区',3,4),(140500,'晋城市',140000,'晋城',2,3),(140502,'城区',140500,'城区',3,1),(140521,'沁水县',140500,'沁水',3,4),(140522,'阳城县',140500,'阳城',3,5),(140524,'陵川县',140500,'陵川',3,3),(140525,'泽州县',140500,'泽州',3,6),(140581,'高平市',140500,'高平',3,2),(140600,'朔州市',140000,'朔州',2,7),(140602,'朔城区',140600,'朔城',3,4),(140603,'平鲁区',140600,'平鲁',3,2),(140621,'山阴县',140600,'山阴',3,3),(140622,'应县',140600,'应县',3,5),(140623,'右玉县',140600,'右玉',3,6),(140624,'怀仁县',140600,'怀仁',3,1),(140700,'晋中市',140000,'晋中',2,4),(140702,'榆次区',140700,'榆次',3,9),(140721,'榆社县',140700,'榆社',3,10),(140722,'左权县',140700,'左权',3,11),(140723,'和顺县',140700,'和顺',3,1),(140724,'昔阳县',140700,'昔阳',3,8),(140725,'寿阳县',140700,'寿阳',3,6),(140726,'太谷县',140700,'太谷',3,7),(140727,'祁县',140700,'祁县',3,5),(140728,'平遥县',140700,'平遥',3,4),(140729,'灵石县',140700,'灵石',3,3),(140781,'介休市',140700,'介休',3,2),(140800,'运城市',140000,'运城',2,11),(140802,'盐湖区',140800,'盐湖',3,11),(140821,'临猗县',140800,'临猗',3,4),(140822,'万荣县',140800,'万荣',3,7),(140823,'闻喜县',140800,'闻喜',3,8),(140824,'稷山县',140800,'稷山',3,3),(140825,'新绛县',140800,'新绛',3,10),(140826,'绛县',140800,'绛县',3,2),(140827,'垣曲县',140800,'垣曲',3,13),(140828,'夏县',140800,'夏县',3,9),(140829,'平陆县',140800,'平陆',3,5),(140830,'芮城县',140800,'芮城',3,6),(140881,'永济市',140800,'永济',3,12),(140882,'河津市',140800,'河津',3,1),(140900,'忻州市',140000,'忻州',2,9),(140902,'忻府区',140900,'忻府',3,13),(140921,'定襄县',140900,'定襄',3,3),(140922,'五台县',140900,'五台',3,11),(140923,'代县',140900,'代县',3,2),(140924,'繁峙县',140900,'繁峙',3,4),(140925,'宁武县',140900,'宁武',3,8),(140926,'静乐县',140900,'静乐',3,6),(140927,'神池县',140900,'神池',3,10),(140928,'五寨县',140900,'五寨',3,12),(140929,'岢岚县',140900,'岢岚',3,7),(140930,'河曲县',140900,'河曲',3,5),(140931,'保德县',140900,'保德',3,1),(140932,'偏关县',140900,'偏关',3,9),(140981,'原平市',140900,'原平',3,14),(141000,'临汾市',140000,'临汾',2,5),(141002,'尧都区',141000,'尧都',3,15),(141021,'曲沃县',141000,'曲沃',3,11),(141022,'翼城县',141000,'翼城',3,16),(141023,'襄汾县',141000,'襄汾',3,12),(141024,'洪洞县',141000,'洪洞',3,6),(141025,'古县',141000,'古县',3,5),(141026,'安泽县',141000,'安泽',3,1),(141027,'浮山县',141000,'浮山',3,4),(141028,'吉县',141000,'吉县',3,9),(141029,'乡宁县',141000,'乡宁',3,13),(141030,'大宁县',141000,'大宁',3,2),(141031,'隰县',141000,'隰县',3,14),(141032,'永和县',141000,'永和',3,17),(141033,'蒲县',141000,'蒲县',3,10),(141034,'汾西县',141000,'汾西',3,3),(141081,'侯马市',141000,'侯马',3,7),(141082,'霍州市',141000,'霍州',3,8),(141100,'吕梁市',140000,'吕梁',2,6),(141102,'离石区',141100,'离石',3,7),(141121,'文水县',141100,'文水',3,10),(141122,'交城县',141100,'交城',3,3),(141123,'兴县',141100,'兴县',3,12),(141124,'临县',141100,'临县',3,6),(141125,'柳林县',141100,'柳林',3,8),(141126,'石楼县',141100,'石楼',3,9),(141127,'岚县',141100,'岚县',3,5),(141128,'方山县',141100,'方山',3,1),(141129,'中阳县',141100,'中阳',3,13),(141130,'交口县',141100,'交口',3,4),(141181,'孝义市',141100,'孝义',3,11),(141182,'汾阳市',141100,'汾阳',3,2),(150000,'内蒙古自治区',0,'内蒙古',1,5),(150100,'呼和浩特市',150000,'呼和浩特',2,6),(150102,'新城区',150100,'新城',3,8),(150103,'回民区',150100,'回民',3,2),(150104,'玉泉区',150100,'玉泉',3,9),(150105,'赛罕区',150100,'赛罕',3,4),(150121,'土默特左旗',150100,'土默特左',3,5),(150122,'托克托县',150100,'托克托',3,6),(150123,'和林格尔县',150100,'和林格尔',3,1),(150124,'清水河县',150100,'清水河',3,3),(150125,'武川县',150100,'武川',3,7),(150200,'包头市',150000,'包头',2,2),(150202,'东河区',150200,'东河',3,3),(150203,'昆都仑区',150200,'昆都仑',3,6),(150204,'青山区',150200,'青山',3,7),(150205,'石拐区',150200,'石拐',3,8),(150206,'白云鄂博矿区',150200,'白云矿区',3,1),(150207,'九原区',150200,'九原',3,5),(150221,'土默特右旗',150200,'土默特右',3,9),(150222,'固阳县',150200,'固阳',3,4),(150223,'达尔罕茂明安联合旗',150200,'达尔罕茂明安联合',3,2),(150300,'乌海市',150000,'乌海',2,9),(150302,'海勃湾区',150300,'海勃湾',3,1),(150303,'海南区',150300,'海南',3,2),(150304,'乌达区',150300,'乌达',3,3),(150400,'赤峰市',150000,'赤峰',2,4),(150402,'红山区',150400,'红山',3,5),(150403,'元宝山区',150400,'元宝山',3,12),(150404,'松山区',150400,'松山',3,10),(150421,'阿鲁科尔沁旗',150400,'阿鲁科尔沁',3,1),(150422,'巴林左旗',150400,'巴林左',3,4),(150423,'巴林右旗',150400,'巴林右',3,3),(150424,'林西县',150400,'林西',3,8),(150425,'克什克腾旗',150400,'克什克腾',3,7),(150426,'翁牛特旗',150400,'翁牛特',3,11),(150428,'喀喇沁旗',150400,'喀喇沁',3,6),(150429,'宁城县',150400,'宁城',3,9),(150430,'敖汉旗',150400,'敖汉',3,2),(150500,'通辽市',150000,'通辽',2,8),(150502,'科尔沁区',150500,'科尔沁',3,3),(150521,'科尔沁左翼中旗',150500,'科尔沁左翼中',3,5),(150522,'科尔沁左翼后旗',150500,'科尔沁左翼后',3,4),(150523,'开鲁县',150500,'开鲁',3,2),(150524,'库伦旗',150500,'库伦',3,6),(150525,'奈曼旗',150500,'奈曼',3,7),(150526,'扎鲁特旗',150500,'扎鲁特',3,8),(150581,'霍林郭勒市',150500,'霍林郭勒',3,1),(150600,'鄂尔多斯市',150000,'鄂尔多斯',2,5),(150602,'东胜区',150600,'东胜',3,2),(150621,'达拉特旗',150600,'达拉特',3,1),(150622,'准格尔旗',150600,'准格尔',3,8),(150623,'鄂托克前旗',150600,'鄂托克前',3,4),(150624,'鄂托克旗',150600,'鄂托克',3,3),(150625,'杭锦旗',150600,'杭锦',3,5),(150626,'乌审旗',150600,'乌审',3,6),(150627,'伊金霍洛旗',150600,'伊金霍洛',3,7),(150700,'呼伦贝尔市',150000,'呼伦贝尔',2,7),(150702,'海拉尔区',150700,'海拉尔',3,7),(150703,'扎赉诺尔区',150700,'扎赉诺尔',3,13),(150721,'阿荣旗',150700,'阿荣',3,1),(150722,'莫力达瓦达斡尔族自治旗',150700,'莫力达瓦',3,9),(150723,'鄂伦春自治旗',150700,'鄂伦春',3,4),(150724,'鄂温克族自治旗',150700,'鄂温克',3,5),(150725,'陈巴尔虎旗',150700,'陈巴尔虎',3,2),(150726,'新巴尔虎左旗',150700,'新巴尔虎左',3,11),(150727,'新巴尔虎右旗',150700,'新巴尔虎右',3,10),(150781,'满洲里市',150700,'满洲里',3,8),(150782,'牙克石市',150700,'牙克石',3,12),(150783,'扎兰屯市',150700,'扎兰屯',3,14),(150784,'额尔古纳市',150700,'额尔古纳',3,3),(150785,'根河市',150700,'根河',3,6),(150800,'巴彦淖尔市',150000,'巴彦淖尔',2,3),(150802,'临河区',150800,'临河',3,3),(150821,'五原县',150800,'五原',3,7),(150822,'磴口县',150800,'磴口',3,1),(150823,'乌拉特前旗',150800,'乌拉特前',3,5),(150824,'乌拉特中旗',150800,'乌拉特中',3,6),(150825,'乌拉特后旗',150800,'乌拉特后',3,4),(150826,'杭锦后旗',150800,'杭锦后',3,2),(150900,'乌兰察布市',150000,'乌兰察布',2,10),(150902,'集宁区',150900,'集宁',3,6),(150921,'卓资县',150900,'卓资',3,11),(150922,'化德县',150900,'化德',3,5),(150923,'商都县',150900,'商都',3,8),(150924,'兴和县',150900,'兴和',3,10),(150925,'凉城县',150900,'凉城',3,7),(150926,'察哈尔右翼前旗',150900,'察哈尔右翼前',3,2),(150927,'察哈尔右翼中旗',150900,'察哈尔右翼中',3,3),(150928,'察哈尔右翼后旗',150900,'察哈尔右翼后',3,1),(150929,'四子王旗',150900,'四子王',3,9),(150981,'丰镇市',150900,'丰镇',3,4),(152200,'兴安盟',150000,'兴安',2,12),(152201,'乌兰浩特市',152200,'乌兰浩特',3,5),(152202,'阿尔山市',152200,'阿尔山',3,1),(152221,'科尔沁右翼前旗',152200,'科尔沁右翼前',3,2),(152222,'科尔沁右翼中旗',152200,'科尔沁右翼中',3,3),(152223,'扎赉特旗',152200,'扎赉特',3,6),(152224,'突泉县',152200,'突泉',3,4),(152500,'锡林郭勒盟',150000,'锡林郭勒',2,11),(152501,'二连浩特市',152500,'二连浩特',3,4),(152502,'锡林浩特市',152500,'锡林浩特',3,9),(152522,'阿巴嘎旗',152500,'阿巴嘎',3,1),(152523,'苏尼特左旗',152500,'苏尼特左',3,6),(152524,'苏尼特右旗',152500,'苏尼特右',3,5),(152525,'东乌珠穆沁旗',152500,'东乌珠穆沁',3,2),(152526,'西乌珠穆沁旗',152500,'西乌珠穆沁',3,10),(152527,'太仆寺旗',152500,'太仆寺',3,7),(152528,'镶黄旗',152500,'镶黄',3,8),(152529,'正镶白旗',152500,'正镶白',3,12),(152530,'正蓝旗',152500,'正蓝',3,11),(152531,'多伦县',152500,'多伦',3,3),(152900,'阿拉善盟',150000,'阿拉善',2,1),(152921,'阿拉善左旗',152900,'阿拉善左',3,2),(152922,'阿拉善右旗',152900,'阿拉善右',3,1),(152923,'额济纳旗',152900,'额济纳',3,3),(210000,'辽宁省',0,'辽宁',1,6),(210100,'沈阳市',210000,'沈阳',2,12),(210102,'和平区',210100,'和平',3,4),(210103,'沈河区',210100,'沈河',3,9),(210104,'大东区',210100,'大东',3,1),(210105,'皇姑区',210100,'皇姑',3,5),(210106,'铁西区',210100,'铁西',3,11),(210111,'苏家屯区',210100,'苏家屯',3,10),(210112,'东陵区',210100,'东陵',3,2),(210114,'于洪区',210100,'于洪',3,13),(210122,'辽中县',210100,'辽中',3,7),(210123,'康平县',210100,'康平',3,6),(210124,'法库县',210100,'法库',3,3),(210181,'新民市',210100,'新民',3,12),(210184,'沈北新区',210100,'沈北',3,8),(210200,'大连市',210000,'大连',2,4),(210202,'中山区',210200,'中山',3,4),(210203,'西岗区',210200,'西岗',3,9),(210204,'沙河口区',210200,'沙河口',3,7),(210211,'甘井子区',210200,'甘井子',3,2),(210212,'旅顺口区',210200,'旅顺口',3,5),(210213,'金州区',210200,'金州',3,3),(210224,'长海县',210200,'长海',3,1),(210281,'瓦房店市',210200,'瓦房店',3,8),(210282,'普兰店市',210200,'普兰店',3,6),(210283,'庄河市',210200,'庄河',3,10),(210300,'鞍山市',210000,'鞍山',2,1),(210302,'铁东区',210300,'铁东',3,5),(210303,'铁西区',210300,'铁西',3,6),(210304,'立山区',210300,'立山',3,2),(210311,'千山区',210300,'千山',3,3),(210321,'台安县',210300,'台安',3,4),(210323,'岫岩满族自治县',210300,'岫岩',3,7),(210381,'海城市',210300,'海城',3,1),(210400,'抚顺市',210000,'抚顺',2,6),(210402,'新抚区',210400,'新抚',3,7),(210403,'东洲区',210400,'东洲',3,1),(210404,'望花区',210400,'望花',3,5),(210411,'顺城区',210400,'顺城',3,4),(210421,'抚顺县',210400,'抚顺',3,2),(210422,'新宾满族自治县',210400,'新宾',3,6),(210423,'清原满族自治县',210400,'清原',3,3),(210500,'本溪市',210000,'本溪',2,2),(210502,'平山区',210500,'平山',3,5),(210503,'溪湖区',210500,'溪湖',3,6),(210504,'明山区',210500,'明山',3,3),(210505,'南芬区',210500,'南芬',3,4),(210521,'本溪满族自治县',210500,'本溪',3,1),(210522,'桓仁满族自治县',210500,'桓仁',3,2),(210600,'丹东市',210000,'丹东',2,5),(210602,'元宝区',210600,'元宝',3,4),(210603,'振兴区',210600,'振兴',3,6),(210604,'振安区',210600,'振安',3,5),(210624,'宽甸满族自治县',210600,'宽甸',3,3),(210681,'东港市',210600,'东港',3,1),(210682,'凤城市',210600,'凤城',3,2),(210700,'锦州市',210000,'锦州',2,9),(210702,'古塔区',210700,'古塔',3,2),(210703,'凌河区',210700,'凌河',3,5),(210711,'太和区',210700,'太和',3,6),(210726,'黑山县',210700,'黑山',3,3),(210727,'义县',210700,'义县',3,7),(210781,'凌海市',210700,'凌海',3,4),(210782,'北镇市',210700,'北镇',3,1),(210800,'营口市',210000,'营口',2,14),(210802,'站前区',210800,'站前',3,6),(210803,'西市区',210800,'西市',3,5),(210804,'鲅鱼圈区',210800,'鲅鱼圈',3,1),(210811,'老边区',210800,'老边',3,4),(210881,'盖州市',210800,'盖州',3,3),(210882,'大石桥市',210800,'大石桥',3,2),(210900,'阜新市',210000,'阜新',2,7),(210902,'海州区',210900,'海州',3,2),(210903,'新邱区',210900,'新邱',3,6),(210904,'太平区',210900,'太平',3,4),(210905,'清河门区',210900,'清河门',3,3),(210911,'细河区',210900,'细河',3,5),(210921,'阜新蒙古族自治县',210900,'阜新',3,1),(210922,'彰武县',210900,'彰武',3,7),(211000,'辽阳市',210000,'辽阳',2,10),(211002,'白塔区',211000,'白塔',3,1),(211003,'文圣区',211000,'文圣',3,7),(211004,'宏伟区',211000,'宏伟',3,4),(211005,'弓长岭区',211000,'弓长岭',3,3),(211011,'太子河区',211000,'太子河',3,6),(211021,'辽阳县',211000,'辽阳',3,5),(211081,'灯塔市',211000,'灯塔',3,2),(211100,'盘锦市',210000,'盘锦',2,11),(211102,'双台子区',211100,'双台子',3,3),(211103,'兴隆台区',211100,'兴隆台',3,4),(211121,'大洼县',211100,'大洼',3,1),(211122,'盘山县',211100,'盘山',3,2),(211200,'铁岭市',210000,'铁岭',2,13),(211202,'银州区',211200,'银州',3,7),(211204,'清河区',211200,'清河',3,4),(211221,'铁岭县',211200,'铁岭',3,5),(211223,'西丰县',211200,'西丰',3,6),(211224,'昌图县',211200,'昌图',3,1),(211281,'调兵山市',211200,'调兵山',3,2),(211282,'开原市',211200,'开原',3,3),(211300,'朝阳市',210000,'朝阳',2,3),(211302,'双塔区',211300,'双塔',3,7),(211303,'龙城区',211300,'龙城',3,6),(211321,'朝阳县',211300,'朝阳',3,2),(211322,'建平县',211300,'建平',3,3),(211324,'喀喇沁左翼蒙古族自治县',211300,'喀左',3,4),(211381,'北票市',211300,'北票',3,1),(211382,'凌源市',211300,'凌源',3,5),(211400,'葫芦岛市',210000,'葫芦岛',2,8),(211402,'连山区',211400,'连山',3,2),(211403,'龙港区',211400,'龙港',3,3),(211404,'南票区',211400,'南票',3,4),(211421,'绥中县',211400,'绥中',3,5),(211422,'建昌县',211400,'建昌',3,1),(211481,'兴城市',211400,'兴城',3,6),(220000,'吉林省',0,'吉林',1,7),(220100,'长春市',220000,'长春',2,3),(220102,'南关区',220100,'南关',3,7),(220103,'宽城区',220100,'宽城',3,5),(220104,'朝阳区',220100,'朝阳',3,1),(220105,'二道区',220100,'二道',3,3),(220106,'绿园区',220100,'绿园',3,6),(220112,'双阳区',220100,'双阳',3,9),(220122,'农安县',220100,'农安',3,8),(220181,'九台市',220100,'九台',3,4),(220182,'榆树市',220100,'榆树',3,10),(220183,'德惠市',220100,'德惠',3,2),(220200,'吉林市',220000,'吉林',2,4),(220202,'昌邑区',220200,'昌邑',3,1),(220203,'龙潭区',220200,'龙潭',3,6),(220204,'船营区',220200,'船营',3,2),(220211,'丰满区',220200,'丰满',3,3),(220221,'永吉县',220200,'永吉',3,9),(220281,'蛟河市',220200,'蛟河',3,5),(220282,'桦甸市',220200,'桦甸',3,4),(220283,'舒兰市',220200,'舒兰',3,8),(220284,'磐石市',220200,'磐石',3,7),(220300,'四平市',220000,'四平',2,6),(220302,'铁西区',220300,'铁西',3,5),(220303,'铁东区',220300,'铁东',3,4),(220322,'梨树县',220300,'梨树',3,2),(220323,'伊通满族自治县',220300,'伊通',3,6),(220381,'公主岭市',220300,'公主岭',3,1),(220382,'双辽市',220300,'双辽',3,3),(220400,'辽源市',220000,'辽源',2,5),(220402,'龙山区',220400,'龙山',3,3),(220403,'西安区',220400,'西安',3,4),(220421,'东丰县',220400,'东丰',3,1),(220422,'东辽县',220400,'东辽',3,2),(220500,'通化市',220000,'通化',2,8),(220502,'东昌区',220500,'东昌',3,1),(220503,'二道江区',220500,'二道江',3,2),(220521,'通化县',220500,'通化',3,7),(220523,'辉南县',220500,'辉南',3,3),(220524,'柳河县',220500,'柳河',3,5),(220581,'梅河口市',220500,'梅河口',3,6),(220582,'集安市',220500,'集安',3,4),(220600,'白山市',220000,'白山',2,2),(220602,'浑江区',220600,'浑江',3,3),(220621,'抚松县',220600,'抚松',3,2),(220622,'靖宇县',220600,'靖宇',3,5),(220623,'长白朝鲜族自治县',220600,'长白',3,1),(220625,'江源区',220600,'江源',3,4),(220681,'临江市',220600,'临江',3,6),(220700,'松原市',220000,'松原',2,7),(220702,'宁江区',220700,'宁江',3,3),(220721,'前郭尔罗斯蒙古族自治县',220700,'前郭',3,5),(220722,'长岭县',220700,'长岭',3,1),(220723,'乾安县',220700,'乾安',3,4),(220724,'扶余市',220700,'扶余',3,2),(220800,'白城市',220000,'白城',2,1),(220802,'洮北区',220800,'洮北',3,2),(220821,'镇赉县',220800,'镇赉',3,5),(220822,'通榆县',220800,'通榆',3,4),(220881,'洮南市',220800,'洮南',3,3),(220882,'大安市',220800,'大安',3,1),(222400,'延边朝鲜族自治州',220000,'延边朝鲜族',2,9),(222401,'延吉市',222400,'延吉',3,8),(222402,'图们市',222400,'图们',3,6),(222403,'敦化市',222400,'敦化',3,2),(222404,'珲春市',222400,'珲春',3,4),(222405,'龙井市',222400,'龙井',3,5),(222406,'和龙市',222400,'和龙',3,3),(222424,'汪清县',222400,'汪清',3,7),(222426,'安图县',222400,'安图',3,1),(230000,'黑龙江省',0,'黑龙江',1,8),(230100,'哈尔滨市',230000,'哈尔滨',2,3),(230102,'道里区',230100,'道里',3,4),(230103,'南岗区',230100,'南岗',3,10),(230104,'道外区',230100,'道外',3,5),(230106,'香坊区',230100,'香坊',3,6),(230108,'平房区',230100,'平房',3,11),(230109,'松北区',230100,'松北',3,14),(230111,'呼兰区',230100,'呼兰',3,8),(230123,'依兰县',230100,'依兰',3,18),(230124,'方正县',230100,'方正',3,7),(230125,'宾县',230100,'宾县',3,3),(230126,'巴彦县',230100,'巴彦',3,2),(230127,'木兰县',230100,'木兰',3,9),(230128,'通河县',230100,'通河',3,15),(230129,'延寿县',230100,'延寿',3,17),(230181,'阿城区',230100,'阿城',3,1),(230182,'双城市',230100,'双城',3,13),(230183,'尚志市',230100,'尚志',3,12),(230184,'五常市',230100,'五常',3,16),(230200,'齐齐哈尔市',230000,'齐齐哈尔',2,9),(230202,'龙沙区',230200,'龙沙',3,10),(230203,'建华区',230200,'建华',3,6),(230204,'铁锋区',230200,'铁锋',3,15),(230205,'昂昂溪区',230200,'昂昂溪',3,1),(230206,'富拉尔基区',230200,'富拉尔基',3,3),(230207,'碾子山区',230200,'碾子山',3,13),(230208,'梅里斯达斡尔族区',230200,'梅里斯达斡尔族',3,11),(230221,'龙江县',230200,'龙江',3,9),(230223,'依安县',230200,'依安',3,16),(230224,'泰来县',230200,'泰来',3,14),(230225,'甘南县',230200,'甘南',3,5),(230227,'富裕县',230200,'富裕',3,4),(230229,'克山县',230200,'克山',3,8),(230230,'克东县',230200,'克东',3,7),(230231,'拜泉县',230200,'拜泉',3,2),(230281,'讷河市',230200,'讷河',3,12),(230300,'鸡西市',230000,'鸡西',2,7),(230302,'鸡冠区',230300,'鸡冠',3,6),(230303,'恒山区',230300,'恒山',3,3),(230304,'滴道区',230300,'滴道',3,2),(230305,'梨树区',230300,'梨树',3,7),(230306,'城子河区',230300,'城子河',3,1),(230307,'麻山区',230300,'麻山',3,8),(230321,'鸡东县',230300,'鸡东',3,5),(230381,'虎林市',230300,'虎林',3,4),(230382,'密山市',230300,'密山',3,9),(230400,'鹤岗市',230000,'鹤岗',2,4),(230402,'向阳区',230400,'向阳',3,6),(230403,'工农区',230400,'工农',3,2),(230404,'南山区',230400,'南山',3,4),(230405,'兴安区',230400,'兴安',3,7),(230406,'东山区',230400,'东山',3,1),(230407,'兴山区',230400,'兴山',3,8),(230421,'萝北县',230400,'萝北',3,3),(230422,'绥滨县',230400,'绥滨',3,5),(230500,'双鸭山市',230000,'双鸭山',2,11),(230502,'尖山区',230500,'尖山',3,3),(230503,'岭东区',230500,'岭东',3,5),(230505,'四方台区',230500,'四方台',3,7),(230506,'宝山区',230500,'宝山',3,2),(230521,'集贤县',230500,'集贤',3,4),(230522,'友谊县',230500,'友谊',3,8),(230523,'宝清县',230500,'宝清',3,1),(230524,'饶河县',230500,'饶河',3,6),(230600,'大庆市',230000,'大庆',2,1),(230602,'萨尔图区',230600,'萨尔图',3,7),(230603,'龙凤区',230600,'龙凤',3,5),(230604,'让胡路区',230600,'让胡路',3,6),(230605,'红岗区',230600,'红岗',3,3),(230606,'大同区',230600,'大同',3,1),(230621,'肇州县',230600,'肇州',3,9),(230622,'肇源县',230600,'肇源',3,8),(230623,'林甸县',230600,'林甸',3,4),(230624,'杜尔伯特蒙古族自治县',230600,'杜尔伯特',3,2),(230700,'伊春市',230000,'伊春',2,13),(230702,'伊春区',230700,'伊春',3,16),(230703,'南岔区',230700,'南岔',3,7),(230704,'友好区',230700,'友好',3,17),(230705,'西林区',230700,'西林',3,14),(230706,'翠峦区',230700,'翠峦',3,1),(230707,'新青区',230700,'新青',3,15),(230708,'美溪区',230700,'美溪',3,6),(230709,'金山屯区',230700,'金山屯',3,5),(230710,'五营区',230700,'五营',3,13),(230711,'乌马河区',230700,'乌马河',3,11),(230712,'汤旺河区',230700,'汤旺河',3,9),(230713,'带岭区',230700,'带岭',3,2),(230714,'乌伊岭区',230700,'乌伊岭',3,12),(230715,'红星区',230700,'红星',3,3),(230716,'上甘岭区',230700,'上甘岭',3,8),(230722,'嘉荫县',230700,'嘉荫',3,4),(230781,'铁力市',230700,'铁力',3,10),(230800,'佳木斯市',230000,'佳木斯',2,6),(230803,'向阳区',230800,'向阳',3,10),(230804,'前进区',230800,'前进',3,7),(230805,'东风区',230800,'东风',3,1),(230811,'郊区',230800,'郊区',3,6),(230822,'桦南县',230800,'桦南',3,5),(230826,'桦川县',230800,'桦川',3,4),(230828,'汤原县',230800,'汤原',3,8),(230833,'抚远县',230800,'抚远',3,3),(230881,'同江市',230800,'同江',3,9),(230882,'富锦市',230800,'富锦',3,2),(230900,'七台河市',230000,'七台河',2,10),(230902,'新兴区',230900,'新兴',3,4),(230903,'桃山区',230900,'桃山',3,3),(230904,'茄子河区',230900,'茄子河',3,2),(230921,'勃利县',230900,'勃利',3,1),(231000,'牡丹江市',230000,'牡丹江',2,8),(231002,'东安区',231000,'东安',3,2),(231003,'阳明区',231000,'阳明',3,10),(231004,'爱民区',231000,'爱民',3,1),(231005,'西安区',231000,'西安',3,9),(231024,'东宁县',231000,'东宁',3,3),(231025,'林口县',231000,'林口',3,5),(231081,'绥芬河市',231000,'绥芬河',3,8),(231083,'海林市',231000,'海林',3,4),(231084,'宁安市',231000,'宁安',3,7),(231085,'穆棱市',231000,'穆棱',3,6),(231100,'黑河市',230000,'黑河',2,5),(231102,'爱辉区',231100,'爱辉',3,1),(231121,'嫩江县',231100,'嫩江',3,3),(231123,'逊克县',231100,'逊克',3,6),(231124,'孙吴县',231100,'孙吴',3,4),(231181,'北安市',231100,'北安',3,2),(231182,'五大连池市',231100,'五大连池',3,5),(231200,'绥化市',230000,'绥化',2,12),(231202,'北林区',231200,'北林',3,2),(231221,'望奎县',231200,'望奎',3,9),(231222,'兰西县',231200,'兰西',3,4),(231223,'青冈县',231200,'青冈',3,7),(231224,'庆安县',231200,'庆安',3,6),(231225,'明水县',231200,'明水',3,5),(231226,'绥棱县',231200,'绥棱',3,8),(231281,'安达市',231200,'安达',3,1),(231282,'肇东市',231200,'肇东',3,10),(231283,'海伦市',231200,'海伦',3,3),(232700,'大兴安岭地区',230000,'大兴安岭',2,2),(232702,'松岭区',232700,'松岭',3,5),(232703,'新林区',232700,'新林',3,7),(232704,'呼中区',232700,'呼中',3,2),(232721,'呼玛县',232700,'呼玛',3,1),(232722,'塔河县',232700,'塔河',3,6),(232723,'漠河县',232700,'漠河',3,4),(232724,'加格达奇区',232700,'加格达奇',3,3),(310000,'上海',0,'上海',1,9),(310100,'上海市',310000,'上海',2,1),(310101,'黄浦区',310100,'黄浦',3,7),(310104,'徐汇区',310100,'徐汇',3,15),(310105,'长宁区',310100,'长宁',3,2),(310106,'静安区',310100,'静安',3,9),(310107,'普陀区',310100,'普陀',3,12),(310108,'闸北区',310100,'闸北',3,17),(310109,'虹口区',310100,'虹口',3,6),(310110,'杨浦区',310100,'杨浦',3,16),(310112,'闵行区',310100,'闵行',3,11),(310113,'宝山区',310100,'宝山',3,1),(310114,'嘉定区',310100,'嘉定',3,8),(310115,'浦东新区',310100,'浦东',3,4),(310116,'金山区',310100,'金山',3,10),(310117,'松江区',310100,'松江',3,14),(310118,'青浦区',310100,'青浦',3,13),(310120,'奉贤区',310100,'奉贤',3,5),(310230,'崇明县',310100,'崇明',3,3),(320000,'江苏省',0,'江苏',1,10),(320100,'南京市',320000,'南京',2,4),(320102,'玄武区',320100,'玄武',3,10),(320104,'秦淮区',320100,'秦淮',3,1),(320105,'建邺区',320100,'建邺',3,5),(320106,'鼓楼区',320100,'鼓楼',3,3),(320111,'浦口区',320100,'浦口',3,8),(320113,'栖霞区',320100,'栖霞',3,9),(320114,'雨花台区',320100,'雨花台',3,11),(320115,'江宁区',320100,'江宁',3,4),(320116,'六合区',320100,'六合',3,7),(320124,'溧水区',320100,'溧水',3,6),(320125,'高淳区',320100,'高淳',3,2),(320200,'无锡市',320000,'无锡',2,9),(320202,'崇安区',320200,'崇安',3,3),(320203,'南长区',320200,'南长',3,6),(320204,'北塘区',320200,'北塘',3,1),(320205,'锡山区',320200,'锡山',3,7),(320206,'惠山区',320200,'惠山',3,4),(320211,'滨湖区',320200,'滨湖',3,2),(320281,'江阴市',320200,'江阴',3,5),(320282,'宜兴市',320200,'宜兴',3,8),(320300,'徐州市',320000,'徐州',2,10),(320302,'鼓楼区',320300,'鼓楼',3,2),(320303,'云龙区',320300,'云龙',3,10),(320305,'贾汪区',320300,'贾汪',3,3),(320311,'泉山区',320300,'泉山',3,7),(320321,'丰县',320300,'丰县',3,1),(320322,'沛县',320300,'沛县',3,5),(320323,'铜山区',320300,'铜山',3,4),(320324,'睢宁县',320300,'睢宁',3,8),(320381,'新沂市',320300,'新沂',3,9),(320382,'邳州市',320300,'邳州',3,6),(320400,'常州市',320000,'常州',2,1),(320402,'天宁区',320400,'天宁',3,4),(320404,'钟楼区',320400,'钟楼',3,7),(320405,'戚墅堰区',320400,'戚墅堰',3,3),(320411,'新北区',320400,'新北',3,6),(320412,'武进区',320400,'武进',3,5),(320481,'溧阳市',320400,'溧阳',3,2),(320482,'金坛市',320400,'金坛',3,1),(320500,'苏州市',320000,'苏州',2,7),(320505,'虎丘区',320500,'虎丘',3,3),(320506,'吴中区',320500,'吴中',3,7),(320507,'相城区',320500,'相城',3,8),(320508,'姑苏区',320500,'姑苏',3,2),(320581,'常熟市',320500,'常熟',3,1),(320582,'张家港市',320500,'张家港',3,9),(320583,'昆山市',320500,'昆山',3,4),(320584,'吴江区',320500,'吴江',3,6),(320585,'太仓市',320500,'太仓',3,5),(320600,'南通市',320000,'南通',2,5),(320602,'崇川区',320600,'崇川',3,1),(320611,'港闸区',320600,'港闸',3,2),(320612,'通州区',320600,'通州',3,8),(320621,'海安县',320600,'海安',3,3),(320623,'如东县',320600,'如东',3,6),(320681,'启东市',320600,'启东',3,5),(320682,'如皋市',320600,'如皋',3,7),(320684,'海门市',320600,'海门',3,4),(320700,'连云港市',320000,'连云港',2,3),(320703,'连云区',320700,'连云',3,6),(320705,'新浦区',320700,'新浦',3,7),(320706,'海州区',320700,'海州',3,5),(320721,'赣榆县',320700,'赣榆',3,2),(320722,'东海县',320700,'东海',3,1),(320723,'灌云县',320700,'灌云',3,4),(320724,'灌南县',320700,'灌南',3,3),(320800,'淮安市',320000,'淮安',2,2),(320802,'清河区',320800,'清河',3,6),(320803,'淮安区',320800,'淮安',3,2),(320804,'淮阴区',320800,'淮阴',3,3),(320811,'清浦区',320800,'清浦',3,7),(320826,'涟水县',320800,'涟水',3,5),(320829,'洪泽县',320800,'洪泽',3,1),(320830,'盱眙县',320800,'盱眙',3,8),(320831,'金湖县',320800,'金湖',3,4),(320900,'盐城市',320000,'盐城',2,11),(320902,'亭湖区',320900,'亭湖',3,7),(320903,'盐都区',320900,'盐都',3,9),(320921,'响水县',320900,'响水',3,8),(320922,'滨海县',320900,'滨海',3,1),(320923,'阜宁县',320900,'阜宁',3,4),(320924,'射阳县',320900,'射阳',3,6),(320925,'建湖县',320900,'建湖',3,5),(320981,'东台市',320900,'东台',3,3),(320982,'大丰市',320900,'大丰',3,2),(321000,'扬州市',320000,'扬州',2,12),(321002,'广陵区',321000,'广陵',3,3),(321003,'邗江区',321000,'邗江',3,4),(321023,'宝应县',321000,'宝应',3,1),(321081,'仪征市',321000,'仪征',3,6),(321084,'高邮市',321000,'高邮',3,2),(321088,'江都区',321000,'江都',3,5),(321100,'镇江市',320000,'镇江',2,13),(321102,'京口区',321100,'京口',3,3),(321111,'润州区',321100,'润州',3,5),(321112,'丹徒区',321100,'丹徒',3,1),(321181,'丹阳市',321100,'丹阳',3,2),(321182,'扬中市',321100,'扬中',3,6),(321183,'句容市',321100,'句容',3,4),(321200,'泰州市',320000,'泰州',2,8),(321202,'海陵区',321200,'海陵',3,2),(321203,'高港区',321200,'高港',3,1),(321281,'兴化市',321200,'兴化',3,6),(321282,'靖江市',321200,'靖江',3,4),(321283,'泰兴市',321200,'泰兴',3,5),(321284,'姜堰区',321200,'姜堰',3,3),(321300,'宿迁市',320000,'宿迁',2,6),(321302,'宿城区',321300,'宿城',3,4),(321311,'宿豫区',321300,'宿豫',3,5),(321322,'沭阳县',321300,'沭阳',3,1),(321323,'泗阳县',321300,'泗阳',3,3),(321324,'泗洪县',321300,'泗洪',3,2),(330000,'浙江省',0,'浙江',1,11),(330100,'杭州市',330000,'杭州',2,1),(330102,'上城区',330100,'上城',3,8),(330103,'下城区',330100,'下城',3,10),(330104,'江干区',330100,'江干',3,6),(330105,'拱墅区',330100,'拱墅',3,4),(330106,'西湖区',330100,'西湖',3,12),(330108,'滨江区',330100,'滨江',3,1),(330109,'萧山区',330100,'萧山',3,11),(330110,'余杭区',330100,'余杭',3,13),(330122,'桐庐县',330100,'桐庐',3,9),(330127,'淳安县',330100,'淳安',3,2),(330182,'建德市',330100,'建德',3,5),(330183,'富阳市',330100,'富阳',3,3),(330185,'临安市',330100,'临安',3,7),(330200,'宁波市',330000,'宁波',2,6),(330203,'海曙区',330200,'海曙',3,4),(330204,'江东区',330200,'江东',3,6),(330205,'江北区',330200,'江北',3,5),(330206,'北仑区',330200,'北仑',3,1),(330211,'镇海区',330200,'镇海',3,11),(330212,'鄞州区',330200,'鄞州',3,9),(330225,'象山县',330200,'象山',3,8),(330226,'宁海县',330200,'宁海',3,7),(330281,'余姚市',330200,'余姚',3,10),(330282,'慈溪市',330200,'慈溪',3,2),(330283,'奉化市',330200,'奉化',3,3),(330300,'温州市',330000,'温州',2,10),(330302,'鹿城区',330300,'鹿城',3,4),(330303,'龙湾区',330300,'龙湾',3,3),(330304,'瓯海区',330300,'瓯海',3,5),(330322,'洞头县',330300,'洞头',3,2),(330324,'永嘉县',330300,'永嘉',3,10),(330326,'平阳县',330300,'平阳',3,6),(330327,'苍南县',330300,'苍南',3,1),(330328,'文成县',330300,'文成',3,9),(330329,'泰顺县',330300,'泰顺',3,8),(330381,'瑞安市',330300,'瑞安',3,7),(330382,'乐清市',330300,'乐清',3,11),(330400,'嘉兴市',330000,'嘉兴',2,3),(330402,'南湖区',330400,'南湖',3,4),(330411,'秀洲区',330400,'秀洲',3,7),(330421,'嘉善县',330400,'嘉善',3,3),(330424,'海盐县',330400,'海盐',3,2),(330481,'海宁市',330400,'海宁',3,1),(330482,'平湖市',330400,'平湖',3,5),(330483,'桐乡市',330400,'桐乡',3,6),(330500,'湖州市',330000,'湖州',2,2),(330502,'吴兴区',330500,'吴兴',3,5),(330503,'南浔区',330500,'南浔',3,4),(330521,'德清县',330500,'德清',3,3),(330522,'长兴县',330500,'长兴',3,2),(330523,'安吉县',330500,'安吉',3,1),(330600,'绍兴市',330000,'绍兴',2,8),(330602,'越城区',330600,'越城',3,5),(330621,'绍兴县',330600,'绍兴',3,2),(330624,'新昌县',330600,'新昌',3,4),(330681,'诸暨市',330600,'诸暨',3,6),(330682,'上虞市',330600,'上虞',3,1),(330683,'嵊州市',330600,'嵊州',3,3),(330700,'金华市',330000,'金华',2,4),(330702,'婺城区',330700,'婺城',3,6),(330703,'金东区',330700,'金东',3,2),(330723,'武义县',330700,'武义',3,7),(330726,'浦江县',330700,'浦江',3,5),(330727,'磐安县',330700,'磐安',3,4),(330781,'兰溪市',330700,'兰溪',3,3),(330782,'义乌市',330700,'义乌',3,8),(330783,'东阳市',330700,'东阳',3,1),(330784,'永康市',330700,'永康',3,9),(330800,'衢州市',330000,'衢州',2,7),(330802,'柯城区',330800,'柯城',3,4),(330803,'衢江区',330800,'衢江',3,6),(330822,'常山县',330800,'常山',3,1),(330824,'开化县',330800,'开化',3,3),(330825,'龙游县',330800,'龙游',3,5),(330881,'江山市',330800,'江山',3,2),(330900,'舟山市',330000,'舟山',2,11),(330902,'定海区',330900,'定海',3,2),(330903,'普陀区',330900,'普陀',3,3),(330921,'岱山县',330900,'岱山',3,1),(330922,'嵊泗县',330900,'嵊泗',3,4),(331000,'台州市',330000,'台州',2,9),(331002,'椒江区',331000,'椒江',3,2),(331003,'黄岩区',331000,'黄岩',3,1),(331004,'路桥区',331000,'路桥',3,4),(331021,'玉环县',331000,'玉环',3,9),(331022,'三门县',331000,'三门',3,5),(331023,'天台县',331000,'天台',3,6),(331024,'仙居县',331000,'仙居',3,8),(331081,'温岭市',331000,'温岭',3,7),(331082,'临海市',331000,'临海',3,3),(331100,'丽水市',330000,'丽水',2,5),(331102,'莲都区',331100,'莲都',3,3),(331121,'青田县',331100,'青田',3,5),(331122,'缙云县',331100,'缙云',3,2),(331123,'遂昌县',331100,'遂昌',3,8),(331124,'松阳县',331100,'松阳',3,7),(331125,'云和县',331100,'云和',3,9),(331126,'庆元县',331100,'庆元',3,6),(331127,'景宁畲族自治县',331100,'景宁',3,1),(331181,'龙泉市',331100,'龙泉',3,4),(340000,'安徽省',0,'安徽',1,12),(340100,'合肥市',340000,'合肥',2,7),(340102,'瑶海区',340100,'瑶海',3,9),(340103,'庐阳区',340100,'庐阳',3,7),(340104,'蜀山区',340100,'蜀山',3,8),(340111,'包河区',340100,'包河',3,1),(340121,'长丰县',340100,'长丰',3,2),(340122,'肥东县',340100,'肥东',3,4),(340123,'肥西县',340100,'肥西',3,5),(340200,'芜湖市',340000,'芜湖',2,15),(340202,'镜湖区',340200,'镜湖',3,2),(340203,'弋江区',340200,'弋江',3,8),(340207,'鸠江区',340200,'鸠江',3,3),(340208,'三山区',340200,'三山',3,5),(340221,'芜湖县',340200,'芜湖',3,6),(340222,'繁昌县',340200,'繁昌',3,1),(340223,'南陵县',340200,'南陵',3,4),(340300,'蚌埠市',340000,'蚌埠',2,2),(340302,'龙子湖区',340300,'龙子湖',3,5),(340303,'蚌山区',340300,'蚌山',3,1),(340304,'禹会区',340300,'禹会',3,7),(340311,'淮上区',340300,'淮上',3,3),(340321,'怀远县',340300,'怀远',3,4),(340322,'五河县',340300,'五河',3,6),(340323,'固镇县',340300,'固镇',3,2),(340400,'淮南市',340000,'淮南',2,9),(340402,'大通区',340400,'大通',3,2),(340403,'田家庵区',340400,'田家庵',3,5),(340404,'谢家集区',340400,'谢家集',3,6),(340405,'八公山区',340400,'八公山',3,1),(340406,'潘集区',340400,'潘集',3,4),(340421,'凤台县',340400,'凤台',3,3),(340500,'马鞍山市',340000,'马鞍山',2,12),(340503,'花山区',340500,'花山',3,5),(340504,'雨山区',340500,'雨山',3,6),(340506,'博望区',340500,'博望',3,1),(340521,'当涂县',340500,'当涂',3,2),(340600,'淮北市',340000,'淮北',2,8),(340602,'杜集区',340600,'杜集',3,1),(340603,'相山区',340600,'相山',3,4),(340604,'烈山区',340600,'烈山',3,2),(340621,'濉溪县',340600,'濉溪',3,3),(340700,'铜陵市',340000,'铜陵',2,14),(340702,'铜官山区',340700,'铜官山',3,3),(340703,'狮子山区',340700,'狮子山',3,2),(340711,'郊区',340700,'郊区',3,1),(340721,'铜陵县',340700,'铜陵',3,4),(340800,'安庆市',340000,'安庆',2,1),(340802,'迎江区',340800,'迎江',3,8),(340803,'大观区',340800,'大观',3,1),(340811,'宜秀区',340800,'宜秀',3,9),(340822,'怀宁县',340800,'怀宁',3,2),(340823,'枞阳县',340800,'枞阳',3,11),(340824,'潜山县',340800,'潜山',3,3),(340825,'太湖县',340800,'太湖',3,5),(340826,'宿松县',340800,'宿松',3,4),(340827,'望江县',340800,'望江',3,7),(340828,'岳西县',340800,'岳西',3,10),(340881,'桐城市',340800,'桐城',3,6),(341000,'黄山市',340000,'黄山',2,10),(341002,'屯溪区',341000,'屯溪',3,5),(341003,'黄山区',341000,'黄山',3,1),(341004,'徽州区',341000,'徽州',3,2),(341021,'歙县',341000,'歙县',3,4),(341022,'休宁县',341000,'休宁',3,6),(341023,'黟县',341000,'黟县',3,7),(341024,'祁门县',341000,'祁门',3,3),(341100,'滁州市',340000,'滁州',2,5),(341102,'琅琊区',341100,'琅琊',3,4),(341103,'南谯区',341100,'南谯',3,6),(341122,'来安县',341100,'来安',3,3),(341124,'全椒县',341100,'全椒',3,7),(341125,'定远县',341100,'定远',3,1),(341126,'凤阳县',341100,'凤阳',3,2),(341181,'天长市',341100,'天长',3,8),(341182,'明光市',341100,'明光',3,5),(341200,'阜阳市',340000,'阜阳',2,6),(341202,'颍州区',341200,'颍州',3,8),(341203,'颍东区',341200,'颍东',3,5),(341204,'颍泉区',341200,'颍泉',3,6),(341221,'临泉县',341200,'临泉',3,3),(341222,'太和县',341200,'太和',3,4),(341225,'阜南县',341200,'阜南',3,1),(341226,'颍上县',341200,'颍上',3,7),(341282,'界首市',341200,'界首',3,2),(341300,'宿州市',340000,'宿州',2,13),(341302,'埇桥区',341300,'埇桥',3,5),(341321,'砀山县',341300,'砀山',3,1),(341322,'萧县',341300,'萧县',3,4),(341323,'灵璧县',341300,'灵璧',3,2),(341324,'泗县',341300,'泗县',3,3),(341400,'巢湖市',340100,'巢湖',3,3),(341421,'庐江县',340100,'庐江',3,6),(341422,'无为县',340200,'无为',3,7),(341423,'含山县',340500,'含山',3,3),(341424,'和县',340500,'和县',3,4),(341500,'六安市',340000,'六安',2,11),(341502,'金安区',341500,'金安',3,3),(341503,'裕安区',341500,'裕安',3,7),(341521,'寿县',341500,'寿县',3,5),(341522,'霍邱县',341500,'霍邱',3,1),(341523,'舒城县',341500,'舒城',3,6),(341524,'金寨县',341500,'金寨',3,4),(341525,'霍山县',341500,'霍山',3,2),(341600,'亳州市',340000,'亳州',2,3),(341602,'谯城区',341600,'谯城',3,4),(341621,'涡阳县',341600,'涡阳',3,1),(341622,'蒙城县',341600,'蒙城',3,3),(341623,'利辛县',341600,'利辛',3,2),(341700,'池州市',340000,'池州',2,4),(341702,'贵池区',341700,'贵池',3,2),(341721,'东至县',341700,'东至',3,1),(341722,'石台县',341700,'石台',3,4),(341723,'青阳县',341700,'青阳',3,3),(341800,'宣城市',340000,'宣城',2,16),(341802,'宣州区',341800,'宣州',3,7),(341821,'郎溪县',341800,'郎溪',3,5),(341822,'广德县',341800,'广德',3,1),(341823,'泾县',341800,'泾县',3,3),(341824,'绩溪县',341800,'绩溪',3,4),(341825,'旌德县',341800,'旌德',3,2),(341881,'宁国市',341800,'宁国',3,6),(350000,'福建省',0,'福建',1,13),(350100,'福州市',350000,'福州',2,1),(350102,'鼓楼区',350100,'鼓楼',3,4),(350103,'台江区',350100,'台江',3,12),(350104,'仓山区',350100,'仓山',3,1),(350105,'马尾区',350100,'马尾',3,8),(350111,'晋安区',350100,'晋安',3,5),(350121,'闽侯县',350100,'闽侯',3,9),(350122,'连江县',350100,'连江',3,6),(350123,'罗源县',350100,'罗源',3,7),(350124,'闽清县',350100,'闽清',3,10),(350125,'永泰县',350100,'永泰',3,13),(350128,'平潭县',350100,'平潭',3,11),(350181,'福清市',350100,'福清',3,3),(350182,'长乐市',350100,'长乐',3,2),(350200,'厦门市',350000,'厦门',2,8),(350203,'思明区',350200,'思明',3,4),(350205,'海沧区',350200,'海沧',3,1),(350206,'湖里区',350200,'湖里',3,2),(350211,'集美区',350200,'集美',3,3),(350212,'同安区',350200,'同安',3,5),(350213,'翔安区',350200,'翔安',3,6),(350300,'莆田市',350000,'莆田',2,5),(350302,'城厢区',350300,'城厢',3,1),(350303,'涵江区',350300,'涵江',3,2),(350304,'荔城区',350300,'荔城',3,3),(350305,'秀屿区',350300,'秀屿',3,5),(350322,'仙游县',350300,'仙游',3,4),(350400,'三明市',350000,'三明',2,7),(350402,'梅列区',350400,'梅列',3,4),(350403,'三元区',350400,'三元',3,8),(350421,'明溪县',350400,'明溪',3,5),(350423,'清流县',350400,'清流',3,7),(350424,'宁化县',350400,'宁化',3,6),(350425,'大田县',350400,'大田',3,1),(350426,'尤溪县',350400,'尤溪',3,12),(350427,'沙县',350400,'沙县',3,9),(350428,'将乐县',350400,'将乐',3,2),(350429,'泰宁县',350400,'泰宁',3,10),(350430,'建宁县',350400,'建宁',3,3),(350481,'永安市',350400,'永安',3,11),(350500,'泉州市',350000,'泉州',2,6),(350502,'鲤城区',350500,'鲤城',3,7),(350503,'丰泽区',350500,'丰泽',3,3),(350504,'洛江区',350500,'洛江',3,8),(350505,'泉港区',350500,'泉港',3,10),(350521,'惠安县',350500,'惠安',3,4),(350524,'安溪县',350500,'安溪',3,1),(350525,'永春县',350500,'永春',3,12),(350526,'德化县',350500,'德化',3,2),(350527,'金门县',350500,'金门',3,6),(350581,'石狮市',350500,'石狮',3,11),(350582,'晋江市',350500,'晋江',3,5),(350583,'南安市',350500,'南安',3,9),(350600,'漳州市',350000,'漳州',2,9),(350602,'芗城区',350600,'芗城',3,8),(350603,'龙文区',350600,'龙文',3,5),(350622,'云霄县',350600,'云霄',3,9),(350623,'漳浦县',350600,'漳浦',3,10),(350624,'诏安县',350600,'诏安',3,11),(350625,'长泰县',350600,'长泰',3,1),(350626,'东山县',350600,'东山',3,2),(350627,'南靖县',350600,'南靖',3,6),(350628,'平和县',350600,'平和',3,7),(350629,'华安县',350600,'华安',3,3),(350681,'龙海市',350600,'龙海',3,4),(350700,'南平市',350000,'南平',2,3),(350702,'延平区',350700,'延平',3,9),(350721,'顺昌县',350700,'顺昌',3,6),(350722,'浦城县',350700,'浦城',3,4),(350723,'光泽县',350700,'光泽',3,1),(350724,'松溪县',350700,'松溪',3,7),(350725,'政和县',350700,'政和',3,10),(350781,'邵武市',350700,'邵武',3,5),(350782,'武夷山市',350700,'武夷山',3,8),(350783,'建瓯市',350700,'建瓯',3,2),(350784,'建阳市',350700,'建阳',3,3),(350800,'龙岩市',350000,'龙岩',2,2),(350802,'新罗区',350800,'新罗',3,5),(350821,'长汀县',350800,'长汀',3,1),(350822,'永定县',350800,'永定',3,6),(350823,'上杭县',350800,'上杭',3,3),(350824,'武平县',350800,'武平',3,4),(350825,'连城县',350800,'连城',3,2),(350881,'漳平市',350800,'漳平',3,7),(350900,'宁德市',350000,'宁德',2,4),(350902,'蕉城区',350900,'蕉城',3,4),(350921,'霞浦县',350900,'霞浦',3,7),(350922,'古田县',350900,'古田',3,3),(350923,'屏南县',350900,'屏南',3,5),(350924,'寿宁县',350900,'寿宁',3,6),(350925,'周宁县',350900,'周宁',3,9),(350926,'柘荣县',350900,'柘荣',3,8),(350981,'福安市',350900,'福安',3,1),(350982,'福鼎市',350900,'福鼎',3,2),(360000,'江西省',0,'江西',1,14),(360100,'南昌市',360000,'南昌',2,6),(360102,'东湖区',360100,'东湖',3,2),(360103,'西湖区',360100,'西湖',3,8),(360104,'青云谱区',360100,'青云谱',3,6),(360105,'湾里区',360100,'湾里',3,7),(360111,'青山湖区',360100,'青山湖',3,5),(360121,'南昌县',360100,'南昌',3,4),(360122,'新建县',360100,'新建',3,9),(360123,'安义县',360100,'安义',3,1),(360124,'进贤县',360100,'进贤',3,3),(360200,'景德镇市',360000,'景德镇',2,4),(360202,'昌江区',360200,'昌江',3,1),(360203,'珠山区',360200,'珠山',3,4),(360222,'浮梁县',360200,'浮梁',3,2),(360281,'乐平市',360200,'乐平',3,3),(360300,'萍乡市',360000,'萍乡',2,7),(360302,'安源区',360300,'安源',3,1),(360313,'湘东区',360300,'湘东',3,5),(360321,'莲花县',360300,'莲花',3,2),(360322,'上栗县',360300,'上栗',3,4),(360323,'芦溪县',360300,'芦溪',3,3),(360400,'九江市',360000,'九江',2,5),(360402,'庐山区',360400,'庐山',3,6),(360403,'浔阳区',360400,'浔阳',3,12),(360421,'九江县',360400,'九江',3,5),(360423,'武宁县',360400,'武宁',3,9),(360424,'修水县',360400,'修水',3,11),(360425,'永修县',360400,'永修',3,13),(360426,'德安县',360400,'德安',3,1),(360427,'星子县',360400,'星子',3,10),(360428,'都昌县',360400,'都昌',3,2),(360429,'湖口县',360400,'湖口',3,4),(360430,'彭泽县',360400,'彭泽',3,7),(360481,'瑞昌市',360400,'瑞昌',3,8),(360483,'共青城市',360400,'共青城',3,3),(360500,'新余市',360000,'新余',2,9),(360502,'渝水区',360500,'渝水',3,2),(360521,'分宜县',360500,'分宜',3,1),(360600,'鹰潭市',360000,'鹰潭',2,11),(360602,'月湖区',360600,'月湖',3,2),(360622,'余江县',360600,'余江',3,3),(360681,'贵溪市',360600,'贵溪',3,1),(360700,'赣州市',360000,'赣州',2,2),(360702,'章贡区',360700,'章贡',3,18),(360721,'赣县',360700,'赣县',3,5),(360722,'信丰县',360700,'信丰',3,13),(360723,'大余县',360700,'大余',3,3),(360724,'上犹县',360700,'上犹',3,12),(360725,'崇义县',360700,'崇义',3,2),(360726,'安远县',360700,'安远',3,1),(360727,'龙南县',360700,'龙南',3,7),(360728,'定南县',360700,'定南',3,4),(360729,'全南县',360700,'全南',3,10),(360730,'宁都县',360700,'宁都',3,9),(360731,'于都县',360700,'于都',3,17),(360732,'兴国县',360700,'兴国',3,15),(360733,'会昌县',360700,'会昌',3,6),(360734,'寻乌县',360700,'寻乌',3,16),(360735,'石城县',360700,'石城',3,14),(360781,'瑞金市',360700,'瑞金',3,11),(360782,'南康市',360700,'南康',3,8),(360800,'吉安市',360000,'吉安',2,3),(360802,'吉州区',360800,'吉州',3,5),(360803,'青原区',360800,'青原',3,6),(360821,'吉安县',360800,'吉安',3,2),(360822,'吉水县',360800,'吉水',3,4),(360823,'峡江县',360800,'峡江',3,10),(360824,'新干县',360800,'新干',3,11),(360825,'永丰县',360800,'永丰',3,12),(360826,'泰和县',360800,'泰和',3,8),(360827,'遂川县',360800,'遂川',3,7),(360828,'万安县',360800,'万安',3,9),(360829,'安福县',360800,'安福',3,1),(360830,'永新县',360800,'永新',3,13),(360881,'井冈山市',360800,'井冈山',3,3),(360900,'宜春市',360000,'宜春',2,10),(360902,'袁州区',360900,'袁州',3,9),(360921,'奉新县',360900,'奉新',3,2),(360922,'万载县',360900,'万载',3,7),(360923,'上高县',360900,'上高',3,5),(360924,'宜丰县',360900,'宜丰',3,8),(360925,'靖安县',360900,'靖安',3,4),(360926,'铜鼓县',360900,'铜鼓',3,6),(360981,'丰城市',360900,'丰城',3,1),(360982,'樟树市',360900,'樟树',3,10),(360983,'高安市',360900,'高安',3,3),(361000,'抚州市',360000,'抚州',2,1),(361002,'临川区',361000,'临川',3,7),(361021,'南城县',361000,'南城',3,8),(361022,'黎川县',361000,'黎川',3,6),(361023,'南丰县',361000,'南丰',3,9),(361024,'崇仁县',361000,'崇仁',3,1),(361025,'乐安县',361000,'乐安',3,5),(361026,'宜黄县',361000,'宜黄',3,10),(361027,'金溪县',361000,'金溪',3,4),(361028,'资溪县',361000,'资溪',3,11),(361029,'东乡县',361000,'东乡',3,2),(361030,'广昌县',361000,'广昌',3,3),(361100,'上饶市',360000,'上饶',2,8),(361102,'信州区',361100,'信州',3,6),(361121,'上饶县',361100,'上饶',3,5),(361122,'广丰县',361100,'广丰',3,2),(361123,'玉山县',361100,'玉山',3,12),(361124,'铅山县',361100,'铅山',3,9),(361125,'横峰县',361100,'横峰',3,3),(361126,'弋阳县',361100,'弋阳',3,10),(361127,'余干县',361100,'余干',3,11),(361128,'鄱阳县',361100,'鄱阳',3,4),(361129,'万年县',361100,'万年',3,7),(361130,'婺源县',361100,'婺源',3,8),(361181,'德兴市',361100,'德兴',3,1),(370000,'山东省',0,'山东',1,15),(370100,'济南市',370000,'济南',2,5),(370102,'历下区',370100,'历下',3,5),(370103,'市中区',370100,'市中',3,8),(370104,'槐荫区',370100,'槐荫',3,2),(370105,'天桥区',370100,'天桥',3,9),(370112,'历城区',370100,'历城',3,4),(370113,'长清区',370100,'长清',3,1),(370124,'平阴县',370100,'平阴',3,6),(370125,'济阳县',370100,'济阳',3,3),(370126,'商河县',370100,'商河',3,7),(370181,'章丘市',370100,'章丘',3,10),(370200,'青岛市',370000,'青岛',2,10),(370202,'市南区',370200,'市南',3,10),(370203,'市北区',370200,'市北',3,9),(370211,'黄岛区',370200,'黄岛',3,2),(370212,'崂山区',370200,'崂山',3,6),(370213,'李沧区',370200,'李沧',3,7),(370214,'城阳区',370200,'城阳',3,1),(370281,'胶州市',370200,'胶州',3,3),(370282,'即墨市',370200,'即墨',3,4),(370283,'平度市',370200,'平度',3,8),(370285,'莱西市',370200,'莱西',3,5),(370300,'淄博市',370000,'淄博',2,17),(370302,'淄川区',370300,'淄川',3,8),(370303,'张店区',370300,'张店',3,6),(370304,'博山区',370300,'博山',3,1),(370305,'临淄区',370300,'临淄',3,4),(370306,'周村区',370300,'周村',3,7),(370321,'桓台县',370300,'桓台',3,3),(370322,'高青县',370300,'高青',3,2),(370323,'沂源县',370300,'沂源',3,5),(370400,'枣庄市',370000,'枣庄',2,16),(370402,'市中区',370400,'市中',3,2),(370403,'薛城区',370400,'薛城',3,5),(370404,'峄城区',370400,'峄城',3,6),(370405,'台儿庄区',370400,'台儿庄',3,3),(370406,'山亭区',370400,'山亭',3,1),(370481,'滕州市',370400,'滕州',3,4),(370500,'东营市',370000,'东营',2,3),(370502,'东营区',370500,'东营',3,1),(370503,'河口区',370500,'河口',3,3),(370521,'垦利县',370500,'垦利',3,4),(370522,'利津县',370500,'利津',3,5),(370523,'广饶县',370500,'广饶',3,2),(370600,'烟台市',370000,'烟台',2,15),(370602,'芝罘区',370600,'芝罘',3,12),(370611,'福山区',370600,'福山',3,2),(370612,'牟平区',370600,'牟平',3,8),(370613,'莱山区',370600,'莱山',3,4),(370634,'长岛县',370600,'长岛',3,1),(370681,'龙口市',370600,'龙口',3,7),(370682,'莱阳市',370600,'莱阳',3,5),(370683,'莱州市',370600,'莱州',3,6),(370684,'蓬莱市',370600,'蓬莱',3,9),(370685,'招远市',370600,'招远',3,11),(370686,'栖霞市',370600,'栖霞',3,10),(370687,'海阳市',370600,'海阳',3,3),(370700,'潍坊市',370000,'潍坊',2,13),(370702,'潍城区',370700,'潍城',3,11),(370703,'寒亭区',370700,'寒亭',3,6),(370704,'坊子区',370700,'坊子',3,4),(370705,'奎文区',370700,'奎文',3,7),(370724,'临朐县',370700,'临朐',3,8),(370725,'昌乐县',370700,'昌乐',3,2),(370781,'青州市',370700,'青州',3,9),(370782,'诸城市',370700,'诸城',3,12),(370783,'寿光市',370700,'寿光',3,10),(370784,'安丘市',370700,'安丘',3,1),(370785,'高密市',370700,'高密',3,5),(370786,'昌邑市',370700,'昌邑',3,3),(370800,'济宁市',370000,'济宁',2,6),(370802,'市中区',370800,'市中',3,6),(370811,'任城区',370800,'任城',3,5),(370826,'微山县',370800,'微山',3,8),(370827,'鱼台县',370800,'鱼台',3,11),(370828,'金乡县',370800,'金乡',3,2),(370829,'嘉祥县',370800,'嘉祥',3,1),(370830,'汶上县',370800,'汶上',3,9),(370831,'泗水县',370800,'泗水',3,7),(370832,'梁山县',370800,'梁山',3,3),(370881,'曲阜市',370800,'曲阜',3,4),(370882,'兖州市',370800,'兖州',3,10),(370883,'邹城市',370800,'邹城',3,12),(370900,'泰安市',370000,'泰安',2,12),(370902,'泰山区',370900,'泰山',3,5),(370903,'岱岳区',370900,'岱岳',3,1),(370921,'宁阳县',370900,'宁阳',3,4),(370923,'东平县',370900,'东平',3,2),(370982,'新泰市',370900,'新泰',3,6),(370983,'肥城市',370900,'肥城',3,3),(371000,'威海市',370000,'威海',2,14),(371002,'环翠区',371000,'环翠',3,1),(371081,'文登市',371000,'文登',3,4),(371082,'荣成市',371000,'荣成',3,2),(371083,'乳山市',371000,'乳山',3,3),(371100,'日照市',370000,'日照',2,11),(371102,'东港区',371100,'东港',3,1),(371103,'岚山区',371100,'岚山',3,3),(371121,'五莲县',371100,'五莲',3,4),(371122,'莒县',371100,'莒县',3,2),(371200,'莱芜市',370000,'莱芜',2,7),(371202,'莱城区',371200,'莱城',3,2),(371203,'钢城区',371200,'钢城',3,1),(371300,'临沂市',370000,'临沂',2,9),(371302,'兰山区',371300,'兰山',3,5),(371311,'罗庄区',371300,'罗庄',3,7),(371312,'河东区',371300,'河东',3,3),(371321,'沂南县',371300,'沂南',3,11),(371322,'郯城县',371300,'郯城',3,10),(371323,'沂水县',371300,'沂水',3,12),(371324,'苍山县',371300,'苍山',3,1),(371325,'费县',371300,'费县',3,2),(371326,'平邑县',371300,'平邑',3,9),(371327,'莒南县',371300,'莒南',3,4),(371328,'蒙阴县',371300,'蒙阴',3,8),(371329,'临沭县',371300,'临沭',3,6),(371400,'德州市',370000,'德州',2,2),(371402,'德城区',371400,'德城',3,1),(371421,'陵县',371400,'陵县',3,3),(371422,'宁津县',371400,'宁津',3,5),(371423,'庆云县',371400,'庆云',3,8),(371424,'临邑县',371400,'临邑',3,4),(371425,'齐河县',371400,'齐河',3,7),(371426,'平原县',371400,'平原',3,6),(371427,'夏津县',371400,'夏津',3,10),(371428,'武城县',371400,'武城',3,9),(371481,'乐陵市',371400,'乐陵',3,2),(371482,'禹城市',371400,'禹城',3,11),(371500,'聊城市',370000,'聊城',2,8),(371502,'东昌府区',371500,'东昌府',3,2),(371521,'阳谷县',371500,'阳谷',3,8),(371522,'莘县',371500,'莘县',3,7),(371523,'茌平县',371500,'茌平',3,1),(371524,'东阿县',371500,'东阿',3,3),(371525,'冠县',371500,'冠县',3,5),(371526,'高唐县',371500,'高唐',3,4),(371581,'临清市',371500,'临清',3,6),(371600,'滨州市',370000,'滨州',2,1),(371602,'滨城区',371600,'滨城',3,1),(371621,'惠民县',371600,'惠民',3,3),(371622,'阳信县',371600,'阳信',3,5),(371623,'无棣县',371600,'无棣',3,4),(371624,'沾化县',371600,'沾化',3,6),(371625,'博兴县',371600,'博兴',3,2),(371626,'邹平县',371600,'邹平',3,7),(371700,'菏泽市',370000,'菏泽',2,4),(371702,'牡丹区',371700,'牡丹',3,7),(371721,'曹县',371700,'曹县',3,1),(371722,'单县',371700,'单县',3,8),(371723,'成武县',371700,'成武',3,2),(371724,'巨野县',371700,'巨野',3,6),(371725,'郓城县',371700,'郓城',3,9),(371726,'鄄城县',371700,'鄄城',3,5),(371727,'定陶县',371700,'定陶',3,3),(371728,'东明县',371700,'东明',3,4),(410000,'河南省',0,'河南',1,16),(410100,'郑州市',410000,'郑州',2,16),(410102,'中原区',410100,'中原',3,12),(410103,'二七区',410100,'二七',3,2),(410104,'管城回族区',410100,'管城回族',3,4),(410105,'金水区',410100,'金水',3,6),(410106,'上街区',410100,'上街',3,7),(410108,'惠济区',410100,'惠济',3,5),(410122,'中牟县',410100,'中牟',3,11),(410181,'巩义市',410100,'巩义',3,3),(410182,'荥阳市',410100,'荥阳',3,8),(410183,'新密市',410100,'新密',3,9),(410184,'新郑市',410100,'新郑',3,10),(410185,'登封市',410100,'登封',3,1),(410200,'开封市',410000,'开封',2,5),(410202,'龙亭区',410200,'龙亭',3,5),(410203,'顺河回族区',410200,'顺河回族',3,7),(410204,'鼓楼区',410200,'鼓楼',3,1),(410205,'禹王台区',410200,'禹王台',3,10),(410211,'金明区',410200,'金明',3,2),(410221,'杞县',410200,'杞县',3,6),(410222,'通许县',410200,'通许',3,8),(410223,'尉氏县',410200,'尉氏',3,9),(410224,'开封县',410200,'开封',3,3),(410225,'兰考县',410200,'兰考',3,4),(410300,'洛阳市',410000,'洛阳',2,7),(410302,'老城区',410300,'老城',3,4),(410303,'西工区',410300,'西工',3,11),(410304,'瀍河回族区',410300,'瀍河回族',3,1),(410305,'涧西区',410300,'涧西',3,2),(410306,'吉利区',410300,'吉利',3,3),(410307,'洛龙区',410300,'洛龙',3,6),(410322,'孟津县',410300,'孟津',3,8),(410323,'新安县',410300,'新安',3,12),(410324,'栾川县',410300,'栾川',3,5),(410325,'嵩县',410300,'嵩县',3,10),(410326,'汝阳县',410300,'汝阳',3,9),(410327,'宜阳县',410300,'宜阳',3,15),(410328,'洛宁县',410300,'洛宁',3,7),(410329,'伊川县',410300,'伊川',3,14),(410381,'偃师市',410300,'偃师',3,13),(410400,'平顶山市',410000,'平顶山',2,9),(410402,'新华区',410400,'新华',3,8),(410403,'卫东区',410400,'卫东',3,6),(410404,'石龙区',410400,'石龙',3,5),(410411,'湛河区',410400,'湛河',3,10),(410421,'宝丰县',410400,'宝丰',3,1),(410422,'叶县',410400,'叶县',3,9),(410423,'鲁山县',410400,'鲁山',3,3),(410425,'郏县',410400,'郏县',3,2),(410481,'舞钢市',410400,'舞钢',3,7),(410482,'汝州市',410400,'汝州',3,4),(410500,'安阳市',410000,'安阳',2,1),(410502,'文峰区',410500,'文峰',3,8),(410503,'北关区',410500,'北关',3,2),(410505,'殷都区',410500,'殷都',3,9),(410506,'龙安区',410500,'龙安',3,5),(410522,'安阳县',410500,'安阳',3,1),(410523,'汤阴县',410500,'汤阴',3,7),(410526,'滑县',410500,'滑县',3,3),(410527,'内黄县',410500,'内黄',3,6),(410581,'林州市',410500,'林州',3,4),(410600,'鹤壁市',410000,'鹤壁',2,2),(410602,'鹤山区',410600,'鹤山',3,1),(410603,'山城区',410600,'山城',3,4),(410611,'淇滨区',410600,'淇滨',3,2),(410621,'浚县',410600,'浚县',3,5),(410622,'淇县',410600,'淇县',3,3),(410700,'新乡市',410000,'新乡',2,14),(410702,'红旗区',410700,'红旗',3,4),(410703,'卫滨区',410700,'卫滨',3,8),(410704,'凤泉区',410700,'凤泉',3,3),(410711,'牧野区',410700,'牧野',3,7),(410721,'新乡县',410700,'新乡',3,10),(410724,'获嘉县',410700,'获嘉',3,6),(410725,'原阳县',410700,'原阳',3,12),(410726,'延津县',410700,'延津',3,11),(410727,'封丘县',410700,'封丘',3,2),(410728,'长垣县',410700,'长垣',3,1),(410781,'卫辉市',410700,'卫辉',3,9),(410782,'辉县市',410700,'辉县',3,5),(410800,'焦作市',410000,'焦作',2,3),(410802,'解放区',410800,'解放',3,2),(410803,'中站区',410800,'中站',3,10),(410804,'马村区',410800,'马村',3,3),(410811,'山阳区',410800,'山阳',3,6),(410821,'修武县',410800,'修武',3,9),(410822,'博爱县',410800,'博爱',3,1),(410823,'武陟县',410800,'武陟',3,8),(410825,'温县',410800,'温县',3,7),(410881,'济源市',410000,'济源',2,4),(410882,'沁阳市',410800,'沁阳',3,5),(410883,'孟州市',410800,'孟州',3,4),(410900,'濮阳市',410000,'濮阳',2,10),(410902,'华龙区',410900,'华龙',3,2),(410922,'清丰县',410900,'清丰',3,5),(410923,'南乐县',410900,'南乐',3,3),(410926,'范县',410900,'范县',3,1),(410927,'台前县',410900,'台前',3,6),(410928,'濮阳县',410900,'濮阳',3,4),(411000,'许昌市',410000,'许昌',2,15),(411002,'魏都区',411000,'魏都',3,2),(411023,'许昌县',411000,'许昌',3,4),(411024,'鄢陵县',411000,'鄢陵',3,5),(411025,'襄城县',411000,'襄城',3,3),(411081,'禹州市',411000,'禹州',3,6),(411082,'长葛市',411000,'长葛',3,1),(411100,'漯河市',410000,'漯河',2,6),(411102,'源汇区',411100,'源汇',3,4),(411103,'郾城区',411100,'郾城',3,3),(411104,'召陵区',411100,'召陵',3,5),(411121,'舞阳县',411100,'舞阳',3,2),(411122,'临颍县',411100,'临颍',3,1),(411200,'三门峡市',410000,'三门峡',2,11),(411202,'湖滨区',411200,'湖滨',3,1),(411221,'渑池县',411200,'渑池',3,4),(411222,'陕县',411200,'陕县',3,5),(411224,'卢氏县',411200,'卢氏',3,3),(411281,'义马市',411200,'义马',3,6),(411282,'灵宝市',411200,'灵宝',3,2),(411300,'南阳市',410000,'南阳',2,8),(411302,'宛城区',411300,'宛城',3,8),(411303,'卧龙区',411300,'卧龙',3,9),(411321,'南召县',411300,'南召',3,3),(411322,'方城县',411300,'方城',3,2),(411323,'西峡县',411300,'西峡',3,12),(411324,'镇平县',411300,'镇平',3,13),(411325,'内乡县',411300,'内乡',3,4),(411326,'淅川县',411300,'淅川',3,10),(411327,'社旗县',411300,'社旗县',3,5),(411328,'唐河县',411300,'唐河',3,6),(411329,'新野县',411300,'新野',3,11),(411330,'桐柏县',411300,'桐柏',3,7),(411381,'邓州市',411300,'邓州',3,1),(411400,'商丘市',410000,'商丘',2,12),(411402,'梁园区',411400,'梁园',3,1),(411403,'睢阳区',411400,'睢阳',3,5),(411421,'民权县',411400,'民权',3,2),(411422,'睢县',411400,'睢县',3,4),(411423,'宁陵县',411400,'宁陵',3,3),(411424,'柘城县',411400,'柘城',3,9),(411425,'虞城县',411400,'虞城',3,8),(411426,'夏邑县',411400,'夏邑',3,6),(411481,'永城市',411400,'永城',3,7),(411500,'信阳市',410000,'信阳',2,13),(411502,'浉河区',411500,'浉河',3,8),(411503,'平桥区',411500,'平桥',3,6),(411521,'罗山县',411500,'罗山',3,5),(411522,'光山县',411500,'光山',3,1),(411523,'新县',411500,'新县',3,9),(411524,'商城县',411500,'商城',3,7),(411525,'固始县',411500,'固始',3,2),(411526,'潢川县',411500,'潢川',3,4),(411527,'淮滨县',411500,'淮滨',3,3),(411528,'息县',411500,'息县',3,10),(411600,'周口市',410000,'周口',2,17),(411602,'川汇区',411600,'川汇',3,1),(411621,'扶沟县',411600,'扶沟',3,3),(411622,'西华县',411600,'西华',3,10),(411623,'商水县',411600,'商水',3,6),(411624,'沈丘县',411600,'沈丘',3,7),(411625,'郸城县',411600,'郸城',3,2),(411626,'淮阳县',411600,'淮阳',3,4),(411627,'太康县',411600,'太康',3,8),(411628,'鹿邑县',411600,'鹿邑',3,5),(411681,'项城市',411600,'项城',3,9),(411700,'驻马店市',410000,'驻马店',2,18),(411702,'驿城区',411700,'驿城',3,9),(411721,'西平县',411700,'西平',3,8),(411722,'上蔡县',411700,'上蔡',3,5),(411723,'平舆县',411700,'平舆',3,2),(411724,'正阳县',411700,'正阳',3,10),(411725,'确山县',411700,'确山',3,3),(411726,'泌阳县',411700,'泌阳',3,1),(411727,'汝南县',411700,'汝南',3,4),(411728,'遂平县',411700,'遂平',3,6),(411729,'新蔡县',411700,'新蔡',3,7),(420000,'湖北省',0,'湖北',1,17),(420100,'武汉市',420000,'武汉',2,12),(420102,'江岸区',420100,'江岸',3,7),(420103,'江汉区',420100,'江汉',3,8),(420104,'硚口区',420100,'硚口',3,10),(420105,'汉阳区',420100,'汉阳',3,4),(420106,'武昌区',420100,'武昌',3,12),(420107,'青山区',420100,'青山',3,11),(420111,'洪山区',420100,'洪山',3,5),(420112,'东西湖区',420100,'东西湖',3,2),(420113,'汉南区',420100,'汉南',3,3),(420114,'蔡甸区',420100,'蔡甸',3,1),(420115,'江夏区',420100,'江夏',3,9),(420116,'黄陂区',420100,'黄陂',3,6),(420117,'新洲区',420100,'新洲',3,13),(420200,'黄石市',420000,'黄石',2,4),(420202,'黄石港区',420200,'黄石港',3,2),(420203,'西塞山区',420200,'西塞山',3,5),(420204,'下陆区',420200,'下陆',3,4),(420205,'铁山区',420200,'铁山',3,3),(420222,'阳新县',420200,'阳新',3,6),(420281,'大冶市',420200,'大冶',3,1),(420300,'十堰市',420000,'十堰',2,9),(420302,'茅箭区',420300,'茅箭',3,3),(420303,'张湾区',420300,'张湾',3,6),(420321,'郧县',420300,'郧县',3,4),(420322,'郧西县',420300,'郧西',3,5),(420323,'竹山县',420300,'竹山',3,7),(420324,'竹溪县',420300,'竹溪',3,8),(420325,'房县',420300,'房县',3,2),(420381,'丹江口市',420300,'丹江口',3,1),(420500,'宜昌市',420000,'宜昌',2,17),(420502,'西陵区',420500,'西陵',3,6),(420503,'伍家岗区',420500,'伍家岗',3,5),(420504,'点军区',420500,'点军',3,3),(420505,'猇亭区',420500,'猇亭',3,8),(420506,'夷陵区',420500,'夷陵',3,10),(420525,'远安县',420500,'远安',3,11),(420526,'兴山县',420500,'兴山',3,7),(420527,'秭归县',420500,'秭归',3,13),(420528,'长阳土家族自治县',420500,'长阳',3,1),(420529,'五峰土家族自治县',420500,'五峰',3,4),(420581,'宜都市',420500,'宜都',3,9),(420582,'当阳市',420500,'当阳',3,2),(420583,'枝江市',420500,'枝江',3,12),(420600,'襄阳市',420000,'襄阳',2,13),(420602,'襄城区',420600,'襄城',3,6),(420606,'樊城区',420600,'樊城',3,2),(420607,'襄州区',420600,'襄州',3,7),(420624,'南漳县',420600,'南漳',3,5),(420625,'谷城县',420600,'谷城',3,3),(420626,'保康县',420600,'保康',3,1),(420682,'老河口市',420600,'老河口',3,4),(420683,'枣阳市',420600,'枣阳',3,9),(420684,'宜城市',420600,'宜城',3,8),(420700,'鄂州市',420000,'鄂州',2,2),(420702,'梁子湖区',420700,'梁子湖',3,3),(420703,'华容区',420700,'华容',3,2),(420704,'鄂城区',420700,'鄂城',3,1),(420800,'荆门市',420000,'荆门',2,5),(420802,'东宝区',420800,'东宝',3,1),(420804,'掇刀区',420800,'掇刀',3,2),(420821,'京山县',420800,'京山',3,3),(420822,'沙洋县',420800,'沙洋',3,4),(420881,'钟祥市',420800,'钟祥',3,5),(420900,'孝感市',420000,'孝感',2,16),(420902,'孝南区',420900,'孝南',3,5),(420921,'孝昌县',420900,'孝昌',3,4),(420922,'大悟县',420900,'大悟',3,2),(420923,'云梦县',420900,'云梦',3,7),(420981,'应城市',420900,'应城',3,6),(420982,'安陆市',420900,'安陆',3,1),(420984,'汉川市',420900,'汉川',3,3),(421000,'荆州市',420000,'荆州',2,6),(421002,'沙市区',421000,'沙市',3,6),(421003,'荆州区',421000,'荆州',3,5),(421022,'公安县',421000,'公安',3,1),(421023,'监利县',421000,'监利',3,4),(421024,'江陵县',421000,'江陵',3,3),(421081,'石首市',421000,'石首',3,7),(421083,'洪湖市',421000,'洪湖',3,2),(421087,'松滋市',421000,'松滋',3,8),(421100,'黄冈市',420000,'黄冈',2,3),(421102,'黄州区',421100,'黄州',3,3),(421121,'团风县',421100,'团风',3,7),(421122,'红安县',421100,'红安',3,1),(421123,'罗田县',421100,'罗田',3,4),(421124,'英山县',421100,'英山',3,10),(421125,'浠水县',421100,'浠水',3,9),(421126,'蕲春县',421100,'蕲春',3,6),(421127,'黄梅县',421100,'黄梅',3,2),(421181,'麻城市',421100,'麻城',3,5),(421182,'武穴市',421100,'武穴',3,8),(421200,'咸宁市',420000,'咸宁',2,14),(421202,'咸安区',421200,'咸安',3,6),(421221,'嘉鱼县',421200,'嘉鱼',3,3),(421222,'通城县',421200,'通城',3,4),(421223,'崇阳县',421200,'崇阳',3,2),(421224,'通山县',421200,'通山',3,5),(421281,'赤壁市',421200,'赤壁',3,1),(421300,'随州市',420000,'随州',2,10),(421302,'曾都区',421300,'曾都',3,3),(421321,'随县',421300,'随县',3,2),(421381,'广水市',421300,'广水',3,1),(422800,'恩施土家族苗族自治州',420000,'恩施',2,1),(422801,'恩施市',422800,'恩施',3,2),(422802,'利川市',422800,'利川',3,6),(422822,'建始县',422800,'建始',3,4),(422823,'巴东县',422800,'巴东',3,1),(422825,'宣恩县',422800,'宣恩',3,8),(422826,'咸丰县',422800,'咸丰',3,7),(422827,'来凤县',422800,'来凤',3,5),(422828,'鹤峰县',422800,'鹤峰',3,3),(429004,'仙桃市',420000,'仙桃',2,15),(429005,'潜江市',420000,'潜江',2,7),(429006,'天门市',420000,'天门',2,11),(429021,'神农架林区',420000,'神农架',2,8),(430000,'湖南省',0,'湖南',1,18),(430100,'长沙市',430000,'长沙',2,2),(430102,'芙蓉区',430100,'芙蓉',3,2),(430103,'天心区',430100,'天心',3,6),(430104,'岳麓区',430100,'岳麓',3,8),(430105,'开福区',430100,'开福',3,3),(430111,'雨花区',430100,'雨花',3,9),(430121,'长沙县',430100,'长沙',3,1),(430122,'望城区',430100,'望城',3,7),(430124,'宁乡县',430100,'宁乡',3,5),(430181,'浏阳市',430100,'浏阳',3,4),(430200,'株洲市',430000,'株洲',2,14),(430202,'荷塘区',430200,'荷塘',3,2),(430203,'芦淞区',430200,'芦淞',3,4),(430204,'石峰区',430200,'石峰',3,5),(430211,'天元区',430200,'天元',3,6),(430221,'株洲县',430200,'株洲',3,9),(430223,'攸县',430200,'攸县',3,8),(430224,'茶陵县',430200,'茶陵',3,1),(430225,'炎陵县',430200,'炎陵',3,7),(430281,'醴陵市',430200,'醴陵',3,3),(430300,'湘潭市',430000,'湘潭',2,8),(430302,'雨湖区',430300,'雨湖',3,5),(430304,'岳塘区',430300,'岳塘',3,4),(430321,'湘潭县',430300,'湘潭',3,2),(430381,'湘乡市',430300,'湘乡',3,3),(430382,'韶山市',430300,'韶山',3,1),(430400,'衡阳市',430000,'衡阳',2,4),(430405,'珠晖区',430400,'珠晖',3,12),(430406,'雁峰区',430400,'雁峰',3,10),(430407,'石鼓区',430400,'石鼓',3,9),(430408,'蒸湘区',430400,'蒸湘',3,11),(430412,'南岳区',430400,'南岳',3,7),(430421,'衡阳县',430400,'衡阳',3,5),(430422,'衡南县',430400,'衡南',3,3),(430423,'衡山县',430400,'衡山',3,4),(430424,'衡东县',430400,'衡东',3,2),(430426,'祁东县',430400,'祁东',3,8),(430481,'耒阳市',430400,'耒阳',3,6),(430482,'常宁市',430400,'常宁',3,1),(430500,'邵阳市',430000,'邵阳',2,7),(430502,'双清区',430500,'双清',3,8),(430503,'大祥区',430500,'大祥',3,3),(430511,'北塔区',430500,'北塔',3,1),(430521,'邵东县',430500,'邵东',3,6),(430522,'新邵县',430500,'新邵',3,12),(430523,'邵阳县',430500,'邵阳',3,7),(430524,'隆回县',430500,'隆回',3,5),(430525,'洞口县',430500,'洞口',3,4),(430527,'绥宁县',430500,'绥宁',3,9),(430528,'新宁县',430500,'新宁',3,11),(430529,'城步苗族自治县',430500,'城步',3,2),(430581,'武冈市',430500,'武冈',3,10),(430600,'岳阳市',430000,'岳阳',2,12),(430602,'岳阳楼区',430600,'岳阳楼',3,7),(430603,'云溪区',430600,'云溪',3,9),(430611,'君山区',430600,'君山',3,2),(430621,'岳阳县',430600,'岳阳',3,8),(430623,'华容县',430600,'华容',3,1),(430624,'湘阴县',430600,'湘阴',3,6),(430626,'平江县',430600,'平江',3,5),(430681,'汨罗市',430600,'汨罗',3,4),(430682,'临湘市',430600,'临湘',3,3),(430700,'常德市',430000,'常德',2,1),(430702,'武陵区',430700,'武陵',3,9),(430703,'鼎城区',430700,'鼎城',3,2),(430721,'安乡县',430700,'安乡',3,1),(430722,'汉寿县',430700,'汉寿',3,3),(430723,'澧县',430700,'澧县',3,6),(430724,'临澧县',430700,'临澧',3,5),(430725,'桃源县',430700,'桃源',3,8),(430726,'石门县',430700,'石门',3,7),(430781,'津市市',430700,'津市',3,4),(430800,'张家界市',430000,'张家界',2,13),(430802,'永定区',430800,'永定',3,4),(430811,'武陵源区',430800,'武陵源',3,3),(430821,'慈利县',430800,'慈利',3,1),(430822,'桑植县',430800,'桑植',3,2),(430900,'益阳市',430000,'益阳',2,10),(430902,'资阳区',430900,'资阳',3,6),(430903,'赫山区',430900,'赫山',3,2),(430921,'南县',430900,'南县',3,3),(430922,'桃江县',430900,'桃江',3,4),(430923,'安化县',430900,'安化',3,1),(430981,'沅江市',430900,'沅江',3,5),(431000,'郴州市',430000,'郴州',2,3),(431002,'北湖区',431000,'北湖',3,2),(431003,'苏仙区',431000,'苏仙',3,8),(431021,'桂阳县',431000,'桂阳',3,4),(431022,'宜章县',431000,'宜章',3,9),(431023,'永兴县',431000,'永兴',3,10),(431024,'嘉禾县',431000,'嘉禾',3,5),(431025,'临武县',431000,'临武',3,6),(431026,'汝城县',431000,'汝城',3,7),(431027,'桂东县',431000,'桂东',3,3),(431028,'安仁县',431000,'安仁',3,1),(431081,'资兴市',431000,'资兴',3,11),(431100,'永州市',430000,'永州',2,11),(431102,'零陵区',431100,'零陵',3,7),(431103,'冷水滩区',431100,'冷水滩',3,6),(431121,'祁阳县',431100,'祁阳',3,9),(431122,'东安县',431100,'东安',3,2),(431123,'双牌县',431100,'双牌',3,10),(431124,'道县',431100,'道县',3,1),(431125,'江永县',431100,'江永',3,4),(431126,'宁远县',431100,'宁远',3,8),(431127,'蓝山县',431100,'蓝山',3,5),(431128,'新田县',431100,'新田',3,11),(431129,'江华瑶族自治县',431100,'江华',3,3),(431200,'怀化市',430000,'怀化',2,5),(431202,'鹤城区',431200,'鹤城',3,2),(431221,'中方县',431200,'中方',3,12),(431222,'沅陵县',431200,'沅陵',3,10),(431223,'辰溪县',431200,'辰溪',3,1),(431224,'溆浦县',431200,'溆浦',3,9),(431225,'会同县',431200,'会同',3,4),(431226,'麻阳苗族自治县',431200,'麻阳',3,6),(431227,'新晃侗族自治县',431200,'新晃',3,8),(431228,'芷江侗族自治县',431200,'芷江',3,11),(431229,'靖州苗族侗族自治县',431200,'靖州',3,5),(431230,'通道侗族自治县',431200,'通道',3,7),(431281,'洪江市',431200,'洪江',3,3),(431300,'娄底市',430000,'娄底',2,6),(431302,'娄星区',431300,'娄星',3,3),(431321,'双峰县',431300,'双峰',3,4),(431322,'新化县',431300,'新化',3,5),(431381,'冷水江市',431300,'冷水江',3,1),(431382,'涟源市',431300,'涟源',3,2),(433100,'湘西土家族苗族自治州',430000,'湘西',2,9),(433101,'吉首市',433100,'吉首',3,5),(433122,'泸溪县',433100,'泸溪',3,7),(433123,'凤凰县',433100,'凤凰',3,2),(433124,'花垣县',433100,'花垣',3,4),(433125,'保靖县',433100,'保靖',3,1),(433126,'古丈县',433100,'古丈',3,3),(433127,'永顺县',433100,'永顺',3,8),(433130,'龙山县',433100,'龙山',3,6),(440000,'广东省',0,'广东',1,19),(440100,'广州市',440000,'广州',2,5),(440103,'荔湾区',440100,'荔湾',3,7),(440104,'越秀区',440100,'越秀',3,3),(440105,'海珠区',440100,'海珠',3,4),(440106,'天河区',440100,'天河',3,11),(440111,'白云区',440100,'白云',3,1),(440112,'黄埔区',440100,'黄埔',3,6),(440113,'番禺区',440100,'番禺',3,10),(440114,'花都区',440100,'花都',3,5),(440115,'南沙区',440100,'南沙',3,9),(440116,'萝岗区',440100,'萝岗',3,8),(440183,'增城市',440100,'增城',3,12),(440184,'从化市',440100,'从化',3,2),(440200,'韶关市',440000,'韶关',2,15),(440203,'武江区',440200,'武江',3,8),(440204,'浈江区',440200,'浈江',3,10),(440205,'曲江区',440200,'曲江',3,3),(440222,'始兴县',440200,'始兴',3,6),(440224,'仁化县',440200,'仁化',3,4),(440229,'翁源县',440200,'翁源',3,7),(440232,'乳源瑶族自治县',440200,'乳源',3,5),(440233,'新丰县',440200,'新丰',3,9),(440281,'乐昌市',440200,'乐昌',3,1),(440282,'南雄市',440200,'南雄',3,2),(440300,'深圳市',440000,'深圳',2,16),(440303,'罗湖区',440300,'罗湖',3,7),(440304,'福田区',440300,'福田',3,3),(440305,'南山区',440300,'南山',3,8),(440306,'宝安区',440300,'宝安',3,1),(440307,'龙岗区',440300,'龙岗',3,5),(440308,'盐田区',440300,'盐田',3,10),(440320,'光明新区',440300,'光明',3,4),(440321,'坪山新区',440300,'坪山',3,9),(440322,'大鹏新区',440300,'大鹏',3,2),(440323,'龙华新区',440300,'龙华',3,6),(440400,'珠海市',440000,'珠海',2,22),(440402,'香洲区',440400,'香洲',3,3),(440403,'斗门区',440400,'斗门',3,1),(440404,'金湾区',440400,'金湾',3,2),(440500,'汕头市',440000,'汕头',2,13),(440507,'龙湖区',440500,'龙湖',3,6),(440511,'金平区',440500,'金平',3,5),(440512,'濠江区',440500,'濠江',3,4),(440513,'潮阳区',440500,'潮阳',3,2),(440514,'潮南区',440500,'潮南',3,1),(440515,'澄海区',440500,'澄海',3,3),(440523,'南澳县',440500,'南澳',3,7),(440600,'佛山市',440000,'佛山',2,4),(440604,'禅城区',440600,'禅城',3,1),(440605,'南海区',440600,'南海',3,3),(440606,'顺德区',440600,'顺德',3,5),(440607,'三水区',440600,'三水',3,4),(440608,'高明区',440600,'高明',3,2),(440700,'江门市',440000,'江门',2,8),(440703,'蓬江区',440700,'蓬江',3,5),(440704,'江海区',440700,'江海',3,3),(440705,'新会区',440700,'新会',3,7),(440781,'台山市',440700,'台山',3,6),(440783,'开平市',440700,'开平',3,4),(440784,'鹤山市',440700,'鹤山',3,2),(440785,'恩平市',440700,'恩平',3,1),(440800,'湛江市',440000,'湛江',2,19),(440802,'赤坎区',440800,'赤坎',3,1),(440803,'霞山区',440800,'霞山',3,8),(440804,'坡头区',440800,'坡头',3,5),(440811,'麻章区',440800,'麻章',3,4),(440823,'遂溪县',440800,'遂溪',3,6),(440825,'徐闻县',440800,'徐闻',3,9),(440881,'廉江市',440800,'廉江',3,3),(440882,'雷州市',440800,'雷州',3,2),(440883,'吴川市',440800,'吴川',3,7),(440900,'茂名市',440000,'茂名',2,10),(440902,'茂南区',440900,'茂南',3,5),(440903,'茂港区',440900,'茂港',3,4),(440923,'电白县',440900,'电白',3,1),(440981,'高州市',440900,'高州',3,2),(440982,'化州市',440900,'化州',3,3),(440983,'信宜市',440900,'信宜',3,6),(441200,'肇庆市',440000,'肇庆',2,20),(441202,'端州区',441200,'端州',3,3),(441203,'鼎湖区',441200,'鼎湖',3,2),(441223,'广宁县',441200,'广宁',3,6),(441224,'怀集县',441200,'怀集',3,7),(441225,'封开县',441200,'封开',3,4),(441226,'德庆县',441200,'德庆',3,1),(441283,'高要市',441200,'高要',3,5),(441284,'四会市',441200,'四会',3,8),(441300,'惠州市',440000,'惠州',2,7),(441302,'惠城区',441300,'惠城',3,2),(441303,'惠阳区',441300,'惠阳',3,4),(441322,'博罗县',441300,'博罗',3,1),(441323,'惠东县',441300,'惠东',3,3),(441324,'龙门县',441300,'龙门',3,5),(441400,'梅州市',440000,'梅州',2,11),(441402,'梅江区',441400,'梅江',3,4),(441421,'梅县',441400,'梅县',3,5),(441422,'大埔县',441400,'大埔',3,1),(441423,'丰顺县',441400,'丰顺',3,2),(441424,'五华县',441400,'五华',3,7),(441426,'平远县',441400,'平远',3,6),(441427,'蕉岭县',441400,'蕉岭',3,3),(441481,'兴宁市',441400,'兴宁',3,8),(441500,'汕尾市',440000,'汕尾',2,14),(441502,'城区',441500,'城区',3,1),(441521,'海丰县',441500,'海丰',3,2),(441523,'陆河县',441500,'陆河',3,4),(441581,'陆丰市',441500,'陆丰',3,3),(441600,'河源市',440000,'河源',2,6),(441602,'源城区',441600,'源城',3,5),(441621,'紫金县',441600,'紫金',3,6),(441622,'龙川县',441600,'龙川',3,4),(441623,'连平县',441600,'连平',3,3),(441624,'和平县',441600,'和平',3,2),(441625,'东源县',441600,'东源',3,1),(441700,'阳江市',440000,'阳江',2,17),(441702,'江城区',441700,'江城',3,1),(441721,'阳西县',441700,'阳西',3,4),(441723,'阳东县',441700,'阳东',3,3),(441781,'阳春市',441700,'阳春',3,2),(441800,'清远市',440000,'清远',2,12),(441802,'清城区',441800,'清城',3,5),(441821,'佛冈县',441800,'佛冈',3,1),(441823,'阳山县',441800,'阳山',3,7),(441825,'连山壮族瑶族自治县',441800,'连山',3,3),(441826,'连南瑶族自治县',441800,'连南',3,2),(441827,'清新区',441800,'清新',3,6),(441881,'英德市',441800,'英德',3,8),(441882,'连州市',441800,'连州',3,4),(441900,'东莞市',440000,'东莞',2,2),(442000,'中山市',440000,'中山',2,21),(442101,'东沙群岛',440000,'东沙',2,3),(445100,'潮州市',440000,'潮州',2,1),(445102,'湘桥区',445100,'湘桥',3,3),(445121,'潮安区',445100,'潮安',3,1),(445122,'饶平县',445100,'饶平',3,2),(445200,'揭阳市',440000,'揭阳',2,9),(445202,'榕城区',445200,'榕城',3,5),(445221,'揭东区',445200,'揭东',3,2),(445222,'揭西县',445200,'揭西',3,3),(445224,'惠来县',445200,'惠来',3,1),(445281,'普宁市',445200,'普宁',3,4),(445300,'云浮市',440000,'云浮',2,18),(445302,'云城区',445300,'云城',3,5),(445321,'新兴县',445300,'新兴',3,2),(445322,'郁南县',445300,'郁南',3,3),(445323,'云安县',445300,'云安',3,4),(445381,'罗定市',445300,'罗定',3,1),(450000,'广西壮族自治区',0,'广西',1,20),(450100,'南宁市',450000,'南宁',2,11),(450102,'兴宁区',450100,'兴宁',3,10),(450103,'青秀区',450100,'青秀',3,7),(450105,'江南区',450100,'江南',3,3),(450107,'西乡塘区',450100,'西乡塘',3,11),(450108,'良庆区',450100,'良庆',3,4),(450109,'邕宁区',450100,'邕宁',3,12),(450122,'武鸣县',450100,'武鸣',3,9),(450123,'隆安县',450100,'隆安',3,5),(450124,'马山县',450100,'马山',3,6),(450125,'上林县',450100,'上林',3,8),(450126,'宾阳县',450100,'宾阳',3,1),(450127,'横县',450100,'横县',3,2),(450200,'柳州市',450000,'柳州',2,10),(450202,'城中区',450200,'城中',3,1),(450203,'鱼峰区',450200,'鱼峰',3,10),(450204,'柳南区',450200,'柳南',3,5),(450205,'柳北区',450200,'柳北',3,2),(450221,'柳江县',450200,'柳江',3,4),(450222,'柳城县',450200,'柳城',3,3),(450223,'鹿寨县',450200,'鹿寨',3,6),(450224,'融安县',450200,'融安',3,7),(450225,'融水苗族自治县',450200,'融水',3,8),(450226,'三江侗族自治县',450200,'三江',3,9),(450300,'桂林市',450000,'桂林',2,6),(450302,'秀峰区',450300,'秀峰',3,13),(450303,'叠彩区',450300,'叠彩',3,1),(450304,'象山区',450300,'象山',3,11),(450305,'七星区',450300,'七星',3,9),(450311,'雁山区',450300,'雁山',3,15),(450321,'阳朔县',450300,'阳朔',3,14),(450322,'临桂区',450300,'临桂',3,5),(450323,'灵川县',450300,'灵川',3,4),(450324,'全州县',450300,'全州',3,10),(450325,'兴安县',450300,'兴安',3,12),(450326,'永福县',450300,'永福',3,16),(450327,'灌阳县',450300,'灌阳',3,3),(450328,'龙胜各族自治县',450300,'龙胜',3,7),(450329,'资源县',450300,'资源',3,17),(450330,'平乐县',450300,'平乐',3,8),(450331,'荔浦县',450300,'荔浦',3,6),(450332,'恭城瑶族自治县',450300,'恭城',3,2),(450400,'梧州市',450000,'梧州',2,13),(450403,'万秀区',450400,'万秀',3,4),(450405,'长洲区',450400,'长洲',3,3),(450406,'龙圩区',450400,'龙圩',3,5),(450421,'苍梧县',450400,'苍梧',3,1),(450422,'藤县',450400,'藤县',3,7),(450423,'蒙山县',450400,'蒙山',3,6),(450481,'岑溪市',450400,'岑溪',3,2),(450500,'北海市',450000,'北海',2,1),(450502,'海城区',450500,'海城',3,1),(450503,'银海区',450500,'银海',3,4),(450512,'铁山港区',450500,'铁山港',3,3),(450521,'合浦县',450500,'合浦',3,2),(450600,'防城港市',450000,'防城港',2,4),(450602,'港口区',450600,'港口',3,3),(450603,'防城区',450600,'防城',3,2),(450621,'上思县',450600,'上思',3,4),(450681,'东兴市',450600,'东兴',3,1),(450700,'钦州市',450000,'钦州',2,12),(450702,'钦南区',450700,'钦南',3,4),(450703,'钦北区',450700,'钦北',3,3),(450721,'灵山县',450700,'灵山',3,1),(450722,'浦北县',450700,'浦北',3,2),(450800,'贵港市',450000,'贵港',2,5),(450802,'港北区',450800,'港北',3,1),(450803,'港南区',450800,'港南',3,2),(450804,'覃塘区',450800,'覃塘',3,5),(450821,'平南县',450800,'平南',3,4),(450881,'桂平市',450800,'桂平',3,3),(450900,'玉林市',450000,'玉林',2,14),(450902,'玉州区',450900,'玉州',3,7),(450903,'福绵区',450900,'福绵',3,3),(450921,'容县',450900,'容县',3,5),(450922,'陆川县',450900,'陆川',3,4),(450923,'博白县',450900,'博白',3,2),(450924,'兴业县',450900,'兴业',3,6),(450981,'北流市',450900,'北流',3,1),(451000,'百色市',450000,'百色',2,2),(451002,'右江区',451000,'右江',3,12),(451021,'田阳县',451000,'田阳',3,10),(451022,'田东县',451000,'田东',3,8),(451023,'平果县',451000,'平果',3,7),(451024,'德保县',451000,'德保',3,1),(451025,'靖西县',451000,'靖西',3,2),(451026,'那坡县',451000,'那坡',3,6),(451027,'凌云县',451000,'凌云',3,4),(451028,'乐业县',451000,'乐业',3,3),(451029,'田林县',451000,'田林',3,9),(451030,'西林县',451000,'西林',3,11),(451031,'隆林各族自治县',451000,'隆林',3,5),(451100,'贺州市',450000,'贺州',2,8),(451102,'八步区',451100,'八步',3,1),(451119,'平桂管理区',451100,'平桂',3,3),(451121,'昭平县',451100,'昭平',3,4),(451122,'钟山县',451100,'钟山',3,5),(451123,'富川瑶族自治县',451100,'富川',3,2),(451200,'河池市',450000,'河池',2,7),(451202,'金城江区',451200,'金城江',3,7),(451221,'南丹县',451200,'南丹',3,9),(451222,'天峨县',451200,'天峨',3,10),(451223,'凤山县',451200,'凤山',3,5),(451224,'东兰县',451200,'东兰',3,3),(451225,'罗城仫佬族自治县',451200,'罗城',3,8),(451226,'环江毛南族自治县',451200,'环江',3,6),(451227,'巴马瑶族自治县',451200,'巴马',3,1),(451228,'都安瑶族自治县',451200,'都安',3,4),(451229,'大化瑶族自治县',451200,'大化',3,2),(451281,'宜州市',451200,'宜州',3,11),(451300,'来宾市',450000,'来宾',2,9),(451302,'兴宾区',451300,'兴宾',3,6),(451321,'忻城县',451300,'忻城',3,5),(451322,'象州县',451300,'象州',3,4),(451323,'武宣县',451300,'武宣',3,3),(451324,'金秀瑶族自治县',451300,'金秀',3,2),(451381,'合山市',451300,'合山',3,1),(451400,'崇左市',450000,'崇左',2,3),(451402,'江州区',451400,'江州',3,3),(451421,'扶绥县',451400,'扶绥',3,2),(451422,'宁明县',451400,'宁明',3,5),(451423,'龙州县',451400,'龙州',3,4),(451424,'大新县',451400,'大新',3,1),(451425,'天等县',451400,'天等',3,7),(451481,'凭祥市',451400,'凭祥',3,6),(460000,'海南省',0,'海南',1,21),(460100,'海口市',460000,'海口',2,8),(460105,'秀英区',460100,'秀英',3,4),(460106,'龙华区',460100,'龙华',3,1),(460107,'琼山区',460100,'琼山',3,3),(460108,'美兰区',460100,'美兰',3,2),(460200,'三亚市',460000,'三亚',2,15),(460300,'三沙市',460000,'三沙',2,14),(460321,'西沙群岛',460300,'西沙',3,2),(460322,'南沙群岛',460300,'南沙',3,1),(460323,'中沙群岛的岛礁及其海域',460300,'中沙',3,3),(469001,'五指山市',460000,'五指山',2,19),(469002,'琼海市',460000,'琼海',2,12),(469003,'儋州市',460000,'儋州',2,5),(469005,'文昌市',460000,'文昌',2,18),(469006,'万宁市',460000,'万宁',2,17),(469007,'东方市',460000,'东方',2,7),(469025,'定安县',460000,'定安',2,6),(469026,'屯昌县',460000,'屯昌',2,16),(469027,'澄迈县',460000,'澄迈',2,4),(469028,'临高县',460000,'临高',2,10),(469030,'白沙黎族自治县',460000,'白沙',2,1),(469031,'昌江黎族自治县',460000,'昌江',2,3),(469033,'乐东黎族自治县',460000,'乐东',2,9),(469034,'陵水黎族自治县',460000,'陵水',2,11),(469035,'保亭黎族苗族自治县',460000,'保亭',2,2),(469036,'琼中黎族苗族自治县',460000,'琼中',2,13),(500000,'重庆',0,'重庆',1,22),(500100,'重庆市',500000,'重庆',2,1),(500101,'万州区',500100,'万州',3,28),(500102,'涪陵区',500100,'涪陵',3,11),(500103,'渝中区',500100,'渝中',3,37),(500104,'大渡口区',500100,'大渡口',3,6),(500105,'江北区',500100,'江北',3,13),(500106,'沙坪坝区',500100,'沙坪坝',3,24),(500107,'九龙坡区',500100,'九龙坡',3,15),(500108,'南岸区',500100,'南岸',3,18),(500109,'北碚区',500100,'北碚',3,2),(500112,'渝北区',500100,'渝北',3,35),(500113,'巴南区',500100,'巴南',3,1),(500114,'黔江区',500100,'黔江',3,21),(500115,'长寿区',500100,'长寿',3,4),(500222,'綦江区',500100,'綦江',3,22),(500223,'潼南县',500100,'潼南',3,27),(500224,'铜梁县',500100,'铜梁',3,26),(500225,'大足区',500100,'大足',3,7),(500226,'荣昌县',500100,'荣昌',3,23),(500227,'璧山县',500100,'璧山',3,3),(500228,'梁平县',500100,'梁平',3,17),(500229,'城口县',500100,'城口',3,5),(500230,'丰都县',500100,'丰都',3,9),(500231,'垫江县',500100,'垫江',3,8),(500232,'武隆县',500100,'武隆',3,29),(500233,'忠县',500100,'忠县',3,38),(500234,'开县',500100,'开县',3,16),(500235,'云阳县',500100,'云阳',3,36),(500236,'奉节县',500100,'奉节',3,10),(500237,'巫山县',500100,'巫山',3,30),(500238,'巫溪县',500100,'巫溪',3,31),(500240,'石柱土家族自治县',500100,'石柱',3,25),(500241,'秀山土家族苗族自治县',500100,'秀山',3,32),(500242,'酉阳土家族苗族自治县',500100,'酉阳',3,34),(500243,'彭水苗族土家族自治县',500100,'彭水',3,20),(500381,'江津区',500100,'江津',3,14),(500382,'合川区',500100,'合川',3,12),(500383,'永川区',500100,'永川',3,33),(500384,'南川区',500100,'南川',3,19),(510000,'四川省',0,'四川',1,23),(510100,'成都市',510000,'成都',2,3),(510104,'锦江区',510100,'锦江',3,5),(510105,'青羊区',510100,'青羊',3,13),(510106,'金牛区',510100,'金牛',3,6),(510107,'武侯区',510100,'武侯',3,17),(510108,'成华区',510100,'成华',3,1),(510112,'龙泉驿区',510100,'龙泉驿',3,8),(510113,'青白江区',510100,'青白江',3,12),(510114,'新都区',510100,'新都',3,18),(510115,'温江区',510100,'温江',3,16),(510121,'金堂县',510100,'金堂',3,7),(510122,'双流县',510100,'双流',3,15),(510124,'郫县',510100,'郫县',3,10),(510129,'大邑县',510100,'大邑',3,3),(510131,'蒲江县',510100,'蒲江',3,11),(510132,'新津县',510100,'新津',3,19),(510181,'都江堰市',510100,'都江堰',3,4),(510182,'彭州市',510100,'彭州',3,9),(510183,'邛崃市',510100,'邛崃',3,14),(510184,'崇州市',510100,'崇州',3,2),(510300,'自贡市',510000,'自贡',2,20),(510302,'自流井区',510300,'自流井',3,6),(510303,'贡井区',510300,'贡井',3,3),(510304,'大安区',510300,'大安',3,1),(510311,'沿滩区',510300,'沿滩',3,5),(510321,'荣县',510300,'荣县',3,4),(510322,'富顺县',510300,'富顺',3,2),(510400,'攀枝花市',510000,'攀枝花',2,16),(510402,'东区',510400,'东区',3,1),(510403,'西区',510400,'西区',3,4),(510411,'仁和区',510400,'仁和',3,3),(510421,'米易县',510400,'米易',3,2),(510422,'盐边县',510400,'盐边',3,5),(510500,'泸州市',510000,'泸州',2,11),(510502,'江阳区',510500,'江阳',3,3),(510503,'纳溪区',510500,'纳溪',3,6),(510504,'龙马潭区',510500,'龙马潭',3,4),(510521,'泸县',510500,'泸县',3,5),(510522,'合江县',510500,'合江',3,2),(510524,'叙永县',510500,'叙永',3,7),(510525,'古蔺县',510500,'古蔺',3,1),(510600,'德阳市',510000,'德阳',2,5),(510603,'旌阳区',510600,'旌阳',3,2),(510623,'中江县',510600,'中江',3,6),(510626,'罗江县',510600,'罗江',3,3),(510681,'广汉市',510600,'广汉',3,1),(510682,'什邡市',510600,'什邡',3,5),(510683,'绵竹市',510600,'绵竹',3,4),(510700,'绵阳市',510000,'绵阳',2,13),(510703,'涪城区',510700,'涪城',3,3),(510704,'游仙区',510700,'游仙',3,8),(510722,'三台县',510700,'三台',3,6),(510723,'盐亭县',510700,'盐亭',3,7),(510724,'安县',510700,'安县',3,1),(510725,'梓潼县',510700,'梓潼',3,9),(510726,'北川羌族自治县',510700,'北川',3,2),(510727,'平武县',510700,'平武',3,5),(510781,'江油市',510700,'江油',3,4),(510800,'广元市',510000,'广元',2,8),(510802,'利州区',510800,'利州',3,4),(510811,'昭化区',510800,'昭化',3,7),(510812,'朝天区',510800,'朝天',3,2),(510821,'旺苍县',510800,'旺苍',3,6),(510822,'青川县',510800,'青川',3,5),(510823,'剑阁县',510800,'剑阁',3,3),(510824,'苍溪县',510800,'苍溪',3,1),(510900,'遂宁市',510000,'遂宁',2,17),(510903,'船山区',510900,'船山',3,2),(510904,'安居区',510900,'安居',3,1),(510921,'蓬溪县',510900,'蓬溪',3,4),(510922,'射洪县',510900,'射洪',3,5),(510923,'大英县',510900,'大英',3,3),(511000,'内江市',510000,'内江',2,15),(511002,'市中区',511000,'市中',3,3),(511011,'东兴区',511000,'东兴',3,1),(511024,'威远县',511000,'威远',3,4),(511025,'资中县',511000,'资中',3,5),(511028,'隆昌县',511000,'隆昌',3,2),(511100,'乐山市',510000,'乐山',2,9),(511102,'市中区',511100,'市中',3,10),(511111,'沙湾区',511100,'沙湾',3,9),(511112,'五通桥区',511100,'五通桥',3,11),(511113,'金口河区',511100,'金口河',3,5),(511123,'犍为县',511100,'犍为',3,8),(511124,'井研县',511100,'井研',3,4),(511126,'夹江县',511100,'夹江',3,3),(511129,'沐川县',511100,'沐川',3,7),(511132,'峨边彝族自治县',511100,'峨边',3,1),(511133,'马边彝族自治县',511100,'马边',3,6),(511181,'峨眉山市',511100,'峨眉山',3,2),(511300,'南充市',510000,'南充',2,14),(511302,'顺庆区',511300,'顺庆',3,6),(511303,'高坪区',511300,'高坪',3,1),(511304,'嘉陵区',511300,'嘉陵',3,2),(511321,'南部县',511300,'南部',3,4),(511322,'营山县',511300,'营山',3,9),(511323,'蓬安县',511300,'蓬安',3,5),(511324,'仪陇县',511300,'仪陇',3,8),(511325,'西充县',511300,'西充',3,7),(511381,'阆中市',511300,'阆中',3,3),(511400,'眉山市',510000,'眉山',2,12),(511402,'东坡区',511400,'东坡',3,2),(511421,'仁寿县',511400,'仁寿',3,6),(511422,'彭山县',511400,'彭山',3,4),(511423,'洪雅县',511400,'洪雅',3,3),(511424,'丹棱县',511400,'丹棱',3,1),(511425,'青神县',511400,'青神',3,5),(511500,'宜宾市',510000,'宜宾',2,19),(511502,'翠屏区',511500,'翠屏',3,2),(511521,'宜宾县',511500,'宜宾',3,10),(511522,'南溪区',511500,'南溪',3,7),(511523,'江安县',511500,'江安',3,5),(511524,'长宁县',511500,'长宁',3,1),(511525,'高县',511500,'高县',3,3),(511526,'珙县',511500,'珙县',3,4),(511527,'筠连县',511500,'筠连',3,6),(511528,'兴文县',511500,'兴文',3,9),(511529,'屏山县',511500,'屏山',3,8),(511600,'广安市',510000,'广安',2,7),(511602,'广安区',511600,'广安',3,1),(511603,'前锋区',511600,'前锋',3,4),(511621,'岳池县',511600,'岳池',3,6),(511622,'武胜县',511600,'武胜',3,5),(511623,'邻水县',511600,'邻水',3,3),(511681,'华蓥市',511600,'华蓥',3,2),(511700,'达州市',510000,'达州',2,4),(511702,'通川区',511700,'通川',3,5),(511721,'达川区',511700,'达川',3,1),(511722,'宣汉县',511700,'宣汉',3,7),(511723,'开江县',511700,'开江',3,3),(511724,'大竹县',511700,'大竹',3,2),(511725,'渠县',511700,'渠县',3,4),(511781,'万源市',511700,'万源',3,6),(511800,'雅安市',510000,'雅安',2,18),(511802,'雨城区',511800,'雨城',3,8),(511821,'名山区',511800,'名山',3,4),(511822,'荥经县',511800,'荥经',3,7),(511823,'汉源县',511800,'汉源',3,2),(511824,'石棉县',511800,'石棉',3,5),(511825,'天全县',511800,'天全',3,6),(511826,'芦山县',511800,'芦山',3,3),(511827,'宝兴县',511800,'宝兴',3,1),(511900,'巴中市',510000,'巴中',2,2),(511902,'巴州区',511900,'巴州',3,1),(511903,'恩阳区',511900,'恩阳',3,2),(511921,'通江县',511900,'通江',3,5),(511922,'南江县',511900,'南江',3,3),(511923,'平昌县',511900,'平昌',3,4),(512000,'资阳市',510000,'资阳',2,21),(512002,'雁江区',512000,'雁江',3,4),(512021,'安岳县',512000,'安岳',3,1),(512022,'乐至县',512000,'乐至',3,3),(512081,'简阳市',512000,'简阳',3,2),(513200,'阿坝藏族羌族自治州',510000,'阿坝',2,1),(513221,'汶川县',513200,'汶川',3,12),(513222,'理县',513200,'理县',3,6),(513223,'茂县',513200,'茂县',3,8),(513224,'松潘县',513200,'松潘',3,11),(513225,'九寨沟县',513200,'九寨沟',3,5),(513226,'金川县',513200,'金川',3,4),(513227,'小金县',513200,'小金',3,13),(513228,'黑水县',513200,'黑水',3,2),(513229,'马尔康县',513200,'马尔康',3,7),(513230,'壤塘县',513200,'壤塘',3,9),(513231,'阿坝县',513200,'阿坝',3,1),(513232,'若尔盖县',513200,'若尔盖',3,10),(513233,'红原县',513200,'红原',3,3),(513300,'甘孜藏族自治州',510000,'甘孜',2,6),(513321,'康定县',513300,'康定',3,10),(513322,'泸定县',513300,'泸定',3,12),(513323,'丹巴县',513300,'丹巴',3,3),(513324,'九龙县',513300,'九龙',3,9),(513325,'雅江县',513300,'雅江',3,18),(513326,'道孚县',513300,'道孚',3,5),(513327,'炉霍县',513300,'炉霍',3,13),(513328,'甘孜县',513300,'甘孜',3,8),(513329,'新龙县',513300,'新龙',3,17),(513330,'德格县',513300,'德格',3,6),(513331,'白玉县',513300,'白玉',3,1),(513332,'石渠县',513300,'石渠',3,15),(513333,'色达县',513300,'色达',3,14),(513334,'理塘县',513300,'理塘',3,11),(513335,'巴塘县',513300,'巴塘',3,2),(513336,'乡城县',513300,'乡城',3,16),(513337,'稻城县',513300,'稻城',3,4),(513338,'得荣县',513300,'得荣',3,7),(513400,'凉山彝族自治州',510000,'凉山',2,10),(513401,'西昌市',513400,'西昌',3,13),(513422,'木里藏族自治县',513400,'木里',3,10),(513423,'盐源县',513400,'盐源',3,15),(513424,'德昌县',513400,'德昌',3,2),(513425,'会理县',513400,'会理',3,5),(513426,'会东县',513400,'会东',3,4),(513427,'宁南县',513400,'宁南',3,11),(513428,'普格县',513400,'普格',3,12),(513429,'布拖县',513400,'布拖',3,1),(513430,'金阳县',513400,'金阳',3,6),(513431,'昭觉县',513400,'昭觉',3,17),(513432,'喜德县',513400,'喜德',3,14),(513433,'冕宁县',513400,'冕宁',3,9),(513434,'越西县',513400,'越西',3,16),(513435,'甘洛县',513400,'甘洛',3,3),(513436,'美姑县',513400,'美姑',3,8),(513437,'雷波县',513400,'雷波',3,7),(520000,'贵州省',0,'贵州',1,24),(520100,'贵阳市',520000,'贵阳',2,3),(520102,'南明区',520100,'南明',3,5),(520103,'云岩区',520100,'云岩',3,10),(520111,'花溪区',520100,'花溪',3,3),(520112,'乌当区',520100,'乌当',3,7),(520113,'白云区',520100,'白云',3,1),(520121,'开阳县',520100,'开阳',3,4),(520122,'息烽县',520100,'息烽',3,8),(520123,'修文县',520100,'修文',3,9),(520151,'观山湖区',520100,'观山湖',3,2),(520181,'清镇市',520100,'清镇',3,6),(520200,'六盘水市',520000,'六盘水',2,4),(520201,'钟山区',520200,'钟山',3,4),(520203,'六枝特区',520200,'六枝特',3,1),(520221,'水城县',520200,'水城',3,3),(520222,'盘县',520200,'盘县',3,2),(520300,'遵义市',520000,'遵义',2,9),(520302,'红花岗区',520300,'红花岗',3,4),(520303,'汇川区',520300,'汇川',3,5),(520321,'遵义县',520300,'遵义',3,14),(520322,'桐梓县',520300,'桐梓',3,9),(520323,'绥阳县',520300,'绥阳',3,8),(520324,'正安县',520300,'正安',3,13),(520325,'道真仡佬族苗族自治县',520300,'道真',3,2),(520326,'务川仡佬族苗族自治县',520300,'务川',3,10),(520327,'凤冈县',520300,'凤冈',3,3),(520328,'湄潭县',520300,'湄潭',3,6),(520329,'余庆县',520300,'余庆',3,12),(520330,'习水县',520300,'习水',3,11),(520381,'赤水市',520300,'赤水',3,1),(520382,'仁怀市',520300,'仁怀',3,7),(520400,'安顺市',520000,'安顺',2,1),(520402,'西秀区',520400,'西秀',3,4),(520421,'平坝县',520400,'平坝',3,2),(520422,'普定县',520400,'普定',3,3),(520423,'镇宁布依族苗族自治县',520400,'镇宁',3,5),(520424,'关岭布依族苗族自治县',520400,'关岭',3,1),(520425,'紫云苗族布依族自治县',520400,'紫云',3,6),(522200,'铜仁市',520000,'铜仁',2,8),(522201,'碧江区',522200,'碧江',3,1),(522222,'江口县',522200,'江口',3,3),(522223,'玉屏侗族自治县',522200,'玉屏',3,10),(522224,'石阡县',522200,'石阡',3,4),(522225,'思南县',522200,'思南',3,5),(522226,'印江土家族苗族自治县',522200,'印江',3,9),(522227,'德江县',522200,'德江',3,2),(522228,'沿河土家族自治县',522200,'沿河',3,8),(522229,'松桃苗族自治县',522200,'松桃',3,6),(522230,'万山区',522200,'万山',3,7),(522300,'黔西南布依族苗族自治州',520000,'黔西南',2,7),(522301,'兴义市',522300,'兴义',3,7),(522322,'兴仁县',522300,'兴仁',3,6),(522323,'普安县',522300,'普安',3,3),(522324,'晴隆县',522300,'晴隆',3,4),(522325,'贞丰县',522300,'贞丰',3,8),(522326,'望谟县',522300,'望谟',3,5),(522327,'册亨县',522300,'册亨',3,2),(522328,'安龙县',522300,'安龙',3,1),(522400,'毕节市',520000,'毕节',2,2),(522401,'七星关区',522400,'七星关',3,6),(522422,'大方县',522400,'大方',3,1),(522423,'黔西县',522400,'黔西',3,5),(522424,'金沙县',522400,'金沙',3,3),(522425,'织金县',522400,'织金',3,8),(522426,'纳雍县',522400,'纳雍',3,4),(522427,'威宁彝族回族苗族自治县',522400,'威宁',3,7),(522428,'赫章县',522400,'赫章',3,2),(522600,'黔东南苗族侗族自治州',520000,'黔东南',2,5),(522601,'凯里市',522600,'凯里',3,7),(522622,'黄平县',522600,'黄平',3,4),(522623,'施秉县',522600,'施秉',3,13),(522624,'三穗县',522600,'三穗',3,12),(522625,'镇远县',522600,'镇远',3,16),(522626,'岑巩县',522600,'岑巩',3,1),(522627,'天柱县',522600,'天柱',3,15),(522628,'锦屏县',522600,'锦屏',3,6),(522629,'剑河县',522600,'剑河',3,5),(522630,'台江县',522600,'台江',3,14),(522631,'黎平县',522600,'黎平',3,9),(522632,'榕江县',522600,'榕江',3,11),(522633,'从江县',522600,'从江',3,2),(522634,'雷山县',522600,'雷山',3,8),(522635,'麻江县',522600,'麻江',3,10),(522636,'丹寨县',522600,'丹寨',3,3),(522700,'黔南布依族苗族自治州',520000,'黔南',2,6),(522701,'都匀市',522700,'都匀',3,3),(522702,'福泉市',522700,'福泉',3,4),(522722,'荔波县',522700,'荔波',3,7),(522723,'贵定县',522700,'贵定',3,5),(522725,'瓮安县',522700,'瓮安',3,12),(522726,'独山县',522700,'独山',3,2),(522727,'平塘县',522700,'平塘',3,10),(522728,'罗甸县',522700,'罗甸',3,9),(522729,'长顺县',522700,'长顺',3,1),(522730,'龙里县',522700,'龙里',3,8),(522731,'惠水县',522700,'惠水',3,6),(522732,'三都水族自治县',522700,'三都',3,11),(530000,'云南省',0,'云南',1,25),(530100,'昆明市',530000,'昆明',2,7),(530102,'五华区',530100,'五华',3,11),(530103,'盘龙区',530100,'盘龙',3,8),(530111,'官渡区',530100,'官渡',3,5),(530112,'西山区',530100,'西山',3,12),(530113,'东川区',530100,'东川',3,3),(530121,'呈贡区',530100,'呈贡',3,2),(530122,'晋宁县',530100,'晋宁',3,6),(530124,'富民县',530100,'富民',3,4),(530125,'宜良县',530100,'宜良',3,14),(530126,'石林彝族自治县',530100,'石林',3,9),(530127,'嵩明县',530100,'嵩明',3,10),(530128,'禄劝彝族苗族自治县',530100,'禄劝',3,7),(530129,'寻甸回族彝族自治县',530100,'寻甸',3,13),(530181,'安宁市',530100,'安宁',3,1),(530300,'曲靖市',530000,'曲靖',2,12),(530302,'麒麟区',530300,'麒麟',3,6),(530321,'马龙县',530300,'马龙',3,5),(530322,'陆良县',530300,'陆良',3,3),(530323,'师宗县',530300,'师宗',3,7),(530324,'罗平县',530300,'罗平',3,4),(530325,'富源县',530300,'富源',3,1),(530326,'会泽县',530300,'会泽',3,2),(530328,'沾益县',530300,'沾益',3,9),(530381,'宣威市',530300,'宣威',3,8),(530400,'玉溪市',530000,'玉溪',2,15),(530402,'红塔区',530400,'红塔',3,3),(530421,'江川县',530400,'江川',3,5),(530422,'澄江县',530400,'澄江',3,1),(530423,'通海县',530400,'通海',3,6),(530424,'华宁县',530400,'华宁',3,4),(530425,'易门县',530400,'易门',3,8),(530426,'峨山彝族自治县',530400,'峨山',3,2),(530427,'新平彝族傣族自治县',530400,'新平',3,7),(530428,'元江哈尼族彝族傣族自治县',530400,'元江',3,9),(530500,'保山市',530000,'保山',2,1),(530502,'隆阳区',530500,'隆阳',3,3),(530521,'施甸县',530500,'施甸',3,4),(530522,'腾冲县',530500,'腾冲',3,5),(530523,'龙陵县',530500,'龙陵',3,2),(530524,'昌宁县',530500,'昌宁',3,1),(530600,'昭通市',530000,'昭通',2,16),(530602,'昭阳区',530600,'昭阳',3,10),(530621,'鲁甸县',530600,'鲁甸',3,2),(530622,'巧家县',530600,'巧家',3,3),(530623,'盐津县',530600,'盐津',3,7),(530624,'大关县',530600,'大关',3,1),(530625,'永善县',530600,'永善',3,9),(530626,'绥江县',530600,'绥江',3,5),(530627,'镇雄县',530600,'镇雄',3,11),(530628,'彝良县',530600,'彝良',3,8),(530629,'威信县',530600,'威信',3,6),(530630,'水富县',530600,'水富',3,4),(530700,'丽江市',530000,'丽江',2,8),(530702,'古城区',530700,'古城',3,1),(530721,'玉龙纳西族自治县',530700,'玉龙',3,5),(530722,'永胜县',530700,'永胜',3,4),(530723,'华坪县',530700,'华坪',3,2),(530724,'宁蒗彝族自治县',530700,'宁蒗',3,3),(530800,'普洱市',530000,'普洱',2,11),(530802,'思茅区',530800,'思茅',3,8),(530821,'宁洱哈尼族彝族自治县',530800,'宁洱',3,7),(530822,'墨江哈尼族自治县',530800,'墨江',3,6),(530823,'景东彝族自治县',530800,'景东',3,2),(530824,'景谷傣族彝族自治县',530800,'景谷',3,3),(530825,'镇沅彝族哈尼族拉祜族自治县',530800,'镇沅',3,10),(530826,'江城哈尼族彝族自治县',530800,'江城',3,1),(530827,'孟连傣族拉祜族佤族自治县',530800,'孟连',3,5),(530828,'澜沧拉祜族自治县',530800,'澜沧',3,4),(530829,'西盟佤族自治县',530800,'西盟',3,9),(530900,'临沧市',530000,'临沧',2,9),(530902,'临翔区',530900,'临翔',3,4),(530921,'凤庆县',530900,'凤庆',3,2),(530922,'云县',530900,'云县',3,7),(530923,'永德县',530900,'永德',3,6),(530924,'镇康县',530900,'镇康',3,8),(530925,'双江拉祜族佤族布朗族傣族自治县',530900,'双江',3,5),(530926,'耿马傣族佤族自治县',530900,'耿马',3,3),(530927,'沧源佤族自治县',530900,'沧源',3,1),(532300,'楚雄彝族自治州',530000,'楚雄',2,2),(532301,'楚雄市',532300,'楚雄',3,1),(532322,'双柏县',532300,'双柏',3,6),(532323,'牟定县',532300,'牟定',3,4),(532324,'南华县',532300,'南华',3,5),(532325,'姚安县',532300,'姚安',3,8),(532326,'大姚县',532300,'大姚',3,2),(532327,'永仁县',532300,'永仁',3,9),(532328,'元谋县',532300,'元谋',3,10),(532329,'武定县',532300,'武定',3,7),(532331,'禄丰县',532300,'禄丰',3,3),(532500,'红河哈尼族彝族自治州',530000,'红河',2,6),(532501,'个旧市',532500,'个旧',3,1),(532502,'开远市',532500,'开远',3,6),(532522,'蒙自市',532500,'蒙自',3,9),(532523,'屏边苗族自治县',532500,'屏边',3,11),(532524,'建水县',532500,'建水',3,4),(532525,'石屏县',532500,'石屏',3,12),(532526,'弥勒市',532500,'弥勒',3,10),(532527,'泸西县',532500,'泸西',3,7),(532528,'元阳县',532500,'元阳',3,13),(532529,'红河县',532500,'红河',3,3),(532530,'金平苗族瑶族傣族自治县',532500,'金平',3,5),(532531,'绿春县',532500,'绿春',3,8),(532532,'河口瑶族自治县',532500,'河口',3,2),(532600,'文山壮族苗族自治州',530000,'文山',2,13),(532621,'文山市',532600,'文山',3,6),(532622,'砚山县',532600,'砚山',3,8),(532623,'西畴县',532600,'西畴',3,7),(532624,'麻栗坡县',532600,'麻栗坡',3,4),(532625,'马关县',532600,'马关',3,3),(532626,'丘北县',532600,'丘北',3,5),(532627,'广南县',532600,'广南',3,2),(532628,'富宁县',532600,'富宁',3,1),(532800,'西双版纳傣族自治州',530000,'西双版纳',2,14),(532801,'景洪市',532800,'景洪',3,1),(532822,'勐海县',532800,'勐海',3,2),(532823,'勐腊县',532800,'勐腊',3,3),(532900,'大理白族自治州',530000,'大理',2,3),(532901,'大理市',532900,'大理',3,2),(532922,'漾濞彝族自治县',532900,'漾濞',3,10),(532923,'祥云县',532900,'祥云',3,9),(532924,'宾川县',532900,'宾川',3,1),(532925,'弥渡县',532900,'弥渡',3,6),(532926,'南涧彝族自治县',532900,'南涧',3,7),(532927,'巍山彝族回族自治县',532900,'巍山',3,8),(532928,'永平县',532900,'永平',3,11),(532929,'云龙县',532900,'云龙',3,12),(532930,'洱源县',532900,'洱源',3,3),(532931,'剑川县',532900,'剑川',3,5),(532932,'鹤庆县',532900,'鹤庆',3,4),(533100,'德宏傣族景颇族自治州',530000,'德宏',2,4),(533102,'瑞丽市',533100,'瑞丽',3,4),(533103,'芒市',533100,'芒市',3,3),(533122,'梁河县',533100,'梁河',3,1),(533123,'盈江县',533100,'盈江',3,5),(533124,'陇川县',533100,'陇川',3,2),(533300,'怒江傈僳族自治州',530000,'怒江',2,10),(533321,'泸水县',533300,'泸水',3,4),(533323,'福贡县',533300,'福贡',3,1),(533324,'贡山独龙族怒族自治县',533300,'贡山',3,2),(533325,'兰坪白族普米族自治县',533300,'兰坪',3,3),(533400,'迪庆藏族自治州',530000,'迪庆',2,5),(533421,'香格里拉县',533400,'香格里拉',3,3),(533422,'德钦县',533400,'德钦',3,1),(533423,'维西傈僳族自治县',533400,'维西',3,2),(540000,'西藏自治区',0,'西藏',1,26),(540100,'拉萨市',540000,'拉萨',2,3),(540102,'城关区',540100,'城关',3,1),(540121,'林周县',540100,'林周',3,5),(540122,'当雄县',540100,'当雄',3,2),(540123,'尼木县',540100,'尼木',3,7),(540124,'曲水县',540100,'曲水',3,8),(540125,'堆龙德庆县',540100,'堆龙德庆',3,4),(540126,'达孜县',540100,'达孜',3,3),(540127,'墨竹工卡县',540100,'墨竹工卡',3,6),(542100,'昌都地区',540000,'昌都',2,2),(542121,'昌都县',542100,'昌都',3,3),(542122,'江达县',542100,'江达',3,7),(542123,'贡觉县',542100,'贡觉',3,6),(542124,'类乌齐县',542100,'类乌齐',3,8),(542125,'丁青县',542100,'丁青',3,5),(542126,'察雅县',542100,'察雅',3,4),(542127,'八宿县',542100,'八宿',3,1),(542128,'左贡县',542100,'左贡',3,11),(542129,'芒康县',542100,'芒康',3,10),(542132,'洛隆县',542100,'洛隆',3,9),(542133,'边坝县',542100,'边坝',3,2),(542200,'山南地区',540000,'山南',2,7),(542221,'乃东县',542200,'乃东',3,8),(542222,'扎囊县',542200,'扎囊',3,12),(542223,'贡嘎县',542200,'贡嘎',3,3),(542224,'桑日县',542200,'桑日',3,11),(542225,'琼结县',542200,'琼结',3,9),(542226,'曲松县',542200,'曲松',3,10),(542227,'措美县',542200,'措美',3,1),(542228,'洛扎县',542200,'洛扎',3,7),(542229,'加查县',542200,'加查',3,4),(542231,'隆子县',542200,'隆子',3,6),(542232,'错那县',542200,'错那',3,2),(542233,'浪卡子县',542200,'浪卡子',3,5),(542300,'日喀则地区',540000,'日喀则',2,6),(542301,'日喀则市',542300,'日喀则',3,13),(542322,'南木林县',542300,'南木林',3,10),(542323,'江孜县',542300,'江孜',3,6),(542324,'定日县',542300,'定日',3,4),(542325,'萨迦县',542300,'萨迦',3,15),(542326,'拉孜县',542300,'拉孜',3,9),(542327,'昂仁县',542300,'昂仁',3,1),(542328,'谢通门县',542300,'谢通门',3,16),(542329,'白朗县',542300,'白朗',3,2),(542330,'仁布县',542300,'仁布',3,12),(542331,'康马县',542300,'康马',3,8),(542332,'定结县',542300,'定结',3,3),(542333,'仲巴县',542300,'仲巴',3,18),(542334,'亚东县',542300,'亚东',3,17),(542335,'吉隆县',542300,'吉隆',3,7),(542336,'聂拉木县',542300,'聂拉木',3,11),(542337,'萨嘎县',542300,'萨嘎',3,14),(542338,'岗巴县',542300,'岗巴',3,5),(542400,'那曲地区',540000,'那曲',2,5),(542421,'那曲县',542400,'那曲',3,6),(542422,'嘉黎县',542400,'嘉黎',3,5),(542423,'比如县',542400,'比如',3,4),(542424,'聂荣县',542400,'聂荣',3,7),(542425,'安多县',542400,'安多',3,1),(542426,'申扎县',542400,'申扎',3,9),(542427,'索县',542400,'索县',3,11),(542428,'班戈县',542400,'班戈',3,2),(542429,'巴青县',542400,'巴青',3,3),(542430,'尼玛县',542400,'尼玛',3,8),(542432,'双湖县',542400,'双湖',3,10),(542500,'阿里地区',540000,'阿里',2,1),(542521,'普兰县',542500,'普兰',3,5),(542522,'札达县',542500,'札达',3,7),(542523,'噶尔县',542500,'噶尔',3,2),(542524,'日土县',542500,'日土',3,6),(542525,'革吉县',542500,'革吉',3,4),(542526,'改则县',542500,'改则',3,3),(542527,'措勤县',542500,'措勤',3,1),(542600,'林芝地区',540000,'林芝',2,4),(542621,'林芝县',542600,'林芝',3,5),(542622,'工布江达县',542600,'工布江达',3,3),(542623,'米林县',542600,'米林',3,6),(542624,'墨脱县',542600,'墨脱',3,7),(542625,'波密县',542600,'波密',3,1),(542626,'察隅县',542600,'察隅',3,2),(542627,'朗县',542600,'朗县',3,4),(610000,'陕西省',0,'陕西',1,27),(610100,'西安市',610000,'西安',2,7),(610102,'新城区',610100,'新城',3,10),(610103,'碑林区',610100,'碑林',3,2),(610104,'莲湖区',610100,'莲湖',3,7),(610111,'灞桥区',610100,'灞桥',3,1),(610112,'未央区',610100,'未央',3,9),(610113,'雁塔区',610100,'雁塔',3,12),(610114,'阎良区',610100,'阎良',3,11),(610115,'临潼区',610100,'临潼',3,8),(610116,'长安区',610100,'长安',3,3),(610122,'蓝田县',610100,'蓝田',3,6),(610124,'周至县',610100,'周至',3,13),(610125,'户县',610100,'户县',3,5),(610126,'高陵县',610100,'高陵',3,4),(610200,'铜川市',610000,'铜川',2,5),(610202,'王益区',610200,'王益',3,1),(610203,'印台区',610200,'印台',3,4),(610204,'耀州区',610200,'耀州',3,2),(610222,'宜君县',610200,'宜君',3,3),(610300,'宝鸡市',610000,'宝鸡',2,2),(610302,'渭滨区',610300,'渭滨',3,12),(610303,'金台区',610300,'金台',3,5),(610304,'陈仓区',610300,'陈仓',3,1),(610322,'凤翔县',610300,'凤翔',3,3),(610323,'岐山县',610300,'岐山',3,10),(610324,'扶风县',610300,'扶风',3,4),(610326,'眉县',610300,'眉县',3,8),(610327,'陇县',610300,'陇县',3,7),(610328,'千阳县',610300,'千阳',3,9),(610329,'麟游县',610300,'麟游',3,6),(610330,'凤县',610300,'凤县',3,2),(610331,'太白县',610300,'太白',3,11),(610400,'咸阳市',610000,'咸阳',2,8),(610402,'秦都区',610400,'秦都',3,7),(610403,'杨陵区',610400,'杨陵',3,13),(610404,'渭城区',610400,'渭城',3,9),(610422,'三原县',610400,'三原',3,8),(610423,'泾阳县',610400,'泾阳',3,4),(610424,'乾县',610400,'乾县',3,6),(610425,'礼泉县',610400,'礼泉',3,5),(610426,'永寿县',610400,'永寿',3,14),(610427,'彬县',610400,'彬县',3,1),(610428,'长武县',610400,'长武',3,2),(610429,'旬邑县',610400,'旬邑',3,12),(610430,'淳化县',610400,'淳化',3,3),(610431,'武功县',610400,'武功',3,10),(610481,'兴平市',610400,'兴平',3,11),(610500,'渭南市',610000,'渭南',2,6),(610502,'临渭区',610500,'临渭',3,9),(610521,'华县',610500,'华县',3,7),(610522,'潼关县',610500,'潼关',3,11),(610523,'大荔县',610500,'大荔',3,3),(610524,'合阳县',610500,'合阳',3,6),(610525,'澄城县',610500,'澄城',3,2),(610526,'蒲城县',610500,'蒲城',3,10),(610527,'白水县',610500,'白水',3,1),(610528,'富平县',610500,'富平',3,4),(610581,'韩城市',610500,'韩城',3,5),(610582,'华阴市',610500,'华阴',3,8),(610600,'延安市',610000,'延安',2,9),(610602,'宝塔区',610600,'宝塔',3,2),(610621,'延长县',610600,'延长',3,9),(610622,'延川县',610600,'延川',3,10),(610623,'子长县',610600,'子长',3,13),(610624,'安塞县',610600,'安塞',3,1),(610625,'志丹县',610600,'志丹',3,12),(610626,'吴起县',610600,'吴起',3,8),(610627,'甘泉县',610600,'甘泉',3,4),(610628,'富县',610600,'富县',3,3),(610629,'洛川县',610600,'洛川',3,7),(610630,'宜川县',610600,'宜川',3,11),(610631,'黄龙县',610600,'黄龙',3,6),(610632,'黄陵县',610600,'黄陵',3,5),(610700,'汉中市',610000,'汉中',2,3),(610702,'汉台区',610700,'汉台',3,3),(610721,'南郑县',610700,'南郑',3,7),(610722,'城固县',610700,'城固',3,1),(610723,'洋县',610700,'洋县',3,10),(610724,'西乡县',610700,'西乡',3,9),(610725,'勉县',610700,'勉县',3,6),(610726,'宁强县',610700,'宁强',3,8),(610727,'略阳县',610700,'略阳',3,5),(610728,'镇巴县',610700,'镇巴',3,11),(610729,'留坝县',610700,'留坝',3,4),(610730,'佛坪县',610700,'佛坪',3,2),(610800,'榆林市',610000,'榆林',2,10),(610802,'榆阳区',610800,'榆阳',3,11),(610821,'神木县',610800,'神木',3,8),(610822,'府谷县',610800,'府谷',3,2),(610823,'横山县',610800,'横山',3,3),(610824,'靖边县',610800,'靖边',3,5),(610825,'定边县',610800,'定边',3,1),(610826,'绥德县',610800,'绥德',3,9),(610827,'米脂县',610800,'米脂',3,6),(610828,'佳县',610800,'佳县',3,4),(610829,'吴堡县',610800,'吴堡',3,10),(610830,'清涧县',610800,'清涧',3,7),(610831,'子洲县',610800,'子洲',3,12),(610900,'安康市',610000,'安康',2,1),(610902,'汉滨区',610900,'汉滨',3,2),(610921,'汉阴县',610900,'汉阴',3,3),(610922,'石泉县',610900,'石泉',3,7),(610923,'宁陕县',610900,'宁陕',3,5),(610924,'紫阳县',610900,'紫阳',3,10),(610925,'岚皋县',610900,'岚皋',3,4),(610926,'平利县',610900,'平利',3,6),(610927,'镇坪县',610900,'镇坪',3,9),(610928,'旬阳县',610900,'旬阳',3,8),(610929,'白河县',610900,'白河',3,1),(611000,'商洛市',610000,'商洛',2,4),(611002,'商州区',611000,'商州',3,4),(611021,'洛南县',611000,'洛南',3,2),(611022,'丹凤县',611000,'丹凤',3,1),(611023,'商南县',611000,'商南',3,3),(611024,'山阳县',611000,'山阳',3,5),(611025,'镇安县',611000,'镇安',3,7),(611026,'柞水县',611000,'柞水',3,6),(620000,'甘肃省',0,'甘肃',1,28),(620100,'兰州市',620000,'兰州',2,7),(620102,'城关区',620100,'城关',3,2),(620103,'七里河区',620100,'七里河',3,5),(620104,'西固区',620100,'西固',3,6),(620105,'安宁区',620100,'安宁',3,1),(620111,'红古区',620100,'红古',3,4),(620121,'永登县',620100,'永登',3,7),(620122,'皋兰县',620100,'皋兰',3,3),(620123,'榆中县',620100,'榆中',3,8),(620200,'嘉峪关市',620000,'嘉峪关',2,4),(620300,'金昌市',620000,'金昌',2,5),(620302,'金川区',620300,'金川',3,1),(620321,'永昌县',620300,'永昌',3,2),(620400,'白银市',620000,'白银',2,1),(620402,'白银区',620400,'白银',3,1),(620403,'平川区',620400,'平川',3,5),(620421,'靖远县',620400,'靖远',3,4),(620422,'会宁县',620400,'会宁',3,2),(620423,'景泰县',620400,'景泰',3,3),(620500,'天水市',620000,'天水',2,12),(620502,'秦州区',620500,'秦州',3,5),(620503,'麦积区',620500,'麦积',3,2),(620521,'清水县',620500,'清水',3,4),(620522,'秦安县',620500,'秦安',3,3),(620523,'甘谷县',620500,'甘谷',3,1),(620524,'武山县',620500,'武山',3,6),(620525,'张家川回族自治县',620500,'张家川',3,7),(620600,'武威市',620000,'武威',2,13),(620602,'凉州区',620600,'凉州',3,2),(620621,'民勤县',620600,'民勤',3,3),(620622,'古浪县',620600,'古浪',3,1),(620623,'天祝藏族自治县',620600,'天祝',3,4),(620700,'张掖市',620000,'张掖',2,14),(620702,'甘州区',620700,'甘州',3,1),(620721,'肃南裕固族自治县',620700,'肃南',3,6),(620722,'民乐县',620700,'民乐',3,4),(620723,'临泽县',620700,'临泽',3,3),(620724,'高台县',620700,'高台',3,2),(620725,'山丹县',620700,'山丹',3,5),(620800,'平凉市',620000,'平凉',2,10),(620802,'崆峒区',620800,'崆峒',3,5),(620821,'泾川县',620800,'泾川',3,3),(620822,'灵台县',620800,'灵台',3,6),(620823,'崇信县',620800,'崇信',3,1),(620824,'华亭县',620800,'华亭',3,2),(620825,'庄浪县',620800,'庄浪',3,7),(620826,'静宁县',620800,'静宁',3,4),(620900,'酒泉市',620000,'酒泉',2,6),(620902,'肃州区',620900,'肃州',3,6),(620921,'金塔县',620900,'金塔',3,4),(620922,'瓜州县',620900,'瓜州',3,3),(620923,'肃北蒙古族自治县',620900,'肃北',3,5),(620924,'阿克塞哈萨克族自治县',620900,'阿克塞',3,1),(620981,'玉门市',620900,'玉门',3,7),(620982,'敦煌市',620900,'敦煌',3,2),(621000,'庆阳市',620000,'庆阳',2,11),(621002,'西峰区',621000,'西峰',3,6),(621021,'庆城县',621000,'庆城',3,5),(621022,'环县',621000,'环县',3,3),(621023,'华池县',621000,'华池',3,2),(621024,'合水县',621000,'合水',3,1),(621025,'正宁县',621000,'正宁',3,7),(621026,'宁县',621000,'宁县',3,4),(621027,'镇原县',621000,'镇原',3,8),(621100,'定西市',620000,'定西',2,2),(621102,'安定区',621100,'安定',3,1),(621121,'通渭县',621100,'通渭',3,5),(621122,'陇西县',621100,'陇西',3,3),(621123,'渭源县',621100,'渭源',3,6),(621124,'临洮县',621100,'临洮',3,2),(621125,'漳县',621100,'漳县',3,7),(621126,'岷县',621100,'岷县',3,4),(621200,'陇南市',620000,'陇南',2,9),(621202,'武都区',621200,'武都',3,8),(621221,'成县',621200,'成县',3,1),(621222,'文县',621200,'文县',3,7),(621223,'宕昌县',621200,'宕昌',3,2),(621224,'康县',621200,'康县',3,4),(621225,'西和县',621200,'西和',3,9),(621226,'礼县',621200,'礼县',3,6),(621227,'徽县',621200,'徽县',3,3),(621228,'两当县',621200,'两当',3,5),(622900,'临夏回族自治州',620000,'临夏',2,8),(622901,'临夏市',622900,'临夏市',3,6),(622921,'临夏县',622900,'临夏县',3,7),(622922,'康乐县',622900,'康乐',3,5),(622923,'永靖县',622900,'永靖',3,8),(622924,'广河县',622900,'广河',3,2),(622925,'和政县',622900,'和政',3,3),(622926,'东乡族自治县',622900,'东乡',3,1),(622927,'积石山保安族东乡族撒拉族自治县',622900,'积石山',3,4),(623000,'甘南藏族自治州',620000,'甘南',2,3),(623001,'合作市',623000,'合作',3,2),(623021,'临潭县',623000,'临潭',3,3),(623022,'卓尼县',623000,'卓尼',3,8),(623023,'舟曲县',623000,'舟曲',3,7),(623024,'迭部县',623000,'迭部',3,1),(623025,'玛曲县',623000,'玛曲',3,5),(623026,'碌曲县',623000,'碌曲',3,4),(623027,'夏河县',623000,'夏河',3,6),(630000,'青海省',0,'青海',1,29),(630100,'西宁市',630000,'西宁',2,7),(630102,'城东区',630100,'城东',3,2),(630103,'城中区',630100,'城中',3,4),(630104,'城西区',630100,'城西',3,3),(630105,'城北区',630100,'城北',3,1),(630121,'大通回族土族自治县',630100,'大通',3,5),(630122,'湟中县',630100,'湟中',3,7),(630123,'湟源县',630100,'湟源',3,6),(632100,'海东市',630000,'海东',2,3),(632121,'平安县',632100,'平安',3,5),(632122,'民和回族土族自治县',632100,'民和',3,4),(632123,'乐都区',632100,'乐都',3,3),(632126,'互助土族自治县',632100,'互助',3,2),(632127,'化隆回族自治县',632100,'化隆',3,1),(632128,'循化撒拉族自治县',632100,'循化',3,6),(632200,'海北藏族自治州',630000,'海北',2,2),(632221,'门源回族自治县',632200,'门源',3,3),(632222,'祁连县',632200,'祁连',3,4),(632223,'海晏县',632200,'海晏',3,2),(632224,'刚察县',632200,'刚察',3,1),(632300,'黄南藏族自治州',630000,'黄南',2,6),(632321,'同仁县',632300,'同仁',3,3),(632322,'尖扎县',632300,'尖扎',3,2),(632323,'泽库县',632300,'泽库',3,4),(632324,'河南蒙古族自治县',632300,'河南',3,1),(632500,'海南藏族自治州',630000,'海南藏族',2,4),(632521,'共和县',632500,'共和',3,1),(632522,'同德县',632500,'同德',3,4),(632523,'贵德县',632500,'贵德',3,2),(632524,'兴海县',632500,'兴海',3,5),(632525,'贵南县',632500,'贵南',3,3),(632600,'果洛藏族自治州',630000,'果洛',2,1),(632621,'玛沁县',632600,'玛沁',3,6),(632622,'班玛县',632600,'班玛',3,1),(632623,'甘德县',632600,'甘德',3,3),(632624,'达日县',632600,'达日',3,2),(632625,'久治县',632600,'久治',3,4),(632626,'玛多县',632600,'玛多',3,5),(632700,'玉树藏族自治州',630000,'玉树',2,8),(632721,'玉树市',632700,'玉树',3,4),(632722,'杂多县',632700,'杂多',3,5),(632723,'称多县',632700,'称多',3,1),(632724,'治多县',632700,'治多',3,6),(632725,'囊谦县',632700,'囊谦',3,2),(632726,'曲麻莱县',632700,'曲麻莱',3,3),(632800,'海西蒙古族藏族自治州',630000,'海西',2,5),(632801,'格尔木市',632800,'格尔木',3,3),(632802,'德令哈市',632800,'德令哈',3,1),(632821,'乌兰县',632800,'乌兰',3,5),(632822,'都兰县',632800,'都兰',3,2),(632823,'天峻县',632800,'天峻',3,4),(640000,'宁夏回族自治区',0,'宁夏',1,30),(640100,'银川市',640000,'银川',2,4),(640104,'兴庆区',640100,'兴庆',3,4),(640105,'西夏区',640100,'西夏',3,5),(640106,'金凤区',640100,'金凤',3,2),(640121,'永宁县',640100,'永宁',3,6),(640122,'贺兰县',640100,'贺兰',3,1),(640181,'灵武市',640100,'灵武',3,3),(640200,'石嘴山市',640000,'石嘴山',2,2),(640202,'大武口区',640200,'大武口',3,1),(640205,'惠农区',640200,'惠农',3,2),(640221,'平罗县',640200,'平罗',3,3),(640300,'吴忠市',640000,'吴忠',2,3),(640302,'利通区',640300,'利通',3,2),(640303,'红寺堡区',640300,'红寺堡',3,1),(640323,'盐池县',640300,'盐池',3,5),(640324,'同心县',640300,'同心',3,4),(640381,'青铜峡市',640300,'青铜峡',3,3),(640400,'固原市',640000,'固原',2,1),(640402,'原州区',640400,'原州',3,5),(640422,'西吉县',640400,'西吉',3,4),(640423,'隆德县',640400,'隆德',3,2),(640424,'泾源县',640400,'泾源',3,1),(640425,'彭阳县',640400,'彭阳',3,3),(640500,'中卫市',640000,'中卫',2,5),(640502,'沙坡头区',640500,'沙坡头',3,2),(640521,'中宁县',640500,'中宁',3,3),(640522,'海原县',640500,'海原',3,1),(650000,'新疆维吾尔自治区',0,'新疆',1,31),(650100,'乌鲁木齐市',650000,'乌鲁木齐',2,17),(650102,'天山区',650100,'天山',3,5),(650103,'沙依巴克区',650100,'沙依巴克',3,3),(650104,'新市区',650100,'新市',3,8),(650105,'水磨沟区',650100,'水磨沟',3,4),(650106,'头屯河区',650100,'头屯河',3,6),(650107,'达坂城区',650100,'达坂城',3,1),(650109,'米东区',650100,'米东',3,2),(650121,'乌鲁木齐县',650100,'乌鲁木齐',3,7),(650200,'克拉玛依市',650000,'克拉玛依',2,10),(650202,'独山子区',650200,'独山子',3,2),(650203,'克拉玛依区',650200,'克拉玛依',3,3),(650204,'白碱滩区',650200,'白碱滩',3,1),(650205,'乌尔禾区',650200,'乌尔禾',3,4),(652100,'吐鲁番地区',650000,'吐鲁番',2,14),(652101,'吐鲁番市',652100,'吐鲁番',3,2),(652122,'鄯善县',652100,'鄯善',3,1),(652123,'托克逊县',652100,'托克逊',3,3),(652200,'哈密地区',650000,'哈密',2,7),(652201,'哈密市',652200,'哈密',3,2),(652222,'巴里坤哈萨克自治县',652200,'巴里坤',3,1),(652223,'伊吾县',652200,'伊吾',3,3),(652300,'昌吉回族自治州',650000,'昌吉',2,6),(652301,'昌吉市',652300,'昌吉',3,1),(652302,'阜康市',652300,'阜康',3,2),(652323,'呼图壁县',652300,'呼图壁',3,3),(652324,'玛纳斯县',652300,'玛纳斯',3,5),(652325,'奇台县',652300,'奇台',3,7),(652327,'吉木萨尔县',652300,'吉木萨尔',3,4),(652328,'木垒哈萨克自治县',652300,'木垒',3,6),(652700,'博尔塔拉蒙古自治州',650000,'博尔塔拉',2,5),(652701,'博乐市',652700,'博乐',3,2),(652702,'阿拉山口市',652700,'阿拉山口',3,1),(652722,'精河县',652700,'精河',3,3),(652723,'温泉县',652700,'温泉',3,4),(652800,'巴音郭楞蒙古自治州',650000,'巴音郭楞',2,4),(652801,'库尔勒市',652800,'库尔勒',3,5),(652822,'轮台县',652800,'轮台',3,6),(652823,'尉犁县',652800,'尉犁',3,9),(652824,'若羌县',652800,'若羌',3,7),(652825,'且末县',652800,'且末',3,4),(652826,'焉耆回族自治县',652800,'焉耆',3,8),(652827,'和静县',652800,'和静',3,2),(652828,'和硕县',652800,'和硕',3,3),(652829,'博湖县',652800,'博湖',3,1),(652900,'阿克苏地区',650000,'阿克苏',2,1),(652901,'阿克苏市',652900,'阿克苏',3,1),(652922,'温宿县',652900,'温宿',3,7),(652923,'库车县',652900,'库车',3,5),(652924,'沙雅县',652900,'沙雅',3,6),(652925,'新和县',652900,'新和',3,9),(652926,'拜城县',652900,'拜城',3,3),(652927,'乌什县',652900,'乌什',3,8),(652928,'阿瓦提县',652900,'阿瓦提',3,2),(652929,'柯坪县',652900,'柯坪',3,4),(653000,'克孜勒苏柯尔克孜自治州',650000,'克孜勒苏柯尔克孜',2,11),(653001,'阿图什市',653000,'阿图什',3,3),(653022,'阿克陶县',653000,'阿克陶',3,2),(653023,'阿合奇县',653000,'阿合奇',3,1),(653024,'乌恰县',653000,'乌恰',3,4),(653100,'喀什地区',650000,'喀什',2,9),(653101,'喀什市',653100,'喀什',3,3),(653121,'疏附县',653100,'疏附',3,6),(653122,'疏勒县',653100,'疏勒',3,7),(653123,'英吉沙县',653100,'英吉沙',3,10),(653124,'泽普县',653100,'泽普',3,12),(653125,'莎车县',653100,'莎车',3,5),(653126,'叶城县',653100,'叶城',3,9),(653127,'麦盖提县',653100,'麦盖提',3,4),(653128,'岳普湖县',653100,'岳普湖',3,11),(653129,'伽师县',653100,'伽师',3,2),(653130,'巴楚县',653100,'巴楚',3,1),(653131,'塔什库尔干塔吉克自治县',653100,'塔什库尔干',3,8),(653200,'和田地区',650000,'和田',2,8),(653201,'和田市',653200,'和田市',3,2),(653221,'和田县',653200,'和田县',3,3),(653222,'墨玉县',653200,'墨玉',3,6),(653223,'皮山县',653200,'皮山',3,7),(653224,'洛浦县',653200,'洛浦',3,4),(653225,'策勒县',653200,'策勒',3,1),(653226,'于田县',653200,'于田',3,8),(653227,'民丰县',653200,'民丰',3,5),(654000,'伊犁哈萨克自治州',650000,'伊犁',2,18),(654002,'伊宁市',654000,'伊宁市',3,8),(654003,'奎屯市',654000,'奎屯',3,4),(654021,'伊宁县',654000,'伊宁县',3,9),(654022,'察布查尔锡伯自治县',654000,'察布查尔',3,1),(654023,'霍城县',654000,'霍城',3,3),(654024,'巩留县',654000,'巩留',3,2),(654025,'新源县',654000,'新源',3,7),(654026,'昭苏县',654000,'昭苏',3,10),(654027,'特克斯县',654000,'特克斯',3,6),(654028,'尼勒克县',654000,'尼勒克',3,5),(654200,'塔城地区',650000,'塔城',2,13),(654201,'塔城市',654200,'塔城',3,4),(654202,'乌苏市',654200,'乌苏',3,6),(654221,'额敏县',654200,'额敏',3,1),(654223,'沙湾县',654200,'沙湾',3,3),(654224,'托里县',654200,'托里',3,5),(654225,'裕民县',654200,'裕民',3,7),(654226,'和布克赛尔蒙古自治县',654200,'和布克赛尔',3,2),(654300,'阿勒泰地区',650000,'阿勒泰',2,3),(654301,'阿勒泰市',654300,'阿勒泰',3,1),(654321,'布尔津县',654300,'布尔津',3,2),(654322,'富蕴县',654300,'富蕴',3,4),(654323,'福海县',654300,'福海',3,3),(654324,'哈巴河县',654300,'哈巴河',3,5),(654325,'青河县',654300,'青河',3,7),(654326,'吉木乃县',654300,'吉木乃',3,6),(659001,'石河子市',650000,'石河子',2,12),(659002,'阿拉尔市',650000,'阿拉尔',2,2),(659003,'图木舒克市',650000,'图木舒克',2,15),(659004,'五家渠市',650000,'五家渠',2,16),(710000,'台湾',0,'台湾',1,34),(710100,'台北市',710000,'台北',2,12),(710101,'中正区',710100,'中正',3,12),(710102,'大同区',710100,'大同',3,3),(710103,'中山区',710100,'中山',3,11),(710104,'松山区',710100,'松山',3,8),(710105,'大安区',710100,'大安',3,2),(710106,'万华区',710100,'万华',3,9),(710107,'信义区',710100,'信义',3,6),(710108,'士林区',710100,'士林',3,7),(710109,'北投区',710100,'北投',3,1),(710110,'内湖区',710100,'内湖',3,5),(710111,'南港区',710100,'南港',3,4),(710112,'文山区',710100,'文山',3,10),(710200,'高雄市',710000,'高雄',2,1),(710201,'新兴区',710200,'新兴',3,34),(710202,'前金区',710200,'前金',3,21),(710203,'芩雅区',710200,'芩雅',3,26),(710204,'盐埕区',710200,'盐埕',3,36),(710205,'鼓山区',710200,'鼓山',3,7),(710206,'旗津区',710200,'旗津',3,25),(710207,'前镇区',710200,'前镇',3,22),(710208,'三民区',710200,'三民',3,29),(710209,'左营区',710200,'左营',3,39),(710210,'楠梓区',710200,'楠梓',3,18),(710211,'小港区',710200,'小港',3,33),(710241,'苓雅区',710200,'苓雅',3,10),(710242,'仁武区',710200,'仁武',3,28),(710243,'大社区',710200,'大社',3,3),(710244,'冈山区',710200,'冈山',3,6),(710245,'路竹区',710200,'路竹',3,13),(710246,'阿莲区',710200,'阿莲',3,1),(710247,'田寮区',710200,'田寮',3,32),(710248,'燕巢区',710200,'燕巢',3,35),(710249,'桥头区',710200,'桥头',3,23),(710250,'梓官区',710200,'梓官',3,38),(710251,'弥陀区',710200,'弥陀',3,16),(710252,'永安区',710200,'永安',3,37),(710253,'湖内区',710200,'湖内',3,8),(710254,'凤山区',710200,'凤山',3,5),(710255,'大寮区',710200,'大寮',3,2),(710256,'林园区',710200,'林园',3,11),(710257,'鸟松区',710200,'鸟松',3,20),(710258,'大树区',710200,'大树',3,4),(710259,'旗山区',710200,'旗山',3,27),(710260,'美浓区',710200,'美浓',3,15),(710261,'六龟区',710200,'六龟',3,12),(710262,'内门区',710200,'内门',3,19),(710263,'杉林区',710200,'杉林',3,30),(710264,'甲仙区',710200,'甲仙',3,9),(710265,'桃源区',710200,'桃源',3,31),(710266,'那玛夏区',710200,'那玛夏',3,17),(710267,'茂林区',710200,'茂林',3,14),(710268,'茄萣区',710200,'茄萣',3,24),(710300,'台南市',710000,'台南',2,14),(710301,'中西区',710300,'中西',3,36),(710302,'东区',710300,'东区',3,8),(710303,'南区',710300,'南区',3,21),(710304,'北区',710300,'北区',3,6),(710305,'安平区',710300,'安平',3,3),(710306,'安南区',710300,'安南',3,2),(710339,'永康区',710300,'永康',3,34),(710340,'归仁区',710300,'归仁',3,12),(710341,'新化区',710300,'新化',3,29),(710342,'左镇区',710300,'左镇',3,37),(710343,'玉井区',710300,'玉井',3,35),(710344,'楠西区',710300,'楠西',3,22),(710345,'南化区',710300,'南化',3,20),(710346,'仁德区',710300,'仁德',3,24),(710347,'关庙区',710300,'关庙',3,10),(710348,'龙崎区',710300,'龙崎',3,18),(710349,'官田区',710300,'官田',3,11),(710350,'麻豆区',710300,'麻豆',3,19),(710351,'佳里区',710300,'佳里',3,14),(710352,'西港区',710300,'西港',3,28),(710353,'七股区',710300,'七股',3,23),(710354,'将军区',710300,'将军',3,15),(710355,'学甲区',710300,'学甲',3,32),(710356,'北门区',710300,'北门',3,5),(710357,'新营区',710300,'新营',3,31),(710358,'后壁区',710300,'后壁',3,13),(710359,'白河区',710300,'白河',3,4),(710360,'东山区',710300,'东山',3,9),(710361,'六甲区',710300,'六甲',3,16),(710362,'下营区',710300,'下营',3,27),(710363,'柳营区',710300,'柳营',3,17),(710364,'盐水区',710300,'盐水',3,33),(710365,'善化区',710300,'善化',3,25),(710366,'大内区',710300,'大内',3,7),(710367,'山上区',710300,'山上',3,26),(710368,'新市区',710300,'新市',3,30),(710369,'安定区',710300,'安定',3,1),(710400,'台中市',710000,'台中',2,15),(710401,'中区',710400,'中区',3,29),(710402,'东区',710400,'东区',3,8),(710403,'南区',710400,'南区',3,14),(710404,'西区',710400,'西区',3,27),(710405,'北区',710400,'北区',3,1),(710406,'北屯区',710400,'北屯',3,2),(710407,'西屯区',710400,'西屯',3,28),(710408,'南屯区',710400,'南屯',3,15),(710431,'太平区',710400,'太平',3,20),(710432,'大里区',710400,'大里',3,6),(710433,'雾峰区',710400,'雾峰',3,23),(710434,'乌日区',710400,'乌日',3,25),(710435,'丰原区',710400,'丰原',3,10),(710436,'后里区',710400,'后里',3,12),(710437,'石冈区',710400,'石冈',3,19),(710438,'东势区',710400,'东势',3,9),(710439,'和平区',710400,'和平',3,11),(710440,'新社区',710400,'新社',3,26),(710441,'潭子区',710400,'潭子',3,21),(710442,'大雅区',710400,'大雅',3,7),(710443,'神冈区',710400,'神冈',3,18),(710444,'大肚区',710400,'大肚',3,4),(710445,'沙鹿区',710400,'沙鹿',3,17),(710446,'龙井区',710400,'龙井',3,13),(710447,'梧栖区',710400,'梧栖',3,24),(710448,'清水区',710400,'清水',3,16),(710449,'大甲区',710400,'大甲',3,5),(710450,'外埔区',710400,'外埔',3,22),(710451,'大安区',710400,'大安',3,3),(710500,'金门县',710000,'金门',2,6),(710507,'金沙镇',710500,'金沙',3,4),(710508,'金湖镇',710500,'金湖',3,2),(710509,'金宁乡',710500,'金宁',3,3),(710510,'金城镇',710500,'金城',3,1),(710511,'烈屿乡',710500,'烈屿',3,5),(710512,'乌坵乡',710500,'乌坵',3,6),(710600,'南投县',710000,'南投',2,9),(710614,'南投市',710600,'南投',3,8),(710615,'中寮乡',710600,'中寮',3,3),(710616,'草屯镇',710600,'草屯',3,1),(710617,'国姓乡',710600,'国姓',3,2),(710618,'埔里镇',710600,'埔里',3,9),(710619,'仁爱乡',710600,'仁爱',3,10),(710620,'名间乡',710600,'名间',3,7),(710621,'集集镇',710600,'集集',3,5),(710622,'水里乡',710600,'水里',3,11),(710623,'鱼池乡',710600,'鱼池',3,13),(710624,'信义乡',710600,'信义',3,12),(710625,'竹山镇',710600,'竹山',3,4),(710626,'鹿谷乡',710600,'鹿谷',3,6),(710700,'基隆市',710000,'基隆',2,5),(710701,'仁爱区',710700,'仁爱',3,4),(710702,'信义区',710700,'信义',3,5),(710703,'中正区',710700,'中正',3,7),(710704,'中山区',710700,'中山',3,6),(710705,'安乐区',710700,'安乐',3,1),(710706,'暖暖区',710700,'暖暖',3,2),(710707,'七堵区',710700,'七堵',3,3),(710800,'新竹市',710000,'新竹',2,18),(710801,'东区',710800,'东区',3,2),(710802,'北区',710800,'北区',3,1),(710803,'香山区',710800,'香山',3,3),(710900,'嘉义市',710000,'嘉义',2,3),(710901,'东区',710900,'东区',3,1),(710902,'西区',710900,'西区',3,2),(711100,'新北市',710000,'新北',2,17),(711130,'万里区',711100,'万里',3,25),(711131,'金山区',711100,'金山',3,6),(711132,'板桥区',711100,'板桥',3,2),(711133,'汐止区',711100,'汐止',3,20),(711134,'深坑区',711100,'深坑',3,15),(711135,'石碇区',711100,'石碇',3,16),(711136,'瑞芳区',711100,'瑞芳',3,11),(711137,'平溪区',711100,'平溪',3,10),(711138,'双溪区',711100,'双溪',3,18),(711139,'贡寮区',711100,'贡寮',3,4),(711140,'新店区',711100,'新店',3,21),(711141,'坪林区',711100,'坪林',3,9),(711142,'乌来区',711100,'乌来',3,27),(711143,'永和区',711100,'永和',3,29),(711144,'中和区',711100,'中和',3,5),(711145,'土城区',711100,'土城',3,24),(711146,'三峡区',711100,'三峡',3,14),(711147,'树林区',711100,'树林',3,19),(711148,'莺歌区',711100,'莺歌',3,28),(711149,'三重区',711100,'三重',3,12),(711150,'新庄区',711100,'新庄',3,22),(711151,'泰山区',711100,'泰山',3,23),(711152,'林口区',711100,'林口',3,7),(711153,'芦洲区',711100,'芦洲',3,8),(711154,'五股区',711100,'五股',3,26),(711155,'八里区',711100,'八里',3,1),(711156,'淡水区',711100,'淡水',3,3),(711157,'三芝区',711100,'三芝',3,13),(711158,'石门区',711100,'石门',3,17),(711200,'宜兰县',710000,'宜兰',2,20),(711214,'宜兰市',711200,'宜兰',3,12),(711215,'头城镇',711200,'头城',3,10),(711216,'礁溪乡',711200,'礁溪',3,5),(711217,'壮围乡',711200,'壮围',3,4),(711218,'员山乡',711200,'员山',3,13),(711219,'罗东镇',711200,'罗东',3,6),(711220,'三星乡',711200,'三星',3,8),(711221,'大同乡',711200,'大同',3,1),(711222,'五结乡',711200,'五结',3,11),(711223,'冬山乡',711200,'冬山',3,3),(711224,'苏澳镇',711200,'苏澳',3,9),(711225,'南澳乡',711200,'南澳',3,7),(711226,'钓鱼台',711200,'钓鱼',3,2),(711300,'新竹县',710000,'新竹',2,19),(711314,'竹北市',711300,'竹北',3,8),(711315,'湖口乡',711300,'湖口',3,7),(711316,'新丰乡',711300,'新丰',3,11),(711317,'新埔镇',711300,'新埔',3,12),(711318,'关西镇',711300,'关西',3,5),(711319,'芎林乡',711300,'芎林',3,3),(711320,'宝山乡',711300,'宝山',3,1),(711321,'竹东镇',711300,'竹东',3,9),(711322,'五峰乡',711300,'五峰',3,13),(711323,'横山乡',711300,'横山',3,6),(711324,'尖石乡',711300,'尖石',3,10),(711325,'北埔乡',711300,'北埔',3,2),(711326,'峨眉乡',711300,'峨眉',3,4),(711400,'桃园县',710000,'桃园',2,16),(711414,'中坜市',711400,'中坜',3,7),(711415,'平镇市',711400,'平镇',3,10),(711416,'龙潭乡',711400,'龙潭',3,8),(711417,'杨梅市',711400,'杨梅',3,13),(711418,'新屋乡',711400,'新屋',3,11),(711419,'观音乡',711400,'观音',3,5),(711420,'桃园市',711400,'桃园',3,12),(711421,'龟山乡',711400,'龟山',3,6),(711422,'八德市',711400,'八德',3,1),(711423,'大溪镇',711400,'大溪',3,2),(711424,'复兴乡',711400,'复兴',3,4),(711425,'大园乡',711400,'大园',3,3),(711426,'芦竹乡',711400,'芦竹',3,9),(711500,'苗栗县',710000,'苗栗',2,8),(711519,'竹南镇',711500,'竹南',3,4),(711520,'头份镇',711500,'头份',3,15),(711521,'三湾乡',711500,'三湾',3,8),(711522,'南庄乡',711500,'南庄',3,7),(711523,'狮潭乡',711500,'狮潭',3,10),(711524,'后龙镇',711500,'后龙',3,3),(711525,'通霄镇',711500,'通霄',3,14),(711526,'苑里镇',711500,'苑里',3,17),(711527,'苗栗市',711500,'苗栗',3,6),(711528,'造桥乡',711500,'造桥',3,18),(711529,'头屋乡',711500,'头屋',3,16),(711530,'公馆乡',711500,'公馆',3,2),(711531,'大湖乡',711500,'大湖',3,1),(711532,'泰安乡',711500,'泰安',3,12),(711533,'铜锣乡',711500,'铜锣',3,13),(711534,'三义乡',711500,'三义',3,9),(711535,'西湖乡',711500,'西湖',3,11),(711536,'卓兰镇',711500,'卓兰',3,5),(711700,'彰化县',710000,'彰化',2,22),(711727,'彰化市',711700,'彰化',3,11),(711728,'芬园乡',711700,'芬园',3,7),(711729,'花坛乡',711700,'花坛',3,10),(711730,'秀水乡',711700,'秀水',3,22),(711731,'鹿港镇',711700,'鹿港',3,13),(711732,'福兴乡',711700,'福兴',3,8),(711733,'线西乡',711700,'线西',3,19),(711734,'和美镇',711700,'和美',3,9),(711735,'伸港乡',711700,'伸港',3,17),(711736,'员林镇',711700,'员林',3,26),(711737,'社头乡',711700,'社头',3,18),(711738,'永靖乡',711700,'永靖',3,25),(711739,'埔心乡',711700,'埔心',3,15),(711740,'溪湖镇',711700,'溪湖',3,20),(711741,'大村乡',711700,'大村',3,3),(711742,'埔盐乡',711700,'埔盐',3,16),(711743,'田中镇',711700,'田中',3,23),(711744,'北斗镇',711700,'北斗',3,1),(711745,'田尾乡',711700,'田尾',3,24),(711746,'埤头乡',711700,'埤头',3,14),(711747,'溪州乡',711700,'溪州',3,21),(711748,'竹塘乡',711700,'竹塘',3,12),(711749,'二林镇',711700,'二林',3,4),(711750,'大城乡',711700,'大城',3,2),(711751,'芳苑乡',711700,'芳苑',3,6),(711752,'二水乡',711700,'二水',3,5),(711900,'嘉义县',710000,'嘉义',2,4),(711919,'番路乡',711900,'番路',3,7),(711920,'梅山乡',711900,'梅山',3,11),(711921,'竹崎乡',711900,'竹崎',3,9),(711922,'阿里山乡',711900,'阿里山',3,1),(711923,'中埔乡',711900,'中埔',3,8),(711924,'大埔乡',711900,'大埔',3,5),(711925,'水上乡',711900,'水上',3,14),(711926,'鹿草乡',711900,'鹿草',3,2),(711927,'太保市',711900,'太保',3,17),(711928,'朴子市',711900,'朴子',3,13),(711929,'东石乡',711900,'东石',3,6),(711930,'六脚乡',711900,'六脚',3,10),(711931,'新港乡',711900,'新港',3,16),(711932,'民雄乡',711900,'民雄',3,12),(711933,'大林镇',711900,'大林',3,4),(711934,'溪口乡',711900,'溪口',3,15),(711935,'义竹乡',711900,'义竹',3,18),(711936,'布袋镇',711900,'布袋',3,3),(712100,'云林县',710000,'云林',2,21),(712121,'斗南镇',712100,'斗南',3,7),(712122,'大埤乡',712100,'大埤',3,4),(712123,'虎尾镇',712100,'虎尾',3,10),(712124,'土库镇',712100,'土库',3,19),(712125,'褒忠乡',712100,'褒忠',3,1),(712126,'东势乡',712100,'东势',3,5),(712127,'台西乡',712100,'台西',3,18),(712128,'仑背乡',712100,'仑背',3,13),(712129,'麦寮乡',712100,'麦寮',3,14),(712130,'斗六市',712100,'斗六',3,6),(712131,'林内乡',712100,'林内',3,12),(712132,'古坑乡',712100,'古坑',3,9),(712133,'莿桐乡',712100,'莿桐',3,3),(712134,'西螺镇',712100,'西螺',3,17),(712135,'二仑乡',712100,'二仑',3,8),(712136,'北港镇',712100,'北港',3,2),(712137,'水林乡',712100,'水林',3,15),(712138,'口湖乡',712100,'口湖',3,11),(712139,'四湖乡',712100,'四湖',3,16),(712140,'元长乡',712100,'元长',3,20),(712400,'屏东县',710000,'屏东',2,11),(712434,'屏东市',712400,'屏东',3,24),(712435,'三地门乡',712400,'三地门',3,25),(712436,'雾台乡',712400,'雾台',3,32),(712437,'玛家乡',712400,'玛家',3,19),(712438,'九如乡',712400,'九如',3,12),(712439,'里港乡',712400,'里港',3,15),(712440,'高树乡',712400,'高树',3,8),(712441,'盐埔乡',712400,'盐埔',3,33),(712442,'长治乡',712400,'长治',3,1),(712443,'麟洛乡',712400,'麟洛',3,17),(712444,'竹田乡',712400,'竹田',3,10),(712445,'内埔乡',712400,'内埔',3,23),(712446,'万丹乡',712400,'万丹',3,30),(712447,'潮州镇',712400,'潮州',3,2),(712448,'泰武乡',712400,'泰武',3,29),(712449,'来义乡',712400,'来义',3,14),(712450,'万峦乡',712400,'万峦',3,31),(712451,'崁顶乡',712400,'崁顶',3,13),(712452,'新埤乡',712400,'新埤',3,27),(712453,'南州乡',712400,'南州',3,22),(712454,'林边乡',712400,'林边',3,16),(712455,'东港镇',712400,'东港',3,5),(712456,'琉球乡',712400,'琉球',3,18),(712457,'佳冬乡',712400,'佳冬',3,11),(712458,'新园乡',712400,'新园',3,28),(712459,'枋寮乡',712400,'枋寮',3,6),(712460,'枋山乡',712400,'枋山',3,7),(712461,'春日乡',712400,'春日',3,4),(712462,'狮子乡',712400,'狮子',3,26),(712463,'车城乡',712400,'车城',3,3),(712464,'牡丹乡',712400,'牡丹',3,21),(712465,'恒春镇',712400,'恒春',3,9),(712466,'满州乡',712400,'满州',3,20),(712500,'台东县',710000,'台东',2,13),(712517,'台东市',712500,'台东',3,14),(712518,'绿岛乡',712500,'绿岛',3,13),(712519,'兰屿乡',712500,'兰屿',3,11),(712520,'延平乡',712500,'延平',3,16),(712521,'卑南乡',712500,'卑南',3,1),(712522,'鹿野乡',712500,'鹿野',3,12),(712523,'关山镇',712500,'关山',3,8),(712524,'海端乡',712500,'海端',3,9),(712525,'池上乡',712500,'池上',3,4),(712526,'东河乡',712500,'东河',3,7),(712527,'成功镇',712500,'成功',3,3),(712528,'长滨乡',712500,'长滨',3,2),(712529,'金峰乡',712500,'金峰',3,10),(712530,'大武乡',712500,'大武',3,6),(712531,'达仁乡',712500,'达仁',3,5),(712532,'太麻里乡',712500,'太麻里',3,15),(712600,'花莲县',710000,'花莲',2,2),(712615,'花莲市',712600,'花莲',3,5),(712616,'新城乡',712600,'新城',3,10),(712617,'太鲁阁',712600,'太鲁',3,12),(712618,'秀林乡',712600,'秀林',3,11),(712619,'吉安乡',712600,'吉安',3,7),(712620,'寿丰乡',712600,'寿丰',3,9),(712621,'凤林镇',712600,'凤林',3,2),(712622,'光复乡',712600,'光复',3,4),(712623,'丰滨乡',712600,'丰滨',3,1),(712624,'瑞穗乡',712600,'瑞穗',3,8),(712625,'万荣乡',712600,'万荣',3,13),(712626,'玉里镇',712600,'玉里',3,14),(712627,'卓溪乡',712600,'卓溪',3,6),(712628,'富里乡',712600,'富里',3,3),(712700,'澎湖县',710000,'澎湖',2,10),(712707,'马公市',712700,'马公',3,4),(712708,'西屿乡',712700,'西屿',3,5),(712709,'望安乡',712700,'望安',3,6),(712710,'七美乡',712700,'七美',3,2),(712711,'白沙乡',712700,'白沙',3,1),(712712,'湖西乡',712700,'湖西',3,3),(712800,'连江县',710000,'连江',2,7),(712805,'南竿乡',712800,'南竿',3,4),(712806,'北竿乡',712800,'北竿',3,1),(712807,'莒光乡',712800,'莒光',3,3),(712808,'东引乡',712800,'东引',3,2),(810000,'香港特别行政区',0,'香港',1,32),(810100,'香港岛',810000,'香港岛',2,2),(810101,'中西区',810100,'中西',3,4),(810102,'湾仔',810100,'湾仔',3,3),(810103,'东区',810100,'东区',3,1),(810104,'南区',810100,'南区',3,2),(810200,'九龙',810000,'九龙',2,1),(810201,'九龙城区',810200,'九龙城',3,3),(810202,'油尖旺区',810200,'油尖旺',3,5),(810203,'深水埗区',810200,'深水埗',3,4),(810204,'黄大仙区',810200,'黄大仙',3,2),(810205,'观塘区',810200,'观塘',3,1),(810300,'新界',810000,'新界',2,3),(810301,'北区',810300,'北区',3,1),(810302,'大埔区',810300,'大埔',3,2),(810303,'沙田区',810300,'沙田',3,6),(810304,'西贡区',810300,'西贡',3,8),(810305,'元朗区',810300,'元朗',3,9),(810306,'屯门区',810300,'屯门',3,7),(810307,'荃湾区',810300,'荃湾',3,5),(810308,'葵青区',810300,'葵青',3,3),(810309,'离岛区',810300,'离岛',3,4),(820000,'澳门特别行政区',0,'澳门',1,33),(820100,'澳门半岛',820000,'澳门半岛',2,1),(820200,'离岛',820000,'离岛',2,2);
+/*!40000 ALTER TABLE `cn_nojd` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `commission`
+--
+
 DROP TABLE IF EXISTS `commission`;
-CREATE TABLE `commission`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `commission` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
-  `commission_account` double(10, 2) NOT NULL COMMENT '佣金金额',
-  `level_one` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '一级',
-  `level_one_id` int(255) NULL DEFAULT NULL,
-  `level_one_commission` double(10, 2) NULL DEFAULT NULL COMMENT '一级佣金',
-  `level_two` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '二级',
-  `level_two_id` int(255) NULL DEFAULT NULL,
-  `level_two_commission` double(10, 2) NULL DEFAULT NULL COMMENT '二级佣金',
-  `level_three` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '三级',
-  `level_three_id` int(255) NULL DEFAULT NULL,
-  `level_three_commission` double(10, 2) NULL DEFAULT NULL COMMENT '三级佣金',
-  `customer_nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '顾客昵称',
+  `commission_account` double(10,2) NOT NULL COMMENT '佣金金额',
+  `level_one` varchar(255) DEFAULT NULL COMMENT '一级',
+  `level_one_id` int(255) DEFAULT NULL,
+  `level_one_commission` double(10,2) DEFAULT NULL COMMENT '一级佣金',
+  `level_two` varchar(255) DEFAULT NULL COMMENT '二级',
+  `level_two_id` int(255) DEFAULT NULL,
+  `level_two_commission` double(10,2) DEFAULT NULL COMMENT '二级佣金',
+  `level_three` varchar(255) DEFAULT NULL COMMENT '三级',
+  `level_three_id` int(255) DEFAULT NULL,
+  `level_three_commission` double(10,2) DEFAULT NULL COMMENT '三级佣金',
+  `customer_nickname` varchar(255) NOT NULL COMMENT '顾客昵称',
   `customer_id` int(255) NOT NULL COMMENT '顾客会员号',
   `order_id` int(255) NOT NULL COMMENT '订单号',
   `create_time` int(255) NOT NULL COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for encash
--- ----------------------------
+--
+-- Dumping data for table `commission`
+--
+
+LOCK TABLES `commission` WRITE;
+/*!40000 ALTER TABLE `commission` DISABLE KEYS */;
+INSERT INTO `commission` VALUES (1,63.90,NULL,NULL,NULL,NULL,NULL,NULL,'大番薯吃西瓜',197760207,63.90,'哆啦A梦',103217109,1556847187,1556847229);
+/*!40000 ALTER TABLE `commission` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `encash`
+--
+
 DROP TABLE IF EXISTS `encash`;
-CREATE TABLE `encash`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `encash` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `encash_id` int(255) NOT NULL,
   `membership_id` int(255) NOT NULL,
-  `account` double(10, 2) NOT NULL,
-  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `account` double(10,2) NOT NULL,
+  `nickname` varchar(255) NOT NULL,
   `encash_type` int(255) NOT NULL COMMENT '提现方式',
   `create_time` int(255) NOT NULL COMMENT '申请时间',
   `status` int(255) NOT NULL COMMENT '0申请中1已打款2已驳回',
   `pay_time` int(255) NOT NULL COMMENT '打款时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for goods
--- ----------------------------
+--
+-- Dumping data for table `encash`
+--
+
+LOCK TABLES `encash` WRITE;
+/*!40000 ALTER TABLE `encash` DISABLE KEYS */;
+INSERT INTO `encash` VALUES (1,27024718,197760207,63.90,'大番薯吃西瓜',1,1556860270,0,0);
+/*!40000 ALTER TABLE `encash` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `goods`
+--
+
 DROP TABLE IF EXISTS `goods`;
-CREATE TABLE `goods`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `goods` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `goods_id` int(255) NOT NULL COMMENT '商品编号',
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `price` double(10, 2) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` double(10,2) NOT NULL,
   `type_id` int(255) NOT NULL COMMENT '分类',
-  `pic1` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `pic2` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `pic3` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `pic1` varchar(255) NOT NULL,
+  `pic2` varchar(255) NOT NULL,
+  `pic3` varchar(255) NOT NULL,
   `status` int(255) NOT NULL COMMENT '0下架1正常',
   `stock` int(255) NOT NULL COMMENT '库存',
-  `content` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商品详情',
-  `express_cost` double(10, 2) NOT NULL COMMENT '运费',
+  `content` mediumtext NOT NULL COMMENT '商品详情',
+  `express_cost` double(10,2) NOT NULL COMMENT '运费',
   `create_time` int(255) NOT NULL,
   `sale_num` int(255) NOT NULL COMMENT '销量',
-  `primary_price` double(10, 2) NULL DEFAULT NULL COMMENT '原价',
+  `primary_price` double(10,2) DEFAULT NULL COMMENT '原价',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for goods_specification
--- ----------------------------
+--
+-- Dumping data for table `goods`
+--
+
+LOCK TABLES `goods` WRITE;
+/*!40000 ALTER TABLE `goods` DISABLE KEYS */;
+INSERT INTO `goods` VALUES (1,288827339,'MAKEUPFOREVER玫珂菲全新清晰无痕粉底液 高清遮瑕修饰毛孔',395.00,283601495,'http://bs-api.luckyme.com.cn/static/uploads/20190502/ece2c065f7ea301033fbcca4ab84c581.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/2a2afea394e573b4c7589e987db17a45.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/a1a3e1e61b35594871b1aebb4749570a.png',1,999,'<p><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/85b766ba315940fc002c9e5b7282b56b.jpg\" /></p>',10.00,1556728882,0,NULL),(2,293732447,'MAKE UP FOR EVER/玫珂菲STEP1妆前乳隔离霜保湿控油调整肤色',350.00,283601495,'http://bs-api.luckyme.com.cn/static/uploads/20190502/27d911744d66d8085db07a5bd45f01e9.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/c8efa45394c707f55cf96e2f663df874.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/b0ac34a6d4b9cc0fc3edb48ccd7aa1d7.png',1,200,'<p><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/3ed62ea2ebc120df2aefb4bdc3ce5f76.jpg\" /></p>',0.00,1556729373,0,NULL),(3,299821496,'LUNASOL/日月晶采双魅红宝石猫眼石眼影珠光哑光日常',399.00,283603201,'http://bs-api.luckyme.com.cn/static/uploads/20190502/bf89c892815207e9ba6e51aa4d888487.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/410588c37ed704e80f287aa366cc99e3.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/99fb638ba3b9648926838fe09ea38d6a.png',1,300,'<p><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/feca4510dcb6eb5731a844887d4b7097.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/9fbc65f07bb2f70b73cd6f4616ae1097.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/f7695e2629a723c8131bf92a9b244990.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/19b80f61e053ea037bb2152c27264703.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/a322a88df3d5936bcf3264a527084cd2.jpg\" /></p>',0.00,1556729982,0,NULL),(4,303165427,'NARS腮红裸妆经典Super Orgasm Deep Throat Desire',300.00,283603271,'http://bs-api.luckyme.com.cn/static/uploads/20190502/a4b994c9187ac4e96b1e26288b572612.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/db0f75a32291b9781e07266732330550.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/dff3f7ba2054630e943b0a9fa2a026db.png',1,300,'<p><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/4dc864f74485efa84ec210c752014236.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/77c6b334091893488dee3535f1c8662b.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/bcbf6844c5dc3230f19f6c8673978946.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/aab0dd896dc5d9b80afa5041213258d9.jpg\" /></p>',0.00,1556730316,0,NULL),(5,306956377,'Charlotte Tilbury CT摩登雾感唇膏哑光口红女持久不脱豆沙色正品',250.00,283607064,'http://bs-api.luckyme.com.cn/static/uploads/20190502/7cfbe4e41624273e120240dc206632cd.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/0eb8dd50b78fe3b1458ac092bb433506.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/613905505d4c452d5d689f0beac614a9.png',1,999,'<p><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/14f8d575ccc4c5da538da2ce2a667b97.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/4200e8c99d67dc7876dd93e261157dcc.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/a64acb6d31e6f8531ac933554cacad27.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/e0f21cec185b45a100c46253841ea12a.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/9d0131326c21bc9c44561df7530dc89e.jpg\" /></p>',0.00,1556730695,0,NULL),(6,310991361,'洛斐dot圆点蓝牙机械键盘lofree无线复古手机ipad苹果MAC熊本熊粉色小黄鸭墨金套装女生青轴平板洛菲打字机',639.00,277273725,'http://bs-api.luckyme.com.cn/static/uploads/20190502/2dc1a7c630f5ed44592a785c5c27b6ae.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/fad46f27b395afa364fbcc50efdd0fb5.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/44bc237e29570ff2b016b24dae5c3c17.png',1,598,'<p><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/4dffd0ae1850e58304e5b485b5c66f5a.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/a27c3ef1b4035abd48ba640ffdead9b8.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/34e5bb26f98a976af05b41b92dd3bf5b.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/863bc160966df991287619c09ed54ec9.jpg\" /></p>',0.00,1556731099,0,NULL),(7,314781313,'Sony/索尼 ILCE-7M3 A7M3全画幅索尼微单相机 A7M3机身',13999.00,277274507,'http://bs-api.luckyme.com.cn/static/uploads/20190502/ccd71d7e4ed441ee03e0969504e0572c.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/47b52a67022daedf0a1bb959b77126bd.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/bd23e13cfabdbcd521a3b5e17e13153b.png',1,5,'<p><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/e934c52fab35a9e33a9407daba80af32.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/8826006a817353525e9c457ed833d65d.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/2c82864c99106f45a7b00b27ee3ea302.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/8c7a36dfa8da0082aecc6f1cc90d16ad.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/16f149b3b7a1f3da2e3eadae6cb15b08.jpg\" /></p>',0.00,1556731478,0,NULL),(8,318162806,'Apple/苹果 iPhone Xs Max 256G 全网通4G手机 双卡双待苹果iphonexsmax',9088.00,277276077,'http://bs-api.luckyme.com.cn/static/uploads/20190502/e2eae23b58e2a2b27813e7e56588113a.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/c8cc19ade135f429bd8edd69b4d37110.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/69f646abd0fc63084307ce8b533136b7.png',1,100,'<p><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/30f1a92154874138ebf247099859be6f.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/a00ecd62a00b30260d84831a77fc61f9.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/0b8d140740648b852328c9fd8c0c72c1.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/13fae7c20edef36a098efcefedd394c9.jpg\" /></p>',0.00,1556731816,0,NULL),(9,321285989,'原始原素全实木床1.8米1.5双人床北欧现代简约卧室家具进口橡木床',3200.00,272969055,'http://bs-api.luckyme.com.cn/static/uploads/20190502/f048f80ff44680398f4b0a65a29d00b0.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/b7122821c570ba4b9fe59ec632c0b56f.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/0cc3e14a812766a23c618b965f77697c.png',1,20,'<p><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/2abe2f8157ac171b9b568950e1a9959c.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/88eaa72496ec65ebfd5807de6fed0203.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/6807bcd1b58cbf04e81ecf7bce775141.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/6d2a227c40fd806af5368bf9c79d458e.jpg\" /><img class=\"wscnph\" src=\"http://bs-api.luckyme.com.cn/static/uploads/20190502/d661b87106ecb3c6b030e4ae17fd3a31.jpg\" /></p>',0.00,1556732128,0,NULL);
+/*!40000 ALTER TABLE `goods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `goods_specification`
+--
+
 DROP TABLE IF EXISTS `goods_specification`;
-CREATE TABLE `goods_specification`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `goods_specification` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `goods_id` int(255) NOT NULL COMMENT '商品编号',
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '规格名称',
+  `name` varchar(255) NOT NULL COMMENT '规格名称',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for goods_type
--- ----------------------------
+--
+-- Dumping data for table `goods_specification`
+--
+
+LOCK TABLES `goods_specification` WRITE;
+/*!40000 ALTER TABLE `goods_specification` DISABLE KEYS */;
+INSERT INTO `goods_specification` VALUES (1,288827339,'R220'),(2,293732447,'#1 持久控油'),(3,293732447,'#2 隐匿毛孔'),(4,293732447,'#3 补水锁水'),(5,293732447,'#4 深层滋养'),(6,293732447,'#5 中和泛红肌肤'),(7,293732447,'#6 提亮肤色'),(8,293732447,'#7 修饰阳光肤色'),(9,293732447,'#8 中和偏黄肤色'),(10,299821496,'EX01'),(11,299821496,'05RB'),(12,303165427,'ORGASM'),(13,303165427,'DEEP THROAT'),(14,303165427,'SEX APPEAL'),(15,303165427,'DESIRE'),(16,303165427,'LIBERTE'),(17,306956377,'WALK OF SHAME'),(18,306956377,'AMAZING GRACE'),(19,306956377,'BOND GIRL'),(20,306956377,'VERY VICTORIA'),(21,306956377,'PILLOW TALK'),(22,310991361,'红色'),(23,310991361,'熊本熊'),(24,310991361,'水绿色'),(25,310991361,'小黄鸭'),(26,310991361,'橙色'),(27,314781313,'ILCE-7M3'),(28,314781313,'ILCE-7RM3'),(29,318162806,'iPhone XS Max'),(30,321285989,'1.8x1.9');
+/*!40000 ALTER TABLE `goods_specification` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `goods_type`
+--
+
 DROP TABLE IF EXISTS `goods_type`;
-CREATE TABLE `goods_type`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `goods_type` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `type_id` int(255) NOT NULL COMMENT '分类编号',
   `level` int(2) NOT NULL COMMENT '分类级别',
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '分类名称',
-  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `name` varchar(255) NOT NULL COMMENT '分类名称',
+  `avatar` varchar(255) NOT NULL,
   `belong_id` int(255) NOT NULL COMMENT '所属一级分类id',
   `create_time` int(20) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for membership
--- ----------------------------
+--
+-- Dumping data for table `goods_type`
+--
+
+LOCK TABLES `goods_type` WRITE;
+/*!40000 ALTER TABLE `goods_type` DISABLE KEYS */;
+INSERT INTO `goods_type` VALUES (1,269424971,1,'服饰','',0,1556726942),(2,269428986,2,'女装','http://bs-api.luckyme.com.cn/static/uploads/20190502/329c9a95cb68ff89fcbee71ab928fd31.jpeg',269424971,1556726942),(3,269423546,2,'男装','http://bs-api.luckyme.com.cn/static/uploads/20190502/1698464c71ad51c8be1f89c06cdb6a8d.png',269424971,1556726942),(4,269427479,2,'童装','http://bs-api.luckyme.com.cn/static/uploads/20190502/501cfa6e5e2f39d67df8eab7e0ebcaf7.jpg',269424971,1556726942),(5,269424728,2,'内衣','http://bs-api.luckyme.com.cn/static/uploads/20190502/6a886878d03e4b6f083109aa755570bf.png',269424971,1556726942),(6,272968607,1,'家具','',0,1556727296),(7,272968326,2,'沙发','http://bs-api.luckyme.com.cn/static/uploads/20190502/9e736ec345671e83674d7746cf5790f7.jpg',272968607,1556727296),(8,272969055,2,'床','http://bs-api.luckyme.com.cn/static/uploads/20190502/4eebee1799a966474f61a4e54b3242df.png',272968607,1556727296),(9,272967473,2,'茶几','http://bs-api.luckyme.com.cn/static/uploads/20190502/9f22d34f53cdcc1e17088ba163a13700.png',272968607,1556727296),(10,277273378,1,'数码','',0,1556727727),(11,277276077,2,'手机','http://bs-api.luckyme.com.cn/static/uploads/20190502/7ae8ae3324b944e5611ad49fb0382a50.png',277273378,1556727727),(12,277274507,2,'相机','http://bs-api.luckyme.com.cn/static/uploads/20190502/e53bcd1c201b0655175288deddb2a6b2.png',277273378,1556727727),(13,277273725,2,'键盘','http://bs-api.luckyme.com.cn/static/uploads/20190502/6e2d6a7ad9c51e9f6cbeee0703e09bf9.png',277273378,1556727727),(14,283608376,1,'美妆','',0,1556728360),(15,283601495,2,'底妆','http://bs-api.luckyme.com.cn/static/uploads/20190502/b13dd459514909c83008fcab0df4fc64.png',283608376,1556728360),(16,283603201,2,'眼妆','http://bs-api.luckyme.com.cn/static/uploads/20190502/faa228c5053f5cfd7b725658feb35dd0.png',283608376,1556728360),(17,283603271,2,'腮红','http://bs-api.luckyme.com.cn/static/uploads/20190502/6962f9923d83695ad83680abef084957.png',283608376,1556728360),(18,283607064,2,'唇妆','http://bs-api.luckyme.com.cn/static/uploads/20190502/c6af12446e9f22740bb89a9acdd209df.png',283608376,1556728360);
+/*!40000 ALTER TABLE `goods_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `membership`
+--
+
 DROP TABLE IF EXISTS `membership`;
-CREATE TABLE `membership`  (
-  `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `membership` (
+  `id` int(255) unsigned NOT NULL AUTO_INCREMENT,
   `membership_id` int(255) NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `commission` double(255, 2) NOT NULL COMMENT '佣金',
-  `balance` double(255, 2) UNSIGNED NOT NULL,
-  `sale_account` double(255, 2) NOT NULL COMMENT '销售额',
-  `expense` double(255, 2) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `nickname` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `commission` double(255,2) NOT NULL COMMENT '佣金',
+  `balance` double(255,2) unsigned NOT NULL,
+  `sale_account` double(255,2) NOT NULL COMMENT '销售额',
+  `expense` double(255,2) unsigned NOT NULL,
   `create_time` int(255) NOT NULL,
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `password` varchar(255) NOT NULL,
   `referrer_id` int(255) NOT NULL,
-  `referrer` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `referrer` varchar(255) NOT NULL,
   `status` int(255) NOT NULL COMMENT '0未申请 1待审核 2已同意 3已拒绝 4已禁用',
   `is_shopper` int(255) NOT NULL COMMENT '1是0否',
-  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '头像',
+  `avatar` varchar(255) NOT NULL COMMENT '头像',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for message
--- ----------------------------
+--
+-- Dumping data for table `membership`
+--
+
+LOCK TABLES `membership` WRITE;
+/*!40000 ALTER TABLE `membership` DISABLE KEYS */;
+INSERT INTO `membership` VALUES (1,197760207,'张三','大番薯吃西瓜','15138389776',63.90,0.00,1278.00,0.00,1556844459,'4297f44b13955235245b2497399d7a93',0,'',2,0,'static/uploads/20190502/26161af3aad465988d93490c67334a8a.jpg'),(2,103217109,'小叮当','哆啦A梦','15038010321',0.00,3722.00,0.00,1278.00,1556847109,'4297f44b13955235245b2497399d7a93',197760207,'大番薯吃西瓜',0,0,'static/uploads/20190503/0d3ac88fd06786fe32a9cc5cb7892b52.jpg');
+/*!40000 ALTER TABLE `membership` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `message`
+--
+
 DROP TABLE IF EXISTS `message`;
-CREATE TABLE `message`  (
-  `id` int(255) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `content` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `content_short` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `message` (
+  `id` int(255) unsigned NOT NULL AUTO_INCREMENT,
+  `title` varchar(255) NOT NULL,
+  `content` mediumtext NOT NULL,
+  `content_short` mediumtext NOT NULL,
   `create_time` bigint(255) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for order
--- ----------------------------
+--
+-- Dumping data for table `message`
+--
+
+LOCK TABLES `message` WRITE;
+/*!40000 ALTER TABLE `message` DISABLE KEYS */;
+INSERT INTO `message` VALUES (1,'2019造物节招商（入口、时间以及规则）','<p>&nbsp; &nbsp; &nbsp; 一、2017淘宝造物节招商报名时间</p>\n<p>　　2019年造物节将在2019年7月8日-12日开启</p>\n<p>　　商家报名时间：2019.04.27-05.14</p>\n<p>　　活动上线时间： 2019.05.18-05.24</p>\n<p>　　二、淘宝造物节活动报名入口</p>\n<p>　　https://zaowujie.com/pc/sellerbaoming.html</p>\n<p>　　三、2019淘宝造物节粉丝投票活动招商规则</p>\n<p>　　活动资源支持</p>\n<p>　　招商对象及基础招商要求</p>\n<p>　　报名露出形式及报名方式</p>','2019年造物节是什么?造物节是2019年7月8-12日在杭州举办，为期3天的造物节是淘宝继双十一购物狂欢节之后针对90后年轻人推出的另一个节日。',1556842360);
+/*!40000 ALTER TABLE `message` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order`
+--
+
 DROP TABLE IF EXISTS `order`;
-CREATE TABLE `order`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `order_id` int(255) NOT NULL COMMENT '订单号',
-  `shopper` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '分销商',
+  `shopper` varchar(255) NOT NULL COMMENT '分销商',
   `shopper_id` int(255) NOT NULL COMMENT '分销商会员号',
-  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `nickname` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
   `membership_id` int(255) NOT NULL,
-  `price` double(10, 2) NOT NULL,
+  `price` double(10,2) NOT NULL,
   `status` int(5) NOT NULL COMMENT '0待付款1待发货2已发货3已完成4待退款5同意退款6拒绝退款7已退款',
   `create_time` int(255) NOT NULL COMMENT '下单时间',
   `apply_refund_time` int(255) NOT NULL COMMENT '申请退款时间',
   `refund_time` int(255) NOT NULL COMMENT '退款时间',
   `pay_time` int(255) NOT NULL COMMENT '付款时间',
-  `contacts` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '联系人',
-  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '联系电话',
-  `address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '地址信息',
-  `refund_contacts` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商家联系人',
-  `refund_phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商家电话',
-  `refund_address` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '商家地址',
+  `contacts` varchar(255) NOT NULL COMMENT '联系人',
+  `phone` varchar(255) NOT NULL COMMENT '联系电话',
+  `address` varchar(255) NOT NULL COMMENT '地址信息',
+  `refund_contacts` varchar(255) NOT NULL COMMENT '商家联系人',
+  `refund_phone` varchar(255) NOT NULL COMMENT '商家电话',
+  `refund_address` varchar(255) NOT NULL COMMENT '商家地址',
   `refund_express_company` int(255) NOT NULL COMMENT '退货物流公司',
-  `refund_express_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '退货物流单号',
+  `refund_express_code` varchar(255) NOT NULL COMMENT '退货物流单号',
   `express_company` int(255) NOT NULL COMMENT '快递公司',
-  `express_code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '快递编号',
-  `express_cost` double(10, 2) NOT NULL COMMENT '快递费用',
-  `remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '备注',
+  `express_code` varchar(255) NOT NULL COMMENT '快递编号',
+  `express_cost` double(10,2) NOT NULL COMMENT '快递费用',
+  `remark` varchar(255) NOT NULL COMMENT '备注',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for order_goods
--- ----------------------------
+--
+-- Dumping data for table `order`
+--
+
+LOCK TABLES `order` WRITE;
+/*!40000 ALTER TABLE `order` DISABLE KEYS */;
+INSERT INTO `order` VALUES (1,1556847187,'大番薯吃西瓜',197760207,'哆啦A梦','小叮当',103217109,1278.00,3,1556847187,0,0,1556847190,'小叮当','15038010321','河南省郑州市中原区中原路146号','','','',0,'',3,'852145632',0.00,'');
+/*!40000 ALTER TABLE `order` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `order_goods`
+--
+
 DROP TABLE IF EXISTS `order_goods`;
-CREATE TABLE `order_goods`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `order_goods` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `order_id` int(255) NOT NULL,
   `goods_id` int(255) NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `price` double(10, 2) NOT NULL,
-  `pic1` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `pic2` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `pic3` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `express_cost` double(10, 2) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `price` double(10,2) NOT NULL,
+  `pic1` varchar(255) NOT NULL,
+  `pic2` varchar(255) NOT NULL,
+  `pic3` varchar(255) NOT NULL,
+  `express_cost` double(10,2) NOT NULL,
   `num` int(10) NOT NULL,
-  `type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '商品属性',
+  `type` varchar(255) DEFAULT NULL COMMENT '商品属性',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Table structure for regulation
--- ----------------------------
+--
+-- Dumping data for table `order_goods`
+--
+
+LOCK TABLES `order_goods` WRITE;
+/*!40000 ALTER TABLE `order_goods` DISABLE KEYS */;
+INSERT INTO `order_goods` VALUES (1,1556847187,310991361,'洛斐dot圆点蓝牙机械键盘lofree无线复古手机ipad苹果MAC熊本熊粉色小黄鸭墨金套装女生青轴平板洛菲打字机',639.00,'http://bs-api.luckyme.com.cn/static/uploads/20190502/2dc1a7c630f5ed44592a785c5c27b6ae.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/fad46f27b395afa364fbcc50efdd0fb5.png','http://bs-api.luckyme.com.cn/static/uploads/20190502/44bc237e29570ff2b016b24dae5c3c17.png',0.00,2,'水绿色');
+/*!40000 ALTER TABLE `order_goods` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `regulation`
+--
+
 DROP TABLE IF EXISTS `regulation`;
-CREATE TABLE `regulation`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `regulation` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
   `require_type` int(11) NOT NULL COMMENT '成为分销商门槛',
-  `require_expense` double(10, 2) NOT NULL COMMENT '消费额',
-  `require_price` double(10, 2) NOT NULL COMMENT '门槛价格',
+  `require_expense` double(10,2) NOT NULL COMMENT '消费额',
+  `require_price` double(10,2) NOT NULL COMMENT '门槛价格',
   `display_agreement` int(2) NOT NULL COMMENT '0不展示协议1展示协议',
-  `agreement_title` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `agreement_content` mediumtext CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `level_one` double(10, 2) NOT NULL COMMENT '一级分销比例',
-  `level_two` double(10, 2) NOT NULL COMMENT '二级分销比例',
-  `level_three` double(10, 2) NOT NULL COMMENT '三级分销比例',
+  `agreement_title` varchar(255) NOT NULL,
+  `agreement_content` mediumtext NOT NULL,
+  `level_one` double(10,2) NOT NULL COMMENT '一级分销比例',
+  `level_two` double(10,2) NOT NULL COMMENT '二级分销比例',
+  `level_three` double(10,2) NOT NULL COMMENT '三级分销比例',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of regulation
--- ----------------------------
-INSERT INTO `regulation` VALUES (1, 2, 500.00, 100.00, 0, '购买协议', '这是一条购买协议\n这是一条购买协议', 20.00, 15.00, 5.00);
+--
+-- Dumping data for table `regulation`
+--
 
--- ----------------------------
--- Table structure for sys_user
--- ----------------------------
+LOCK TABLES `regulation` WRITE;
+/*!40000 ALTER TABLE `regulation` DISABLE KEYS */;
+INSERT INTO `regulation` VALUES (1,1,500.00,100.00,1,'标题2','这是一条购买协议\n这是一条购买协议',20.00,15.00,5.00);
+/*!40000 ALTER TABLE `regulation` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sys_user`
+--
+
 DROP TABLE IF EXISTS `sys_user`;
-CREATE TABLE `sys_user`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sys_user` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '用户名暨手机号',
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `nickname` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `roles` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '1系统管理员 2普通管理员',
-  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
+  `username` varchar(255) NOT NULL COMMENT '用户名暨手机号',
+  `password` varchar(255) NOT NULL,
+  `nickname` varchar(255) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `roles` varchar(255) NOT NULL COMMENT '1系统管理员 2普通管理员',
+  `avatar` varchar(255) NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of sys_user
--- ----------------------------
-INSERT INTO `sys_user` VALUES (1, '15138389776', 'e10adc3949ba59abbe56e057f20f883e', '大番薯', '张三', 'admin', 'static/uploads/20190401/789919594a0402d8eeef995b7864a98b.jpg');
-INSERT INTO `sys_user` VALUES (17, '17611319611', '4297f44b13955235245b2497399d7a93', '小番薯', '徐大大', 'manager', 'static/uploads/20190327/c5a5d4d6bf5e321bbb4b26fd27fd4f25.jpg');
+--
+-- Dumping data for table `sys_user`
+--
 
--- ----------------------------
--- Table structure for user
--- ----------------------------
+LOCK TABLES `sys_user` WRITE;
+/*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
+INSERT INTO `sys_user` VALUES (1,'15138389776','e10adc3949ba59abbe56e057f20f883e','大番薯','张三','admin','static/uploads/20190401/789919594a0402d8eeef995b7864a98b.jpg'),(17,'17611319611','4297f44b13955235245b2497399d7a93','小番薯','徐大大','manager','static/uploads/20190327/c5a5d4d6bf5e321bbb4b26fd27fd4f25.jpg');
+/*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `user`
+--
+
 DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user`  (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `user` (
   `id` int(255) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '昵称',
-  `username` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '账号',
-  `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL COMMENT '密码',
-  `roles` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '角色',
-  `avatar` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '头像',
+  `name` varchar(255) DEFAULT NULL COMMENT '昵称',
+  `username` varchar(255) NOT NULL COMMENT '账号',
+  `password` varchar(255) NOT NULL COMMENT '密码',
+  `roles` varchar(255) DEFAULT NULL COMMENT '角色',
+  `avatar` varchar(255) DEFAULT NULL COMMENT '头像',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 ROW_FORMAT=COMPACT;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
--- ----------------------------
--- Records of user
--- ----------------------------
-INSERT INTO `user` VALUES (1, '张三', 'admin', '4297f44b13955235245b2497399d7a93', 'admin', 'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553658083440&di=5bbe02990ac8763f8d1e11b6af4a244b&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201801%2F29%2F20180129152805_5xE2F.thumb.700_0.jpeg');
+--
+-- Dumping data for table `user`
+--
 
-SET FOREIGN_KEY_CHECKS = 1;
+LOCK TABLES `user` WRITE;
+/*!40000 ALTER TABLE `user` DISABLE KEYS */;
+INSERT INTO `user` VALUES (1,'张三','admin','4297f44b13955235245b2497399d7a93','admin','https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553658083440&di=5bbe02990ac8763f8d1e11b6af4a244b&imgtype=0&src=http%3A%2F%2Fb-ssl.duitang.com%2Fuploads%2Fitem%2F201801%2F29%2F20180129152805_5xE2F.thumb.700_0.jpeg');
+/*!40000 ALTER TABLE `user` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2019-05-03 21:31:53
