@@ -278,7 +278,7 @@ class Membership extends Base
         if ($res) {
             $result = Db::table('membership')->where('status', '>', 0)->page($rec['page_num'], $rec['page_size'])->select();
             if ($result) {
-                $count = count(Db::table('membership')->select());
+                $count = count(Db::table('membership')->where('status','=',2)->select());
                 $data['count'] = $count;
                 $data['rows'] = $result;
                 return $this->SuccessReturn('success', $data);
